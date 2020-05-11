@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\views",
+    "\\views\\layouts",
+    "\\widgets"
   ],
+  "SelectedNode": "\\widgets\\Alert.php",
   "PreviewInSolutionExplorer": false
 }
