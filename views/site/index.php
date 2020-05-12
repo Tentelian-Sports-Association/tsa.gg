@@ -33,6 +33,9 @@ $this->title = 'My Yii Application';
     <?php foreach($tournaments as $tournament) : ?>
         <div><?= $tournament['Name'] ?></div>
         <div><?= $tournament['Mode'] ?></div>
+        <!-- Für Mobile-->
+        <div><?= $tournament['GameTag'] ?></div>
+        <!-- Check if Live or in the Future -->
         <?php if($tournament['IsLive']) : ?>
             <!-- ab hier dann die Button geschichte das man direkt auf den  Turnierbaum kommt -->
             <div><?= $tournament['ID'] ?></div>
