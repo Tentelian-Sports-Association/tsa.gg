@@ -1,53 +1,65 @@
 <?php
 
-/* @var $this yii\web\View */
+/* @var $this yii\web\View
+ * @var $upcomingEvents array
+ * @var $tournaments array
+ * @var $latestNews array
+ * @var $ourPartner array
+ */
 
 $this->title = 'My Yii Application';
 ?>
+
 <div class="site-index">
+    <!-- *************** Upcoming Events Bereich *************** -->
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+    <!-- Das Nächste anstehende Event für die Große anzeige -->
+    <div><?= $upcomingEvents['Next']['Name'] ?></div>
+    <div><?= $upcomingEvents['Next']['shortDescription'] ?></div>
+    <!-- Background Image, funktion zum laden baue ich wenn design da -->
+    <div><?= $upcomingEvents['Next']['previewImage'] ?></div>
+    <!-- ID für den Button, funktion baue ich wenn design da -->
+    <div><?= $upcomingEvents['Next']['ID'] ?></div>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+    <!-- Das angepriesene Event für die kleine Ecke -->
+    <div><?= $upcomingEvents['Preview']['Name'] ?></div>
+    <div><?= $upcomingEvents['Preview']['shortDescription'] ?></div>
+    <!-- Background Image, funktion zum laden baue ich wenn design da -->
+    <div><?= $upcomingEvents['Preview']['previewImage'] ?></div>
+    <!-- ID für den Button, funktion baue ich wenn design da -->
+    <div><?= $upcomingEvents['Preview']['ID'] ?></div>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+    <!-- *************** Tournaments Bereich *************** -->
+    <?php foreach($tournaments as $tournament) : ?>
+        <div><?= $tournament['Name'] ?></div>
+        <div><?= $tournament['Mode'] ?></div>
+        <?php if($tournament['IsLive']) : ?>
+            <!-- ab hier dann die Button geschichte das man direkt auf den  Turnierbaum kommt -->
+            <div><?= $tournament['ID'] ?></div>
+        <?php else : ?>
+            <!-- ab hier dann datum und uhrzeit wenn es nicht live ist -->
+            <div><?= $tournament['StartingDate'] ?></div>
+            <div><?= $tournament['StartingTime'] ?></div>
+        <?php endif; ?>
+        <!-- Image für Hover Image funktion zum laden baue ich wenn design da -->
+        <div><?= $tournament['HoverImage'] ?></div>
+    <?php endforeach; ?>
 
-    <div class="body-content">
+    <!-- *************** Latest News Bereich *************** -->
+    <?php foreach($latestNews as $news) : ?>
+         <!-- Background Image, funktion zum laden baue ich wenn design da -->
+        <div><?= $news['previewImage'] ?></div>
+        <div><?= $news['Headline'] ?></div>
+        <div><?= $news['StartingDate'] ?></div>
+        <!-- ID für den Button, funktion baue ich wenn design da -->
+        <div><?= $news['ID'] ?></div>
+    <?php endforeach; ?>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
+    <!-- *************** Our Partners Bereich *************** -->
+    <?php foreach($ourPartner as $partner) : ?>
+        <!-- Background Image, funktion zum laden baue ich wenn design da -->
+        <div><?= $partner['previewImage'] ?></div>
+        <!-- ID für den Button, funktion baue ich wenn design da -->
+        <div><?= $partner['ID'] ?></div>
+    <?php endforeach; ?>
 </div>

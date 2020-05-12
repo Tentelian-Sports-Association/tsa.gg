@@ -11,7 +11,15 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+
+$weAreLive = array();
+$weAreLive['twitch']['channellink'] = "https://twitch.tv/TentelianSA";
+$weAreLive['Mixer']['channellink'] = "https://mixer.com/TentelianSA";
+$weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwnpbw";
+
 ?>
+
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
