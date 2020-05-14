@@ -1,0 +1,101 @@
+.event-hero {
+    position: relative;
+    &-image {
+        padding: 8px;
+        position: relative;
+        margin: 0 auto;
+
+        picture {
+            min-width: 100%;
+            min-height: 350px;
+            display: block;
+        }
+
+        @media (min-width: $breakpoint-sm) {
+            picture {
+                min-height: 560px;
+            }
+        }
+        @media (min-width: $breakpoint-md) {
+            padding: 0;
+            picture {
+                min-width: auto;
+                min-height: 500px;
+            }
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            height: 680px;
+
+            picture {
+                display: flex;
+                justify-content: center;
+                overflow: hidden;
+                min-height: auto;
+            }
+
+            img {
+                height: 680px;
+                width: 1920px;
+            }
+        }
+    }
+
+    &-container {
+        top: 25%;
+        position: absolute;
+        width: 100%;
+
+        @media (min-width: $breakpoint-360) {
+            top: 28%;
+        }
+
+        @media (min-width: $breakpoint-sm) {
+            top: 32%;
+        }
+
+        @media (min-width: $breakpoint-md) {
+            align-items: center;
+            bottom: 0;
+            display: flex;
+            top: 0;
+        }
+
+        .description {
+            font-size: 29px;
+            line-height: 33px;
+            margin-bottom: 44px;
+        }
+    }
+
+    .event-hero-upcoming-events {
+        position: absolute;
+        bottom: 0;
+        right: 15%;
+
+        .upcoming-description {
+            background: $primaryColor;
+            padding: 10px;
+
+            h3 {
+                font-size: 32px;
+                line-height: 93%;
+            }
+            .more {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background: $white;
+                padding: 12px;
+                line-height: 14px;
+            }
+        }
+    }
+
+    .outline-btn {
+        width: 100%;
+        @media (min-width: $breakpoint-sm) {
+            width: auto;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+
+.outline-btn {
+    @include outline-btn();
+
+    &-white {
+        @include outline-btn();
+        border-color: $white;
+        color: $white;
+
+        &:hover {
+            border-color: $white;
+        }
+    }
+}
+
+.filled-btn {
+    @include filled-btn();
+}
