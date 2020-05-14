@@ -7,7 +7,9 @@
  * @var $ourPartner array
  */
 
-$this->title = 'Startpage';
+
+$this->title = 'Tentelian Sports Association';
+
 ?>
 
 <div class="site-index">
@@ -109,8 +111,9 @@ $this->title = 'Startpage';
     <!-- *************** Our Partners Bereich *************** -->
     <?php foreach($ourPartner as $partner) : ?>
         <!-- Background Image, funktion zum laden baue ich wenn design da -->
-        <div><?= $partner['previewImage'] ?></div>
+        <div><?= $partner['Image'] ?></div>
         <!-- ID f�r den Button, funktion baue ich wenn design da -->
-        <div><?= $partner['ID'] ?></div>
+        <div><?= $partner['id'] ?></div>
+>>>>>>> develop
     <?php endforeach; ?>
 </div>

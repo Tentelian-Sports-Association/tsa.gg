@@ -3,11 +3,15 @@
 namespace app\controllers;
 
 use Yii;
+
+use yii\db\Expression;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
 use DateTime;
+
+use app\modules\partner\models\Partner;
 
 use app\models\LoginForm;
 use app\models\ContactForm;
@@ -143,19 +147,7 @@ class SiteController extends Controller
         $latestNews[2]['StartingDate'] = (new DateTime())->format('Y-m-d');
 
         /** Our Partners */
-        $ourPartner = array();
-        /** 4 Random Partners */
-        $ourPartner[0]['ID'] = 1;
-        $ourPartner[0]['previewImage'] = "tentelian";
-
-        $ourPartner[1]['ID'] = 2;
-        $ourPartner[1]['previewImage'] = "steelseries";
-
-        $ourPartner[2]['ID'] = 3;
-        $ourPartner[2]['previewImage'] = "gamersFinest";
-
-        $ourPartner[3]['ID'] = 4;
-        $ourPartner[3]['previewImage'] = "sommerSchnee";
+        $ourPartner = Partner::find()->select(['id', 'image'])->orderBy(new Expression('rand()'))->limit(4)->all();
 
         return $this->render('index',
         [
