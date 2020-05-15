@@ -87,14 +87,12 @@ $config = [
                 ],
             ]
         ],
-        /*
         'MetaClass' => [
             'class' => 'app\modules\miscellaneouse\metaClass',
         ],
         'HelperClass' => [
             'class' => 'app\modules\miscellaneouse\helperClass'
         ],
-        */
     ],
     'modules' => [
         'partner' => 'app\modules\partner\Module'
