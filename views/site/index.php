@@ -1,7 +1,5 @@
 <?php
 
-use yii\helpers\Html;
-
 /* @var $this yii\web\View
  * @var $upcomingEvents array
  * @var $tournaments array
@@ -111,9 +109,9 @@ $this->title = 'Tentelian Sports Association';
     <?php endforeach; ?>
 
     <!-- *************** Our Partners Bereich *************** -->
-    <?php foreach($ourPartner as $nr => $partner) : ?>
+    <?php foreach($ourPartner as $partner) : ?>
         <!-- Background Image, funktion zum laden baue ich wenn design da -->
-        <div aria-labelledby='<?= $partner['Image']?>'><?= Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.webp', ['aria-label' => $partner['Name'],'alt' => '', 'id' => $partner['Image'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.png\'']); ?></div>
+        <div><?= $partner['Image'] ?></div>
         <!-- ID f�r den Button, funktion baue ich wenn design da -->
         <div><?= $partner['id'] ?></div>
 >>>>>>> develop

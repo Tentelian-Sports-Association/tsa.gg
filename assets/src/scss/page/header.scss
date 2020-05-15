@@ -1,0 +1,22 @@
+header {
+    padding: 24px 0;
+
+    .navbar {
+        a {
+            font-size: 24px;
+            color: $white;
+            padding: 5px;
+
+            &:not(:first-child),
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
+        }
+        .account-bar {
+            margin-left: 10px;
+            .outline-btn-white {
+                margin-right: 10px;
+            }
+        }
+    }
+}
