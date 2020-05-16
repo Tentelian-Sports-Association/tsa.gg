@@ -1,0 +1,16 @@
+.tournament {
+    padding: 96px;
+    .tournament-container {
+        margin-bottom: 56px;
+        li {
+            padding: 30px ;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 25px;
+            &:hover {
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+    }
+}

@@ -5,8 +5,6 @@
 
 use app\widgets\Alert;
 use yii\helpers\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
@@ -33,49 +31,53 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
 </head>
 <body>
 <?php $this->beginBody() ?>
+<header class="d-flex align-items-center">
+    <div class="row">
+        <div class="col-2">
+            <a href="#" class="logo">
+                <img src="https://via.placeholder.com/237x74.png" class="img-fluid" alt="Logo">
+            </a>
+        </div>
+        <div class="col-10">
+            <div class="navbar  navbar-expand-lg">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">Icon</span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link" href="#">News</a>
+                    <a class="nav-link" href="#">Communinity</a>
+                    <a class="nav-link" href="#">Tournaments</a>
+                    <a class="nav-link" href="#">Partners</a>
+                    <a class="nav-link" href="#">Events</a>
+                    <a class="nav-link" href="#">Kontakt</a>
+                    <div class="account-bar d-inline">
+                        <button class="outline-btn-white">Login</button>
+                        <button class="outline-btn">Registrieren</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-expand-md navbar-light bg-dark',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-        'itemTemplate' => "\n\t<li class=\"breadcrumb-item\"><i>{link}</i></li>\n", // template for all links
-        'activeItemTemplate' => "\t<li class=\"breadcrumb-item active\">{link}</li>\n", // template for the active link
-        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
     </div>
+
+</header>
+
+
+
+<!--
+<div class="breadcrumb">
+    <?= Breadcrumbs::widget([
+    'itemTemplate' => "\n\t<li class=\"breadcrumb-item\"><i>{link}</i></li>\n", // template for all links
+    'activeItemTemplate' => "\t<li class=\"breadcrumb-item active\">{link}</li>\n", // template for the active link
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+]) ?>
+    <?= Alert::widget() ?>
 </div>
+-->
+<?= $content ?>
+
+
 
 <footer class="footer">
     <div class="container">

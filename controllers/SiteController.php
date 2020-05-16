@@ -147,7 +147,7 @@ class SiteController extends Controller
         $latestNews[2]['StartingDate'] = (new DateTime())->format('Y-m-d');
 
         /** Our Partners */
-        $ourPartner = Partner::find()->select(['id', 'image'])->orderBy(new Expression('rand()'))->limit(4)->all();
+        $ourPartner = Partner::find()->select(['id', 'image', 'name'])->orderBy(new Expression('rand()'))->limit(4)->all();
 
         return $this->render('index',
         [
