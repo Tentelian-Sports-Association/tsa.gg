@@ -14,15 +14,16 @@ $this->title = 'Tentelian Sports Association';
 
 <div class="content-startpage">
     <!-- *************** Wir sind live Bereich *************** -->
-    <div class="promo-banner dropdown">
-        <h3 class="promo-text"><span>Icon</span>wir sind jetzt live, schau uns zu!</h3>
-        <button class="dropdown-toggle" type="button" id="promo-banner" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
+    <div class="promo-banner dropdown d-block d-sm-flex align-items-center justify-content-between">
+        <h3 class="promo-text d-inline"><span>* </span>wir sind jetzt live<span class="d-inline d-sm-none">!</span><span class="d-none d-sm-inline">, schau uns zu!</span></h3>
+        <button type="button" class="d-inline d-sm-none float-right float-sm-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ^
         </button>
-        <div class="col align-items-center text-right promo-links dropdown-menu" aria-labelledby="promo-banner">
-            <a href="#" class="twitch dropdown-item"><span>Logo </span>Twitch</a>
-            <a href="#" class="mixer dropdown-item"><span>Logo </span>Mixer</a>
-            <a href="#" class="youtube dropdown-item"><span>Logo </span>Youtube</a>
+        <div class="col  align-items-center text-sm-right promo-links dropdown-menu" aria-labelledby="promo-banner">
+            <div class="dropdown-divider d-sm-none"></div>
+            <a href="#" class="twitch dropdown-item"><span>I </span>Twitch</a>
+            <a href="#" class="mixer dropdown-item"><span>I </span>Mixer</a>
+            <a href="#" class="youtube dropdown-item"><span>I </span>Youtube</a>
         </div>
     </div>
 
@@ -53,7 +54,7 @@ $this->title = 'Tentelian Sports Association';
         </div>
 
         <div class="event-hero-upcoming-events d-flex">
-            <div class="d-inline-block upcoming-image">
+            <div class="d-none d-sm-inline-block upcoming-image">
                 <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
                 <img src="https://via.placeholder.com/237x134.png" class="img-fluid">
             </div>
@@ -85,8 +86,8 @@ $this->title = 'Tentelian Sports Association';
                             <div class="col-12 col-sm-8 tournament-description">
                                 <div class="row">
                                     <!-- Für Mobile-->
-                                    <span class="d-block d-sm-none"><?= $tournament['GameTag'] ?></span>
-
+                                    <span class="d-block d-sm-none gamertag"><?= $tournament['GameTag'] ?></span>
+                                    <!-- Für Mobile END-->
                                     <span class="tournament-title col col-sm-7"><?= $tournament['Name'] ?></span>
                                     <span class="tournament-mode col-sm-5 d-none d-sm-inline text-right align-self-center"><?= $tournament['Mode'] ?></span>
                                 </div>

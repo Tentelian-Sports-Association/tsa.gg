@@ -2,7 +2,6 @@
     position: relative;
     padding: 0;
     &-image {
-        padding: 8px;
         position: relative;
         margin: 0 auto;
 
@@ -46,14 +45,10 @@
     }
 
     &-container {
-        top: 25%;
+        top: 10%;
         position: absolute;
         width: 100%;
-
-        @media (min-width: $breakpoint-360) {
-            top: 28%;
-        }
-
+        padding: 0 28px;
         @media (min-width: $breakpoint-sm) {
             top: 32%;
         }
@@ -63,12 +58,35 @@
             bottom: 0;
             display: flex;
             top: 0;
+            padding: 0 71px;
         }
-
+        .event-hero-title {
+            font-size: 32px;
+            line-height: 37px;
+            margin-bottom: 8px;
+            @media (min-width: $breakpoint-md) {
+                font-size: 90px;
+                line-height: 103px;
+                margin-bottom: 24px;
+            }
+        }
         .description {
-            font-size: 29px;
-            line-height: 33px;
-            margin-bottom: 44px;
+            font-size: 18px;
+            line-height: 21px;
+            margin-bottom: 19px;
+            @media (min-width: $breakpoint-md) {
+                font-size: 29px;
+                line-height: 33px;
+                margin-bottom: 44px;
+            }
+        }
+        .filled-btn {
+            font-size: 16px;
+            line-height: 18px;
+            @media (min-width: $breakpoint-sm) {
+                font-size: 24px;
+                line-height: 28px;
+            }
         }
     }
 
@@ -83,10 +101,19 @@
         .upcoming-description {
             background: $primaryColor;
             padding: 10px;
-
+            span {
+                @media (max-width: $breakpoint-sm) {
+                    font-size: 12px;
+                    line-height: 11px;
+                }
+            }
             h3 {
                 font-size: 32px;
                 line-height: 93%;
+                @media (max-width: $breakpoint-sm) {
+                    font-size: 20px;
+                    line-height: 125.5%;
+                }
             }
             .more {
                 position: absolute;
@@ -99,10 +126,5 @@
         }
     }
 
-    .outline-btn {
-        width: 100%;
-        @media (min-width: $breakpoint-sm) {
-            width: auto;
-        }
-    }
+
 }

@@ -1,0 +1,27 @@
+footer {
+    background: $thirdColor;
+    padding: 45px 40px;
+    @media (min-width: $breakpoint-sm) {
+        padding: 80px 75px;
+    }
+    .filled-btn {
+        font-size: 18px;
+        line-height: 21px;
+    }
+    .footer-header {
+        font-size: 29px;
+        line-height: 54px;
+        font-weight: 500;
+        margin-bottom: 4px;
+        color: $primaryColor;
+    }
+    .footer-link {
+        font-weight: 500;
+    }
+    .first-col {
+        .logo,
+        p {
+            margin-bottom: 28px;
+        }
+    }
+}
