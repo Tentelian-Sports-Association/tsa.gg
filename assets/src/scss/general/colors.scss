@@ -1,3 +1,5 @@
+// Colors
+
 .primaryColor {
     color: $primaryColor;
 }
@@ -12,4 +14,10 @@
 
 .white {
     color: $white;
+}
+
+// Backgrounds
+
+.bg-green {
+    background: $primaryColor;
 }

@@ -1,5 +1,6 @@
 .event-hero {
     position: relative;
+    padding: 0;
     &-image {
         padding: 8px;
         position: relative;
@@ -9,6 +10,9 @@
             min-width: 100%;
             min-height: 350px;
             display: block;
+            img {
+                width: 100%;
+            }
         }
 
         @media (min-width: $breakpoint-sm) {
@@ -71,7 +75,10 @@
     .event-hero-upcoming-events {
         position: absolute;
         bottom: 0;
-        right: 15%;
+        right: 0;
+        @media (min-width: $breakpoint-sm) {
+            right: 75px;
+        }
 
         .upcoming-description {
             background: $primaryColor;

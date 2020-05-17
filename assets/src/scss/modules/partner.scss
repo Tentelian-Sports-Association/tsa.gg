@@ -1,0 +1,10 @@
+.partner-block {
+    .partner-item {
+        @media (max-width: $breakpoint-sm) {
+            margin-bottom: 10px;
+        }
+    }
+    .ad-block-container {
+        margin-bottom: 30px;
+    }
+}

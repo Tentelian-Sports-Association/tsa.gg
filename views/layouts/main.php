@@ -39,7 +39,7 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
             </a>
         </div>
         <div class="col-10">
-            <div class="navbar  navbar-expand-lg">
+            <div class="navbar  navbar-expand-xl">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">Icon</span>
                 </button>
@@ -58,9 +58,7 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
                 </div>
             </div>
         </div>
-
     </div>
-
 </header>
 
 
@@ -80,11 +78,7 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
 
 
 <footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
+    <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 </footer>
 
 <?php $this->endBody() ?>

@@ -16,9 +16,6 @@ PATHS:
   fonts:
     - "vendor/bower-asset/font-awesome/fonts/**/*"
     - "vendor/bower-asset/bootstrap/fonts/**/*"
-    - "assets/src/fonts/ptsans-bold/**/*"
-    - "assets/src/fonts/ptsans-regular/**/*"
-    - "assets/src/fonts/fira-mono/**/*"
   # Paths to Sass libraries, which can then be loaded with @import
   sass:
     - "vendor/bower-asset/bootstrap-sass/assets/stylesheets"
@@ -26,7 +23,4 @@ PATHS:
   # Paths to JavaScript libraries, which are combined into one file
   javascript:
     - "vendor/bower-asset/jquery/dist/jquery.js"
-    - "vendor/twbs/bootstrap/js/dist/collapse.js"
-    - "vendor/twbs/bootstrap/js/dist/dropdown.js"
-    - "vendor/twbs/bootstrap/js/dist/modal.js"
-    - "vendor/twbs/bootstrap/js/dist/util.js"
+    - "vendor/twbs/bootstrap/dist/js/bootstrap.js"

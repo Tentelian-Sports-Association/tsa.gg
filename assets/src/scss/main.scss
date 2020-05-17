@@ -3,15 +3,19 @@
 
 //General
 @import "general/variable";
+@import "general/general";
 @import "mixins/buttons";
 @import "general/colors";
 @import "general/font";
-@import "general/buttons";
+@import "general/buttons-links";
 
 //Page
 @import "page/header";
 @import "page/footer";
 
 //Modules
+@import "modules/promobanner";
 @import "modules/event-hero";
 @import "modules/tournaments";
+@import "modules/news";
+@import "modules/partner";

@@ -1,0 +1,28 @@
+.promo-banner {
+    background: $primaryColor;
+    padding: 26px 28px;
+    @media (min-width: $breakpoint-sm) {
+        padding-left: 75px;
+        padding-right: 75px;
+    }
+    .promo-text,
+    .promo-links a{
+        color: $white;
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .promo-text {
+        text-transform: uppercase;
+        margin-bottom: 0;
+    }
+    .promo-links {
+        a {
+            &:hover {
+                color: $secondaryColor;
+                svg {
+                    fill: $secondaryColor;
+                }
+            }
+        }
+    }
+}
