@@ -37,6 +37,9 @@ tests/_support/_generated
 
 #nodemodules
 node_modules
+node.exe
+node_etw_provider.man
+nodevars.bat
 
 # windows thumbnail cache
 **/Thumbs.db
