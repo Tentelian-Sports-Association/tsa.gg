@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Html;
+
 /* @var $this yii\web\View
  * @var $upcomingEvents array
  * @var $tournaments array
@@ -16,10 +18,10 @@ $this->title = 'Tentelian Sports Association';
 
     <!-- *************** Upcoming Events Bereich *************** -->
     <section class="event-hero">
-        <div class="event-hero-image">
+        <div class="event-hero-image" aria-labelledby='<?= $upcomingEvents['Next']['previewImage']?>'>
             <picture>
                 <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
-                <img src="https://via.placeholder.com/1920x721.png" class="img-fluid">
+                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-label' => $upcomingEvents['Next']['Name'],'alt' => '', 'id' => $upcomingEvents['Next']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.png\'']); ?>
             </picture>
 
         </div>
@@ -111,7 +113,7 @@ $this->title = 'Tentelian Sports Association';
     <!-- *************** Our Partners Bereich *************** -->
     <?php foreach($ourPartner as $partner) : ?>
         <!-- Background Image, funktion zum laden baue ich wenn design da -->
-        <div><?= $partner['Image'] ?></div>
+        <div aria-labelledby='<?= $partner['Image']?>'><?= Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.webp', ['aria-label' => $partner['Name'],'alt' => '', 'id' => $partner['Image'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.png\'']); ?></div>
         <!-- ID f�r den Button, funktion baue ich wenn design da -->
         <div><?= $partner['id'] ?></div>
 >>>>>>> develop
