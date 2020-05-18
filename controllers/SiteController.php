@@ -70,15 +70,16 @@ class SiteController extends Controller
         /** Upcoming Events */
         $upcomingEvents = array();
         /** Upcoming current Event */
-        $upcomingEvents['Next']['ID'] = 1;
-        $upcomingEvents['Next']['Name'] = "Tentelian Royale Clash Finals";
-        $upcomingEvents['Next']['shortDescription'] = "The Live Finals for our Clash Royle Championship Series (maximal 100 Zeichen)";
-        $upcomingEvents['Next']['previewImage']= "clashCupFinals";
+        $upcomingEvents['Next']['ID'] = 2;
+        $upcomingEvents['Next']['Name'] = "PeSp Masters 2020";
+        $upcomingEvents['Next']['shortDescription'] = "The return of the PeSp Masters from 2019, this year in the Munich Olympiahall";
+        $upcomingEvents['Next']['previewImage']= "pespmasters2019";
         /** Upcoming next Event */
-        $upcomingEvents['Preview']['ID'] = 2;
-        $upcomingEvents['Preview']['Name'] = "PeSp Masters 2020";
-        $upcomingEvents['Preview']['shortDescription'] = "The return of the PeSp Masters from 2019, this year in the Munich Olympiahall";
+        $upcomingEvents['Preview']['ID'] = 1;
+        $upcomingEvents['Preview']['Name'] = "Tentelian Royale Clash Finals";
+        $upcomingEvents['Preview']['shortDescription'] = "The Live Finals for our Clash Royle Championship Series (maximal 100 Zeichen)";
         $upcomingEvents['Preview']['previewImage']= "clashCupFinals";
+        
 
         /** Upcoming Tournaments */
         $tournaments = array();

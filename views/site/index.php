@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Html;
+
 /* @var $this yii\web\View
  * @var $upcomingEvents array
  * @var $tournaments array
@@ -17,17 +19,10 @@ $this->title = 'Tentelian Sports Association';
 
     <!-- *************** Upcoming Events Bereich *************** -->
     <section class="event-hero">
-        <div class="event-hero-image">
+        <div class="event-hero-image" aria-labelledby='<?= $upcomingEvents['Next']['previewImage']?>'>
             <picture>
                 <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
-                <source media="(min-width: 768px)"
-                        srcset="https://via.placeholder.com/1920x721.png 1x, https://via.placeholder.com/1920x721.png 2x"
-                        type="image/jpeg">
-                <source media="(min-width: 320px)"
-                        srcset="https://via.placeholder.com/375x397.png 1x, https://via.placeholder.com/320x397.png  2x"
-                        type="image/jpeg">
-                <img src="https://via.placeholder.com/1920x721.png"
-                     alt="<?= $upcomingEvents['Next']['Name'] ?>" />
+                <img src="https://via.placeholder.com/1920x721.png" class="img-fluid">
             </picture>
 
         </div>
@@ -144,27 +139,11 @@ $this->title = 'Tentelian Sports Association';
 
 
     <!-- *************** Our Partners Bereich *************** -->
-    <section class="partner-block">
-        <h2>Unsere Partner</h2>
-        <div class="row">
-		    <?php foreach($ourPartner as $partner) : ?>
-                <div class="col-6 col-sm-3 partner-item">
-                    <!-- ID f�r den Button, funktion baue ich wenn design da -->
-                    <a href="<?= $partner['id'] ?>">
-                        <!-- Background Image, funktion zum laden baue ich wenn design da -->
-                        <img src="https://via.placeholder.com/570x458.png" class="img-fluid" alt="<?= $partner['Image'] ?>">
-                    </a>
-                </div>
-		    <?php endforeach; ?>
-        </div>
-        <div class="ad-block-container row">
-            <div class="ad-block-item col">
-                <img src="https://via.placeholder.com/1740x264.png?text=AD" class="img-fluid" alt="AD1">
-            </div>
-        </div>
-        <div class="partner-footer text-center">
-            <a href="#" class="outline-btn-primary">Alle Partner</a>
-        </div>
-    </section>
-
+    <?php foreach($ourPartner as $partner) : ?>
+        <!-- Background Image, funktion zum laden baue ich wenn design da -->
+        <div><?= $partner['Image'] ?></div>
+        <!-- ID f�r den Button, funktion baue ich wenn design da -->
+        <div><?= $partner['id'] ?></div>
+>>>>>>> develop
+    <?php endforeach; ?>
 </div>
