@@ -4,6 +4,7 @@
   "devDependencies": {
     "browser-sync": "^2.26.7",
     "es6-promise": "^4.2.8",
+    "fontawesome": "^5.6.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-concat": "^2.6.1",
@@ -19,5 +20,10 @@
     "gulp-touch-fd": "^2.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp.spritesmith": "^6.11.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@popperjs/core": "^2.4.0",
+    "commonjs": "0.0.1"
   }
 }

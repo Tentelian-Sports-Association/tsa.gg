@@ -1,19 +1,65 @@
 header {
-    padding: 24px 0;
-
+    padding: 24px 28px;
+    @media (min-width: $breakpoint-md) {
+        padding: 24px 71px;
+    }
     .navbar {
+        padding: 0;
+        .navbar-toggler {
+            background: $white;
+        }
+        .navbar-collapse {
+            @media (max-width: $breakpoint-md-max) {
+                .nav-link {
+                    padding: 15px 0;
+                    border-bottom: 1px solid $white2;
+                }
+            }
+        }
         a {
             font-size: 24px;
             color: $white;
             padding: 5px;
-
+            border-bottom: 2px solid $secondaryColor;
+            &:hover {
+                color: $primaryColor;
+            }
+            &.active {
+                border-bottom: 2px solid $primaryColor;
+            }
             &:not(:first-child),
             &:not(:last-child) {
-                margin-right: 15px;
+                @media (min-width: $breakpoint-sm) {
+                    margin-right: 15px;
+                }
+            }
+        }
+        .dropdown-menu {
+            position: relative;
+            float: none;
+            background: $secondaryColor;
+            @media (min-width: $breakpoint-md) {
+                position: absolute;
+            }
+            a:hover {
+                background: none;
+                color: $primaryColor;
             }
         }
         .account-bar {
-            margin-left: 10px;
+            margin-top: 40px;
+            @media (min-width: $breakpoint-md) {
+                margin-left: 10px;
+                margin-top: 0;
+            }
+            button {
+                font-size: 16px;
+                line-height: 18px;
+                @media (min-width: $breakpoint-md) {
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+            }
             .outline-btn-white {
                 margin-right: 10px;
             }

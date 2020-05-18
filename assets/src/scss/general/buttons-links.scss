@@ -1,0 +1,40 @@
+
+.outline-btn {
+    @include outline-btn();
+
+    &-white {
+        @include outline-btn();
+        border-color: $white;
+        color: $white;
+
+        &:hover {
+            border-color: $white;
+        }
+    }
+    &-primary {
+        @include outline-btn();
+        border-color: $primaryColor;
+        color: $primaryColor;
+
+        &:hover {
+            border-color: $white;
+        }
+    }
+}
+
+.filled-btn {
+    @include filled-btn();
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+a {
+    display: inline-block;
+    color: $white;
+    &:hover {
+        color: $primaryColor;
+        text-decoration: none;
+    }
+}

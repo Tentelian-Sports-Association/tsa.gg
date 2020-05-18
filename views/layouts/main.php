@@ -32,35 +32,38 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
 <body>
 <?php $this->beginBody() ?>
 <header class="d-flex align-items-center">
-    <div class="row">
-        <div class="col-2">
-            <a href="#" class="logo">
-                <img src="https://via.placeholder.com/237x74.png" class="img-fluid" alt="Logo">
-            </a>
-        </div>
-        <div class="col-10">
-            <div class="navbar  navbar-expand-lg">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon">Icon</span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <a class="nav-link active" href="#">Home</a>
-                    <a class="nav-link" href="#">News</a>
-                    <a class="nav-link" href="#">Communinity</a>
-                    <a class="nav-link" href="#">Tournaments</a>
-                    <a class="nav-link" href="#">Partners</a>
-                    <a class="nav-link" href="#">Events</a>
-                    <a class="nav-link" href="#">Kontakt</a>
-                    <div class="account-bar d-inline">
-                        <button class="outline-btn-white">Login</button>
-                        <button class="outline-btn">Registrieren</button>
-                    </div>
+    <div class="navbar  navbar-expand-xl w-100  d-sm-flex align-items-center justify-content-between">
+        <a href="#" class="logo">
+            <img src="https://via.placeholder.com/237x74.png" class="img-fluid" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+
+            <a class="nav-link active" href="#">Home</a>
+
+            <a class="nav-link" href="#">News</a>
+            <a class="nav-link" href="#">Communinity</a>
+            <a class="nav-link" href="#">Tournaments</a>
+            <a class="nav-link" href="#">Partners</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Sub Site 1</a>
+                    <a class="dropdown-item" href="#">Sub Site 2</a>
                 </div>
             </div>
+            <a class="nav-link" href="#">Events</a>
+            <a class="nav-link" href="#">Kontakt</a>
+            <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
+                <button class="outline-btn-white">Login</button>
+                <button class="outline-btn">Registrieren</button>
+            </div>
         </div>
-
     </div>
-
 </header>
 
 
@@ -80,10 +83,35 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
 
 
 <footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+    <div class="row">
+        <div class="col-sm-5 first-col">
+            <img src="https://via.placeholder.com/368x109.png" class="img-fluid logo">
+            <p>&copy; My Company <?= date('Y') ?></p>
+            <a href="#" class="filled-btn">Kontakt</a>
+        </div>
+        <div class="col-sm-2 second-col">
+            <h3 class="footer-header">Bereiche</h3>
+            <a href="#" class="footer-link d-block">Startseite </a>
+            <a href="#" class="footer-link d-block"">News</a>
+            <a href="#" class="footer-link d-block">Player</a>
+            <a href="#" class="footer-link d-block">Teams</a>
+            <a href="#" class="footer-link d-block">Turniere</a>
+            <a href="#" class="footer-link d-block">Partner</a>
+        </div>
+        <div class="col-sm-2 third-col">
+            <h3 class="footer-header">Rechtliches</h3>
+            <a href="#" class="footer-link d-block">Impressum</a>
+            <a href="#" class="footer-link d-block"">Datenschutz</a>
+            <a href="#" class="footer-link d-block">AGB</a>
+        </div>
+        <div class="col-sm-2 fourth-col">
+            <h3 class="footer-header">Social Media</h3>
+            <a href="#" class="footer-link d-block">Icon Twitch</a>
+            <a href="#" class="footer-link d-block">Icon Mixer</a>
+            <a href="#" class="footer-link d-block">Icon Youtube</a>
+            <a href="#" class="footer-link d-block">Icon Twitter</a>
+            <a href="#" class="footer-link d-block">Icon Discord</a>
+        </div>
     </div>
 </footer>
 
