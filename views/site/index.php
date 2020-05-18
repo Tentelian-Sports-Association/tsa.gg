@@ -139,11 +139,24 @@ $this->title = 'Tentelian Sports Association';
 
 
     <!-- *************** Our Partners Bereich *************** -->
-    <?php foreach($ourPartner as $partner) : ?>
-        <!-- Background Image, funktion zum laden baue ich wenn design da -->
-        <div><?= $partner['Image'] ?></div>
-        <!-- ID f�r den Button, funktion baue ich wenn design da -->
-        <div><?= $partner['id'] ?></div>
->>>>>>> develop
-    <?php endforeach; ?>
+    <section class="partner-block">
+        <h2>Unsere Partner</h2>
+        <div class="row">
+			<?php foreach($ourPartner as $partner) : ?>
+                <div class="col partner-item">
+                    <!-- Background Image, funktion zum laden baue ich wenn design da -->
+                    <!--<img src="<?= $partner['Image'] ?>" />-->
+                    <img src="https://via.placeholder.com/420x274.png" class="img-fluid">
+                </div>
+			<?php endforeach; ?>
+        </div>
+        <div class="ad-block-container row">
+            <div class="ad-block-item col-12">
+                <img src="https://via.placeholder.com/1770x264.png?text=AD+1770x264" class="img-fluid" alt="AD1">
+            </div>
+        </div>
+        <div class="partner-footer text-center">
+            <a class="outline-btn" href="<?= $partner['id'] ?>"> Alle Partner</a>
+        </div>
+    </section>
 </div>
