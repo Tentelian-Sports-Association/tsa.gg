@@ -1,10 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\views",
-    "\\views\\layouts",
-    "\\widgets"
+    "\\config",
+    "\\controllers",
+    "\\messages",
+    "\\messages\\en-EN",
+    "\\modules",
+    "\\web",
+    "\\web\\images",
+    "\\web\\images\\Events",
+    "\\web\\images\\Events\\Index"
   ],
-  "SelectedNode": "\\widgets\\Alert.php",
+  "SelectedNode": "\\config\\db.php",
   "PreviewInSolutionExplorer": false
 }
