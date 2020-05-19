@@ -157,7 +157,7 @@ $this->title = 'Tentelian Sports Association';
         <h2>Unsere Partner</h2>
         <div class="row">
 			<?php foreach($ourPartner as $partner) : ?>
-                <div class="col partner-item" aria-labelledby='<?= $partner['image']?>' aria-describedby='<?= $partner['image']?>'>
+                <div class="col-6 col-sm-3 partner-item" aria-labelledby='<?= $partner['image']?>' aria-describedby='<?= $partner['image']?>'>
                     <!-- Background Image -->
                     <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.webp', ['class' => 'img-fluid','description' => $partner['name'],'aria-label' => $partner['name'], 'id' => $partner['image'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.png\'']), $partner['webadresse'], ['target'=>'_blank']); ?>
                 </div>
