@@ -4,11 +4,15 @@
 /* @var $content string */
 
 use app\widgets\Alert;
-use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+
 use app\assets\AppAsset;
 
+use yii\helpers\Html;
+
 AppAsset::register($this);
+
+$user = null;
 
 $weAreLive = array();
 $weAreLive['twitch']['channellink'] = "https://twitch.tv/TentelianSA";
@@ -25,9 +29,25 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154875807-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-154875807-1');
+        gtag('set', {'user_id': '<?php echo (!$user)? null : $user->getId(); ?>'}); // Legen Sie die User ID mithilfe des Parameters "user_id" des angemeldeten Nutzers fest.
+    </script>
+    <!-- End Global site tag (gtag.js) - Google Analytics -->
+
+    <!-- Write Metatags und diverses andere -->
+    <?php $this->registerCsrfMetaTags() ?>
     <?php $this->head() ?>
+    <!-- End Metatags und diverses andere -->
+
+
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -41,12 +61,12 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
 
-            <a class="nav-link active" href="#">Home</a>
+            <?php echo Html::a(Yii::t('app', 'nabvar_home'), ["/site/index"], ['class' => "nav-link active",'aria-label' => "Home Butto"]); ?>
 
-            <a class="nav-link" href="#">News</a>
-            <a class="nav-link" href="#">Communinity</a>
-            <a class="nav-link" href="#">Tournaments</a>
-            <a class="nav-link" href="#">Partners</a>
+            <?php echo Html::a(Yii::t('app', 'navbar_news'), ["#"], ['class' => "nav-link",'aria-label' => "News Butto"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_community'), ["#"], ['class' => "nav-link",'aria-label' => "Community Butto"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["#"], ['class' => "nav-link",'aria-label' => "Tournaments Butto"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => "nav-link",'aria-label' => "Partners Butto"]); ?>
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown
@@ -56,8 +76,8 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
                     <a class="dropdown-item" href="#">Sub Site 2</a>
                 </div>
             </div>
-            <a class="nav-link" href="#">Events</a>
-            <a class="nav-link" href="#">Kontakt</a>
+            <?php echo Html::a(Yii::t('app', 'navbar_events'), ["#"], ['class' => "nav-link",'aria-label' => "Events Butto"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["#"], ['class' => "nav-link",'aria-label' => "Contact Butto"]); ?>
             <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
                 <button class="outline-btn-white">Login</button>
                 <button class="outline-btn">Registrieren</button>

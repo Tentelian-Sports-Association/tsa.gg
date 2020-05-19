@@ -19,35 +19,34 @@ $this->title = 'Tentelian Sports Association';
 
     <!-- *************** Upcoming Events Bereich *************** -->
     <section class="event-hero">
-        <div class="event-hero-image" aria-labelledby='<?= $upcomingEvents['Next']['previewImage']?>'>
+        <div class="event-hero-image"  aria-labelledby='<?= $upcomingEvents['Next']['previewImage']?>' aria-describedby='bigEventContainer bigEventDescription'>
             <picture>
-                <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
-                <img src="https://via.placeholder.com/1920x721.png" class="img-fluid">
+                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'bigEventContainer bigEventDescription',  'aria-label' => $upcomingEvents['Next']['Name'], 'id' => $upcomingEvents['Next']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.png\'']); ?>
             </picture>
 
         </div>
-        <div class="event-hero-container">
+        <div class="event-hero-container" id="bigEventContainer">
             <div class="event-text">
                 <h1 class="event-hero-title">
                     <?= $upcomingEvents['Next']['Name'] ?>
                 </h1>
-                <p class="description"><?= $upcomingEvents['Next']['shortDescription'] ?></p>
+                <p class="description" id="bigEventDescription"><?= $upcomingEvents['Next']['shortDescription'] ?></p>
                 <a href="<?= $upcomingEvents['Next']['ID'] ?>" class="filled-btn">Zum Event</a>
             </div>
         </div>
 
         <div class="event-hero-upcoming-events d-flex">
-            <div class="d-none d-sm-inline-block upcoming-image">
+            <div class="d-none d-sm-inline-block upcoming-image" aria-labelledby='<?= $upcomingEvents['Preview']['previewImage']?>' aria-describedby='smallEventContainer smallEventName'>
                 <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
-                <img src="https://via.placeholder.com/237x134.png" class="img-fluid">
+                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Preview']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'smallEventContainer smallEventName',  'aria-label' => $upcomingEvents['Preview']['Name'], 'id' => $upcomingEvents['Preview']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Preview']['previewImage']) . '.png\'']); ?>
             </div>
-            <div class="d-inline-block upcoming-description">
+            <div class="d-inline-block upcoming-description" id="smallEventContainer">
                 <div class="inner">
                     <!-- Das angepriesene Event f�r die kleine Ecke -->
                     <span>Nächstes Event</span>
-                    <h3><?= $upcomingEvents['Preview']['Name'] ?></h3>
+                    <h3 id="smallEventName"><?= $upcomingEvents['Preview']['Name'] ?></h3>
                     <!--<p><?= $upcomingEvents['Preview']['shortDescription'] ?></p>-->
-                    <!-- ID f�r den Button, funktion baue ich wenn design da -->
+                    <!-- ID für den Button, funktion baue ich wenn design da -->
                     <a href="<?= $upcomingEvents['Preview']['ID'] ?>" class="more">
                         >
                     </a>
@@ -55,8 +54,6 @@ $this->title = 'Tentelian Sports Association';
             </div>
         </div>
     </section>
-
-
 
     <!-- *************** Tournaments Bereich *************** -->
     <section class="tournament">
@@ -97,14 +94,12 @@ $this->title = 'Tentelian Sports Association';
             </div>
             <div class="d-none col-sm-4 d-sm-flex">
                 <!-- Image f�r Hover Image funktion zum laden baue ich wenn design da -->
-                <!--<img src="<?= $tournament['HoverImage'] ?>" />-->
-                <img src="https://via.placeholder.com/570x395.png" class="img-fluid">
+                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.webp', ['class' => 'img-fluid',  'aria-label' => $tournament['HoverImage'], 'id' => $tournament['HoverImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.png\'']); ?>
             </div>
         </div>
 
         <a href="<?= $upcomingEvents['Next']['ID'] ?>" class="filled-btn">Alle Turniere</a>
     </section>
-
 
     <!-- *************** Latest News Bereich *************** -->
     <section class="news-block bg-green">
@@ -126,10 +121,30 @@ $this->title = 'Tentelian Sports Association';
         </ul>
         <div class="ad-block-container row">
             <div class="ad-block-item col-12 col-sm-6">
-                <img src="https://via.placeholder.com/870x458.png?text=AD+870x458" class="img-fluid" alt="AD1">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- tsa.gg Index News Ad Left -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-8480651532892152"
+                    data-ad-slot="7168004119"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
             <div class="ad-block-item col-12 col-sm-6">
-                <img src="https://via.placeholder.com/870x458.png?text=AD+870x458" class="img-fluid" alt="AD2">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- tsa.gg Index News Ad Right -->
+                <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-8480651532892152"
+                        data-ad-slot="4621731829"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
         <div class="news-footer text-center">
@@ -137,26 +152,34 @@ $this->title = 'Tentelian Sports Association';
         </div>
     </section>
 
-
     <!-- *************** Our Partners Bereich *************** -->
     <section class="partner-block">
         <h2>Unsere Partner</h2>
         <div class="row">
 			<?php foreach($ourPartner as $partner) : ?>
-                <div class="col partner-item">
-                    <!-- Background Image, funktion zum laden baue ich wenn design da -->
-                    <!--<img src="<?= $partner['Image'] ?>" />-->
-                    <img src="https://via.placeholder.com/420x274.png" class="img-fluid">
+                <div class="col partner-item" aria-labelledby='<?= $partner['image']?>' aria-describedby='<?= $partner['image']?>'>
+                    <!-- Background Image -->
+                    <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.webp', ['class' => 'img-fluid','description' => $partner['name'],'aria-label' => $partner['name'], 'id' => $partner['image'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.png\'']), $partner['webadresse'], ['target'=>'_blank']); ?>
                 </div>
 			<?php endforeach; ?>
         </div>
         <div class="ad-block-container row">
             <div class="ad-block-item col-12">
-                <img src="https://via.placeholder.com/1770x264.png?text=AD+1770x264" class="img-fluid" alt="AD1">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- tsa.gg Index Partner -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8480651532892152"
+                     data-ad-slot="6811521719"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
         <div class="partner-footer text-center">
-            <a class="outline-btn" href="<?= $partner['id'] ?>"> Alle Partner</a>
+            <?php echo Html::a('Alle Partner', ["/partner/overview"], ['class' => "outline-btn",'aria-label' => "alle Partner"]); ?>
         </div>
     </section>
 </div>

@@ -18,7 +18,8 @@ class m200514_142357_partner_setup extends Migration
               `id` INT NOT NULL AUTO_INCREMENT,
               `name` VARCHAR(255) NOT NULL,
               `description` TEXT NOT NULL,
-              `image` VARCHAR(255) NOT NULL DEFAULT 'default',
+              `webadresse` VARCHAR(255) NOT NULL,
+              `image` VARCHAR(255) NULL,
               `dt_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
               `dt_updated` DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
               PRIMARY KEY (`id`),
@@ -70,25 +71,29 @@ class m200514_142357_partner_setup extends Migration
         $this->insert('partner',  [
             'name' => 'Tentelian - DIE MIT DEM KOPF',
             'description' => 'Only the best for your Tentelian so that unlimited gaming is possible. Our demands are high on our gaming machines, therefore we only select the best possible components.',
-            'image' => 'tentelian'
+            'image' => 'tentelian',
+            'webadresse' => 'https://tentelian.com'
         ]);
 
         $this->insert('partner',  [
             'name' => 'Commotron GmbH',
             'description' => 'As an IT service provider based in Fürstenfeldbruck near Munich, we have been supporting 2008 small, medium and large companies. You receive the complete Range of services from planning, installation, support of small and large Large projects on standard systems up to and including individual IT solutions.',
-            'image' => 'commotron'
+            'image' => 'commotron',
+            'webadresse' => 'https://commotron.com'
         ]);
 
         $this->insert('partner',  [
             'name' => 'Gamers Finest',
             'description' => 'The Gamers Finest Lounge offers a cosy atmosphere, good food, cold drinks and the possibility to play Magic: The Gathering, tabletop, board, online games and much more.',
-            'image' => 'gamersfinest'
+            'image' => 'gamersfinest',
+            'webadresse' => 'https://www.gamers-finest.at/'
         ]);
 
         $this->insert('partner',  [
             'name' => 'SteelSeries',
             'description' => 'SteelSeries fires the gaming industry with innovative new products designed specifically for e-sports and passionate gamers around the world.',
-            'image' => 'steelseries'
+            'image' => 'steelseries',
+            'webadresse' => 'https://steelseries.com/'
         ]);
 	}
 

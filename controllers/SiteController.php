@@ -67,13 +67,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        //Yii::$app->language = '';
+
         /** Upcoming Events */
         $upcomingEvents = array();
         /** Upcoming current Event */
         $upcomingEvents['Next']['ID'] = 2;
         $upcomingEvents['Next']['Name'] = "PeSp Masters 2020";
         $upcomingEvents['Next']['shortDescription'] = "The return of the PeSp Masters from 2019, this year in the Munich Olympiahall";
-        $upcomingEvents['Next']['previewImage']= "pespmasters2019";
+        $upcomingEvents['Next']['previewImage']= "pespmasters2020";
         /** Upcoming next Event */
         $upcomingEvents['Preview']['ID'] = 1;
         $upcomingEvents['Preview']['Name'] = "Tentelian Royale Clash Finals";
@@ -148,7 +150,7 @@ class SiteController extends Controller
         $latestNews[2]['StartingDate'] = (new DateTime())->format('Y-m-d');
 
         /** Our Partners */
-        $ourPartner = Partner::find()->select(['id', 'image', 'name'])->orderBy(new Expression('rand()'))->limit(4)->all();
+        $ourPartner = Partner::find()->select(['id', 'image', 'name', 'webadresse'])->orderBy(new Expression('rand()'))->limit(4)->all();
 
         return $this->render('index',
         [

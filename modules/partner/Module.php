@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\company;
+namespace app\modules\partner;
 
 use Yii;
 
 /**
  * Class Module
- * @package app\modules\company
+ * @package app\modules\partner
  */
 class Module extends \yii\base\Module
 {
