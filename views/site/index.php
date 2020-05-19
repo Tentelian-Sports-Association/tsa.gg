@@ -9,8 +9,6 @@ use yii\helpers\Html;
  * @var $ourPartner array
  */
 
- \app\modules\partner\assets\PartnerOverviewAsset::register($this);
-
 $this->title = 'Tentelian Sports Association';
 
 ?>

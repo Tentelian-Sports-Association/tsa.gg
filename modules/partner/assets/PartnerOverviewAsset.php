@@ -9,8 +9,10 @@ class PartnerOverviewAsset extends AssetBundle
     public $sourcePath = '@app/modules/partner/assets';
  
     public $css = [
+        
     ];
 
-        public $cssOptions = [
+    public $cssOptions = [
+        'async' => 'true'
 	];
 }
