@@ -1,1 +1,0 @@
-{"version":3,"sources":["subpage.scss","subpage.css"],"names":[],"mappings":"AAAA,KACI,eAAgB,CCCpB","file":"subpage.css","sourcesContent":["body {\r\n    background: blue;\r\n}","body {\n  background: blue;\n}\n"],"sourceRoot":"../../assets/src/scss/"}

@@ -59,25 +59,14 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
-
-            <?php echo Html::a(Yii::t('app', 'nabvar_home'), ["/site/index"], ['class' => "nav-link active",'aria-label' => "Home Butto"]); ?>
-
-            <?php echo Html::a(Yii::t('app', 'navbar_news'), ["#"], ['class' => "nav-link",'aria-label' => "News Butto"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_community'), ["#"], ['class' => "nav-link",'aria-label' => "Community Butto"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["#"], ['class' => "nav-link",'aria-label' => "Tournaments Butto"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => "nav-link",'aria-label' => "Partners Butto"]); ?>
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Sub Site 1</a>
-                    <a class="dropdown-item" href="#">Sub Site 2</a>
-                </div>
-            </div>
-            <?php echo Html::a(Yii::t('app', 'navbar_events'), ["#"], ['class' => "nav-link",'aria-label' => "Events Butto"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["#"], ['class' => "nav-link",'aria-label' => "Contact Butto"]); ?>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <?php echo Html::a(Yii::t('app', 'nabvar_home'), ["/site/index"], ['class' => "nav-link active",'aria-label' => "Home Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_news'), ["#"], ['class' => "nav-link",'aria-label' => "News Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_community'), ["#"], ['class' => "nav-link",'aria-label' => "Community Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["#"], ['class' => "nav-link",'aria-label' => "Tournaments Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => "nav-link",'aria-label' => "Partners Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_events'), ["#"], ['class' => "nav-link",'aria-label' => "Events Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["#"], ['class' => "nav-link",'aria-label' => "Contact Button"]); ?>
             <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
                 <button class="outline-btn-white">Login</button>
                 <button class="outline-btn">Registrieren</button>
@@ -87,13 +76,13 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
 </header>
 
 <!-- *************** Wir sind live Bereich *************** -->
-<div class="promo-banner dropdown d-block d-sm-flex align-items-center justify-content-between">
-    <h3 class="promo-text d-inline"><span>* </span>wir sind jetzt live<span class="d-inline d-sm-none">!</span><span class="d-none d-sm-inline">, schau uns zu!</span></h3>
-    <button type="button" class="d-inline d-sm-none float-right float-sm-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="promo-banner dropdown d-block d-lg-flex align-items-center justify-content-between">
+    <h3 class="promo-text d-inline"><span>* </span>wir sind jetzt live<span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline">, schau uns zu!</span></h3>
+    <button type="button" class="d-inline d-lg-none float-right float-lg-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         ^
     </button>
-    <div class="col  align-items-center text-sm-right promo-links dropdown-menu" aria-labelledby="promo-banner">
-        <div class="dropdown-divider d-sm-none"></div>
+    <div class="col  align-items-center text-lg-right promo-links dropdown-menu" aria-labelledby="promo-banner">
+        <div class="dropdown-divider d-lg-none"></div>
         <a href="#" class="twitch dropdown-item"><span>I </span>Twitch</a>
         <a href="#" class="mixer dropdown-item"><span>I </span>Mixer</a>
         <a href="#" class="youtube dropdown-item"><span>I </span>Youtube</a>

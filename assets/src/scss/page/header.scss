@@ -9,6 +9,7 @@ header {
             background: $white;
         }
         .navbar-collapse {
+            justify-content: space-evenly;
             @media (max-width: $breakpoint-md-max) {
                 .nav-link {
                     padding: 15px 0;

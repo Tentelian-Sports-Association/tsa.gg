@@ -1,0 +1,10 @@
+.partner-list {
+    .partner-item {
+        margin-bottom: 40px;
+        @media (max-width: $breakpoint-md-max) {
+            img {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

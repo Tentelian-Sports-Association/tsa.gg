@@ -11,6 +11,9 @@ use yii\helpers\Html;
 
 $this->title = 'Tentelian Sports Association';
 
+    \app\assets\IndexAsset::register($this);
+
+
 ?>
 
 <div class="content-startpage">
@@ -21,6 +24,14 @@ $this->title = 'Tentelian Sports Association';
         <div class="event-hero-image"  aria-labelledby='<?= $upcomingEvents['Next']['previewImage']?>' aria-describedby='bigEventContainer bigEventDescription'>
             <picture>
                 <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'bigEventContainer bigEventDescription',  'aria-label' => $upcomingEvents['Next']['Name'], 'id' => $upcomingEvents['Next']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.png\'']); ?>
+                <source media="(min-width: 1200px)"
+                        srcset="Bild Desktop"
+                        type="image/jpeg">
+                <source media="(min-width: 320px)"
+                        srcset="Bild mobile"
+                        type="image/jpeg">
+                <img src="BILD Desktop"
+                     alt="Alt" />
             </picture>
 
         </div>
@@ -62,6 +73,7 @@ $this->title = 'Tentelian Sports Association';
                 <ul class="tournament-list list-unstyled">
 					<?php foreach($tournaments as $tournament) : ?>
                         <li class="d-sm-flex align-items-center">
+
                             <div class="col-12 col-sm-8 tournament-description">
                                 <div class="row">
                                     <!-- Für Mobile-->
@@ -71,14 +83,13 @@ $this->title = 'Tentelian Sports Association';
                                     <span class="tournament-mode col-sm-5 d-none d-sm-inline text-right align-self-center"><?= $tournament['Mode'] ?></span>
                                 </div>
                             </div>
-
-
                             <div class="col-sm-4 tournament-time">
                                 <span class="d-inline d-sm-none tournament-mode"><?= $tournament['Mode'] ?></span>
                                 <!-- Check if Live or in the Future -->
 								<?php if($tournament['IsLive']) : ?>
                                     <!-- ab hier dann die Button geschichte das man direkt auf den  Turnierbaum kommt -->
-                                    <span class="tournament-status"><?= $tournament['ID'] ?></span>
+                                    <a href="eventlink" class="filled-btn">Is Live</a>
+                                    <span class="tournament-status d-none"><?= $tournament['ID'] ?></span>
 								<?php else : ?>
                                     <!-- ab hier dann datum und uhrzeit wenn es nicht live ist -->
                                     <span class="date"><?= $tournament['StartingDate'] ?></span>
@@ -86,7 +97,6 @@ $this->title = 'Tentelian Sports Association';
 								<?php endif; ?>
 
                             </div>
-
                         </li>
 					<?php endforeach; ?>
                 </ul>
@@ -105,7 +115,7 @@ $this->title = 'Tentelian Sports Association';
         <h2>Aktuelle News</h2>
         <ul class="news-list row list-unstyled">
 			<?php foreach($latestNews as $news) : ?>
-                <li class="news-item col-12 col-sm-4">
+                <li class="news-item col-12 col-lg-4">
                     <!-- ID f�r den Button, funktion baue ich wenn design da -->
                     <a href="<?= $news['ID'] ?>" class="news-link">
                         <!-- Background Image, funktion zum laden baue ich wenn design da -->
