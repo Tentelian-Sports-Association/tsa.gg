@@ -68,3 +68,5 @@ nodevars.bat
 # tests
 /package-lock.json
 
+#manually ignoring
+/config/db.php
