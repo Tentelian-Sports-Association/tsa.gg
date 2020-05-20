@@ -17,6 +17,14 @@ footer {
     }
     .footer-link {
         font-weight: 500;
+        svg {
+            margin-right: 16px;
+        }
+        &:hover {
+            svg * {
+                fill: $primaryColor;
+            }
+        }
     }
     .first-col {
         .logo,

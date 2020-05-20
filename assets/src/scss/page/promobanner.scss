@@ -14,10 +14,16 @@
             line-height: 28px;
         }
     }
-    .promo-links a{
+    .promo-links a {
         color: $white;
         font-size: 14px;
         line-height: 16px;
+        &:hover {
+            color: $primaryColor;
+            svg {
+                fill: $primaryColor;
+            }
+        }
         @media (min-width: $breakpoint-lg) {
             font-size: 24px;
             line-height: 28px;
@@ -26,6 +32,9 @@
     .promo-text {
         text-transform: uppercase;
         margin-bottom: 0;
+        img {
+            margin-right: 10px;
+        }
 
     }
     .mobile-toggle {
@@ -42,10 +51,13 @@
                 display: inline-block;
                 width: auto;
             }
+            svg {
+                margin-right: 10px;
+            }
             &:hover {
                 background: none;
                 color: $secondaryColor;
-                svg {
+                svg * {
                     fill: $secondaryColor;
                 }
             }

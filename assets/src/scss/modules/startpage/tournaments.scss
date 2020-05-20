@@ -33,10 +33,14 @@
         }
     }
     &-time {
+
         @media (min-width: $breakpoint-sm) {
             padding-left: 30px;
         }
         span {
+            img {
+                margin-right: 10px;
+            }
             @media (max-width: $breakpoint-xs-max) {
                 font-size: 14px;
                 line-height: 16px;

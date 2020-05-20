@@ -5,9 +5,6 @@ header {
     }
     .navbar {
         padding: 0;
-        .navbar-toggler {
-            background: $white;
-        }
         .navbar-collapse {
             justify-content: space-evenly;
             @media (max-width: $breakpoint-md-max) {
