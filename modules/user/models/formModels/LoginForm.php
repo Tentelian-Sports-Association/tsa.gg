@@ -63,7 +63,6 @@ class LoginForm extends Model
 
             if (!$user|| !$user->validatePassword($this->password)) {
                 $this->addError('username',Yii::t('app', 'login_wrongData'));
-                $this->addError('password',Yii::t('app', 'login_wrongData'));
             }
         }
     }
@@ -91,6 +90,6 @@ class LoginForm extends Model
             $this->_user = User::findByUsername(trim($this->username));
         }
 
-        return null;
+        return $this->_user;
     }
 }
