@@ -8,6 +8,6 @@ return [
 	'navbar_partners' => 'Partner',
     'navbar_events' => 'Events',
 	'navbar_contact' => 'Kontakt',
-    'login' => 'Anmelden',
-    'register' => 'Registrieren',
+    'navbar_login' => 'Anmelden',
+    'navbar_register' => 'Registrieren',
 ];

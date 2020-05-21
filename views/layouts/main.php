@@ -4,20 +4,30 @@
 /* @var $content string */
 
 use app\widgets\Alert;
+
 use yii\widgets\Breadcrumbs;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 use app\assets\AppAsset;
-
-use yii\helpers\Html;
 
 AppAsset::register($this);
 
 $user = null;
 
 $weAreLive = array();
-$weAreLive['twitch']['channellink'] = "https://twitch.tv/TentelianSA";
-$weAreLive['Mixer']['channellink'] = "https://mixer.com/TentelianSA";
-$weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwnpbw";
+$weAreLive['twitch']['channellink'] = 'https://twitch.tv/TentelianSA';
+$weAreLive['twitch']['svg']= '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)">
+                                <path d="M0.893555 3.82708V19.1299H6.16347V22H9.04089L11.9137 19.129H16.2266L21.9778 13.3925V0H2.32997L0.893555 3.82708ZM4.24672 1.91125H20.0611V12.4337L16.7061 15.7813H11.4343L8.56147 18.6478V15.7813H4.24672V1.91125Z" fill="white"/>
+                                <path d="M9.51953 5.74023H11.4354V11.4786H9.51953V5.74023Z" fill="white"/><path d="M14.7886 5.74023H16.7053V11.4786H14.7886V5.74023Z" fill="white"/></g><defs><clipPath id="clip0"><rect width="22" height="22" fill="white"/></clipPath></defs></svg>';
+$weAreLive['Mixer']['channellink'] = 'https://mixer.com/TentelianSA';
+$weAreLive['Mixer']['svg'] = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.90518 1.8519C3.15307 0.759709 1.67558 0.589391 0.712064 1.52563C-0.119262 2.34849 -0.185119 3.73822 0.487768 4.71704L4.82861 10.9716L0.461521 17.2831C-0.211366 18.2619 -0.158394 19.6517 0.685817 20.4745C1.64886 21.4108 3.12682 21.2405 3.87893 20.1483L9.97453 11.3405C10.1196 11.1276 10.1196 10.83 9.97453 10.6171L3.90518 1.8519Z" fill="white"/>
+                                <path d="M18.0895 1.8519C18.8426 0.759709 20.322 0.589391 21.2868 1.52563C22.1193 2.34849 22.1852 3.73822 21.5114 4.71704L17.1648 10.9716L21.5377 17.2831C22.2115 18.2619 22.1584 19.6517 21.3131 20.4745C20.3488 21.4108 18.8689 21.2405 18.1158 20.1483L12.0255 11.3261C11.8802 11.1132 11.8802 10.8157 12.0255 10.6028L18.0895 1.8519Z" fill="white"/></svg>';
+$weAreLive['Youtube']['channellink'] = 'https://www.youtube.com/watch?v=aDBr8jwnpbw';
+$weAreLive['Youtube']['svg'] = '<svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M29.803 5.71816C29.803 3.08144 27.8635 0.960351 25.4671 0.960351C22.221 0.808594 18.9104 0.75 15.5272 0.75H14.4725C11.0975 0.75 7.78112 0.808594 4.53502 0.960937C2.1444 0.960937 0.204946 3.09375 0.204946 5.73047C0.0584618 7.81582 -0.00364759 9.90176 -0.000131968 11.9877C-0.00599134 14.0736 0.0604149 16.1615 0.199087 18.2514C0.199087 20.8881 2.13854 23.0268 4.52917 23.0268C7.93932 23.185 11.4374 23.2553 14.994 23.2494C18.5565 23.2611 22.0448 23.1869 25.4589 23.0268C27.8553 23.0268 29.7948 20.8881 29.7948 18.2514C29.9354 16.1596 29.9999 14.0736 29.994 11.9818C30.0073 9.8959 29.9436 7.80801 29.803 5.71816ZM12.1288 17.7357V6.22207L20.6249 11.976L12.1288 17.7357Z" fill="white"/></svg>';
 
 ?>
 
@@ -53,11 +63,10 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
 <?php $this->beginBody() ?>
 <header class="d-flex align-items-center">
     <div class="navbar  navbar-expand-xl w-100  d-sm-flex align-items-center justify-content-between">
-        <a href="#" class="logo">
-            <img src="images/icons/logo.svg">
+        <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkSVGIcons('logo')), ["/site/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <img src="images/icons/burgermenu.svg">
+        <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('burgermenu'),['aria-label' => 'burgermenu']); ?>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <?php echo Html::a(Yii::t('app', 'nabvar_home'), ["/site/index"], ['class' => "nav-link active",'aria-label' => "Home Button"]); ?>
@@ -68,8 +77,8 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
             <?php echo Html::a(Yii::t('app', 'navbar_events'), ["#"], ['class' => "nav-link",'aria-label' => "Events Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["#"], ['class' => "nav-link",'aria-label' => "Contact Button"]); ?>
             <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
-                <button class="outline-btn-white">Login</button>
-                <button class="outline-btn">Registrieren</button>
+                <?= Html::button(Yii::t('app', 'navbar_login'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/partner/overview']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/partner/overview']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
             </div>
         </div>
     </div>
@@ -77,40 +86,16 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
 
 <!-- *************** Wir sind live Bereich *************** -->
 <div class="promo-banner dropdown d-block d-lg-flex align-items-center justify-content-between">
-    <h3 class="promo-text d-inline-flex align-items-center"><img src="images/icons/redcircle.svg" class="img-fluid"> wir sind jetzt live<span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline">, schau uns zu!</span></h3>
+    <h3 class="promo-text d-inline-flex align-items-center">
+         <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('redcircle'), ['class' => 'img-fluid', 'aria-label' => 'we are live']); ?>wir sind jetzt live<span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline">, schau uns zu!</span></h3>
     <button type="button" class="d-inline d-lg-none float-right float-lg-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src="images/icons/smallarrow-down.svg">
+        <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('smallarrow-down'), ['class' => 'img-fluid', 'aria-label' => 'show where we are']); ?>
     </button>
     <div class="col  align-items-center text-lg-right promo-links dropdown-menu" aria-labelledby="promo-banner">
         <div class="dropdown-divider d-lg-none"></div>
-        <a href="#" class="twitch dropdown-item d-inline-flex align-items-center">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0)">
-                    <path d="M0.893555 3.82708V19.1299H6.16347V22H9.04089L11.9137 19.129H16.2266L21.9778 13.3925V0H2.32997L0.893555 3.82708ZM4.24672 1.91125H20.0611V12.4337L16.7061 15.7813H11.4343L8.56147 18.6478V15.7813H4.24672V1.91125Z" fill="white"/>
-                    <path d="M9.51953 5.74023H11.4354V11.4786H9.51953V5.74023Z" fill="white"/>
-                    <path d="M14.7886 5.74023H16.7053V11.4786H14.7886V5.74023Z" fill="white"/>
-                </g>
-                <defs>
-                    <clipPath id="clip0">
-                        <rect width="22" height="22" fill="white"/>
-                    </clipPath>
-                </defs>
-            </svg>
-            Twitch
-        </a>
-        <a href="#" class="mixer dropdown-item d-inline-flex align-items-center">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.90518 1.8519C3.15307 0.759709 1.67558 0.589391 0.712064 1.52563C-0.119262 2.34849 -0.185119 3.73822 0.487768 4.71704L4.82861 10.9716L0.461521 17.2831C-0.211366 18.2619 -0.158394 19.6517 0.685817 20.4745C1.64886 21.4108 3.12682 21.2405 3.87893 20.1483L9.97453 11.3405C10.1196 11.1276 10.1196 10.83 9.97453 10.6171L3.90518 1.8519Z" fill="white"/>
-                <path d="M18.0895 1.8519C18.8426 0.759709 20.322 0.589391 21.2868 1.52563C22.1193 2.34849 22.1852 3.73822 21.5114 4.71704L17.1648 10.9716L21.5377 17.2831C22.2115 18.2619 22.1584 19.6517 21.3131 20.4745C20.3488 21.4108 18.8689 21.2405 18.1158 20.1483L12.0255 11.3261C11.8802 11.1132 11.8802 10.8157 12.0255 10.6028L18.0895 1.8519Z" fill="white"/>
-            </svg>
-            Mixer
-        </a>
-        <a href="#" class="youtube dropdown-item d-inline-flex align-items-center">
-            <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M29.803 5.71816C29.803 3.08144 27.8635 0.960351 25.4671 0.960351C22.221 0.808594 18.9104 0.75 15.5272 0.75H14.4725C11.0975 0.75 7.78112 0.808594 4.53502 0.960937C2.1444 0.960937 0.204946 3.09375 0.204946 5.73047C0.0584618 7.81582 -0.00364759 9.90176 -0.000131968 11.9877C-0.00599134 14.0736 0.0604149 16.1615 0.199087 18.2514C0.199087 20.8881 2.13854 23.0268 4.52917 23.0268C7.93932 23.185 11.4374 23.2553 14.994 23.2494C18.5565 23.2611 22.0448 23.1869 25.4589 23.0268C27.8553 23.0268 29.7948 20.8881 29.7948 18.2514C29.9354 16.1596 29.9999 14.0736 29.994 11.9818C30.0073 9.8959 29.9436 7.80801 29.803 5.71816ZM12.1288 17.7357V6.22207L20.6249 11.976L12.1288 17.7357Z" fill="white"/>
-            </svg>
-            Youtube
-        </a>
+        <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'twitch dropdown-item d-inline-flex align-items-center', 'target'=>'_blank']); ?>
+        <?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'mixer dropdown-item d-inline-flex align-items-center', 'target'=>'_blank']); ?>
+        <?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'youtube dropdown-item d-inline-flex align-items-center', 'target'=>'_blank']); ?>
     </div>
 </div>
 
@@ -131,7 +116,7 @@ $weAreLive['Youtube']['channellink'] = "https://www.youtube.com/watch?v=aDBr8jwn
 <footer class="footer">
     <div class="row">
         <div class="col-sm-5 first-col">
-            <img src="images/icons/logo.svg" class="img-fluid logo" alt="Logo">
+            <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('logo'),['class' => 'img-fluid logo', 'aria-label' => 'Tentelian Sports Association']); ?>
             <p>&copy; My Company <?= date('Y') ?></p>
             <a href="#" class="filled-btn">Kontakt</a>
         </div>

@@ -25,6 +25,7 @@ class HelperClass
     public function checkImage($imagePath, $id)
     {
         $imagePath = Yii::getAlias("@web") . $imagePath;
+
         if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $id . '.webp')) {
             if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $id .'.png')) {
                 return $imagePath . 'default';
@@ -41,6 +42,17 @@ class HelperClass
             return Yii::getAlias("@web") . "/images/nationalities/" . $icon_size . "/default.svg";
 		}
 
+        return $imagePath;
+	}
+
+    public function checkSVGIcons($icon_name)
+    {
+        $imagePath = Yii::getAlias("@web") . "/images/icons/" . $icon_name . ".svg";
+
+        if(!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath)){
+            return Yii::getAlias("@web") . "/images/icons/default.svg";
+		}
+        
         return $imagePath;
 	}
 

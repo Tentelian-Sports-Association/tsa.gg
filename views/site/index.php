@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+//use app\modules\miscellaneouse\models\language\Language;
+
 
 /* @var $this yii\web\View
  * @var $upcomingEvents array
@@ -23,15 +25,14 @@ $this->title = 'Tentelian Sports Association';
     <section class="event-hero">
         <div class="event-hero-image"  aria-labelledby='<?= $upcomingEvents['Next']['previewImage']?>' aria-describedby='bigEventContainer bigEventDescription'>
             <picture>
-                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'bigEventContainer bigEventDescription',  'aria-label' => $upcomingEvents['Next']['Name'], 'id' => $upcomingEvents['Next']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.png\'']); ?>
                 <source media="(min-width: 1200px)"
-                        srcset="Bild Desktop"
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
                         type="image/jpeg">
                 <source media="(min-width: 320px)"
-                        srcset="Bild mobile"
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Preview']['previewImage']) . '.webp' ?>
                         type="image/jpeg">
-                <img src="BILD Desktop"
-                     alt="Alt" />
+                <img src=""
+                     aria-label="Next Big Event Pictures" />
             </picture>
 
         </div>
@@ -58,7 +59,8 @@ $this->title = 'Tentelian Sports Association';
                     <!--<p><?= $upcomingEvents['Preview']['shortDescription'] ?></p>-->
                     <!-- ID für den Button, funktion baue ich wenn design da -->
                     <a href="<?= $upcomingEvents['Preview']['ID'] ?>" class="more">
-                        <img src="images/icons/arrow-right.svg">
+                        <?php echo Html::img(Yii::$app->HelperClass->checkSVGIcons('arrow-right')); ?>
+
                     </a>
                 </div>
             </div>
@@ -91,8 +93,8 @@ $this->title = 'Tentelian Sports Association';
                                     <span class="tournament-status d-none"><?= $tournament['ID'] ?></span>
 								<?php else : ?>
                                     <!-- ab hier dann datum und uhrzeit wenn es nicht live ist -->
-                                    <span class="date d-inline-flex align-items-center"> <img src="images/icons/calendar.svg" class="img-fluid"><?= $tournament['StartingDate'] ?></span>
-                                    <span class="starting-time d-inline-flex align-items-center"><img src="images/icons/clock.svg" class="img-fluid"> <?= $tournament['StartingTime'] ?> Uhr</span>
+                                    <span class="date d-inline-flex align-items-center"><?php echo Html::img(Yii::$app->HelperClass->checkSVGIcons('calendar'), ['class' => 'img-fluid']); ?><?= $tournament['StartingDate'] ?></span>
+                                    <span class="starting-time d-inline-flex align-items-center"><?php echo Html::img(Yii::$app->HelperClass->checkSVGIcons('clock'), ['class' => 'clock']); ?><?= $tournament['StartingTime'] ?> Uhr</span>
 								<?php endif; ?>
 
                             </div>
