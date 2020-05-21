@@ -23,6 +23,6 @@ class AppAsset extends AssetBundle
         'css/main.css'
     ];
     public $js = [
-        'js/main.min.js'
+        'js/main.min.js',
     ];
 }

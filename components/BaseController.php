@@ -29,15 +29,12 @@ class BaseController extends Controller
             return false;
         }
 
-        //Yii::$app->language = 'fr-FR';
-        //Yii::$app->language = 'de-DE';
-
         if(Yii::$app->user->identity != null)
             Yii::$app->language = User::findIdentity(Yii::$app->user->identity->getId())->getLanguage()->getLocale();
         
 
         if (!Yii::$app->user->isGuest && Yii::$app->user->getIdentity()->is_password_change_required == 1 && Yii::$app->controller->action->id !== 'password-change') {
-            return $this->redirect(['/user/password-change']);
+            return $this->redirect(['/account/password-change']);
         }
 
         return true;

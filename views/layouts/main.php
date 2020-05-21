@@ -14,7 +14,7 @@ use app\assets\AppAsset;
 
 AppAsset::register($this);
 
-$user = null;
+$user = Yii::$app->HelperClass->getUser();
 
 $weAreLive = array();
 $weAreLive['twitch']['channellink'] = 'https://twitch.tv/TentelianSA';
@@ -77,8 +77,12 @@ $weAreLive['Youtube']['svg'] = '<svg width="30" height="24" viewBox="0 0 30 24" 
             <?php echo Html::a(Yii::t('app', 'navbar_events'), ["#"], ['class' => "nav-link",'aria-label' => "Events Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["#"], ['class' => "nav-link",'aria-label' => "Contact Button"]); ?>
             <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
-                <?= Html::button(Yii::t('app', 'navbar_login'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/partner/overview']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
-                <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/partner/overview']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
+                <?php if(!$user) : ?>
+                    <?= Html::button(Yii::t('app', 'navbar_login'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/login']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                    <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/register']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
+                <?php else : ?>
+                    <?= Html::button(Yii::t('app', 'navbar_logout'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/logout']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -99,19 +103,9 @@ $weAreLive['Youtube']['svg'] = '<svg width="30" height="24" viewBox="0 0 30 24" 
     </div>
 </div>
 
-<!--
-<div class="breadcrumb">
-    <?= Breadcrumbs::widget([
-    'itemTemplate' => "\n\t<li class=\"breadcrumb-item\"><i>{link}</i></li>\n", // template for all links
-    'activeItemTemplate' => "\t<li class=\"breadcrumb-item active\">{link}</li>\n", // template for the active link
-    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-]) ?>
-    <?= Alert::widget() ?>
-</div>
--->
+<!-- Hier später weider die sachen für den Alert einfügen -->
+
 <?= $content ?>
-
-
 
 <footer class="footer">
     <div class="row">

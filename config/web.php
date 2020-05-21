@@ -29,7 +29,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\modules\user\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -67,6 +67,8 @@ $config = [
             // Disable index.php
             'showScriptName' => false,
             'rules' => [
+                'account/<action>' => 'user/account/<action>',
+                'user/<action>' => 'user/user/<action>',
                 'partner/<action>' => 'partner/partner/<action>',
             ],
         ],
@@ -88,6 +90,7 @@ $config = [
         ],
     ],
     'modules' => [
+        'user' => 'app\modules\user\Module',
         'partner' => 'app\modules\partner\Module'
 	],
     'params' => $params,
