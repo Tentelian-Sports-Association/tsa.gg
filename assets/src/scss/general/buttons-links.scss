@@ -38,4 +38,8 @@ a {
         color: $primaryColor;
         text-decoration: none;
     }
+    &:active,
+    &:focus {
+        background-color: transparent!important;
+    }
 }

@@ -21,6 +21,7 @@ header {
             border-bottom: 2px solid $secondaryColor;
             &:hover {
                 color: $primaryColor;
+                border-bottom: 2px solid $primaryColor;
             }
             &.active {
                 border-bottom: 2px solid $primaryColor;
