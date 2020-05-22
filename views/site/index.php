@@ -1,8 +1,8 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
-//use app\modules\miscellaneouse\models\language\Language;
-
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View
  * @var $upcomingEvents array
@@ -13,7 +13,7 @@ use yii\helpers\Html;
 
 $this->title = 'Tentelian Sports Association';
 
-    \app\assets\IndexAsset::register($this);
+\app\assets\IndexAsset::register($this);
 
 
 ?>
@@ -42,7 +42,7 @@ $this->title = 'Tentelian Sports Association';
                     <?= $upcomingEvents['Next']['Name'] ?>
                 </h1>
                 <p class="description" id="bigEventDescription"><?= $upcomingEvents['Next']['shortDescription'] ?></p>
-                <a href="<?= $upcomingEvents['Next']['ID'] ?>" class="filled-btn">Zum Event</a>
+                    <?php echo Html::a(Yii::t('app', 'events_showEvent'), ["#"], ['class' => "filled-btn",'aria-label' => "Show Event Details button"]); ?>
             </div>
         </div>
 
@@ -54,7 +54,7 @@ $this->title = 'Tentelian Sports Association';
             <div class="d-inline-block upcoming-description" id="smallEventContainer">
                 <div class="inner">
                     <!-- Das angepriesene Event f�r die kleine Ecke -->
-                    <span>Nächstes Event</span>
+                    <span><?= Yii::t('app', 'events_upcoming') ?></span>
                     <h3 id="smallEventName"><?= $upcomingEvents['Preview']['Name'] ?></h3>
                     <!--<p><?= $upcomingEvents['Preview']['shortDescription'] ?></p>-->
                     <!-- ID für den Button, funktion baue ich wenn design da -->
@@ -67,9 +67,9 @@ $this->title = 'Tentelian Sports Association';
         </div>
     </section>
 
-    <!-- *************** Tournaments Bereich *************** -->
+    <!-- *************** Tournaments Bereich image hover noch einbauen *************** -->
     <section class="tournament">
-        <h2>Aktive Turniere</h2>
+        <h2><?= Yii::t('app', 'tournaments_header') ?></h2>
         <div class="tournament-container row">
             <div class="col-12 col-sm-8">
                 <ul class="tournament-list list-unstyled">
@@ -107,13 +107,12 @@ $this->title = 'Tentelian Sports Association';
                 <?= Html::img(Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.webp', ['class' => 'img-fluid',  'aria-label' => $tournament['HoverImage'], 'id' => $tournament['HoverImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.png\'']); ?>
             </div>
         </div>
-
-        <a href="<?= $upcomingEvents['Next']['ID'] ?>" class="filled-btn">Alle Turniere</a>
+        <?php echo Html::a(Yii::t('app', 'tournaments_moreTournaments'), ["#"], ['class' => "filled-btn",'aria-label' => "show all tournaments Button"]); ?>
     </section>
 
-    <!-- *************** Latest News Bereich *************** -->
+    <!-- *************** Latest News Bereich images noch einbauen *************** -->
     <section class="news-block bg-green">
-        <h2>Aktuelle News</h2>
+        <h2><?= Yii::t('app', 'currentNews_header') ?></h2>
         <ul class="news-list row list-unstyled">
 			<?php foreach($latestNews as $news) : ?>
                 <li class="news-item col-12 col-lg-4">
@@ -174,13 +173,13 @@ $this->title = 'Tentelian Sports Association';
             </div>
         </div>
         <div class="news-footer text-center">
-            <a href="#" class="outline-btn-white">Alle News</a>
+            <?php echo Html::a(Yii::t('app', 'currentNews_moreNews'), ["#"], ['class' => "outline-btn-white",'aria-label' => "Show all News Button"]); ?>
         </div>
     </section>
 
     <!-- *************** Our Partners Bereich *************** -->
     <section class="partner-block">
-        <h2>Unsere Partner</h2>
+        <h2><?= Yii::t('app', 'partnerss_ourPartners') ?></h2>
         <div class="row">
 			<?php foreach($ourPartner as $partner) : ?>
                 <div class="col-6 col-sm-3 partner-item" aria-labelledby='<?= $partner['image']?>' aria-describedby='<?= $partner['image']?>'>
@@ -205,7 +204,7 @@ $this->title = 'Tentelian Sports Association';
             </div>
         </div>
         <div class="partner-footer text-center">
-            <?php echo Html::a('Alle Partner', ["/partner/overview"], ['class' => "outline-btn",'aria-label' => "alle Partner"]); ?>
+            <?php echo Html::a(Yii::t('app', 'partnerss_morePartners'), ["/partner/overview"], ['class' => "filled-btn",'aria-label' => "Show all Partners Button"]); ?>
         </div>
     </section>
 </div>

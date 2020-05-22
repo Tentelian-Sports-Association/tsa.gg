@@ -67,7 +67,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        //Yii::$app->language = '';
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+        $languageLocale = Yii::$app->HelperClass->getUserLanguage($user, true);
+
+        Yii::$app->language = $languageLocale;
 
         /** Upcoming Events */
         $upcomingEvents = array();

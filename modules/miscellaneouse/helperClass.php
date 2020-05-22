@@ -5,10 +5,12 @@ namespace app\modules\miscellaneouse;
 use Yii;
 
 use app\modules\user\models\User;
+use app\modules\miscellaneouse\models\language\Language;
+
 
 /**
  * Class HelperClass
- * @package app\modules\core\miscellaneous
+ * @package app\modules\core\miscellaneouse
  */
 class HelperClass
 {
@@ -75,10 +77,22 @@ class HelperClass
     /**
      * @return User Object
      */
-     public function getUser()
-     {
+    public function getUser()
+    {
         return (Yii::$app->user->identity != null) ? User::findIdentity(Yii::$app->user->identity->getId()) : null;
-	 }
+	}
+
+    /**
+     *
+     * 
+     */
+    public function getUserLanguage($user, $locale = false)
+    {
+        if(!$locale)
+            return ($user) ? $user->getLanguage()->getId() : Language::findByLocale(Yii::$app->language)->getId();
+        else
+	        return ($user) ? $user->getLanguage()->getLocale() : Language::findByLocale(Yii::$app->language)->getLocale();
+	}
 
     /**
      * Generate Password for User

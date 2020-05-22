@@ -67,6 +67,7 @@ $config = [
             // Disable index.php
             'showScriptName' => false,
             'rules' => [
+                '<action>' => 'site/<action>',
                 'account/<action>' => 'user/account/<action>',
                 'user/<action>' => 'user/user/<action>',
                 'partner/<action>' => 'partner/partner/<action>',
