@@ -103,7 +103,7 @@ $weAreLive['Youtube']['svg'] = '<svg width="30" height="24" viewBox="0 0 30 24" 
     </div>
 </div>
 
-<!-- Hier später weider die sachen für den Alert einfügen -->
+<!-- Hier spï¿½ter weider die sachen fï¿½r den Alert einfï¿½gen -->
 
 <?= $content ?>
 

@@ -1,11 +1,15 @@
 @mixin button-default() {
     font-weight: bold;
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 16px;
+    line-height: 18px;
     border-radius: 35px;
-    padding: 10px 20px;
+    padding: 10px 30px;
     &:hover {
         cursor: pointer;
+    }
+    @media (min-width: $breakpoint-md) {
+        font-size: 18px;
+        line-height: 21px;
     }
 }
 

@@ -22,4 +22,5 @@ PATHS:
   # Paths to JavaScript libraries, which are combined into one file
   javascript:
     - "vendor/bower-asset/jquery/dist/jquery.js"
+    - "vendor/bower-asset/jquery-ui/jquery-ui.js"
     - "vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js"

@@ -1,0 +1,12 @@
+@mixin input-default() {
+    height: 51px;
+    padding: 10px;
+    background: $fourthColor;
+    color: $white;
+    border: none;
+    margin-bottom: 15px;
+    &::placeholder {
+        color: $white;
+        opacity: 0.5;
+    }
+}

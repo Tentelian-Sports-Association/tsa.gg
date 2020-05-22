@@ -5,9 +5,10 @@
 @import "general/variable";
 @import "general/general";
 @import "mixins/buttons";
+@import "mixins/input";
 @import "general/colors";
 @import "general/font";
-@import "general/buttons-links";
+@import "general/buttons-links-input";
 
 //Page
 @import "page/header";
