@@ -5,6 +5,7 @@ namespace app\modules\user\controllers;
 use app\components\BaseController;
 
 use app\modules\user\models\formModels\LoginForm;
+use app\modules\user\models\formModels\RegisterForm;
 
 use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\language\Language;
@@ -100,11 +101,11 @@ class AccountController extends BaseController
 
         $languageID = Language::findByLocale(Yii::$app->language)->getId();
 
-       /* $model =new RegisterForm();
+        $model =new RegisterForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
             $this->goHome();
-        }*/
+        }
 
         $genderList = [];
         foreach (Gender::find()->all() as $gender) {
@@ -123,10 +124,10 @@ class AccountController extends BaseController
 
         return $this->render('register',
             [
-                //'model' => $model,
-                //'genderList' => $genderList,
-                //'languageList' => $languageList,
-                //'nationalityList' => $nationalityList,
+                'model' => $model,
+                'genderList' => $genderList,
+                'languageList' => $languageList,
+                'nationalityList' => $nationalityList,
             ]);
     }
 }
