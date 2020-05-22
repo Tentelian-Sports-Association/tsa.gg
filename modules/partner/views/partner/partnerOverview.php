@@ -6,7 +6,7 @@ use yii\helpers\Html;
  * @var $ourPartner array
  */
 
-   \app\modules\partner\assets\PartnerOverviewAsset::register($this);
+app\modules\partner\assets\PartnerOverviewAsset::register($this);
 
 $this->title = 'TSA - Our Partners';
 
