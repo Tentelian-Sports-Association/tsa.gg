@@ -1,7 +1,7 @@
-<?php
+﻿<?php
 return [
 	/** Navbar Options **/
-	'nabvar_home' => 'Start',
+	'navbar_home' => 'Start',
 	'navbar_news' => 'News',
 	'navbar_community' => 'Community',
 	'navbar_tournaments' => 'Turniere',
@@ -19,7 +19,7 @@ return [
 	'promotion_nowLive2' => ', SCHAU UNS ZU!',
 
 	/** Events */
-	'events_upcoming' => 'N�chstes Event',
+	'events_upcoming' => 'Nächstes Event',
 	'events_showEvent' => 'Zum Event',
 
 	/** Active Tournaments */

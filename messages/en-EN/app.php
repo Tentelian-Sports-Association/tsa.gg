@@ -1,7 +1,7 @@
 <?php
 return [
 	/** Navbar Options **/
-	'nabvar_home' => 'Home',
+	'navbar_home' => 'Home',
 	'navbar_news' => 'News',
 	'navbar_community' => 'Community',
 	'navbar_tournaments' => 'Tournaments',

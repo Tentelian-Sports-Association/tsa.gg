@@ -31,6 +31,7 @@ use Yii;
                 'modules/user/changePassword' => 'changePassword.php',
                 'modules/user/forgotPassword' => 'forgotPassword.php',
  			],
+            'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
  		];
 
 

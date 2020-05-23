@@ -81,7 +81,7 @@ $weAreLive['Liquipedia']['svg'] = '<svg width="22" height="18" viewBox="0 0 22 1
         <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('burgermenu'),['aria-label' => 'burgermenu']); ?>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <?php echo Html::a(Yii::t('app', 'nabvar_home'), ["/site/index"], ['class' => "nav-link active",'aria-label' => "Home Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_home'), ["/site/index"], ['class' => "nav-link active",'aria-label' => "Home Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_news'), ["#"], ['class' => "nav-link",'aria-label' => "News Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_community'), ["#"], ['class' => "nav-link",'aria-label' => "Community Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["#"], ['class' => "nav-link",'aria-label' => "Tournaments Button"]); ?>

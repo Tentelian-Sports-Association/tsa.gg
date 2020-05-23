@@ -22,12 +22,13 @@ class Module extends \yii\base\Module
      */
     public function registerTranslations()
     {
-        Yii::$app->i18n->translations['modules/company/*'] = [
+        Yii::$app->i18n->translations['modules/partner/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'basePath' => '@app/modules/partner/messages',
             'fileMap' => [
                 'modules/partner/partner' => 'partner.php',
             ],
+            'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
         ];
     }
 

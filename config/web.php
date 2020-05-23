@@ -80,6 +80,7 @@ $config = [
                     'fileMap' => [
                         'app' => 'app.php'
                     ],
+                    'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
                 ],
             ]
         ],
