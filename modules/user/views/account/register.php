@@ -29,8 +29,8 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
 	        'id' => 'register-form',
 	        'options' => ['class' => 'form-horizontal'],
 	        'fieldConfig' => [
-	            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
-	            'labelOptions' => ['class' => 'col-lg-2 control-label'],
+	            'template' => "{label}\n<div class=\"col-12\">{input}</div>\n<div class=\"col-12\">{error}</div>",
+	            'labelOptions' => ['class' => 'col-12 control-label'],
 	        ],
     	]); ?>
 
