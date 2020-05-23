@@ -34,24 +34,24 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
 	        ],
     	]); ?>
 
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h2><?= Html::encode($this->title) ?></h2>
         <div class="form-group two-input row">
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true,'class' => 'input-default  col-12']) ?>
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true,'class' => 'input-default ']) ?>
             </div>
 
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'email')->textInput(['class' => 'input-default  col-12']) ?>
+                <?= $form->field($model, 'email')->textInput(['class' => 'input-default ']) ?>
             </div>
         </div>
 
         <div class="form-group two-input row">
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'password')->textInput(['class' => 'input-default col-12']) ?>
+                <?= $form->field($model, 'password')->textInput(['class' => 'input-default']) ?>
             </div>
 
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'passwordRepeate')->textInput(['class' => 'input-default col-12']) ?>
+                <?= $form->field($model, 'passwordRepeate')->textInput(['class' => 'input-default ']) ?>
             </div>
         </div>
         
@@ -64,7 +64,7 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
 
                 <?= $form->field($model, 'birthday')->widget(DatePicker::className(), [
         		    'options' => [
-            		    'class' => 'form-control form-control-color'
+            		    'class' => 'form-control form-control-color input-default'
         		    ],
         		    'pluginOptions' => [
             		    'autoclose' => true,
@@ -89,8 +89,10 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
             </div>
         </div>
 
-        <div class="form-group d-flex align-items-center justify-content-between">
-            <?= Html::submitButton(\app\modules\user\Module::t('register', 'register_registerButton'), ['class' => 'filled-btn', 'name' => 'register-button']) ?>
+        <div class="form-group">
+            <div class="col d-flex justify-content-end">
+                <?= Html::submitButton(\app\modules\user\Module::t('register', 'register_registerButton'), ['class' => 'filled-btn', 'name' => 'register-button']) ?>
+            </div>
         </div>
 
     	<?php ActiveForm::end(); ?>
