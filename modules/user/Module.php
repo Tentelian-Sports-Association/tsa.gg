@@ -27,6 +27,9 @@ use Yii;
  			'basePath' => '@app/modules/user/messages',
  			'fileMap' => [
  				'modules/user/login' => 'login.php',
+ 				'modules/user/register' => 'register.php',
+                'modules/user/changePassword' => 'changePassword.php',
+                'modules/user/forgotPassword' => 'forgotPassword.php',
  			],
  		];
 

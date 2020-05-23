@@ -6,6 +6,8 @@ use app\components\BaseController;
 
 use app\modules\user\models\formModels\LoginForm;
 use app\modules\user\models\formModels\RegisterForm;
+use app\modules\user\models\formModels\ChangePasswordForm;
+use app\modules\user\models\formModels\ForgotPasswordForm;
 
 use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\language\Language;
@@ -123,11 +125,45 @@ class AccountController extends BaseController
         }
 
         return $this->render('register',
-            [
-                'model' => $model,
-                'genderList' => $genderList,
-                'languageList' => $languageList,
-                'nationalityList' => $nationalityList,
-            ]);
+        [
+            'model' => $model,
+            'genderList' => $genderList,
+            'languageList' => $languageList,
+            'nationalityList' => $nationalityList,
+        ]);
+    }
+
+    public function actionChangePassword()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new ChangePasswordForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->saveNewPassword()) {
+            return $this->goBack();
+        }
+
+        return $this->render('changePassword', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionForgotPassword()
+    {
+        $model = new ForgotPasswordForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            /** @var User $user */
+            $user = User::find()->where(['and', ['username' => $model->username], ['email' => $model->email]])->one();
+            UserController::resetPassword($model->username, $model->email);
+            return $this->redirect(["login"]);
+        }
+
+        return $this->render('forgotPassword', [
+            'model' => $model,
+        ]);
     }
 }

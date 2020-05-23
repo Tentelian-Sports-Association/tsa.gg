@@ -72,23 +72,23 @@ class RegisterForm extends FormModel
             	'unique',
         	    'targetClass' => User::className(),
     	        'targetAttribute' => 'username',
-    	        'message' => \app\modules\user\Module::t('register', 'usernameUsed')
+    	        'message' => \app\modules\user\Module::t('register', 'register_usernameUsedErr')
         	],
         	[
             	'email',
                 'unique',
                 'targetClass' => User::className(),
             	'targetAttribute' => 'email',
-                'message' => \app\modules\user\Module::t('register', 'emailUsed')
+                'message' => \app\modules\user\Module::t('register', 'register_emailUsedErr')
         	],
             [
-                ['email'], 'email', 'message' => \app\modules\user\Module::t('register', 'noMail')
+                ['email'], 'email', 'message' => \app\modules\user\Module::t('register', 'register_noMailErr')
             ],
         	[
             	'passwordRepeate',
             	'compare',
             	'compareAttribute' => 'password',
-                'message' => \app\modules\user\Module::t('register', 'passwordRepeateErr')
+                'message' => \app\modules\user\Module::t('register', 'register_passwordRepeateErr')
         	],
         	[
             	['password', 'passwordRepeate'],
@@ -103,14 +103,14 @@ class RegisterForm extends FormModel
     public function attributeLabels()
     {
         return [
-        	'username' => \app\modules\user\Module::t('register','username'),
-            'password' => \app\modules\user\Module::t('register','password'),
-            'passwordRepeate' => \app\modules\user\Module::t('register','passwordRepeate'),
-            'email' => \app\modules\user\Module::t('register','email'),
-            'birthday' => \app\modules\user\Module::t('register','birthday'),
-            'genderId' => \app\modules\user\Module::t('register','genderId'),
-            'languageId' => \app\modules\user\Module::t('register','languageId'),
-            'nationalityId' => \app\modules\user\Module::t('register','nationalityId'),
+        	'username' => \app\modules\user\Module::t('register','register_username'),
+            'password' => \app\modules\user\Module::t('register','register_password'),
+            'passwordRepeate' => \app\modules\user\Module::t('register','register_passwordRepeate'),
+            'email' => \app\modules\user\Module::t('register','register_email'),
+            'birthday' => \app\modules\user\Module::t('register','register_birthday'),
+            'genderId' => \app\modules\user\Module::t('register','register_gender'),
+            'languageId' => \app\modules\user\Module::t('register','register_language'),
+            'nationalityId' => \app\modules\user\Module::t('register','register_nationality'),
         ];
     }
 
@@ -123,11 +123,11 @@ class RegisterForm extends FormModel
      */
     public function validatePassword($attribute, $params)
     {
-        /*$validatePassword = preg_match('/^.*(?=.{6,})(?=.*[!$%&=?*-:;.,+~@_])(?=.*[0-9])(?=.*[a-z]).*$/', $this->password);
-
+        $validatePassword = preg_match('/^.*(?=.{6,})(?=.*[!$%&=?*-:;.,+~@_])(?=.*[0-9])(?=.*[a-z]).*$/', $this->newPassword);
+        
         if (!$validatePassword) {
-            $this->addError($attribute, Yii::t('app', 'The password needs to have..'));
-        }*/
+            $this->addError($attribute, Yii::t('register','register_passwordFormatErr'));
+        }
 
         return true;
     }

@@ -18,7 +18,7 @@ use kartik\date\DatePicker;
 
 \app\modules\user\assets\account\register\RegisterAsset::register($this);
 
-$this->title = \app\modules\user\Module::t('register', 'registerHead');
+$this->title = \app\modules\user\Module::t('register', 'register_header');
 
 ?>
 
@@ -90,7 +90,7 @@ $this->title = \app\modules\user\Module::t('register', 'registerHead');
         </div>
 
         <div class="form-group d-flex align-items-center justify-content-between">
-            <?= Html::submitButton(\app\modules\user\Module::t('register', 'register'), ['class' => 'filled-btn', 'name' => 'register-button']) ?>
+            <?= Html::submitButton(\app\modules\user\Module::t('register', 'register_registerButton'), ['class' => 'filled-btn', 'name' => 'register-button']) ?>
         </div>
 
     	<?php ActiveForm::end(); ?>

@@ -33,7 +33,7 @@ $this->title = \app\modules\user\Module::t('login', 'login_header');
         <?= $form->field($model, 'password')->passwordInput(['class' => 'input-default col-12']) ?>
         <div class="form-group row">
             <div class="col">
-				<?= Html::a(\app\modules\user\Module::t('login', 'login_forgotPasswordButton'), ["password-reset"], ['class' => 'passwordReset primaryColor']); ?>
+				<?= Html::a(\app\modules\user\Module::t('login', 'login_forgotPasswordButton'), ["forgot-password"], ['class' => 'passwordReset primaryColor']); ?>
             </div>
 		</div>
 
