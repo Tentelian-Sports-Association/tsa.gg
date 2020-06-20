@@ -123,11 +123,11 @@ class RegisterForm extends FormModel
      */
     public function validatePassword($attribute, $params)
     {
-        $validatePassword = preg_match('/^.*(?=.{6,})(?=.*[!$%&=?*-:;.,+~@_])(?=.*[0-9])(?=.*[a-z]).*$/', $this->newPassword);
+        /*$validatePassword = preg_match('/^.*(?=.{6,})(?=.*[!$%&=?*-:;.,+~@_])(?=.*[0-9])(?=.*[a-z]).*$/', $this->password);
         
         if (!$validatePassword) {
             $this->addError($attribute, Yii::t('register','register_passwordFormatErr'));
-        }
+        }*/
 
         return true;
     }
@@ -151,9 +151,6 @@ class RegisterForm extends FormModel
         $user->language_id = $this->languageId;
         $user->nationality_id = $this->nationalityId;
         $user->email = $this->email;
-
-        //print_r($user);
-        //die();
 
         try {
             $user->save();

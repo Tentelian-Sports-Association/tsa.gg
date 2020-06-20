@@ -13,4 +13,9 @@ return [
 	/** Error Massages */
 	'forgotPassword_invalidUserNameErr' => 'No account with this username was found.',
 	'forgotPassword_invalidMailErr' => 'No account with this email adress was found.',
+
+	/** Mailer */
+	'mailer_passwordChangedSuccessfully' => 'Your Account Password has been Changed',
+	'mailer_username' => 'Username',
+	'mailer_password' => 'Password',
 ];

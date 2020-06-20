@@ -68,7 +68,7 @@ class AccountController extends BaseController
         $model = new LoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->goHome();
         }
 
         $model->password = '';
@@ -135,7 +135,6 @@ class AccountController extends BaseController
 
     public function actionChangePassword()
     {
-
         if (Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -158,12 +157,35 @@ class AccountController extends BaseController
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             /** @var User $user */
             $user = User::find()->where(['and', ['username' => $model->username], ['email' => $model->email]])->one();
-            UserController::resetPassword($model->username, $model->email);
+            AccountController::resetPassword($model->username, $model->email);
             return $this->redirect(["login"]);
         }
 
         return $this->render('forgotPassword', [
             'model' => $model,
         ]);
+    }
+
+    /* ausgliedern in miscellaneouse */
+    public static function resetPassword($username, $email)
+    {
+        /** @var User $user */
+        $user = User::find()->where(['and', ['username' => $username], ['email' => $email]])->one();
+        if (!$user) {
+            throw new BadRequestHttpException("Invalid user id $id");
+        }
+
+        $password = Yii::$app->HelperClass->generatePassword();
+
+        $user->setPassword($password);
+        $user->is_password_change_required = 1;
+
+        if ($user->save()) {
+            Yii::$app->mailer->compose('changePassword', ['user' => $user, 'password' => $password])
+                ->setFrom('noreply@tsa.gg')
+                ->setTo($user->getEmail())
+                ->setSubject(\app\modules\user\Module::t('forgotPassword', 'mailer_passwordChangedSuccessfully'))
+                ->send();
+        }
     }
 }

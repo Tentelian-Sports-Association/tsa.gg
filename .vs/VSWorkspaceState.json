@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\config",
-    "\\controllers",
-    "\\messages",
-    "\\messages\\en-EN",
     "\\modules",
-    "\\web",
-    "\\web\\images",
-    "\\web\\images\\Events",
-    "\\web\\images\\Events\\Index"
+    "\\modules\\user",
+    "\\modules\\user\\messages",
+    "\\modules\\user\\messages\\en-EN",
+    "\\modules\\user\\messages\\fr-FR",
+    "\\views",
+    "\\views\\layouts",
+    "\\views\\site"
   ],
-  "SelectedNode": "\\config\\db.php",
+  "SelectedNode": "\\config\\web.php",
   "PreviewInSolutionExplorer": false
 }

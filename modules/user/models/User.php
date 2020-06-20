@@ -158,6 +158,14 @@ class User extends AbstractActiveRecord implements IdentityInterface
     public static function findByUsername($username)
     {
         return static::findOne(['username' => $username]);
+
+        //foreach (self::$users as $user) {
+        //    if (strcasecmp($user['username'], $username) === 0) {
+        //        return new static($user);
+        //    }
+        //}
+
+        //return null;
     }
 
     /**
@@ -175,6 +183,8 @@ class User extends AbstractActiveRecord implements IdentityInterface
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id]);
+
+        //return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
     }
 
     /**
@@ -183,6 +193,14 @@ class User extends AbstractActiveRecord implements IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null)
     {
         return static::findOne(['access_token' => $token]);
+
+        //foreach (self::$users as $user) {
+        //    if ($user['access_token'] === $token) {
+        //        return new static($user);
+        //    }
+        //}
+
+        //return null;
     }
 
     /**
@@ -222,7 +240,7 @@ class User extends AbstractActiveRecord implements IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->getAuthKey() === $authKey;
+        return $this->$auth_key === $authKey;
     }
 
     /**
@@ -258,6 +276,4 @@ class User extends AbstractActiveRecord implements IdentityInterface
     {
         return $this->is_password_change_required;
     }
-
-
 }

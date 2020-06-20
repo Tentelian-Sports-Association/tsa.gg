@@ -53,8 +53,4 @@ return [
 	'footer_legalJobs' => 'Jobs',
 	
 	'footer_socialMediaHeader' => 'Social Media',
-
-
-	/** Alerts */
-    'login_wrongData' => 'Incorrect Username and/or Password',
 ];

@@ -12,4 +12,7 @@ return [
 	'login_loginButton' => 'Login',
 	'login_registerButton' => 'Register',
 	'login_forgotPasswordButton' => 'Forgot your password?',
+
+	/** Alerts */
+    'login_wrongData' => 'Incorrect Username and/or Password',
 ];
