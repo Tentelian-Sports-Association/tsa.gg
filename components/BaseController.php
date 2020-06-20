@@ -7,7 +7,7 @@ use Yii;
 use yii\web\Controller;
 
 /** Helper Modules **/
-use app\modules\miscellaneouse\models\Language;
+//use app\modules\miscellaneouse\models\Language;
 
 
 use app\modules\user\models\User;
@@ -29,13 +29,13 @@ class BaseController extends Controller
             return false;
         }
 
-        if(Yii::$app->user->identity != null)
-            Yii::$app->language = User::findIdentity(Yii::$app->user->identity->getId())->getLanguage()->getLocale();
+        //if(Yii::$app->user->identity != null)
+            //Yii::$app->language = User::findIdentity(Yii::$app->user->identity->getId())->getLanguage()->getLocale();
         
 
-        if (!Yii::$app->user->isGuest && Yii::$app->user->getIdentity()->is_password_change_required == 1 && Yii::$app->controller->action->id !== 'password-change') {
-            return $this->redirect(['/account/password-change']);
-        }
+        //if (!Yii::$app->user->isGuest && Yii::$app->user->getIdentity()->is_password_change_required == 1 && Yii::$app->controller->action->id !== 'password-change') {
+            //return $this->redirect(['/account/password-change']);
+        //}
 
         return true;
     }
