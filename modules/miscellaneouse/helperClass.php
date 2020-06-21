@@ -102,4 +102,40 @@ class HelperClass
     public function generatePassword() {
         return str_shuffle(substr(str_shuffle('abcdefghjkmnpqrstuvwxyz'), 0, 4) . substr(str_shuffle('!$%&=?*-:;.,+~@_'), 0, 1) . substr(str_shuffle('123456789'), 0, 1));
     }
+
+    /**
+     * Check if online on twitch
+     *
+     * @return bool
+     */
+    public function getTwitchOnlineStat()
+    {
+        /** Twitch API Test */
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://api.twitch.tv/helix/streams?user_login=controllerbandits');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+
+        $headers = array();
+        $headers = array('Client-Id: 6z39okvs7otsfg01zgni68uwunal3d', 'Authorization: Bearer x3wftl2uhekncv3qwc8ed3dz7v7fvb');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $result = curl_exec($ch);
+        //if (curl_errno($ch)) {
+        //    echo 'Error:' . curl_error($ch);
+        //}
+        //curl_close($ch);
+
+        $json_result = json_decode($result, true);
+        //print_r($json_result['data'][0]['type']);
+        //die();
+
+        if($json_result['data'] != null)
+            return true;
+        else
+	        return false;
+	}
 }

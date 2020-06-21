@@ -71,6 +71,7 @@ $config = [
                 'account/<action>' => 'user/account/<action>',
                 'user/<action>' => 'user/user/<action>',
                 'partner/<action>' => 'partner/partner/<action>',
+                'community/<action>' => 'community/community/<action>',
             ],
         ],
         'i18n' => [
@@ -93,7 +94,8 @@ $config = [
     ],
     'modules' => [
         'user' => 'app\modules\user\Module',
-        'partner' => 'app\modules\partner\Module'
+        'partner' => 'app\modules\partner\Module',
+        'community' => 'app\modules\community\Module',
 	],
     'params' => $params,
 ];

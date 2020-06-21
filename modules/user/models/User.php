@@ -276,4 +276,26 @@ class User extends AbstractActiveRecord implements IdentityInterface
     {
         return $this->is_password_change_required;
     }
+
+    /***************** Community Overview and Stats *****************/
+
+    /**
+     *
+     */
+    public static function getUserOverview($languageID)
+    {
+        $nationalityCounter = array();
+
+        foreach(Nationality::find()->all() as $nr => $nationality)
+        {
+            if(($count = static::find()->where(['nationality_id' => $nationality['id']])->count()) > 0)
+            {
+                $nationalityCounter[$nr]['id'] = $nationality['id']; 
+                $nationalityCounter[$nr]['name'] = $nationality['name']; 
+                $nationalityCounter[$nr]['count'] = $count;        
+			} 
+		}
+
+        return $nationalityCounter;
+	}
 }

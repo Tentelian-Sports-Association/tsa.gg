@@ -40,9 +40,7 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
 $weAreLive['Liquipedia']['channellink'] = '';
 $weAreLive['Liquipedia']['svg'] = '<svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M22.0767 2.13092C21.2529 2.49231 20.375 2.73185 19.4598 2.84815C20.4013 2.286 21.1199 1.40262 21.4578 0.337846C20.5799 0.861231 19.6107 1.23092 18.5778 1.43723C17.7442 0.549693 16.5562 0 15.2602 0C12.7458 0 10.7215 2.04092 10.7215 4.54292C10.7215 4.90292 10.7519 5.24908 10.8267 5.57862C7.05085 5.39446 3.70977 3.58477 1.46531 0.828C1.07347 1.50785 0.843621 2.286 0.843621 3.12369C0.843621 4.69662 1.65362 6.09092 2.86101 6.89815C2.13131 6.88431 1.41547 6.67246 0.809005 6.33877C0.809005 6.35262 0.809005 6.37062 0.809005 6.38862C0.809005 8.59569 2.38331 10.4289 4.44777 10.8512C4.07808 10.9523 3.67516 11.0008 3.25701 11.0008C2.96624 11.0008 2.6727 10.9842 2.39716 10.9232C2.98562 12.7218 4.65547 14.0442 6.64101 14.0871C5.09578 15.2958 3.13377 16.0242 1.00977 16.0242C0.637313 16.0242 0.280082 16.0075 -0.0771484 15.9618C1.9347 17.2592 4.31901 18 6.89024 18C15.2478 18 19.817 11.0769 19.817 5.076C19.817 4.87523 19.8101 4.68139 19.8004 4.48892C20.7018 3.84923 21.4592 3.05031 22.0767 2.13092Z" fill="white"/></svg>';
-
 ?>
-
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -83,7 +81,7 @@ $weAreLive['Liquipedia']['svg'] = '<svg width="22" height="18" viewBox="0 0 22 1
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <?php echo Html::a(Yii::t('app', 'navbar_home'), ["/site/index"], ['class' => "nav-link active",'aria-label' => "Home Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_news'), ["#"], ['class' => "nav-link",'aria-label' => "News Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_community'), ["#"], ['class' => "nav-link",'aria-label' => "Community Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_community'), ["/community/overview"], ['class' => "nav-link",'aria-label' => "Community Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["#"], ['class' => "nav-link",'aria-label' => "Tournaments Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => "nav-link",'aria-label' => "Partners Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_events'), ["#"], ['class' => "nav-link",'aria-label' => "Events Button"]); ?>
@@ -101,19 +99,21 @@ $weAreLive['Liquipedia']['svg'] = '<svg width="22" height="18" viewBox="0 0 22 1
 </header>
 
 <!-- *************** Wir sind live Bereich (anpassen das nur gezeigt wird wenn wir live sind *************** -->
-<div class="promo-banner dropdown d-block d-lg-flex align-items-center justify-content-between">
-    <h3 class="promo-text d-inline-flex align-items-center">
-         <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('redcircle'), ['class' => 'img-fluid', 'aria-label' => 'we are live']); ?><?= Yii::t('app', 'promotion_nowLive1') ?><span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline"><?= Yii::t('app', 'promotion_nowLive2') ?></span></h3>
-    <button type="button" class="d-inline d-lg-none float-right float-lg-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('smallarrow-down'), ['class' => 'img-fluid', 'aria-label' => 'show where we are']); ?>
-    </button>
-    <div class="col  align-items-center text-lg-right promo-links dropdown-menu" aria-labelledby="promo-banner">
-        <div class="dropdown-divider d-lg-none"></div>
-        <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'twitch dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
-        <?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'mixer dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?>
-        <?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'youtube dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Youtube Button"]); ?>
+<?php if(Yii::$app->HelperClass->getTwitchOnlineStat()) : ?>
+    <div class="promo-banner dropdown d-block d-lg-flex align-items-center justify-content-between">
+        <h3 class="promo-text d-inline-flex align-items-center">
+             <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('redcircle'), ['class' => 'img-fluid', 'aria-label' => 'we are live']); ?><?= Yii::t('app', 'promotion_nowLive1') ?><span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline"><?= Yii::t('app', 'promotion_nowLive2') ?></span></h3>
+        <button type="button" class="d-inline d-lg-none float-right float-lg-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('smallarrow-down'), ['class' => 'img-fluid', 'aria-label' => 'show where we are']); ?>
+        </button>
+        <div class="col  align-items-center text-lg-right promo-links dropdown-menu" aria-labelledby="promo-banner">
+            <div class="dropdown-divider d-lg-none"></div>
+            <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'twitch dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
+            <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'mixer dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
+            <!--?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'youtube dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Youtube Button"]); ?-->
+        </div>
     </div>
-</div>
+<?php endif; ?>
 
 <!-- Hier sp�ter wieder die sachen f�r den Alert einf�gen -->
 

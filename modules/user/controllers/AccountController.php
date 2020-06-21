@@ -68,6 +68,7 @@ class AccountController extends BaseController
         $model = new LoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            
             return $this->goHome();
         }
 
