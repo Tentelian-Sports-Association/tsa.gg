@@ -80,14 +80,9 @@ $this->title = \app\modules\news\Module::t('overview', 'overview_header');
                 </script>
             </div>
         </div>
-        <div class="news-footer text-center">
-            <?php echo Html::a(Yii::t('app', 'currentNews_moreNews'), ["#"], ['class' => "outline-btn-white",'aria-label' => "Show all News Button"]); ?>
-        </div>
     </section>
 
-	<!-- *************** Werbebanner *************** -->
-
-
 	<!-- *************** Kategories *************** -->
+
 
 </div>
