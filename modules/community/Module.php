@@ -26,6 +26,9 @@ use Yii;
  			'class' => 'yii\i18n\PhpMessageSource',
  			'basePath' => '@app/modules/community/messages',
  			'fileMap' => [
+ 				'modules/community/overview' => 'overview.php',
+ 				'modules/community/searchForm' => 'searchForm.php',
+
  			],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
  		];

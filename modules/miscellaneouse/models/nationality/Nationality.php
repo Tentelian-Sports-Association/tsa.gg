@@ -42,7 +42,8 @@ class Nationality extends ActiveRecord
 	{
 		if(Yii::$app->language != 'en-EN')
 		{
-			return Nationality_i18n::getTranslatedName($this->id, $languageID);
+            return $this->name;
+			//return Nationality_i18n::getTranslatedName($this->id, $languageID);
 		}
 
 		return $this->name;

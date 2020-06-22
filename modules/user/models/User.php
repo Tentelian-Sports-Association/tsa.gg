@@ -94,6 +94,14 @@ class User extends AbstractActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return ActiveQuery
+     */
+    public function getGender()
+    {
+        return $this->hasOne(Gender::className(), ['id' => 'gender_id'])->one();
+    }
+
+    /**
      * @return int
      */
     public function getLanguageId()
@@ -115,6 +123,14 @@ class User extends AbstractActiveRecord implements IdentityInterface
     public function getNationalityId()
     {
         return $this->nationality_id;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getNationality()
+    {
+        return $this->hasOne(Nationality::className(), ['id' => 'nationality_id'])->one();
     }
 
     /**
@@ -298,4 +314,28 @@ class User extends AbstractActiveRecord implements IdentityInterface
 
         return $nationalityCounter;
 	}
+
+    /* Get User for Community Overview */
+    public static function GetDetails($paginatedUser, $languageID)
+    {
+       $paginatedUserWithDetails = array();
+
+       foreach($paginatedUser as $nr => $user)
+       {
+           $paginatedUserWithDetails[$nr]['ID'] = $user->getId();
+           $paginatedUserWithDetails[$nr]['Name'] = $user->getUsername();
+           
+           $paginatedUserWithDetails[$nr]['Nationality']['icon'] = $user->getNationality()->getIconLocale();
+           $paginatedUserWithDetails[$nr]['Nationality']['name'] = $user->getNationality()->getName($languageID);
+
+           $paginatedUserWithDetails[$nr]['Language']['icon'] = $user->getLanguage()->getIconLocale();
+           $paginatedUserWithDetails[$nr]['Language']['name'] = $user->getLanguage()->getName($languageID);
+	    }
+
+        //print_r($paginatedUserWithDetails);
+        //die();
+
+        return $paginatedUserWithDetails;
+	}
+
 }
