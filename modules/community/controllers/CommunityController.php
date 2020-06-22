@@ -115,10 +115,6 @@ class CommunityController extends BaseController
                 }
             }
         }
-        else
-        {
-            //$searchModel->pageNumber = $page;
-        }
 
 
         // Ausgliedern in User Model

@@ -14,6 +14,8 @@ use DateTime;
 
 use app\modules\partner\models\Partner;
 
+use app\modules\user\models\User;
+
 use app\models\LoginForm;
 use app\models\ContactForm;
 
@@ -166,5 +168,35 @@ class SiteController extends BaseController
             'latestNews' => $latestNews,
             'ourPartner' => $ourPartner,
         ]);
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionCommunity()
+    {
+        return $this->redirect("community/overview");
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionNews()
+    {
+        return $this->redirect("news/overview");
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionPartner()
+    {
+        return $this->redirect("partner/overview");
     }
 }
