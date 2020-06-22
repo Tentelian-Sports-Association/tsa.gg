@@ -23,11 +23,15 @@ $searchString = '';
 <div class="site-user-overview">
     <div class="searchHeader">
         <div class="quickSearch">
-            <?php $form = ActiveForm::begin([
-		                'id' => 'user-search-form',
-		                'options' => ['class' => 'form-horizontal user-search-bar'],
-		    ]); ?>
+            <?php $form = ActiveForm::begin(['id' => 'user-search-form', 'options' => ['class' => 'form-horizontal user-search-bar']]); ?>
                 
+                <div class="searchBox">
+                    <div class="vline_large"></div>
+
+                    <?= $form->field($searchModel, 'searchString') ?>
+
+                </div>
+
                 <div class="sortBox">
                     <?= $form->field($searchModel, 'sortAscend')->dropDownList($sortOrder, ['class' => 'select-wrapper input-default']) ?>
 
@@ -38,22 +42,12 @@ $searchString = '';
                     <?= Html::submitButton(\app\modules\community\Module::t('searchForm', 'searchForm_btnSort'), ['class' => 'btn btn-primary delete', 'name' => 'search-button']) ?>
                 </div>
 
-                <div class="searchBox">
-                    <div class="vline_large"></div>
-
-                    <?= $form->field($searchModel, 'searchString') ?>
-
-                    <?= Html::submitButton(\app\modules\community\Module::t('searchForm', 'searchForm_btnSearch'), ['class' => 'btn btn-primary delete', 'name' => 'search-button']) ?>
-                </div>
+                <?php echo LinkPager::widget(['pagination' => $pagination]); ?>
 		    <?php ActiveForm::end(); ?>
         </div>
     </div>
 
-    <?php
-		echo LinkPager::widget([
-    		'pagination' => $pagination,
-		]);
-	?>
+    
 
     <div class="users">
         <div class="userBodyHead">
@@ -68,12 +62,10 @@ $searchString = '';
             <?= Html::a('<div class="userBody">'
                             . '<div class="id">' . $user['ID'] . '</div>'
                             . '<div class="natImg">'
-                            . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'))
-                            . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'), ['aria-labelledby' => 'nationality Image', 'alt' => $user['Nationality']['name'] . '.webp','class' => 'IMG'])
+                            . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'), ['aria-labelledby' => 'nationality Image', 'alt' => $user['Nationality']['name'],'class' => 'IMG'])
                             . '</div>'
                             . '<div class="langImg">'
-                            . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Language']['icon'], '4x3'))
-                            //. Html::img('data:image/webp;base64,' . $user['Language']['webp'], ['aria-labelledby' => 'nationality Image', 'alt' => $user['Language']['name'] . '.webp','class' => 'IMG', 'onerror' => 'this.src="data:image/png;base64,' . $user['Language']['png'] . '"'])
+                            . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Language']['icon'], '4x3'), ['aria-labelledby' => 'nationality Image', 'alt' => $user['Language']['name'],'class' => 'IMG'])
                             .'</div>'
                             . '<div class="username">' . $user['Name'] . '</div>'
                             . '</div>'
@@ -82,5 +74,6 @@ $searchString = '';
         <?php endforeach; ?>
     </div>
 
+    <?php echo LinkPager::widget(['pagination' => $pagination]); ?>
 
 </div>
