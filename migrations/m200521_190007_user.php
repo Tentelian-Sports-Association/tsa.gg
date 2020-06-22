@@ -53,7 +53,7 @@ class m200521_190007_user extends Migration
         );
 
         /* Base user 'Admin' */
-        $this->insert('user', [
+        /*$this->insert('user', [
             'username' => 'Birnchen',
             'password' => Yii::$app->getSecurity()->generatePasswordHash('Birnchen2016'),
             'email' => 'birnchen@tsa.gg',
@@ -61,7 +61,7 @@ class m200521_190007_user extends Migration
             'gender_id' => '1',
             'nationality_id' => '1',
             'birthday' => '2018-11-01'
-        ]);
+        ]);*/
     }
 
     /**

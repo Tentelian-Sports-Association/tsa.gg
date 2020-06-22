@@ -139,7 +139,7 @@ class CommunityController extends BaseController
             return $this->redirect("overview");
 		}
 
-        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 1]);
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 25]);
         $sortedPaginatedUsers = $allUser->offset($pagination->offset)->limit($pagination->limit)->all();
 
         $paginatedUsers = User::GetDetails($sortedPaginatedUsers, $languageID);

@@ -52,23 +52,26 @@ $searchString = '';
     <div class="users">
         <div class="userBodyHead">
             <div class="id"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byID') ?></div>
+            <div class="username"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byName') ?></div>
             <div class="natImg"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byNationality') ?></div>
             <div class="langImg"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byLanguage') ?></div>
-            <div class="username"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byName') ?></div>
             <div class="invite"></div>
         </div>
         
         <?php foreach ($sortedPaginatedUsers as $index => $user) : ?>
             <?= Html::a('<div class="userBody">'
                             . '<div class="id">' . $user['ID'] . '</div>'
-                            . '<div class="natImg">'
-                            . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'), ['aria-labelledby' => 'nationality Image', 'alt' => $user['Nationality']['name'],'class' => 'IMG'])
-                            . '</div>'
-                            . '<div class="langImg">'
-                            . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Language']['icon'], '4x3'), ['aria-labelledby' => 'nationality Image', 'alt' => $user['Language']['name'],'class' => 'IMG'])
                             .'</div>'
+                            . '<div class="avatar">'
+					        . Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.webp', ['aria-label' => $user['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.png\''])		
+                            . '</div>'
                             . '<div class="username">' . $user['Name'] . '</div>'
                             . '</div>'
+                            . '<div class="natImg">'
+                            . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Nationality']['name'],'class' => 'IMG'])
+                            . '</div>'
+                            . '<div class="langImg">'
+                            . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Language']['name'],'class' => 'IMG'])
                             . '<div class"invite">' . '' . '</div>'
             , ['profile-details', 'userId' => $user['ID']]); ?>
         <?php endforeach; ?>
