@@ -28,9 +28,9 @@ $this->title = 'TSA - Our Partners';
                         <div class="col-12 col-md-6 order-2 order-md-1">
                             <!-- M�ssen heir aber noch auf das Design warten... -->
                             <!-- name als �berschrift �ber dem langem text -->
-							<?= $partner['name']?>
+                            <h3><?= $partner['name']?></h3>
                             <!-- beschreibung -->
-							<?= $partner['description']?>
+							<p><?= $partner['description']?></p>
                         </div>
                         <div class="col-12 col-md-6 order-1 order-md-2" aria-labelledby='<?= $partner['Image']?>' aria-describedby='<?= $partner['Image']?>'>
                             <!-- Background Image -->
