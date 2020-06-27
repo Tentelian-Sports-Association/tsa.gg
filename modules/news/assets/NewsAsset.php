@@ -9,6 +9,7 @@ class NewsAsset extends AssetBundle
  
     public $css = [
 		//'css/changePassword.css'
+		'css/news.css'
     ];
 
     public $cssOptions = [

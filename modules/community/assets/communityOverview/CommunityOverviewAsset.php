@@ -9,6 +9,7 @@ class CommunityOverviewAsset extends AssetBundle
  
     public $css = [
 		//'css/changePassword.css'
+		'css/community.css'
     ];
 
     public $cssOptions = [

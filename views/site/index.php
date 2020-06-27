@@ -28,7 +28,7 @@ $this->title = 'Tentelian Sports Association';
                 <source media="(min-width: 1200px)"
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
                         type="image/jpeg">
-                <source media="(min-width: 320px)"
+                <source media="(min-width: 300px)"
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Preview']['previewImage']) . '.webp' ?>
                         type="image/jpeg">
                 <img src=""
@@ -102,7 +102,7 @@ $this->title = 'Tentelian Sports Association';
 					<?php endforeach; ?>
                 </ul>
             </div>
-            <div class="d-none col-sm-4 d-sm-flex">
+            <div class="d-none col-sm-4 d-sm-block d-lg-flex">
                 <!-- Image f�r Hover Image funktion zum laden baue ich wenn design da -->
                 <?= Html::img(Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.webp', ['class' => 'img-fluid',  'aria-label' => $tournament['HoverImage'], 'id' => $tournament['HoverImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.png\'']); ?>
             </div>

@@ -94,14 +94,14 @@ class SiteController extends BaseController
 
         /** Upcoming Tournaments */
         $tournaments = array();
-        /** 5 Turniere die als nächstes Stattfinden oder gerade Live sind */
+        /** 5 Turniere die als nï¿½chstes Stattfinden oder gerade Live sind */
         $tournaments[0]['ID'] = 1;
         $tournaments[0]['Name'] = "GERTA Cup Sason 6 Day 1";
         $tournaments[0]['Mode'] = "3 VS 3";
         $tournaments[0]['GameTag'] = "RL";
         $tournaments[0]['HoverImage'] = "ELGerta";
         $tournaments[0]['IsLive'] = true;
-        $tournaments[0]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $tournaments[0]['StartingDate'] = (new DateTime())->format('d.m.Y');
         $tournaments[0]['StartingTime'] = (new DateTime())->format('H:i');
 
         $tournaments[1]['ID'] = 5;
@@ -110,7 +110,7 @@ class SiteController extends BaseController
         $tournaments[1]['GameTag'] = "CL";
         $tournaments[1]['HoverImage'] = "TRCCS";
         $tournaments[1]['IsLive'] = true;
-        $tournaments[1]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $tournaments[1]['StartingDate'] = (new DateTime())->format('d.m.Y');
         $tournaments[1]['StartingTime'] = (new DateTime())->format('H:i');
 
         $tournaments[2]['ID'] = 3;
@@ -119,7 +119,7 @@ class SiteController extends BaseController
         $tournaments[2]['GameTag'] = "RL";
         $tournaments[2]['HoverImage'] = "RLGerta";
         $tournaments[2]['IsLive'] = false;
-        $tournaments[2]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $tournaments[2]['StartingDate'] = (new DateTime())->format('d.m.Y');
         $tournaments[2]['StartingTime'] = (new DateTime())->format('H:i');
 
         $tournaments[3]['ID'] = 2;
@@ -128,7 +128,7 @@ class SiteController extends BaseController
         $tournaments[3]['GameTag'] = "CL";
         $tournaments[3]['HoverImage'] = "TRCCS";
         $tournaments[3]['IsLive'] = false;
-        $tournaments[3]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $tournaments[3]['StartingDate'] = (new DateTime())->format('d.m.Y');
         $tournaments[3]['StartingTime'] = (new DateTime())->format('H:i');
 
         $tournaments[4]['ID'] = 4;
@@ -137,7 +137,7 @@ class SiteController extends BaseController
         $tournaments[4]['GameTag'] = "DR!FT";
         $tournaments[4]['HoverImage'] = "DriftMasters";
         $tournaments[4]['IsLive'] = false;
-        $tournaments[4]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $tournaments[4]['StartingDate'] = (new DateTime())->format('d.m.Y');
         $tournaments[4]['StartingTime'] = (new DateTime())->format('H:i');
 
         /** Latest News */
@@ -146,17 +146,17 @@ class SiteController extends BaseController
         $latestNews[0]['ID'] = 1;
         $latestNews[0]['Headline'] = "Royale News from Clash";
         $latestNews[0]['previewImage'] = "clashNews";
-        $latestNews[0]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $latestNews[0]['StartingDate'] = (new DateTime())->format('d.m.Y');
 
         $latestNews[1]['ID'] = 2;
         $latestNews[1]['Headline'] = "New Tournament Series Arrived";
         $latestNews[1]['previewImage'] = "newTournament";
-        $latestNews[1]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $latestNews[1]['StartingDate'] = (new DateTime())->format('d.m.Y');
 
         $latestNews[2]['ID'] = 3;
         $latestNews[2]['Headline'] = "The Bug is Fixed";
         $latestNews[2]['previewImage'] = "fixedBug";
-        $latestNews[2]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $latestNews[2]['StartingDate'] = (new DateTime())->format('d.m.Y');
 
         /** Our Partners */
         $ourPartner = Partner::find()->select(['id', 'image', 'name', 'webadresse'])->orderBy(new Expression('rand()'))->limit(4)->all();

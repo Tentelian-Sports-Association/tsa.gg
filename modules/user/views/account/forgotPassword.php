@@ -13,24 +13,26 @@ $this->title = \app\modules\user\Module::t('forgotPassword', 'forgotPassword_hea
 
 ?>
 
-<div class="site-passwordForgotten">
-	<div class="passwordForgotten">
-		<h1><?= Html::encode($this->title) ?></h1>
+<div class="login-container site-passwordForgotten">
+    <div class="login-container-inner passwordForgotten container  d-flex align-items-center justify-content-center">
+
 
 		<?php $form = ActiveForm::begin([
 		    'id' => 'passwordReset-form',
-		    'options' => ['class' => 'form-horizontal'],
+		    'options' => ['class' => 'form-horizontal col-12 col-lg-7 px-0'],
 		    'fieldConfig' => [
 		        'template' => "{label}\n<div class=\"col-lg-12\">{input}</div>\n<div class=\"col-lg-12\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-2 control-label'],
+            'labelOptions' => ['class' => 'col-lg-5 control-label'],
 		    ],
 		]); ?>
+            <h2><?= Html::encode($this->title) ?></h2>
+            <?= $form->field($model, 'username')->textInput(['class' => 'input-default form-control form-control-color']) ?>
 
-		<?= $form->field($model, 'username')->textInput(['class' => 'form-control form-control-color']) ?>
+            <?= $form->field($model, 'email')->textInput(['class' => 'input-default form-control form-control-color']) ?>
+            <div class="form-group d-flex align-items-end justify-content-end">
+				<?= Html::submitButton(\app\modules\user\Module::t('forgotPassword', 'forgotPassword_forgotPasswordButton'), ['class' => 'filled-btn', 'name' => 'resettPassword-button']) ?>
 
-    	<?= $form->field($model, 'email')->textInput(['class' => 'form-control form-control-color']) ?>
-
-        <?= Html::submitButton(\app\modules\user\Module::t('forgotPassword', 'forgotPassword_forgotPasswordButton'), ['class' => 'btn btn-primary', 'name' => 'resettPassword-button']) ?>
+            </div>
 
 		<?php ActiveForm::end(); ?>
 

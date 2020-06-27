@@ -58,17 +58,17 @@ class NewsController extends BaseController
         $latestNews[0]['ID'] = 1;
         $latestNews[0]['Headline'] = "Royale News from Clash";
         $latestNews[0]['previewImage'] = "clashNews";
-        $latestNews[0]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $latestNews[0]['StartingDate'] = (new DateTime())->format('d.m.Y');
 
         $latestNews[1]['ID'] = 2;
         $latestNews[1]['Headline'] = "New Tournament Series Arrived";
         $latestNews[1]['previewImage'] = "newTournament";
-        $latestNews[1]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $latestNews[1]['StartingDate'] = (new DateTime())->format('d.m.Y');
 
         $latestNews[2]['ID'] = 3;
         $latestNews[2]['Headline'] = "The Bug is Fixed";
         $latestNews[2]['previewImage'] = "fixedBug";
-        $latestNews[2]['StartingDate'] = (new DateTime())->format('Y-m-d');
+        $latestNews[2]['StartingDate'] = (new DateTime())->format('d.m.Y');
 
         return $this->render('overview', [
             'latestNews' => $latestNews,
