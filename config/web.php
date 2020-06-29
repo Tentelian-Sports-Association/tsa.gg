@@ -73,6 +73,7 @@ $config = [
                 'partner/<action>' => 'partner/partner/<action>',
                 'community/<action>' => 'community/community/<action>',
                 'news/<action>' => 'news/news/<action>',
+                'organisation/<action>' => 'organisation/organisation/<action>',
             ],
         ],
         'i18n' => [
@@ -98,6 +99,7 @@ $config = [
         'partner' => 'app\modules\partner\Module',
         'community' => 'app\modules\community\Module',
         'news' => 'app\modules\news\Module',
+        'organisation' => 'app\modules\organisation\Module',
 	],
     'params' => $params,
 ];
