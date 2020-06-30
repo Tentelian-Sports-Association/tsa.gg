@@ -91,7 +91,7 @@ class Games extends ActiveRecord
      */
     public function getIcon()
     {
-        return base64_encode($this->icon);
+        return $this->icon;
     }
 
      /**

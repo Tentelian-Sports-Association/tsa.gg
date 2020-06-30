@@ -82,7 +82,8 @@ class m200630_074557_games_plattforms_usergames extends Migration
             'twitter_developer_tag' => '@PsyonixStudios, @EpicGames',
             'twitter_game_tag' => '@RocketLeague, @RLEsports ',
             'twitter_channel' => '#RocketLeague, ',
-            'verification_phrase' => '/.*#[0-9]{4}$/'
+            'verification_phrase' => '/.*#[0-9]{4}$/',
+            'icon' => 'rocketLeague'
         ]);
 
         // Base Game standart english
@@ -100,7 +101,8 @@ class m200630_074557_games_plattforms_usergames extends Migration
             'platform' => 'Steam',
             'description' => 'Steam Client for nerdic pc player',
             'twitter_developer_tag' => '@steam_games',
-            'twitter_channel' => '#steam, '
+            'twitter_channel' => '#steam',
+            'icon' => 'steam'
         ]);
 
         // Base Platform english
