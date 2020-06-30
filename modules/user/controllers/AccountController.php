@@ -234,4 +234,52 @@ class AccountController extends BaseController
                 'currentUserID' => Yii::$app->user->identity->getId(),
         ]);
 	}
+
+    public function actionToggleGameAccount($gameId, $platformId, $userId)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $userId) {
+            //Alert::addError('You are not Allowed to change this settings'); 
+            return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
+        }
+
+        $languageID = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->getId() : Language::findByLocale(Yii::$app->language)->getId();
+        $model = UserGames::find()->where(['game_id' => $gameId, 'game_platform_id' => $platformId, 'user_id' => Yii::$app->user->identity->getId()])->one();
+
+        if($model != null) {
+            $model->visible = !$model->visible;
+            $model->save();
+            $gameName = Games::find()->where(['id' => $gameId])->one()->getName($languageID);
+            //Alert::addInfo('Changed Visibility for ' . $gameName . ' from ' . (($model->visible)? 'invisible' : 'visible') . ' to ' . (($model->visible)? 'visible' : 'invisible')); 
+		}
+        else {
+	        //Alert::addError('This Service is currently not availabel'); 
+        }
+
+        
+        return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
+	}
+
+    public function actionRemoveGameAccount($gameId, $platformId, $userId)
+    {
+        /** If not Owner, Admin or is Guest */
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $userId) {
+            //Alert::addError('You are not Allowed to change this settings'); 
+            return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
+        }
+
+
+        $languageID = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->getId() : Language::findByLocale(Yii::$app->language)->getId();
+        $model = UserGames::find()->where(['game_id' => $gameId, 'game_platform_id' => $platformId, 'user_id' => Yii::$app->user->identity->getId()])->one();
+
+        if($model != null) {
+            $model->delete();
+            $gameName = Games::find()->where(['id' => $gameId])->one()->getName($languageID);
+            //Alert::addInfo($gameName . ': Player ID Deleted'); 
+        }
+        else {
+            //Alert::addError('This Service is currently not availabel'); 
+		}
+        
+        return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
+	}
 }

@@ -12,7 +12,7 @@ use app\widgets\Alert;
 
 \app\modules\user\assets\profile\profileDetails\DetailsAsset::register($this);
 
-$this->title = $userInfo['user_name'] . '\'s Player profile';
+$this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('userDetails', 'userDetails_title');
 
 ?>
 
@@ -32,17 +32,31 @@ $this->title = $userInfo['user_name'] . '\'s Player profile';
 		    <?= $form->field($profilePicModel, 'id')->hiddenInput()->label(false); ?>
 		    <?= $form->field($profilePicModel, 'file')->fileInput() ?>
 
-		    <?= Html::submitButton(Yii::t('app', 'upload'), ['class' => 'btn btn-primary upload', 'name' => 'upload-button']) ?>
+		    <?= Html::submitButton(\app\modules\user\Module::t('userDetails', 'userDetails_uploadImage'), ['class' => 'btn btn-primary upload', 'name' => 'upload-button']) ?>
 		    <?php ActiveForm::end(); ?>
 		<?php endif; ?>
 	</div>
+
+	<?php if ($userInfo['isMySelfe']) : ?>
+		<?php
+			echo Html::a('',
+			    [
+			        "account/edit-details",
+			        "userId" => $userInfo['user_id']
+			    ],
+			    ['class' => "btn btn-primary upload",
+			        'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
+			    ]
+			)
+		?>
+	<?php endif; ?>
 
 	<!-- Orgas and Teams -->
 
 
 	<!-- Game Accounts -->
 	<div class="header">
-		<?= \app\modules\user\Module::t('details', 'gameAccounts') ?>
+		<?= \app\modules\user\Module::t('userDetails', 'userDetails_gameAccountHeader') ?>
 		<?php if ($userInfo['isMySelfe']) : ?>
 			<?php
 			    echo Html::a('',
@@ -50,8 +64,8 @@ $this->title = $userInfo['user_name'] . '\'s Player profile';
 			            "account/add-game-account",
 			            "userId" => $userInfo['user_id']
 			        ],
-			        ['class' => "glyphicon glyphicon-pencil btn btn-primary upload",
-			            'title' => "Add Game Account"
+			        ['class' => "btn btn-primary upload",
+			            'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_addGameAccount')
 			        ]
 			    )
 			?>
@@ -75,13 +89,13 @@ $this->title = $userInfo['user_name'] . '\'s Player profile';
                                 <?php
                                     echo Html::a('',
                                         [
-                                            "toggle-visibility",
+                                            "account/toggle-game-account",
                                             "gameId" => $games['gameId'],
                                             "platformId" => $games['platformId'],
 											"userId" => $userInfo['user_id']
                                         ],
-                                        ['class' => $games['visible'] == 1 ? "glyphicon glyphicon-eye-open glyphicon-game-account" : "glyphicon glyphicon-eye-close glyphicon-game-account",
-                                            'title' => $games['visible'] == 1 ? "not visible" : "visible"
+                                        ['class' => $games['visible'] == 1 ? "btn btn-primary upload" : "glyphicon glyphicon-eye-close glyphicon-game-account btn btn-primary upload",
+                                            'title' => $games['visible'] == 1 ? \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountVisible') : \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountNotVisible')
                                         ]
                                     )
                                 ?>
@@ -89,13 +103,13 @@ $this->title = $userInfo['user_name'] . '\'s Player profile';
 									<?php
 										echo Html::a('',
 											[
-												"remove-gameid",
+												"account/remove-game-account",
 												"gameId" => $games['gameId'],
 												"platformId" => $games['platformId'],
 												"userId" => $userInfo['user_id']
 											],
-											['class' => "glyphicon glyphicon glyphicon-remove glyphicon-game-account",
-												'title' => "delete"
+											['class' => "	btn btn-primary upload",
+												'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_deleteGameAccount')
 											]
 										)
 									?>
