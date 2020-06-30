@@ -9,6 +9,7 @@ use app\modules\user\models\formModels\RegisterForm;
 use app\modules\user\models\formModels\ChangePasswordForm;
 use app\modules\user\models\formModels\ForgotPasswordForm;
 use app\modules\user\models\formModels\AddGameIdForm;
+use app\modules\user\models\formModels\DetailsForm;
 
 use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\language\Language;
@@ -19,6 +20,8 @@ use app\modules\miscellaneouse\models\games\Games;
 
 use app\modules\user\models\User;
 use app\modules\user\models\UserGames;
+use app\modules\user\models\UserDetails;
+use app\modules\user\models\UserSocials;
 
 use DateTime;
 use Yii;
@@ -194,6 +197,67 @@ class AccountController extends BaseController
                 ->send();
         }
     }
+
+    public function actionEditDetails($userId)
+    {
+        /** @var Language $languageID */
+        $languageID = Language::findByLocale(Yii::$app->language)->getId();
+
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null || Yii::$app->user->identity->getId() != $userId) {
+            return $this->goHome();
+        }
+
+        $model =new DetailsForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
+            return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
+        }
+
+        /** @var User $user */
+        $user = User::findIdentity($userId);
+        $userDetails = UserDetails::findByID($userId);
+        $userSocials = UserSocials::findByID($userId);
+
+        /* User */
+        $model->username = $user->getUsername();
+        $model->email = $user->getEmail();
+        $model->genderId = $user->getGenderId();
+        $model->languageId = $user->getLanguageId();
+        $model->nationalityId = $user->getNationalityId();
+        $model->birthday = $user->getBirthday();
+
+        $genderList = [];
+        foreach (Gender::find()->all() as $gender) { $genderList[$gender->getId()] = $gender->getName($languageID); }
+
+        $languageList = [];
+        foreach (Language::find()->all() as $language) { $languageList[$language->getId()] = $language->getName($languageID); }
+
+        $nationalityList = [];
+        foreach (Nationality::find()->all() as $nationality) { $nationalityList[$nationality->getId()] = $nationality->getName($languageID); }
+
+        /* UserDetails */
+        $model->pre_name = ($userDetails == null) ? '' : $userDetails->getPreName();
+        $model->last_name = ($userDetails == null) ? '' : $userDetails->getLastName();
+        $model->zip_code = ($userDetails == null) ? '' : $userDetails->getZipCode();
+        $model->city = ($userDetails == null) ? '' : $userDetails->getCity();
+        $model->street = ($userDetails == null) ? '' : $userDetails->getStreet();
+        $model->phone = ($userDetails == null) ? '' : $userDetails->getPhone();
+
+        /* Social media */
+        $model->twitter_name = ($userSocials == null) ? '' : $userSocials->getTwitterName();
+        $model->twitter_channel = ($userSocials == null) ? '' : $userSocials->getTwitterChannel();
+        $model->discord_name = ($userSocials == null) ? '' : $userSocials->getDiscordname();
+        $model->discord_server = ($userSocials == null) ? '' : $userSocials->getDiscordServer();
+        $model->teamspeak_server = ($userSocials == null) ? '' : $userSocials->getTeamSpeakServer();
+
+        return $this->render('editDetails', [
+            'model' => $model,
+            'genderList' => $genderList,
+            'languageList' => $languageList,
+            'nationalityList' => $nationalityList,
+            'currentUserID' => Yii::$app->user->identity->getId(),
+        ]);
+	}
 
     public function actionAddGameAccount($userId = 0)
     {

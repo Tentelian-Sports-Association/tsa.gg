@@ -8,6 +8,7 @@ return [
 	'navbar_partners' => 'Partners',
     'navbar_events' => 'Events',
 	'navbar_contact' => 'Contact',
+	'navbar_account' => 'Profile',
 
 	/**Navbar Buttons */
 	'navbar_login' => 'Login',

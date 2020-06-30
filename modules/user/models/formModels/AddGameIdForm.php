@@ -66,10 +66,10 @@ class AddGameIdForm extends Model
     {
         return [
             /* User */
-            'game_id' => \app\modules\user\Module::t('addGameID','game_id'),
-            'platform_id' => \app\modules\user\Module::t('addGameID','platform_id'),
-            'player_id' => \app\modules\user\Module::t('addGameID','player_id'),
-            'visible' => \app\modules\user\Module::t('addGameID','visible'),
+            'game_id' => \app\modules\user\Module::t('addGameAccount','addGameAccount_gameID'),
+            'platform_id' => \app\modules\user\Module::t('addGameAccount','addGameAccount_platformID'),
+            'player_id' => \app\modules\user\Module::t('addGameAccount','addGameAccount_playerAccountIdName'),
+            'visible' => \app\modules\user\Module::t('addGameAccount','addGameAccount_visibleForOther'),
         ];
     }
 
@@ -77,8 +77,8 @@ class AddGameIdForm extends Model
     {
         $model = UserGames::find()->where(['game_id' => $this->game_id, 'game_platform_id' => $this->platform_id, 'user_id' => Yii::$app->user->identity->getId()])->one();
         if ($model) {
-            $this->addError('game_id', \app\modules\user\Module::t('addGameID', 'idExists'));
-            $this->addError('platform_id', \app\modules\user\Module::t('addGameID', 'platformExists'));
+            $this->addError('game_id', \app\modules\user\Module::t('addGameAccount', 'addGameAccount_gameidExists'));
+            $this->addError('platform_id', \app\modules\user\Module::t('addGameAccount', 'addGameAccount_gameplatformExists'));
         }
     }
 
@@ -88,7 +88,7 @@ class AddGameIdForm extends Model
 
         if (!preg_match(Games::findByID($this->game_id)->getVerificationPhrase(), $this->player_id))
         {
-            $this->addError('player_id', \app\modules\user\Module::t('addGameID', Games::findByID($this->game_id)->getName($languageID)));
+            $this->addError('player_id', \app\modules\user\Module::t('addGameAccount', 'addGameAccount_' . Games::findByID($this->game_id)->getName($languageID)));
         }
     }
 

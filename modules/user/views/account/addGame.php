@@ -11,7 +11,7 @@ use yii\bootstrap4\ActiveForm;
 
 \app\modules\user\assets\account\addGameID\AddGameIDAsset::register($this);
 
-$this->title = \app\modules\user\Module::t('addGameID', 'header');
+$this->title = \app\modules\user\Module::t('addGameAccount', 'addGameAccount_header');
 
 ?>
 
@@ -30,16 +30,16 @@ $this->title = \app\modules\user\Module::t('addGameID', 'header');
 
         
 
-            <?= $form->field($model, 'player_id')->textInput(['placeholder' => \app\modules\user\Module::t('addGameID', 'player_idPlaceholder')],["class" => 'form-control form-control-color']) ?>
+            <?= $form->field($model, 'player_id')->textInput(['placeholder' => \app\modules\user\Module::t('addGameAccount', 'addGameAccount_gameAccountPlaceholder')],["class" => 'form-control form-control-color']) ?>
             
             <?= $form->field($model, 'visible')->checkbox() ?>
 
-            <?= $form->field($model, 'game_id')->dropDownList($gamesList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\user\Module::t('addGameID', 'choose')]) ?>
+            <?= $form->field($model, 'game_id')->dropDownList($gamesList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\user\Module::t('addGameAccount', 'addGameAccount_chooseYourGame')]) ?>
 
-            <?= $form->field($model, 'platform_id')->dropDownList($platformList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\user\Module::t('addGameID', 'choose')]) ?>
+            <?= $form->field($model, 'platform_id')->dropDownList($platformList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\user\Module::t('addGameAccount', 'addGameAccount_chooseYourPlatform')]) ?>
 
-            <?= Html::submitButton(\app\modules\user\Module::t('addGameID', 'save'), ['class' => 'btn btn-primary', 'name' => 'saveGameId-button']) ?>
-            <?= Html::a(\app\modules\user\Module::t('addGameID', 'backToProfile'), ['profile-details', 'userId' => $currentUserID], ['class' => 'btn btn-primary delete', 'name' => 'backToProfile-button']); ?>
+            <?= Html::submitButton(\app\modules\user\Module::t('addGameAccount', 'addGameAccount_save'), ['class' => 'btn btn-primary', 'name' => 'saveGameId-button']) ?>
+            <?= Html::a(\app\modules\user\Module::t('addGameAccount', 'addGameAccount_backToProfile'), ['user/details', 'userId' => $currentUserID], ['class' => 'btn btn-primary delete', 'name' => 'backToProfile-button']); ?>
 
         <?php ActiveForm::end(); ?>
     

@@ -75,54 +75,85 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
 	
 	<div>
 		<?php foreach ($userGames as $games) : ?>
-						<div class="gameEntry">
-							<div class="gamePlatformIMG">
-								<?= Html::img(Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $games['platformIcon'] . '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.png\'']); ?>		
-							</div>
-							<div class="gameIMG">
-								<?= Html::img(Yii::$app->HelperClass->checkImage('/images/games/', $games['gameIcon']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $games['gameIcon'] . '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/games/', $games['gameIcon']) . '.png\'']); ?>		
-							</div>
+			<div class="gameEntry">
+				<div class="gamePlatformIMG">
+					<?= Html::img(Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $games['platformIcon'] . '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.png\'']); ?>		
+				</div>
+				<div class="gameIMG">
+					<?= Html::img(Yii::$app->HelperClass->checkImage('/images/games/', $games['gameIcon']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $games['gameIcon'] . '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/games/', $games['gameIcon']) . '.png\'']); ?>		
+				</div>
 
-							<div class="userAccountID"><?= ($games['visible'] || $userInfo['isMySelfe'])? $games['playerId'] : 'ID Not Public' ?></div>
+				<div class="userAccountID"><?= ($games['visible'] || $userInfo['isMySelfe'])? $games['playerId'] : 'ID Not Public' ?></div>
 							
-							<?php if ($userInfo['isMySelfe']): ?>
-                                <?php
-                                    echo Html::a('',
-                                        [
-                                            "account/toggle-game-account",
-                                            "gameId" => $games['gameId'],
-                                            "platformId" => $games['platformId'],
-											"userId" => $userInfo['user_id']
-                                        ],
-                                        ['class' => $games['visible'] == 1 ? "btn btn-primary upload" : "glyphicon glyphicon-eye-close glyphicon-game-account btn btn-primary upload",
-                                            'title' => $games['visible'] == 1 ? \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountVisible') : \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountNotVisible')
-                                        ]
-                                    )
-                                ?>
-								<?php if ($games['editable']): ?>
-									<?php
-										echo Html::a('',
-											[
-												"account/remove-game-account",
-												"gameId" => $games['gameId'],
-												"platformId" => $games['platformId'],
-												"userId" => $userInfo['user_id']
-											],
-											['class' => "	btn btn-primary upload",
-												'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_deleteGameAccount')
-											]
-										)
-									?>
-								<?php endif; ?>
-                            <?php endif; ?>
-						</div>
-					<?php endforeach; ?>
+				<?php if ($userInfo['isMySelfe']): ?>
+                    <?php
+                        echo Html::a('',
+                            [
+                                "account/toggle-game-account",
+                                "gameId" => $games['gameId'],
+                                "platformId" => $games['platformId'],
+								"userId" => $userInfo['user_id']
+                            ],
+                            ['class' => $games['visible'] == 1 ? "btn btn-primary upload" : "glyphicon glyphicon-eye-close glyphicon-game-account btn btn-primary upload",
+                                'title' => $games['visible'] == 1 ? \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountVisible') : \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountNotVisible')
+                            ]
+                        )
+                    ?>
+					<?php if ($games['editable']): ?>
+						<?php
+							echo Html::a('',
+								[
+									"account/remove-game-account",
+									"gameId" => $games['gameId'],
+									"platformId" => $games['platformId'],
+									"userId" => $userInfo['user_id']
+								],
+								['class' => "	btn btn-primary upload",
+									'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_deleteGameAccount')
+								]
+							)
+						?>
+					<?php endif; ?>
+                <?php endif; ?>
+			</div>
+		<?php endforeach; ?>
 	</div>
 
 	<!-- Social Media -->
-
+	<div>
+		<div class="header">
+			<?= \app\modules\user\Module::t('userDetails', 'userDetails_socialMediaHeader') ?>
+		</div>
+	</div>
 
 	<!-- Badges -->
+	<div>
+		<div class="header">
+			<?= \app\modules\user\Module::t('userDetails', 'userDetails_badgesHeader') ?>
+		</div>
+	</div>
 
+	<!-- Coins -->
+	<div>
+		<div class="header">
+			<?= \app\modules\user\Module::t('userDetails', 'userDetails_coinsHeader') ?>
+		</div>
+	</div>
+
+	<!-- Open Invites -->
+	<div>
+		<div class="header">
+			<?= \app\modules\user\Module::t('userDetails', 'userDetails_invitesHeader') ?>
+		</div>
+	</div>
+
+	<!-- Open Applications -->
+	<div>
+		<div class="header">
+			<?= \app\modules\user\Module::t('userDetails', 'userDetails_applicationsHeader') ?>
+		</div>
+	</div>
+
+	<!-- Statistics -->
 
 </div>
