@@ -59,19 +59,10 @@ class UserGames extends ActiveRecord
     /**
      * @return string image
      */
-    public function getGamePlatformWebp()
+    public function getGamePlatformIcon()
     {
         $platform = GamePlatforms::findByID($this->game_platform_id);
-        return $platform->getWebpImage();
-    }
-
-    /**
-     * @return string image
-     */
-    public function getGamePlatformPng()
-    {
-        $platform = GamePlatforms::findByID($this->game_platform_id);
-        return $platform->getPNGImage();
+        return $platform->getIcon();
     }
 
     /**
@@ -94,19 +85,10 @@ class UserGames extends ActiveRecord
     /**
      * @return string
      */
-    public function getGameWebp()
+    public function getGameIcon()
     {
         $game = Games::findById($this->game_id);
-        return $game->getWebpImage();
-    }
-
-    /**
-     * @return string
-     */
-    public function getGamePng()
-    {
-        $game = Games::findById($this->game_id);
-        return $game->getPNGImage();
+        return $game->getIcon();
     }
 
     /**

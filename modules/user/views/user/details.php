@@ -57,6 +57,53 @@ $this->title = $userInfo['user_name'] . '\'s Player profile';
 			?>
 		<?php endif; ?>
 	</div>
+	
+	
+	<div>
+		<?php foreach ($userGames as $games) : ?>
+						<div class="gameEntry">
+							<div class="gamePlatformIMG">
+								<?= Html::img(Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $games['platformIcon'] . '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.png\'']); ?>		
+							</div>
+							<div class="gameIMG">
+								<?= Html::img(Yii::$app->HelperClass->checkImage('/images/games/', $games['gameIcon']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $games['gameIcon'] . '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/games/', $games['gameIcon']) . '.png\'']); ?>		
+							</div>
+
+							<div class="userAccountID"><?= ($games['visible'] || $userInfo['isMySelfe'])? $games['playerId'] : 'ID Not Public' ?></div>
+							
+							<?php if ($userInfo['isMySelfe']): ?>
+                                <?php
+                                    echo Html::a('',
+                                        [
+                                            "toggle-visibility",
+                                            "gameId" => $games['gameId'],
+                                            "platformId" => $games['platformId'],
+											"userId" => $userInfo['user_id']
+                                        ],
+                                        ['class' => $games['visible'] == 1 ? "glyphicon glyphicon-eye-open glyphicon-game-account" : "glyphicon glyphicon-eye-close glyphicon-game-account",
+                                            'title' => $games['visible'] == 1 ? "not visible" : "visible"
+                                        ]
+                                    )
+                                ?>
+								<?php if ($games['editable']): ?>
+									<?php
+										echo Html::a('',
+											[
+												"remove-gameid",
+												"gameId" => $games['gameId'],
+												"platformId" => $games['platformId'],
+												"userId" => $userInfo['user_id']
+											],
+											['class' => "glyphicon glyphicon glyphicon-remove glyphicon-game-account",
+												'title' => "delete"
+											]
+										)
+									?>
+								<?php endif; ?>
+                            <?php endif; ?>
+						</div>
+					<?php endforeach; ?>
+	</div>
 
 	<!-- Social Media -->
 

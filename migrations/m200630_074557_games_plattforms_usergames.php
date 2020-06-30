@@ -36,7 +36,7 @@ class m200630_074557_games_plattforms_usergames extends Migration
               `description` TEXT NOT NULL,
               `twitter_developer_tag` VARCHAR(255) NULL,
               `twitter_channel` VARCHAR(255) NULL,
-              `icon` MEDIUMBLOB NULL,
+              `icon` VARCHAR(255) NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB"

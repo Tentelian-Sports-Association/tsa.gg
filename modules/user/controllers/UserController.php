@@ -109,12 +109,29 @@ class UserController extends BaseController
             'teamspeak_server' => ($userSocials != null) ? $userSocials->getTeamSpeakServer() : '',
         ];
 
-        //print_r($userInfo);
-        //die();
+        /** @var Games $games */
+        $games = $user->getGames();
+        $userGames = [];
+
+        /** in miscelleaneouse verschieben als globale function **/
+        foreach ($games as $game) {
+            $userGames[] = [
+                'gameId' => $game->getGameId(),
+                'gameName' => $game->getGameName($languageID),
+                'gameIcon' => $game->getGameIcon(),
+                'platformId' => $game->getGamePlatformId(),
+                'platformName' => $game->getGamePlatformName($languageID),
+                'platformIcon' => $game->getGamePlatformIcon(),
+                'playerId' => $game->getPlayerId(),
+                'visible' => $game->getIsVisible(),
+                'editable' => $game->getIsEditable(),
+            ];
+        }
 
         return $this->render('details', [
             'userInfo' => $userInfo,
-            'profilePicModel' => $profilePicModel
+            'profilePicModel' => $profilePicModel,
+            'userGames' => $userGames,
         ]);
     }
 }

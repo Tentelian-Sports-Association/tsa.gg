@@ -197,7 +197,7 @@ class AccountController extends BaseController
 
     public function actionAddGameAccount($userId = 0)
     {
-         /** @var User $user */
+        /** @var User $user */
         $user = User::findIdentity($userId);
         $languageID = Language::findByLocale(Yii::$app->language)->getId();
 
@@ -213,7 +213,8 @@ class AccountController extends BaseController
         $model = new AddGameIdForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
-            return $this->redirect("profile-details?userId=" . Yii::$app->user->identity->getId());
+            //return $this->redirect(['user/index']);
+            return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
         }
 
         $gamesList = [];

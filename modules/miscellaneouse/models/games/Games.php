@@ -94,6 +94,14 @@ class Games extends ActiveRecord
         return base64_encode($this->icon);
     }
 
+     /**
+     * @return string
+     */
+    public function getVerificationPhrase()
+    {
+        return $this->verification_phrase;
+	}
+
     /**
      * @inheritdoc
      */

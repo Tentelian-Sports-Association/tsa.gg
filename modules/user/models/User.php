@@ -13,6 +13,8 @@ use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 
+use app\modules\user\models\UserGames;
+
 
 /**
  * Class User
@@ -337,5 +339,15 @@ class User extends AbstractActiveRecord implements IdentityInterface
 
         return $paginatedUserWithDetails;
 	}
+
+    /** Get User Games Platforms and Id's */
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getGames()
+    {
+        return $this->hasMany(UserGames::className(), ['user_id' => 'id'])->all();
+    }
 
 }
