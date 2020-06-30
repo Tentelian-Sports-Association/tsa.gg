@@ -8,12 +8,17 @@ use app\modules\user\models\formModels\LoginForm;
 use app\modules\user\models\formModels\RegisterForm;
 use app\modules\user\models\formModels\ChangePasswordForm;
 use app\modules\user\models\formModels\ForgotPasswordForm;
+use app\modules\user\models\formModels\AddGameIdForm;
 
 use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 
+use app\modules\miscellaneouse\models\games\GamePlatforms;
+use app\modules\miscellaneouse\models\games\Games;
+
 use app\modules\user\models\User;
+use app\modules\user\models\UserGames;
 
 use DateTime;
 use Yii;
@@ -189,4 +194,43 @@ class AccountController extends BaseController
                 ->send();
         }
     }
+
+    public function actionAddGameAccount($userId = 0)
+    {
+         /** @var User $user */
+        $user = User::findIdentity($userId);
+        $languageID = Language::findByLocale(Yii::$app->language)->getId();
+
+        /** Check if User ID my own User ID */
+        $isMySelfe = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $userId) ? true : false;
+
+        if(!$user || !$isMySelfe)
+        {
+            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            return $this->goHome();
+		}
+
+        $model = new AddGameIdForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
+            return $this->redirect("profile-details?userId=" . Yii::$app->user->identity->getId());
+        }
+
+        $gamesList = [];
+        foreach (Games::find()->all() as $games) {
+            $gamesList[$games->getId()] = $games->getName($languageID);
+        }
+
+        $platformList = [];
+        foreach (GamePlatforms::find()->all() as $platforms) {
+            $platformList[$platforms->getId()] = $platforms->getName($languageID);
+        }
+
+        return $this->render('addGame', [
+            'gamesList' => $gamesList,
+                'platformList' => $platformList,
+                'model' => $model,
+                'currentUserID' => Yii::$app->user->identity->getId(),
+        ]);
+	}
 }

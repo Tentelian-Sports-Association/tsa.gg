@@ -4,6 +4,8 @@ namespace app\modules\user\controllers;
 
 use app\components\BaseController;
 
+use app\modules\miscellaneouse\models\formModels\ProfilePicForm;
+
 use app\modules\user\models\User;
 use app\modules\user\models\UserDetails;
 use app\modules\user\models\UserSocials;
@@ -56,7 +58,7 @@ class UserController extends BaseController
      */
     public function actionDetails($userId = 0)
     {
-         /** @var User $user */
+        /** @var User $user */
         $user = User::findIdentity($userId);
         $languageID = Language::findByLocale(Yii::$app->language)->getId();
 
@@ -76,15 +78,15 @@ class UserController extends BaseController
         $userSocials = UserSocials::findByID($user->getID());
 
         /** @var ProfilePicForm $profilePicModel */
-        //$profilePicModel = new ProfilePicForm(ProfilePicForm::SCENARIO_USER);
-        //$profilePicModel->id = $userId;
+        $profilePicModel = new ProfilePicForm(ProfilePicForm::SCENARIO_USER);
+        $profilePicModel->id = $userId;
 
-        //if ($profilePicModel->load(Yii::$app->request->post())) {
-        //    $profilePicModel->file = UploadedFile::getInstance($profilePicModel, 'file');
-        //    if ($profilePicModel->validate()) {
-        //        $profilePicModel->save();
-        //    }
-        //}
+        if ($profilePicModel->load(Yii::$app->request->post())) {
+            $profilePicModel->file = UploadedFile::getInstance($profilePicModel, 'file');
+            if ($profilePicModel->validate()) {
+                $profilePicModel->save();
+            }
+        }
 
         /** @var $userInfo array */
         $userInfo = [
@@ -112,6 +114,7 @@ class UserController extends BaseController
 
         return $this->render('details', [
             'userInfo' => $userInfo,
+            'profilePicModel' => $profilePicModel
         ]);
     }
 }

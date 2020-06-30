@@ -36,32 +36,4 @@ $this->title = $userInfo['user_name'] . '\'s Player profile';
 		    <?php ActiveForm::end(); ?>
 		<?php endif; ?>
 	</div>
-
-	<!-- Orgas and Teams -->
-
-
-	<!-- Game Accounts -->
-	<div class="header">
-		<?= \app\modules\user\Module::t('details', 'gameAccounts') ?>
-		<?php if ($userInfo['isMySelfe']) : ?>
-			<?php
-			    echo Html::a('',
-			        [
-			            "account/add-game-account",
-			            "userId" => $userInfo['user_id']
-			        ],
-			        ['class' => "glyphicon glyphicon-pencil btn btn-primary upload",
-			            'title' => "Add Game Account"
-			        ]
-			    )
-			?>
-		<?php endif; ?>
-	</div>
-
-	<!-- Social Media -->
-
-
-	<!-- Badges -->
-
-
 </div>

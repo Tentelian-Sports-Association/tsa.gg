@@ -30,6 +30,7 @@ use Yii;
  				'modules/user/register' => 'register.php',
                 'modules/user/changePassword' => 'changePassword.php',
                 'modules/user/forgotPassword' => 'forgotPassword.php',
+                'modules/user/details' => 'details.php',
  			],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
  		];
