@@ -126,7 +126,7 @@ class CommunityController extends BaseController
         {
             //Alert::addError('No User can be found');
             $searchModel->searchString = '';
-            return $this->redirect("userOverview");
+            return $this->redirect("user-overview");
 		}
 
         if($searchModel->pageNumber > $count)
