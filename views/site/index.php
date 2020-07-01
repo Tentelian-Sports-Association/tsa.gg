@@ -29,7 +29,7 @@ $this->title = 'Tentelian Sports Association';
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
                         type="image/jpeg">
                 <source media="(min-width: 300px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Preview']['previewImage']) . '.webp' ?>
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
                         type="image/jpeg">
                 <img src=""
                      aria-label="Next Big Event Pictures" />
@@ -46,25 +46,27 @@ $this->title = 'Tentelian Sports Association';
             </div>
         </div>
 
-        <div class="event-hero-upcoming-events d-flex">
-            <div class="d-none d-sm-inline-block upcoming-image" aria-labelledby='<?= $upcomingEvents['Preview']['previewImage']?>' aria-describedby='smallEventContainer smallEventName'>
-                <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
-                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Preview']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'smallEventContainer smallEventName',  'aria-label' => $upcomingEvents['Preview']['Name'], 'id' => $upcomingEvents['Preview']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Preview']['previewImage']) . '.png\'']); ?>
-            </div>
-            <div class="d-inline-block upcoming-description" id="smallEventContainer">
-                <div class="inner">
-                    <!-- Das angepriesene Event f�r die kleine Ecke -->
-                    <span><?= Yii::t('app', 'events_upcoming') ?></span>
-                    <h3 id="smallEventName"><?= $upcomingEvents['Preview']['Name'] ?></h3>
-                    <!--<p><?= $upcomingEvents['Preview']['shortDescription'] ?></p>-->
-                    <!-- ID für den Button, funktion baue ich wenn design da -->
-                    <a href="<?= $upcomingEvents['Preview']['ID'] ?>" class="more">
-                        <?php echo Html::img(Yii::$app->HelperClass->checkSVGIcons('arrow-right')); ?>
+        <?php if(array_key_exists("Preview",$upcomingEvents)) : ?>
+            <div class="event-hero-upcoming-events d-flex">
+                <div class="d-none d-sm-inline-block upcoming-image" aria-labelledby='<?= $upcomingEvents['Preview']['previewImage']?>' aria-describedby='smallEventContainer smallEventName'>
+                    <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
+                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Preview']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'smallEventContainer smallEventName',  'aria-label' => $upcomingEvents['Preview']['Name'], 'id' => $upcomingEvents['Preview']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Preview']['previewImage']) . '.png\'']); ?>
+                </div>
+                <div class="d-inline-block upcoming-description" id="smallEventContainer">
+                    <div class="inner">
+                        <!-- Das angepriesene Event f�r die kleine Ecke -->
+                        <span><?= Yii::t('app', 'events_upcoming') ?></span>
+                        <h3 id="smallEventName"><?= $upcomingEvents['Preview']['Name'] ?></h3>
+                        <!--<p><?= $upcomingEvents['Preview']['shortDescription'] ?></p>-->
+                        <!-- ID für den Button, funktion baue ich wenn design da -->
+                        <a href="<?= $upcomingEvents['Preview']['ID'] ?>" class="more">
+                            <?php echo Html::img(Yii::$app->HelperClass->checkSVGIcons('arrow-right')); ?>
 
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
     </section>
 
     <!-- *************** Tournaments Bereich image hover noch einbauen *************** -->

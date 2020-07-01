@@ -16,6 +16,8 @@ use yii\db\ActiveRecord;
  * @property string $twitter_channel
  * @property string $icon
  * @propertx string $verification_phrase
+ * @property string $dt_created
+ * @property string $dt_updated
  */
 
 class Games extends ActiveRecord
@@ -94,13 +96,29 @@ class Games extends ActiveRecord
         return $this->icon;
     }
 
-     /**
+    /**
      * @return string
      */
     public function getVerificationPhrase()
     {
         return $this->verification_phrase;
 	}
+
+    /**
+     * @return string
+     */
+    public function getDtCreated()
+    {
+        return $this->dt_created;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDtUpdated()
+    {
+        return $this->dt_updated;
+    }
 
     /**
      * @inheritdoc

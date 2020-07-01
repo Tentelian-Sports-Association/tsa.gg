@@ -74,6 +74,7 @@ $config = [
                 'community/<action>' => 'community/community/<action>',
                 'news/<action>' => 'news/news/<action>',
                 'organisation/<action>' => 'organisation/organisation/<action>',
+                'events/<action>' => 'events/events/<action>',
             ],
         ],
         'i18n' => [
@@ -100,6 +101,7 @@ $config = [
         'community' => 'app\modules\community\Module',
         'news' => 'app\modules\news\Module',
         'organisation' => 'app\modules\organisation\Module',
+        'events' => 'app\modules\events\Module',
 	],
     'params' => $params,
 ];

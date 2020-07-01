@@ -14,6 +14,8 @@ use DateTime;
 
 use app\modules\partner\models\Partner;
 
+use app\modules\events\models\Event;
+
 use app\modules\user\models\User;
 
 use app\models\LoginForm;
@@ -79,18 +81,7 @@ class SiteController extends BaseController
         Yii::$app->language = $languageLocale;
 
         /** Upcoming Events */
-        $upcomingEvents = array();
-        /** Upcoming current Event */
-        $upcomingEvents['Next']['ID'] = 2;
-        $upcomingEvents['Next']['Name'] = "PeSp Masters 2020";
-        $upcomingEvents['Next']['shortDescription'] = "The return of the PeSp Masters from 2019, this year in the Munich Olympiahall";
-        $upcomingEvents['Next']['previewImage']= "pespmasters2020";
-        /** Upcoming next Event */
-        $upcomingEvents['Preview']['ID'] = 1;
-        $upcomingEvents['Preview']['Name'] = "Tentelian Royale Clash Finals";
-        $upcomingEvents['Preview']['shortDescription'] = "The Live Finals for our Clash Royle Championship Series (maximal 100 Zeichen)";
-        $upcomingEvents['Preview']['previewImage']= "clashCupFinals";
-        
+        $upcomingEvents = Event::getLatestEvents($languageID);        
 
         /** Upcoming Tournaments */
         $tournaments = array();

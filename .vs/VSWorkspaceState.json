@@ -1,16 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\config",
-    "\\modules",
-    "\\modules\\user",
-    "\\modules\\user\\messages",
-    "\\modules\\user\\messages\\en-EN",
-    "\\modules\\user\\messages\\fr-FR",
-    "\\views",
-    "\\views\\layouts",
-    "\\views\\site"
+    ""
   ],
-  "SelectedNode": "\\config\\web.php",
+  "SelectedNode": "\\config",
   "PreviewInSolutionExplorer": false
 }

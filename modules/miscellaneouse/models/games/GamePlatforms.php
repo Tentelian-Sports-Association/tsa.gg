@@ -9,11 +9,13 @@ use yii\db\ActiveRecord;
  * @package app\modules\miscellaneouse\models\games
  *
  * @property int $id
- * @property string $platform
+ * @property string $name
  * @property string $description
  * @property string $twitter_developer_tag
  * @property string $twitter_channel
  * @property string $icon
+ * @property string $dt_created
+ * @property string $dt_updated
  */
 
 class GamePlatforms extends ActiveRecord
@@ -46,7 +48,7 @@ class GamePlatforms extends ActiveRecord
 		//	return GamePlatforms_i18n::getTranslatedName($this->id, $languageID);
 		//}
 
-		return $this->platform;
+		return $this->name;
 	}
 
     /**
@@ -59,7 +61,7 @@ class GamePlatforms extends ActiveRecord
         //  return Games_i18n::getTranslatedDescription($this->id, $languageID);
         //}
 
-        return $this->platform;
+        return $this->name;
     }
 
     /**
@@ -97,6 +99,22 @@ class GamePlatforms extends ActiveRecord
     public function getIcon()
     {
         return $this->icon;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDtCreated()
+    {
+        return $this->dt_created;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDtUpdated()
+    {
+        return $this->dt_updated;
     }
 
     /**

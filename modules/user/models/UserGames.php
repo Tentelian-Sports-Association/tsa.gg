@@ -12,8 +12,8 @@ use app\modules\miscellaneouse\models\games\Games;
  * @package app\modules\user\models
  *
  * @property int $user_id
- * @property string $game_platform_id
- * @property string $game_id
+ * @property int $game_platform_id
+ * @property int $game_id
  * @property string $player_id
  * @property bool $visible
  * @property string $dt_created
@@ -107,7 +107,7 @@ class UserGames extends ActiveRecord
         return $this->visible;
     }
 
-     /**
+    /**
      * @return string
      */
     public function getDtCreated()
