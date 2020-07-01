@@ -150,7 +150,7 @@ $weAreLive['Liquipedia']['svg'] = '<svg width="22" height="18" viewBox="0 0 22 1
         <div class="col-sm-2 fourth-col">
             <h3 class="footer-header"><?= Yii::t('app', 'footer_socialMediaHeader') ?></h3>
             <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
-            <?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?>
+            <!-- <?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?> -->
             <?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "youtube Button"]); ?>
             <?= Html::a($weAreLive['Twitter']['svg'] . 'Twitter', $weAreLive['Twitter']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "Twitter Button"]); ?>
             <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Tournaments', $weAreLive['Discord']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Tournaments Discord Button"]); ?>

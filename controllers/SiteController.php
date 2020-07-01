@@ -170,6 +170,13 @@ class SiteController extends BaseController
         ]);
     }
 
+    public function actionConstruction()
+    {
+        return $this->render('underConstruction',
+        [
+        ]);
+	}
+
     /**
      * Displays homepage.
      *
