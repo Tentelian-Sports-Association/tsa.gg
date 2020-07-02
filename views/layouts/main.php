@@ -91,11 +91,23 @@ $weAreLive['Liquipedia']['svg'] = '<svg width="22" height="18" viewBox="0 0 22 1
                     <?= Html::button(Yii::t('app', 'navbar_login'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/login']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
                     <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/register']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
                 <?php else : ?>
-                    <!-- Dropdown mit Profil Bild und Name als oberste angezeigte eben, im Dropdown dann Account und Logout -->
-			        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $user->getId(). '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.png\'']); ?>		
-                    <?= $user->getUsername() ?>
-                    <?= Html::button(Yii::t('app', 'navbar_account'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/user/details', 'userId' => $user->getId()]). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
-                    <?= Html::button(Yii::t('app', 'navbar_logout'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/logout']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                    <div class="logged-in dropdown">
+                        <div class="user-image d-inline-block">
+							<?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $user->getId(). '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.png\'']); ?>
+                        </div>
+                        <button class="btn dropdown-toggle" type="button" id="usermenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<?= $user->getUsername() ?>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu text-center w-100" aria-labelledby="usermenu">
+							<li>
+								<?= Html::button(Yii::t('app', 'navbar_account'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/user/details', 'userId' => $user->getId()]). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                            </li>
+                            <li>
+								<?= Html::button(Yii::t('app', 'navbar_logout'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/logout']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                            </li>
+                        </ul>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

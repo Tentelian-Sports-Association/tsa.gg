@@ -47,11 +47,11 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
 
         <div class="form-group two-input row">
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'password')->textInput(['class' => 'input-default']) ?>
+                <?= $form->field($model, 'password')->passwordInput(['class' => 'input-default']) ?>
             </div>
 
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'passwordRepeate')->textInput(['class' => 'input-default ']) ?>
+                <?= $form->field($model, 'passwordRepeate')->passwordInput(['class' => 'input-default ']) ?>
             </div>
         </div>
         

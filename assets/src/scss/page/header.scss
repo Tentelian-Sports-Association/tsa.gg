@@ -63,6 +63,22 @@ header {
             .outline-btn-white {
                 margin-right: 10px;
             }
+            .logged-in.dropdown {
+                z-index: 10000;
+                padding: 15px;
+                li {
+                    margin-bottom: 15px;
+                }
+                button {
+                    background: none;
+                    color: white;
+                }
+                img {
+                    width: 65px;
+                    height: 65px;
+                    border-radius: 50%;
+                }
+            }
         }
     }
 }
