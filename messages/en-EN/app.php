@@ -36,7 +36,7 @@ return [
 	'partnerss_morePartners' => 'Show More',
 
 	/** Footer */
-	'footer_copyright' => '&copy;Tentelian Sports Association is a Trademark of Commotron GmbH',
+	'footer_copyright' => '&copy;Tentelian Sports Association is a Trademark of Commotron GmbH ',
 	'footer_contact' => 'Contact',
 	'footer_areasHeader' => 'Areas',
 	'footer_areasHome' => 'Home',

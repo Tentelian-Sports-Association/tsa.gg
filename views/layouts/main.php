@@ -13,6 +13,8 @@ app\assets\AppAsset::register($this);
 
 $user = Yii::$app->HelperClass->getUser();
 
+$controllerID = \Yii::$app->controller->id;
+
 $weAreLive = array();
 $weAreLive['twitch']['channellink'] = 'https://twitch.tv/TentelianSA';
 $weAreLive['twitch']['svg']= '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)">
@@ -73,19 +75,19 @@ $weAreLive['Liquipedia']['svg'] = '<svg width="22" height="18" viewBox="0 0 22 1
 <?php $this->beginBody() ?>
 <header class="d-flex align-items-center">
     <div class="navbar  navbar-expand-xl w-100  d-sm-flex align-items-center justify-content-between">
-        <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkSVGIcons('logo')), ["/site/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?>
+        <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkSVGIcons('logo')), ["/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('burgermenu'),['aria-label' => 'burgermenu']); ?>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <?php echo Html::a(Yii::t('app', 'navbar_home'), ["/index"], ['class' => "nav-link active",'aria-label' => "Home Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_news'), ["/news/overview"], ['class' => "nav-link",'aria-label' => "News Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_community'), ["/community/overview"], ['class' => "nav-link",'aria-label' => "Community Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["#"], ['class' => "nav-link",'aria-label' => "Tournaments Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => "nav-link",'aria-label' => "Partners Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_events'), ["#"], ['class' => "nav-link",'aria-label' => "Events Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["#"], ['class' => "nav-link",'aria-label' => "Contact Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_home'), ["/index"], ['class' => ($controllerID == 'site' ? "nav-link active" : "nav-link" ),'aria-label' => "Home Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_news'), ["/news/overview"], ['class' => ($controllerID == 'news' ? "nav-link active" : "nav-link" ),'aria-label' => "News Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_community'), ["/community/overview"], ['class' => ($controllerID == 'community' ? "nav-link active" : "nav-link" ),'aria-label' => "Community Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["#"], ['class' => ($controllerID == '#' ? "nav-link active" : "nav-link" ),'aria-label' => "Tournaments Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => ($controllerID == 'partner' ? "nav-link active" : "nav-link" ),'aria-label' => "Partners Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_events'), ["#"], ['class' => ($controllerID == '#' ? "nav-link active" : "nav-link" ),'aria-label' => "Events Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["#"], ['class' => ($controllerID == '#' ? "nav-link active" : "nav-link" ),'aria-label' => "Contact Button"]); ?>
             <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
                 <?php if(!$user) : ?>
                     <?= Html::button(Yii::t('app', 'navbar_login'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/login']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
