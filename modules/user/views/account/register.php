@@ -27,7 +27,7 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
 		
 		<?php $form = ActiveForm::begin([
 	        'id' => 'register-form',
-	        'options' => ['class' => 'form-horizontal'],
+	        'options' => ['class' => 'form-horizontal needs-validation ','novalidate' => ' '],
 	        'fieldConfig' => [
 	            'template' => "{label}\n<div class=\"col-12\">{input}</div>\n<div class=\"col-12\">{error}</div>",
 	            'labelOptions' => ['class' => 'col-12 control-label'],
@@ -37,21 +37,21 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
         <h2><?= Html::encode($this->title) ?></h2>
         <div class="form-group two-input row">
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true,'class' => 'input-default ']) ?>
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true,'class' => 'input-default form-control','required' => true]) ?>
             </div>
 
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'email')->textInput(['class' => 'input-default ']) ?>
+                <?= $form->field($model, 'email')->textInput(['class' => 'input-default form-control','required' => true]) ?>
             </div>
         </div>
 
         <div class="form-group two-input row">
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'password')->passwordInput(['class' => 'input-default']) ?>
+                <?= $form->field($model, 'password')->passwordInput(['class' => 'input-default form-control','required' => true]) ?>
             </div>
 
             <div class="col-12 col-lg-6">
-                <?= $form->field($model, 'passwordRepeate')->passwordInput(['class' => 'input-default ']) ?>
+                <?= $form->field($model, 'passwordRepeate')->passwordInput(['class' => 'input-default form-control','required' => true]) ?>
             </div>
         </div>
         
