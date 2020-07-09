@@ -86,7 +86,7 @@ $weAreLive['Liquipedia']['svg'] = '<svg width="22" height="18" viewBox="0 0 22 1
             <?php echo Html::a(Yii::t('app', 'navbar_community'), ["/community/overview"], ['class' => ($controllerID == 'community' ? "nav-link active" : "nav-link" ),'aria-label' => "Community Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["#"], ['class' => ($controllerID == '#' ? "nav-link active" : "nav-link" ),'aria-label' => "Tournaments Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => ($controllerID == 'partner' ? "nav-link active" : "nav-link" ),'aria-label' => "Partners Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_events'), ["#"], ['class' => ($controllerID == '#' ? "nav-link active" : "nav-link" ),'aria-label' => "Events Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_events'), ["/events/overview"], ['class' => ($controllerID == 'events' ? "nav-link active" : "nav-link" ),'aria-label' => "Events Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["#"], ['class' => ($controllerID == '#' ? "nav-link active" : "nav-link" ),'aria-label' => "Contact Button"]); ?>
             <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
                 <?php if(!$user) : ?>

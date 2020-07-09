@@ -2,15 +2,7 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\components\BaseController;
-
-use yii\db\Expression;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\web\Controller;
-use yii\web\Response;
-use DateTime;
 
 use app\modules\partner\models\Partner;
 
@@ -20,6 +12,14 @@ use app\modules\user\models\User;
 
 use app\models\LoginForm;
 use app\models\ContactForm;
+
+use Yii;
+use yii\db\Expression;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\Controller;
+use yii\web\Response;
+use DateTime;
 
 class SiteController extends BaseController
 {
