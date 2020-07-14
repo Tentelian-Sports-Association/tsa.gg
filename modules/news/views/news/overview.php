@@ -20,13 +20,12 @@ $this->title = \app\modules\news\Module::t('overview', 'overview_header');
         <div class="hero-image">
             <picture>
                 <source media="(min-width: 1200px)"
-                        srcset="https://via.placeholder.com/1920x500"
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'news') . '.webp' ?>
                         type="image/jpeg">
                 <source media="(min-width: 300px)"
-                        srcset="https://via.placeholder.com/400x250"
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'news') . '.webp' ?>
                         type="image/jpeg">
                 <img src="https://via.placeholder.com/1920x500" aria-label="News Header" class="img-fluid"/>
-                <!--<img src="assets/images/hero/herobackground.png" aria-label="News Header" class="img-fluid"/>-->
             </picture>
         </div>
         <div class="hero-container row">
