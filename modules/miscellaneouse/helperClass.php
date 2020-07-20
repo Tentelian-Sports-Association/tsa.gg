@@ -114,7 +114,7 @@ class HelperClass
 
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, 'https://api.twitch.tv/helix/streams?user_login=controllerbandits');
+        curl_setopt($ch, CURLOPT_URL, 'https://api.twitch.tv/helix/streams?user_login=tenteliansa');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
