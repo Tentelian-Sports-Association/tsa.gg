@@ -26,10 +26,10 @@ $this->title = 'Tentelian Sports Association';
         <div class="event-hero-image"  aria-labelledby='<?= $upcomingEvents['Next']['previewImage']?>' aria-describedby='bigEventContainer bigEventDescription'>
             <picture>
                 <source media="(min-width: 1200px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
                         type="image/jpeg">
                 <source media="(min-width: 300px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/index_preview/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_preview/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
                         type="image/jpeg">
                 <img src=""
                      aria-label="Next Big Event Pictures" />
