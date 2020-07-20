@@ -1,0 +1,130 @@
+.event-hero {
+    position: relative;
+    padding: 0;
+    &-image {
+        position: relative;
+        margin: 0 auto;
+
+        picture {
+            min-width: 100%;
+            min-height: 350px;
+            display: block;
+            img {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: $breakpoint-sm) {
+            picture {
+                min-height: 560px;
+            }
+        }
+        @media (min-width: $breakpoint-md) {
+            padding: 0;
+            picture {
+                min-width: auto;
+                min-height: 500px;
+            }
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            height: 680px;
+
+            picture {
+                display: flex;
+                justify-content: center;
+                overflow: hidden;
+                min-height: auto;
+            }
+
+            img {
+                height: 680px;
+                width: 1920px;
+            }
+        }
+    }
+
+    &-container {
+        top: 10%;
+        position: absolute;
+        width: 100%;
+        padding: 0 28px;
+        @media (min-width: $breakpoint-sm) {
+            top: 32%;
+        }
+
+        @media (min-width: $breakpoint-md) {
+            align-items: center;
+            bottom: 0;
+            display: flex;
+            top: 0;
+            padding: 0 71px;
+        }
+        .event-hero-title {
+            font-size: 32px;
+            line-height: 37px;
+            margin-bottom: 8px;
+            @media (min-width: $breakpoint-md) {
+                font-size: 90px;
+                line-height: 103px;
+                margin-bottom: 24px;
+            }
+        }
+        .description {
+            font-size: 18px;
+            line-height: 21px;
+            margin-bottom: 19px;
+            @media (min-width: $breakpoint-md) {
+                font-size: 29px;
+                line-height: 33px;
+                margin-bottom: 44px;
+            }
+        }
+        .filled-btn {
+            font-size: 16px;
+            line-height: 18px;
+            @media (min-width: $breakpoint-sm) {
+                font-size: 24px;
+                line-height: 28px;
+            }
+        }
+    }
+
+    .event-hero-upcoming-events {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        @media (min-width: $breakpoint-sm) {
+            right: 75px;
+        }
+
+        .upcoming-description {
+            background: $primaryColor;
+            padding: 10px;
+            span {
+                @media (max-width: $breakpoint-sm) {
+                    font-size: 12px;
+                    line-height: 11px;
+                }
+            }
+            h3 {
+                font-size: 32px;
+                line-height: 93%;
+                @media (max-width: $breakpoint-sm) {
+                    font-size: 20px;
+                    line-height: 125.5%;
+                }
+            }
+            .more {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background: $white;
+                padding: 12px;
+                line-height: 14px;
+            }
+        }
+    }
+
+
+}

@@ -1,0 +1,20 @@
+.partner-list {
+    .partner-item {
+        margin-bottom: 40px;
+        &:nth-child(odd) {
+            @media (min-width: $breakpoint-md) {
+                .order-md-1 {
+                    order: 2;
+                }
+                .order-md-2 {
+                    order: 1;
+                }
+            }
+        }
+        @media (max-width: $breakpoint-md-max) {
+            img {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

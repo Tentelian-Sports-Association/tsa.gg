@@ -1,0 +1,31 @@
+// Colors
+
+.primaryColor {
+    color: $primaryColor;
+}
+
+.secondaryColor {
+    color: $secondaryColor;
+}
+
+.thirdColor {
+    color: $thirdColor;
+}
+
+.white {
+    color: $white;
+}
+
+// Backgrounds
+
+.bg-green {
+    background: $primaryColor;
+}
+
+.bg-darkblue {
+    background: $secondaryColor;
+}
+
+.bg-darkblue-2 {
+    background: $thirdColor;
+}

@@ -1,0 +1,84 @@
+header {
+    padding: 24px 28px;
+    border-bottom: 2px solid $white;
+    @media (min-width: $breakpoint-md) {
+        padding: 24px 71px;
+    }
+    .navbar {
+        padding: 0;
+        .navbar-collapse {
+            justify-content: space-evenly;
+            @media (max-width: $breakpoint-md-max) {
+                .nav-link {
+                    padding: 15px 0;
+                    border-bottom: 1px solid $white2;
+                }
+            }
+        }
+        a {
+            font-size: 20px;
+            color: $white;
+            padding: 5px;
+            border-bottom: 2px solid $secondaryColor;
+            &:hover {
+                color: $primaryColor;
+                border-bottom: 2px solid $primaryColor;
+            }
+            &.active {
+                border-bottom: 2px solid $primaryColor;
+            }
+            &:not(:first-child),
+            &:not(:last-child) {
+                @media (min-width: $breakpoint-sm) {
+                    margin-right: 15px;
+                }
+            }
+        }
+        .dropdown-menu {
+            position: relative;
+            float: none;
+            background: $secondaryColor;
+            @media (min-width: $breakpoint-md) {
+                position: absolute;
+            }
+            a:hover {
+                background: none;
+                color: $primaryColor;
+            }
+        }
+        .account-bar {
+            margin-top: 40px;
+            @media (min-width: $breakpoint-md) {
+                margin-left: 10px;
+                margin-top: 0;
+            }
+            button {
+                font-size: 16px;
+                line-height: 18px;
+                @media (min-width: $breakpoint-md) {
+                    font-size: 20px;
+                    line-height: 28px;
+                }
+            }
+            .outline-btn-white {
+                margin-right: 10px;
+            }
+            .logged-in.dropdown {
+                z-index: 10000;
+                padding: 15px;
+                li {
+                    margin-bottom: 15px;
+                }
+                button {
+                    background: none;
+                    color: white;
+                }
+                img {
+                    width: 65px;
+                    height: 65px;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}

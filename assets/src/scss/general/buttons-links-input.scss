@@ -1,0 +1,148 @@
+
+.outline-btn {
+    @include outline-btn();
+
+    &-white {
+        @include outline-btn();
+        border-color: $white;
+        color: $white;
+
+        &:hover {
+            color: $secondaryColor;
+            border-color: $secondaryColor;
+        }
+    }
+    &-primary {
+        @include outline-btn();
+        border-color: $primaryColor;
+        color: $primaryColor;
+
+        &:hover {
+            border-color: $white;
+        }
+    }
+}
+
+.filled-btn {
+    @include filled-btn();
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+a {
+    display: inline-block;
+    color: $white;
+    &:hover {
+        color: $primaryColor;
+        text-decoration: none;
+    }
+    &:active,
+    &:focus {
+        background-color: transparent!important;
+    }
+}
+
+.input-default {
+    @include input-default();
+}
+
+.custom-control-label {
+    &:before {
+        position: inherit;
+        display: inline-block;
+        margin-right: 10px;
+        border: 1px solid $primaryColor;
+
+    }
+}
+
+.custom-control-label {
+    position: relative;
+    &:before {
+        background-color: transparent;
+        top: 3px;
+    }
+}
+
+.custom-control-input {
+    &:before {
+        background-color: transparent;
+    }
+    &:focus {
+        ~ .custom-control-label:before {
+            box-shadow: none;
+        }
+    }
+    &:active,
+    &:checked {
+        ~ .custom-control-label:before {
+            background-color: transparent;
+            background-image: url('../../../images/icons/check.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 11px 15px;
+        }
+    }
+}
+
+input[type=date],
+input[type=datetime-local],
+input[type=month],
+input[type=time] {
+    &::-webkit-inner-spin-button {
+        display: none;
+        -webkit-appearance: none;
+    }
+}
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+    &:before {
+        content: "";
+        background-image: url('../../../images/icons/smallarrow-down.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 11px 15px;
+        color: #fff;
+        font-size: 20px;
+        pointer-events: none;
+        position: absolute;
+        right: 15px;
+        top: 17px;
+        width: 20px;
+        height: 20px;
+    }
+    select {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        padding-left: 10px;
+        width: 100%;
+        margin-bottom: 0;
+        &::-ms-expand {
+            display: none;
+        }
+        &:focus::-ms-value {
+            background-color: transparent;
+        }
+        &.input-default {
+            &:focus,
+            &:active {
+                background: $secondaryColor;
+                color: $white;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+
+.invalid-feedback {
+    display: block;
+}

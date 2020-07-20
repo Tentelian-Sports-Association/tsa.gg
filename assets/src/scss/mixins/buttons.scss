@@ -1,0 +1,36 @@
+@mixin button-default() {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 18px;
+    border-radius: 35px;
+    padding: 10px 30px;
+    &:hover {
+        cursor: pointer;
+    }
+    @media (min-width: $breakpoint-md) {
+        font-size: 18px;
+        line-height: 21px;
+    }
+}
+
+@mixin filled-btn() {
+    @include button-default();
+    color: $white;
+    background: $primaryColor;
+    border: 2px solid $primaryColor;
+    &:hover {
+        color: $primaryColor;
+        background: transparent;
+    }
+}
+
+@mixin outline-btn() {
+    @include button-default();
+    color: $primaryColor;
+    border: 2px solid $primaryColor;
+    background: transparent;
+    &:hover {
+        color: $white;
+        background: $primaryColor;
+    }
+}

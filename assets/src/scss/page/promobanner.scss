@@ -1,0 +1,83 @@
+.promo-banner {
+    background: $primaryColor;
+    color: $white;
+    padding: 26px 28px;
+    @media (min-width: $breakpoint-lg) {
+        padding-left: 75px;
+        padding-right: 75px;
+    }
+    .promo-text {
+        font-size: 16px;
+        line-height: 18px;
+        @media (min-width: $breakpoint-lg) {
+            font-size: 24px;
+            line-height: 28px;
+        }
+    }
+    .promo-links a {
+        color: $white;
+        font-size: 14px;
+        line-height: 16px;
+        &:hover {
+            color: $primaryColor;
+            svg {
+                fill: $primaryColor;
+            }
+        }
+        @media (min-width: $breakpoint-lg) {
+            font-size: 24px;
+            line-height: 28px;
+        }
+    }
+    .promo-text {
+        text-transform: uppercase;
+        margin-bottom: 0;
+        img {
+            margin-right: 10px;
+        }
+
+    }
+    .mobile-toggle {
+        background: none;
+        border: none;
+    }
+    .promo-links {
+        @media (min-width: $breakpoint-lg) {
+            width: auto;
+            display: inline-block;
+        }
+        a {
+            @media (min-width: $breakpoint-lg) {
+                display: inline-block;
+                width: auto;
+            }
+            svg {
+                margin-right: 10px;
+            }
+            &:hover {
+                background: none;
+                color: $secondaryColor;
+                svg * {
+                    fill: $secondaryColor;
+                }
+            }
+        }
+    }
+    .dropdown-menu {
+        position: inherit!important;
+        background: transparent;
+        float: none;
+        border: none;
+        @media (max-width: $breakpoint-lg) {
+            transform: none!important;
+            padding-bottom: 0;
+            .dropdown-item {
+                display: inline-block;
+                width: auto;
+                background: $secondaryColor;
+                border-radius: 35px;
+                padding: 8px 15px;
+            }
+        }
+    }
+}

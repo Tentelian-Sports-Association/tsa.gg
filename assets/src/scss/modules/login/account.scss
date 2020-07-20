@@ -1,0 +1,49 @@
+.site-profileDetails {
+    * {
+        font-weight: normal;
+    }
+    .header {
+        font-weight: 500;
+    }
+    .inner-container {
+        padding: 20px 100px;
+    }
+    .section-row {
+        padding: 20px 0;
+        border-bottom: 1px solid white;
+    }
+    .avatarName {
+        h3 {
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 37px;
+            .avatarID {
+                font-size: 22px;
+                line-height: 25px;
+            }
+        }
+        .personal-datalist {
+            span {
+                font-size: 22px;
+                line-height: 25px;
+            }
+        }
+    }
+    .organisation-title-list,
+    .avatar-job-list,
+    .personal-datalist,
+    .team-title-list {
+        li {
+            &:last-child {
+                span {
+                    border-right: 0;
+                }
+            }
+            span {
+                border-right: 1px solid white;
+                padding-right: 10px;
+            }
+        }
+
+    }
+}

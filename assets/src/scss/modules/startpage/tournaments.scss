@@ -1,0 +1,53 @@
+.tournament {
+    .tournament-container {
+        margin-bottom: 56px;
+        li {
+            border-top: 1px solid $white2;
+            padding: 15px 0;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 25px;
+            @media (min-width: $breakpoint-sm) {
+                padding: 30px
+            }
+            &:hover {
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.1);
+            }
+            &:last-child {
+                border-bottom: 1px solid $white2;
+            }
+        }
+    }
+    &-description {
+        * {
+            font-size: 18px;
+            line-height: 23px;
+        }
+
+        @media (min-width: $breakpoint-sm) {
+            border-right: 1px solid $white2;
+            .tournament-mode {
+                padding-right: 30px;
+            }
+        }
+    }
+    &-time {
+
+        @media (min-width: $breakpoint-sm) {
+            padding-left: 30px;
+        }
+        span {
+            img {
+                margin-right: 10px;
+            }
+            @media (max-width: $breakpoint-xs-max) {
+                font-size: 14px;
+                line-height: 16px;
+                background: #1A223B;
+                padding: 8px;
+            }
+        }
+
+    }
+}
