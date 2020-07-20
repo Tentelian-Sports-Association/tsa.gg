@@ -70,3 +70,6 @@ nodevars.bat
 
 #manually ignoring
 /config/db.php
+
+#node_modules ignoring
+/node_modules
