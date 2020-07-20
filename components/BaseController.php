@@ -14,7 +14,6 @@ use app\modules\user\models\User;
 
 class BaseController extends Controller
 {
-    
     /**
      * Checks if a password change is required. If yes, the user will get redirected to the password change site until he changes his password.
      *
@@ -28,14 +27,14 @@ class BaseController extends Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
-
+        
         //if(Yii::$app->controller->action->id !== 'construction')
-        //    return $this->redirect(['/construction']);
+        //    if(Yii::$app->controller->id !== 'partner')
+        //        return $this->redirect(['/construction']);        
 
         if(Yii::$app->user->identity != null)
             Yii::$app->language = User::findIdentity(Yii::$app->user->identity->getId())->getLanguage()->getLocale();
         
-
         if (!Yii::$app->user->isGuest && Yii::$app->user->getIdentity()->is_password_change_required == 1 && Yii::$app->controller->action->id !== 'change-password') {
             return $this->redirect(['/account/change-password']);
         }
