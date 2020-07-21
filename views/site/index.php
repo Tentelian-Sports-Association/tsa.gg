@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 $this->title = 'Tentelian Sports Association';
 
 /************* Meta Index ****************/
-$this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://tsa.gg' . Yii::$app->request->url]);
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
 Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
 
 
