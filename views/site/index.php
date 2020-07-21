@@ -152,7 +152,6 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                                         . $news['StartingDate'] . '</span>'
                                         . '<h3 class="news-header">' . $news['Headline'] . '</h3>'
                         , ['news/news-details', 'newsId' => $news['ID']], ['class' => 'news-link']); ?>
-                            
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -185,7 +184,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     </div>
                 </div>
                 <div class="news-footer text-center">
-                    <?php echo Html::a(Yii::t('app', 'currentNews_moreNews'), ["#"], ['class' => "outline-btn-white",'aria-label' => "Show all News Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'currentNews_moreNews'), ["news"], ['class' => "outline-btn-white",'aria-label' => "Show all News Button"]); ?>
                 </div>
             <!-- If no News Availabel show what ever -->
             <?php else : ?>

@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
  * @var $categories array
  */
 
-\app\modules\news\assets\NewsAsset::register($this);
+\app\modules\news\assets\OverviewAsset::register($this);
 
 $this->title = \app\modules\news\Module::t('overview', 'overview_header');
 

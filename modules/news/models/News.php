@@ -119,30 +119,29 @@ class News  extends ActiveRecord
             $latestNewsData[$nr]['StartingDate'] = (new DateTime($news->getDtCreated()))->format('d.m.Y');
 		}
 
-        /** 3 Latest News */
-        /*$latestNews[0]['ID'] = 1;
-        $latestNews[0]['Headline'] = "Royale News from Clash";
-        $latestNews[0]['previewImage'] = "clashNews";
-        $latestNews[0]['StartingDate'] = (new DateTime())->format('d.m.Y');
-
-        $latestNews[1]['ID'] = 2;
-        $latestNews[1]['Headline'] = "New Tournament Series Arrived";
-        $latestNews[1]['previewImage'] = "newTournament";
-        $latestNews[1]['StartingDate'] = (new DateTime())->format('d.m.Y');
-
-        $latestNews[2]['ID'] = 3;
-        $latestNews[2]['Headline'] = "The Bug is Fixed";
-        $latestNews[2]['previewImage'] = "fixedBug";
-        $latestNews[2]['StartingDate'] = (new DateTime())->format('d.m.Y');*/
-
         return $latestNewsData;
     }
 
-    public static function getLatestCategorieNews($languageID, $count, $categorieId)
+    public static function getLatestCategorieNews($languageID, $count, $categorieType, $categorieId)
     {
-        $latestNews = static::find()->Where(['categorie_id' => $categorieId])->orderBy(['dt_created' => SORT_ASC])->limit($count)->all();
+        $latestNews = static::find()->Where([$categorieType => $categorieId])->orderBy(['dt_created' => SORT_ASC])->limit($count)->all();
 
-        //print_r($latestNews);
-        //die();
+        $latestNewsData = array();
+
+        foreach($latestNews as $nr => $news)
+        {
+            $newsDetails = $news->getDetails();
+
+            $latestNewsData[$nr]['ID'] = $news->getId();
+            $latestNewsData[$nr]['CategorieID'] = $news->getCategorieId();
+            $latestNewsData[$nr]['SubCategorieID'] = $news->getSubCategorieId();
+            $latestNewsData[$nr]['Headline'] = $newsDetails->getHeader();
+            $latestNewsData[$nr]['AuthorID'] = $news->getAuthorId();
+            $latestNewsData[$nr]['Author'] = $news->getAuthor()->getUsername();
+            $latestNewsData[$nr]['previewImage'] =  $newsDetails->getImgTag();
+            $latestNewsData[$nr]['StartingDate'] = (new DateTime($news->getDtCreated()))->format('d.m.Y');
+		}
+
+        return $latestNewsData;
     }
 }

@@ -6,6 +6,7 @@ use app\components\BaseController;
 
 use app\modules\news\models\News;
 use app\modules\news\models\NewsCategorie;
+use app\modules\news\models\NewsSubCategorie;
 
 use DateTime;
 use Yii;
@@ -78,17 +79,32 @@ class NewsController extends BaseController
         $languageLocale = Yii::$app->HelperClass->getUserLanguage($user, true);
 
          /** Latest News */
-        $latestNews = News::getLatestCategorieNews($languageID, 3, $categorieId);
+        $latestNews = News::getLatestCategorieNews($languageID, 3, 'categorie_id', $categorieId);
+
+        /** Categories */
+        $subCategories = NewsSubCategorie::find()->where(['categorie_id' => $categorieId])->orderBy(['name' => SORT_DESC])->limit(5)->all();
 
         return $this->render('category', [
-            //'latestNews' => $latestNews,
-            //'categories' => $categories,
+            'latestNews' => $latestNews,
+            'subCategories' => $subCategories,
         ]);
 	}
 
     public function actionSubCategorie($subCategorieId)
     {
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
         
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+        $languageLocale = Yii::$app->HelperClass->getUserLanguage($user, true);
+
+         /** Latest News */
+        $latestNews = News::getLatestCategorieNews($languageID, 3,'sub_categorie_id', $subCategorieId);
+
+        return $this->render('subCategory', [
+            //'latestNews' => $latestNews,
+            //'categories' => $categories,
+        ]);
     }
 
     public function actionNewsDetails($newsId)
