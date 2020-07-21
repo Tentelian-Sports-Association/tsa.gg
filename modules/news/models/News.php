@@ -144,4 +144,52 @@ class News  extends ActiveRecord
 
         return $latestNewsData;
     }
+
+    public static function getNews($languageID, $categorieType, $categorieId)
+    {
+        $allNews = static::find()->Where([$categorieType => $categorieId])->orderBy(['dt_created' => SORT_ASC])->all();
+
+        $NewsData = array();
+
+        foreach($allNews as $nr => $news)
+        {
+            $newsDetails = $news->getDetails();
+
+            $NewsData[$nr]['ID'] = $news->getId();
+            $NewsData[$nr]['CategorieID'] = $news->getCategorieId();
+            $NewsData[$nr]['SubCategorieID'] = $news->getSubCategorieId();
+            $NewsData[$nr]['Headline'] = $newsDetails->getHeader();
+            $NewsData[$nr]['AuthorID'] = $news->getAuthorId();
+            $NewsData[$nr]['Author'] = $news->getAuthor()->getUsername();
+            $NewsData[$nr]['previewImage'] =  $newsDetails->getImgTag();
+            $NewsData[$nr]['StartingDate'] = (new DateTime($news->getDtCreated()))->format('d.m.Y');
+		}
+
+        return $NewsData;
+	}
+
+    public static function getSelectedNews($languageID, $newsId)
+    {
+        $selectedNews = static::find()->Where([ 'id' => $newsId])->one();
+        $newsDetails = $selectedNews->getDetails();
+
+        $NewsData = array();
+
+        $NewsData['ID'] = $selectedNews->getId();
+        $NewsData['CategorieID'] = $selectedNews->getCategorieId();
+        $NewsData['SubCategorieID'] = $selectedNews->getSubCategorieId();
+
+        $NewsData['AuthorID'] = $selectedNews->getAuthorId();
+        $NewsData['Author'] = $selectedNews->getAuthor()->getUsername();
+
+        $NewsData['Headline'] = $newsDetails->getHeader();
+        $NewsData['ShortBody'] = $newsDetails->getShortBody();
+        $NewsData['LongBody'] = $newsDetails->getLongBody();
+        
+        $NewsData['previewImage'] =  $newsDetails->getImgTag();
+        $NewsData['Date'] = (new DateTime($selectedNews->getDtCreated()))->format('d.m.Y');
+        $NewsData['Time'] = (new DateTime($selectedNews->getDtCreated()))->format('H:m');
+
+        return $NewsData;
+	}
 }

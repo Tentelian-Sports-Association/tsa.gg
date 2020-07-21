@@ -101,17 +101,28 @@ class NewsController extends BaseController
          /** Latest News */
         $latestNews = News::getLatestCategorieNews($languageID, 3,'sub_categorie_id', $subCategorieId);
 
-        return $this->render('subCategory', [
-            //'latestNews' => $latestNews,
-            //'categories' => $categories,
+        /** Categories */
+        $subCategorieNews = News::getNews($languageID, 'sub_categorie_id', $subCategorieId);
+
+        return $this->render('subCategorie', [
+            'latestNews' => $latestNews,
+            'subCategorieNews' => $subCategorieNews,
         ]);
     }
 
     public function actionNewsDetails($newsId)
     {
-        return $this->render('category', [
-            //'latestNews' => $latestNews,
-            //'categories' => $categories,
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+        $languageLocale = Yii::$app->HelperClass->getUserLanguage($user, true);
+
+        /** Selected News */
+        $selectedNews = News::getSelectedNews($languageID, $newsId);
+        
+        return $this->render('newsDetails', [
+            'selectedNews' => $selectedNews,
         ]);
 	}
 }

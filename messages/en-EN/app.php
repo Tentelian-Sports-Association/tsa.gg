@@ -28,7 +28,8 @@ return [
 	'tournaments_moreTournaments' => 'Show More',
 
 	/** Current News */
-	'currentNews_header' => 'Current News',
+	'currentNews_header' => 'Latest News',
+	'allNews_header' => 'News',
 	'currentNews_moreNews' => 'Show More',
 
 	/** Partners */
