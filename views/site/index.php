@@ -13,8 +13,12 @@ use yii\helpers\ArrayHelper;
 
 $this->title = 'Tentelian Sports Association';
 
-\app\assets\IndexAsset::register($this);
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://tsa.gg' . Yii::$app->request->url]);
+Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
 
+
+\app\assets\IndexAsset::register($this);
 
 ?>
 
