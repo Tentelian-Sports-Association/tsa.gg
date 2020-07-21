@@ -7,6 +7,8 @@ use app\modules\news\models\NewsDetails;
 
 use yii\db\ActiveRecord;
 
+use DateTime;
+
 /**
  * Class News
  * @package app\modules\news\models
@@ -115,7 +117,7 @@ class News  extends ActiveRecord
             $latestNewsData[$nr]['AuthorID'] = $news->getAuthorId();
             $latestNewsData[$nr]['Author'] = $news->getAuthor()->getUsername();
             $latestNewsData[$nr]['previewImage'] =  $newsDetails->getImgTag();
-            $latestNewsData[$nr]['StartingDate'] = $news->getDtCreated();
+            $latestNewsData[$nr]['StartingDate'] = (new DateTime($news->getDtCreated()))->format('d.m.Y');
 		}
 
         /** 3 Latest News */

@@ -117,16 +117,18 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
 <!-- *************** Wir sind live Bereich (anpassen das nur gezeigt wird wenn wir live sind *************** -->
 <?php if(Yii::$app->HelperClass->getTwitchOnlineStat()) : ?>
     <div class="promo-banner dropdown d-block d-lg-flex align-items-center justify-content-between">
-        <h3 class="promo-text d-inline-flex align-items-center">
-             <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('redcircle'), ['class' => 'img-fluid', 'aria-label' => 'we are live']); ?><?= Yii::t('app', 'promotion_nowLive1') ?><span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline"><?= Yii::t('app', 'promotion_nowLive2') ?></span></h3>
-        <button type="button" class="d-inline d-lg-none float-right float-lg-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('smallarrow-down'), ['class' => 'img-fluid', 'aria-label' => 'show where we are']); ?>
-        </button>
-        <div class="col  align-items-center text-lg-right promo-links dropdown-menu" aria-labelledby="promo-banner">
-            <div class="dropdown-divider d-lg-none"></div>
-            <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'twitch dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
-            <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'mixer dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
-            <!--?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'youtube dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Youtube Button"]); ?-->
+        <div class="inner-wrapper">
+            <h3 class="promo-text d-inline-flex align-items-center">
+                <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('redcircle'), ['class' => 'img-fluid', 'aria-label' => 'we are live']); ?><?= Yii::t('app', 'promotion_nowLive1') ?><span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline"><?= Yii::t('app', 'promotion_nowLive2') ?></span></h3>
+            <button type="button" class="d-inline d-lg-none float-right float-lg-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('smallarrow-down'), ['class' => 'img-fluid', 'aria-label' => 'show where we are']); ?>
+            </button>
+            <div class="col float-right align-items-center text-lg-right promo-links dropdown-menu" aria-labelledby="promo-banner">
+                <div class="dropdown-divider d-lg-none"></div>
+                <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'twitch dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
+                <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'mixer dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
+                <!--?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'youtube dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Youtube Button"]); ?-->
+            </div>
         </div>
     </div>
 <?php endif; ?>
