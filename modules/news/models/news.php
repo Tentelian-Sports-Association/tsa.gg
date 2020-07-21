@@ -8,6 +8,8 @@ use app\modules\news\models\NewsDetails;
 use yii\db\ActiveRecord;
 use DateTime;
 
+use DateTime;
+
 /**
  * Class News
  * @package app\modules\news\models
