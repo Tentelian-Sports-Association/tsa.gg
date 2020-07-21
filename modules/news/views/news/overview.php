@@ -111,20 +111,14 @@ $this->title = \app\modules\news\Module::t('overview', 'overview_header');
     <section class="category-block">
         <div class="inner-wrapper">
             <h2>Kategorien</h2>
-            [id]
-            [name]
-            [description]
-            [img]
-            [dt_created]
-            [dt_updated]
-            <ul class="category-list row list-unstyled">
+            <ul class="categorie-list row list-unstyled">
                 <?php foreach($categories as $categorie) : ?>
-                    <li>
-                        <a href="<?= $categorie['ID'] ?>" class="news-link">
+                    <li class="categorie-item col-12 col-lg-4">
+                        <a href="<?= $categorie['ID'] ?>" class="categorie-link">
                             <!-- Background Image, funktion zum laden baue ich wenn design da -->
-                            <!--<?= $news['previewImage'] ?>-->
-                            <img src="https://via.placeholder.com/570x458.png" class="img-fluid" alt="Kategorie 1">
-                            <h3 class="category-header">Kategorie 1</h3>
+                            <!--<?= $categorie['img'] ?>-->
+                            <img src="https://via.placeholder.com/570x458.png" class="img-fluid" alt="<?= $categorie['name'] ?>">
+                            <h3 class="categorie-header"><?= $categorie['name'] ?></h3>
                         </a>
                     </li>
                 <?php endforeach; ?>
