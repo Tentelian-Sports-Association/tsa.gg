@@ -73,7 +73,7 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
 <?php $this->beginBody() ?>
 <header class="d-flex align-items-center">
     <div class="navbar  navbar-expand-xl w-100  d-sm-flex align-items-center justify-content-between">
-        <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkSVGIcons('logo')), ["/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?>
+        <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/icons/', 'TSA_Logo_Schrift_right_238x70'). '.webp'), ["/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('burgermenu'),['aria-label' => 'burgermenu']); ?>
@@ -138,7 +138,7 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
 <footer class="footer">
     <div class="footer-content row">
         <div class="col-sm-5 first-col">
-            <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('logo'),['class' => 'img-fluid logo', 'aria-label' => 'Tentelian Sports Association']); ?>
+            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/icons/', 'TSA_Logo_Schrift_right_238x70'). '.webp',['class' => 'img-fluid logo', 'aria-label' => 'Tentelian Sports Association']); ?>
             <p><?= Yii::t('app', 'footer_copyright') ?><?= date('Y') ?></p>
             <?php echo Html::a(Yii::t('app', 'footer_contact'), ["#"], ['class' => "filled-btn",'aria-label' => "Body Contact Button"]); ?>
         </div>

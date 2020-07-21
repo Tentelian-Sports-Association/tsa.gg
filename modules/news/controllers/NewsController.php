@@ -54,6 +54,7 @@ class NewsController extends BaseController
 
         /** Latest News */
         $latestNews = array();
+
         /** 3 Latest News */
         $latestNews[0]['ID'] = 1;
         $latestNews[0]['Headline'] = "Royale News from Clash";
