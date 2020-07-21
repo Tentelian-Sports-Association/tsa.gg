@@ -108,28 +108,26 @@ $this->title = \app\modules\news\Module::t('overview', 'overview_header');
     </section>
 
 	<!-- *************** Kategories *************** -->
-
-
     <section class="category-block">
         <div class="inner-wrapper">
             <h2>Kategorien</h2>
+            [id]
+            [name]
+            [description]
+            [img]
+            [dt_created]
+            [dt_updated]
             <ul class="category-list row list-unstyled">
-                <li>
-                    <a href="<?= $news['ID'] ?>" class="news-link">
-                        <!-- Background Image, funktion zum laden baue ich wenn design da -->
-                        <!--<?= $news['previewImage'] ?>-->
-                        <img src="https://via.placeholder.com/570x458.png" class="img-fluid" alt="Kategorie 1">
-                        <h3 class="category-header">Kategorie 1</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= $news['ID'] ?>" class="news-link">
-                        <!-- Background Image, funktion zum laden baue ich wenn design da -->
-                        <!--<?= $news['previewImage'] ?>-->
-                        <img src="https://via.placeholder.com/570x458.png" class="img-fluid" alt="Kategorie 1">
-                        <h3 class="category-header">Kategorie 1</h3>
-                    </a>
-                </li>
+                <?php foreach($categories as $categorie) : ?>
+                    <li>
+                        <a href="<?= $categorie['ID'] ?>" class="news-link">
+                            <!-- Background Image, funktion zum laden baue ich wenn design da -->
+                            <!--<?= $news['previewImage'] ?>-->
+                            <img src="https://via.placeholder.com/570x458.png" class="img-fluid" alt="Kategorie 1">
+                            <h3 class="category-header">Kategorie 1</h3>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
             </ul>
             <div class="ad-block-container row">
                 <div class="ad-block-item col-12">
