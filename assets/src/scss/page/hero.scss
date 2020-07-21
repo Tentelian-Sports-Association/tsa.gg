@@ -1,6 +1,10 @@
 .hero {
     position: relative;
     padding: 0;
+    .row {
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
     &-image {
         position: relative;
         margin: 0 auto;
@@ -54,11 +58,15 @@
         }
 
         @media (min-width: $breakpoint-md) {
+            left: 0;
             align-items: center;
             bottom: 0;
             display: flex;
             top: 0;
             padding: 0 71px;
+            margin: 0 auto;
+            max-width: 1920px;
+            right: 0;
         }
         .hero-title {
             font-size: 32px;
