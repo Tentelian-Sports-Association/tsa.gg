@@ -137,4 +137,12 @@ class News  extends ActiveRecord
 
         return $latestNewsData;
     }
+
+    public static function getLatestCategorieNews($languageID, $count, $categorieId)
+    {
+        $latestNews = static::find()->Where(['categorie_id' => $categorieId])->orderBy(['dt_created' => SORT_ASC])->limit($count)->all();
+
+        //print_r($latestNews);
+        //die();
+    }
 }

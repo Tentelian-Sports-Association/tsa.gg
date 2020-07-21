@@ -61,12 +61,28 @@ class NewsController extends BaseController
         /** Categories */
         $categories = NewsCategorie::find()->orderBy(['name' => SORT_DESC])->limit(5)->all();
 
-        //print_r($categories);
-        //die();
+        //return $this->redirect(['news/categorie?categorieId=1']);
 
         return $this->render('overview', [
             'latestNews' => $latestNews,
             'categories' => $categories,
+        ]);
+	}
+
+    public function actionCategorie($categorieId)
+    {
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+        $languageLocale = Yii::$app->HelperClass->getUserLanguage($user, true);
+
+         /** Latest News */
+        $latestNews = News::getLatestCategorieNews($languageID, 3, $categorieId);
+
+        return $this->render('category', [
+            //'latestNews' => $latestNews,
+            //'categories' => $categories,
         ]);
 	}
 }
