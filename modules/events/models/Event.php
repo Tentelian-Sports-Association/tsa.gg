@@ -110,7 +110,7 @@ class Event extends ActiveRecord
 
     public static function getLatestEvents($languageID)
     {
-    //News::find()->orderBy(['dt_created' => SORT_DESC])->limit(5)->all();
+        //News::find()->orderBy(['dt_created' => SORT_DESC])->limit(5)->all();
         $latestEvents = static::find()->orderBy(['startingDate' => SORT_ASC])->limit(2)->all();
 
         $latestEventsData = array();

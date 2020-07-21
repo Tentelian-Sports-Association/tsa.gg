@@ -8,6 +8,8 @@ use app\modules\partner\models\Partner;
 
 use app\modules\events\models\Event;
 
+use app\modules\news\models\News;
+
 use app\modules\user\models\User;
 
 use app\models\LoginForm;
@@ -86,7 +88,7 @@ class SiteController extends BaseController
         /** Upcoming Tournaments */
         $tournaments = array();
         /** 5 Turniere die als n�chstes Stattfinden oder gerade Live sind */
-        $tournaments[0]['ID'] = 1;
+        /*$tournaments[0]['ID'] = 1;
         $tournaments[0]['Name'] = "GERTA Cup Sason 6 Day 1";
         $tournaments[0]['Mode'] = "3 VS 3";
         $tournaments[0]['GameTag'] = "RL";
@@ -129,25 +131,10 @@ class SiteController extends BaseController
         $tournaments[4]['HoverImage'] = "DriftMasters";
         $tournaments[4]['IsLive'] = false;
         $tournaments[4]['StartingDate'] = (new DateTime())->format('d.m.Y');
-        $tournaments[4]['StartingTime'] = (new DateTime())->format('H:i');
+        $tournaments[4]['StartingTime'] = (new DateTime())->format('H:i');*/
 
         /** Latest News */
-        $latestNews = array();
-        /** 3 Latest News */
-        $latestNews[0]['ID'] = 1;
-        $latestNews[0]['Headline'] = "Royale News from Clash";
-        $latestNews[0]['previewImage'] = "clashNews";
-        $latestNews[0]['StartingDate'] = (new DateTime())->format('d.m.Y');
-
-        $latestNews[1]['ID'] = 2;
-        $latestNews[1]['Headline'] = "New Tournament Series Arrived";
-        $latestNews[1]['previewImage'] = "newTournament";
-        $latestNews[1]['StartingDate'] = (new DateTime())->format('d.m.Y');
-
-        $latestNews[2]['ID'] = 3;
-        $latestNews[2]['Headline'] = "The Bug is Fixed";
-        $latestNews[2]['previewImage'] = "fixedBug";
-        $latestNews[2]['StartingDate'] = (new DateTime())->format('d.m.Y');
+        $latestNews =  News::getLatestNews($languageID, 3);
 
         /** Our Partners */
         $ourPartner = Partner::find()->select(['id', 'image', 'name', 'webadresse'])->orderBy(new Expression('rand()'))->limit(4)->all();
