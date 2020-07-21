@@ -1,0 +1,43 @@
+.site-user-overview {
+    .inner-wrapper {
+        max-width: 1920px;
+        margin: 0 auto;
+        .row {
+            margin-right: 0 !important;
+
+            .searchHeader {
+                max-width: 1920px;
+                margin: 0;
+        
+                .input-default {
+                    width: 100%;
+                }
+        
+                .searchBox {
+                    float: left;
+                }
+                
+                .sortBox {
+                    float: left;
+        
+                    .col-sortascend {
+                        float: left;
+                    }
+                    .col-sortedby {
+                        float: left;
+                    }
+                }
+        
+                .search-button {
+                    float: left;
+        
+                    .search-btn {
+                        height: 51px;
+                        padding: 10px;
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

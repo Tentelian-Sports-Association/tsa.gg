@@ -8,7 +8,8 @@ class SearchOverviewAsset extends AssetBundle
     public $sourcePath = '@app/assets/dist';
  
     public $css = [
-		//'css/changePassword.css'
+    //'css/changePassword.css'
+    'css/community.css'
     ];
 
     public $cssOptions = [

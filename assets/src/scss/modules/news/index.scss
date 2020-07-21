@@ -1,5 +1,8 @@
 @import "../startpage/news";
-
+.inner-wrapper {
+    max-width: 1920px;
+    margin: 0 auto;
+}
 .news-item {
     .news-link {
         border: 1px solid #FFFFFF;
