@@ -4,6 +4,10 @@ footer {
     @media (min-width: $breakpoint-sm) {
         padding: 80px 75px;
     }
+    .footer-content {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
     .filled-btn {
         font-size: 18px;
         line-height: 21px;

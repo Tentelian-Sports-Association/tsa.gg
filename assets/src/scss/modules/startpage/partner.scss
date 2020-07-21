@@ -1,4 +1,8 @@
 .partner-block {
+    .inner-wrapper {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
     .partner-item {
         position: relative;
         &:after {
@@ -23,6 +27,7 @@
         @media (min-width: $breakpoint-sm) {
             margin-top: 32px;
         }
+        text-align: center;
         margin-bottom: 30px;
     }
 }

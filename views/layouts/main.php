@@ -136,7 +136,7 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
 <?= $content ?>
 
 <footer class="footer">
-    <div class="row">
+    <div class="footer-content row">
         <div class="col-sm-5 first-col">
             <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('logo'),['class' => 'img-fluid logo', 'aria-label' => 'Tentelian Sports Association']); ?>
             <p><?= Yii::t('app', 'footer_copyright') ?><?= date('Y') ?></p>
