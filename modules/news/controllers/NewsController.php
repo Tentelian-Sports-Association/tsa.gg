@@ -4,6 +4,9 @@ namespace app\modules\news\controllers;
 
 use app\components\BaseController;
 
+use app\modules\news\models\News;
+use app\modules\news\models\NewsCategorie;
+
 use DateTime;
 use Yii;
 use yii\data\Pagination;
@@ -53,26 +56,17 @@ class NewsController extends BaseController
         $languageLocale = Yii::$app->HelperClass->getUserLanguage($user, true);
 
         /** Latest News */
-        $latestNews = array();
+        $latestNews = News::getLatestNews($languageID, 3);
 
-        /** 3 Latest News */
-        $latestNews[0]['ID'] = 1;
-        $latestNews[0]['Headline'] = "Royale News from Clash";
-        $latestNews[0]['previewImage'] = "clashNews";
-        $latestNews[0]['StartingDate'] = (new DateTime())->format('d.m.Y');
+        /** Categories */
+        $categories = NewsCategorie::find()->orderBy(['name' => SORT_DESC])->limit(5)->all();
 
-        $latestNews[1]['ID'] = 2;
-        $latestNews[1]['Headline'] = "New Tournament Series Arrived";
-        $latestNews[1]['previewImage'] = "newTournament";
-        $latestNews[1]['StartingDate'] = (new DateTime())->format('d.m.Y');
-
-        $latestNews[2]['ID'] = 3;
-        $latestNews[2]['Headline'] = "The Bug is Fixed";
-        $latestNews[2]['previewImage'] = "fixedBug";
-        $latestNews[2]['StartingDate'] = (new DateTime())->format('d.m.Y');
+        //print_r($categories);
+        //die();
 
         return $this->render('overview', [
             'latestNews' => $latestNews,
+            'categories' => $categories,
         ]);
 	}
 }

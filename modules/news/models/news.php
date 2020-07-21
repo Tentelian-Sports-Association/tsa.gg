@@ -6,6 +6,7 @@ use app\modules\user\models\User;
 use app\modules\news\models\NewsDetails;
 
 use yii\db\ActiveRecord;
+use DateTime;
 
 /**
  * Class News
@@ -99,7 +100,7 @@ class News  extends ActiveRecord
     
     public static function getLatestNews($languageID, $count)
     {
-         //News::find()->orderBy(['dt_created' => SORT_DESC])->limit(5)->all();
+        //News::find()->orderBy(['dt_created' => SORT_DESC])->limit(5)->all();
         $latestNews = static::find()->orderBy(['dt_created' => SORT_ASC])->limit($count)->all();
 
         $latestNewsData = array();
@@ -115,7 +116,7 @@ class News  extends ActiveRecord
             $latestNewsData[$nr]['AuthorID'] = $news->getAuthorId();
             $latestNewsData[$nr]['Author'] = $news->getAuthor()->getUsername();
             $latestNewsData[$nr]['previewImage'] =  $newsDetails->getImgTag();
-            $latestNewsData[$nr]['StartingDate'] = $news->getDtCreated();
+            $latestNewsData[$nr]['StartingDate'] = (new DateTime($news->getDtCreated()))->format('d.m.Y');
 		}
 
         /** 3 Latest News */

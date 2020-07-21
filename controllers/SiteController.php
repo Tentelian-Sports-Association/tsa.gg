@@ -21,7 +21,6 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use DateTime;
 
 class SiteController extends BaseController
 {
