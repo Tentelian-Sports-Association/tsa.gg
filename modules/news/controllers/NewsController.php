@@ -85,4 +85,17 @@ class NewsController extends BaseController
             //'categories' => $categories,
         ]);
 	}
+
+    public function actionSubCategorie($subCategorieId)
+    {
+        
+    }
+
+    public function actionNewsDetails($newsId)
+    {
+        return $this->render('category', [
+            //'latestNews' => $latestNews,
+            //'categories' => $categories,
+        ]);
+	}
 }

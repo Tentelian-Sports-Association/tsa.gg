@@ -136,6 +136,6 @@ class HelperClass
         if($json_result['data'] != null)
             return true;
         else
-	        return true;
+	        return false;
 	}
 }
