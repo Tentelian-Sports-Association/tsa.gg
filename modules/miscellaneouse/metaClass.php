@@ -8,6 +8,7 @@ use app\modules\core\models\User;
 
 use yii;
 use yii\web\View;
+use yii\helpers\Url;
 
 /**
  * Class MetaClass
@@ -49,7 +50,7 @@ class MetaClass
         $view->registerMetaTag([
             'itemprop' => 'image',
             //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
-            'content' => 'https://tsa.gg/images/icons/logo.svg',
+            'content' => Url::base('https') . '/images/metafiles/tsa_white.png',
         ]); // itemprop image
 
         /*************** Twitter Card Data ***************/
@@ -91,7 +92,7 @@ class MetaClass
         $view->registerMetaTag([
             'name' => 'twitter:image:src',
             //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
-            'content' => 'https://tsa.gg/images/icons/logo.svg',
+            'content' => Url::base('https') . '/images/metafiles/tsa_white.png',
         ]); // twitter:image:src
 
         $view->registerMetaTag([
@@ -113,19 +114,19 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:url',
-            'content' => 'https://tsa.gg',
+            'content' => Url::base('https'),
         ]); // og:url
 
         $view->registerMetaTag([
             'property' => 'og:image',
             //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
-            'content' => 'https://tsa.gg/images/icons/logo.svg',
+            'content' => Url::base('https') . '/images/metafiles/tsa_white.png',
         ]); // og:image
 
         $view->registerMetaTag([
             'property' => 'og:image:secure_url',
             //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
-            'content' => 'https://tsa.gg/images/icons/logo.svg',
+            'content' => Url::base('https') . '/images/metafiles/tsa_white.png',
         ]); // og:image:secure_url
 
         $view->registerMetaTag([
