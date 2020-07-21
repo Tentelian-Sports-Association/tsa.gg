@@ -109,6 +109,7 @@ $this->title = \app\modules\news\Module::t('overview', 'overview_header');
 
 	<!-- *************** Kategories *************** -->
 
+
     <section class="category-block">
         <div class="inner-wrapper">
             <h2>Kategorien</h2>
