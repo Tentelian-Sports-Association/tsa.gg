@@ -54,11 +54,15 @@
         }
 
         @media (min-width: $breakpoint-md) {
+            left: 0;
             align-items: center;
             bottom: 0;
             display: flex;
             top: 0;
             padding: 0 71px;
+            margin: 0 auto;
+            max-width: 1920px;
+            right: 0;
         }
         .event-hero-title {
             font-size: 32px;
@@ -95,7 +99,7 @@
         bottom: 0;
         right: 0;
         @media (min-width: $breakpoint-sm) {
-            right: 75px;
+            right: 400px;
         }
 
         .upcoming-description {

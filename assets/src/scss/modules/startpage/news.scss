@@ -1,4 +1,8 @@
 .news-block {
+    .inner-wrapper {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
     .news-list {
         .news-link {
             position: relative;
@@ -42,6 +46,7 @@
     }
     .ad-block-container {
         margin: 20px 0;
+        text-align: center;
         @media (min-width: $breakpoint-sm) {
             margin: 40px 0;
         }
