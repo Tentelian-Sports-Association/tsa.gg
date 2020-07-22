@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 
 \app\modules\news\assets\NewsDetailsAsset::register($this);
 
-$this->title = \app\modules\news\Module::t('overview', 'overview_header');
+$this->title = \app\modules\news\Module::t('overview', 'news_details_header');
 
 ?>
 

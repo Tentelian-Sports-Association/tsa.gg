@@ -26,6 +26,7 @@ use Yii;
  			'class' => 'yii\i18n\PhpMessageSource',
  			'basePath' => '@app/modules/news/messages',
  			'fileMap' => [
+ 				'modules/news/overview' => 'overview.php',
  			],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
  		];
