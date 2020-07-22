@@ -317,33 +317,50 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                             <?= \app\modules\user\Module::t('userDetails', 'userDetails_socialMediaHeader') ?>
                         </div>
                         <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a class="d-flex align-items-center" href="https://twitch.tv/TentelianSA" target="_blank" aria-label="Twitch Button">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
-                                        <g clip-path="url(#clip0)">
-                                            <path d="M0.893555 3.82708V19.1299H6.16347V22H9.04089L11.9137 19.129H16.2266L21.9778 13.3925V0H2.32997L0.893555 3.82708ZM4.24672 1.91125H20.0611V12.4337L16.7061 15.7813H11.4343L8.56147 18.6478V15.7813H4.24672V1.91125Z" fill="white"></path>
-                                            <path d="M9.51953 5.74023H11.4354V11.4786H9.51953V5.74023Z" fill="white"></path>
-                                            <path d="M14.7886 5.74023H16.7053V11.4786H14.7886V5.74023Z" fill="white"></path></g>
-                                        <defs><clipPath id="clip0"><rect width="22" height="22" fill="white"></rect></clipPath></defs>
-                                    </svg>
-                                    Twitch
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="d-flex align-items-center" href="https://www.youtube.com/watch?v=aDBr8jwnpbw" target="_blank" aria-label="youtube Button">
-                                    <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
-                                        <path d="M29.803 5.71816C29.803 3.08144 27.8635 0.960351 25.4671 0.960351C22.221 0.808594 18.9104 0.75 15.5272 0.75H14.4725C11.0975 0.75 7.78112 0.808594 4.53502 0.960937C2.1444 0.960937 0.204946 3.09375 0.204946 5.73047C0.0584618 7.81582 -0.00364759 9.90176 -0.000131968 11.9877C-0.00599134 14.0736 0.0604149 16.1615 0.199087 18.2514C0.199087 20.8881 2.13854 23.0268 4.52917 23.0268C7.93932 23.185 11.4374 23.2553 14.994 23.2494C18.5565 23.2611 22.0448 23.1869 25.4589 23.0268C27.8553 23.0268 29.7948 20.8881 29.7948 18.2514C29.9354 16.1596 29.9999 14.0736 29.994 11.9818C30.0073 9.8959 29.9436 7.80801 29.803 5.71816ZM12.1288 17.7357V6.22207L20.6249 11.976L12.1288 17.7357Z" fill="white"></path>
-                                    </svg>
-                                    Youtube
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="footer-link d-flex align-items-center" href="https://twitter.com/TentelianSA" target="_blank" aria-label="Twitter Button">
-                                    <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
-                                        <path d="M22.0767 2.13092C21.2529 2.49231 20.375 2.73185 19.4598 2.84815C20.4013 2.286 21.1199 1.40262 21.4578 0.337846C20.5799 0.861231 19.6107 1.23092 18.5778 1.43723C17.7442 0.549693 16.5562 0 15.2602 0C12.7458 0 10.7215 2.04092 10.7215 4.54292C10.7215 4.90292 10.7519 5.24908 10.8267 5.57862C7.05085 5.39446 3.70977 3.58477 1.46531 0.828C1.07347 1.50785 0.843621 2.286 0.843621 3.12369C0.843621 4.69662 1.65362 6.09092 2.86101 6.89815C2.13131 6.88431 1.41547 6.67246 0.809005 6.33877C0.809005 6.35262 0.809005 6.37062 0.809005 6.38862C0.809005 8.59569 2.38331 10.4289 4.44777 10.8512C4.07808 10.9523 3.67516 11.0008 3.25701 11.0008C2.96624 11.0008 2.6727 10.9842 2.39716 10.9232C2.98562 12.7218 4.65547 14.0442 6.64101 14.0871C5.09578 15.2958 3.13377 16.0242 1.00977 16.0242C0.637313 16.0242 0.280082 16.0075 -0.0771484 15.9618C1.9347 17.2592 4.31901 18 6.89024 18C15.2478 18 19.817 11.0769 19.817 5.076C19.817 4.87523 19.8101 4.68139 19.8004 4.48892C20.7018 3.84923 21.4592 3.05031 22.0767 2.13092Z" fill="white"></path></svg>
-                                    Twitter
-                                </a>
-                            </li>
+                            <?php if($userInfo['twitch_name']) : ?>
+                                <li class="list-inline-item">
+                                    <a class="d-flex align-items-center" href="https://twitch.tv/TentelianSA" target="_blank" aria-label="Twitch Button">
+                                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                                            <g clip-path="url(#clip0)">
+                                                <path d="M0.893555 3.82708V19.1299H6.16347V22H9.04089L11.9137 19.129H16.2266L21.9778 13.3925V0H2.32997L0.893555 3.82708ZM4.24672 1.91125H20.0611V12.4337L16.7061 15.7813H11.4343L8.56147 18.6478V15.7813H4.24672V1.91125Z" fill="white"></path>
+                                                <path d="M9.51953 5.74023H11.4354V11.4786H9.51953V5.74023Z" fill="white"></path>
+                                                <path d="M14.7886 5.74023H16.7053V11.4786H14.7886V5.74023Z" fill="white"></path></g>
+                                            <defs><clipPath id="clip0"><rect width="22" height="22" fill="white"></rect></clipPath></defs>
+                                        </svg>
+                                        Twitch
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if($userInfo['trovo_name']) : ?>
+                                <li class="list-inline-item">
+                                    <a class="d-flex align-items-center" href="https://trovo.live/tenteliansa" target="_blank" aria-label="Twitch Button">
+                                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                                            <g clip-path="url(#clip0)">
+                                                <path d="M0.893555 3.82708V19.1299H6.16347V22H9.04089L11.9137 19.129H16.2266L21.9778 13.3925V0H2.32997L0.893555 3.82708ZM4.24672 1.91125H20.0611V12.4337L16.7061 15.7813H11.4343L8.56147 18.6478V15.7813H4.24672V1.91125Z" fill="white"></path>
+                                                <path d="M9.51953 5.74023H11.4354V11.4786H9.51953V5.74023Z" fill="white"></path>
+                                                <path d="M14.7886 5.74023H16.7053V11.4786H14.7886V5.74023Z" fill="white"></path></g>
+                                            <defs><clipPath id="clip0"><rect width="22" height="22" fill="white"></rect></clipPath></defs>
+                                        </svg>
+                                        Twitch
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if($userInfo['youtube_channel']) : ?>
+                                <li class="list-inline-item">
+                                    <a class="d-flex align-items-center" href="https://www.youtube.com/watch?v=aDBr8jwnpbw" target="_blank" aria-label="youtube Button">
+                                        <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                                            <path d="M29.803 5.71816C29.803 3.08144 27.8635 0.960351 25.4671 0.960351C22.221 0.808594 18.9104 0.75 15.5272 0.75H14.4725C11.0975 0.75 7.78112 0.808594 4.53502 0.960937C2.1444 0.960937 0.204946 3.09375 0.204946 5.73047C0.0584618 7.81582 -0.00364759 9.90176 -0.000131968 11.9877C-0.00599134 14.0736 0.0604149 16.1615 0.199087 18.2514C0.199087 20.8881 2.13854 23.0268 4.52917 23.0268C7.93932 23.185 11.4374 23.2553 14.994 23.2494C18.5565 23.2611 22.0448 23.1869 25.4589 23.0268C27.8553 23.0268 29.7948 20.8881 29.7948 18.2514C29.9354 16.1596 29.9999 14.0736 29.994 11.9818C30.0073 9.8959 29.9436 7.80801 29.803 5.71816ZM12.1288 17.7357V6.22207L20.6249 11.976L12.1288 17.7357Z" fill="white"></path>
+                                        </svg>
+                                        Youtube
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if($userInfo['twitter_name']) : ?>
+                                <li class="list-inline-item">
+		        			        <?= Html::a('<svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2"><path d="M22.0767 2.13092C21.2529 2.49231 20.375 2.73185 19.4598 2.84815C20.4013 2.286 21.1199 1.40262 21.4578 0.337846C20.5799 0.861231 19.6107 1.23092 18.5778 1.43723C17.7442 0.549693 16.5562 0 15.2602 0C12.7458 0 10.7215 2.04092 10.7215 4.54292C10.7215 4.90292 10.7519 5.24908 10.8267 5.57862C7.05085 5.39446 3.70977 3.58477 1.46531 0.828C1.07347 1.50785 0.843621 2.286 0.843621 3.12369C0.843621 4.69662 1.65362 6.09092 2.86101 6.89815C2.13131 6.88431 1.41547 6.67246 0.809005 6.33877C0.809005 6.35262 0.809005 6.37062 0.809005 6.38862C0.809005 8.59569 2.38331 10.4289 4.44777 10.8512C4.07808 10.9523 3.67516 11.0008 3.25701 11.0008C2.96624 11.0008 2.6727 10.9842 2.39716 10.9232C2.98562 12.7218 4.65547 14.0442 6.64101 14.0871C5.09578 15.2958 3.13377 16.0242 1.00977 16.0242C0.637313 16.0242 0.280082 16.0075 -0.0771484 15.9618C1.9347 17.2592 4.31901 18 6.89024 18C15.2478 18 19.817 11.0769 19.817 5.076C19.817 4.87523 19.8101 4.68139 19.8004 4.48892C20.7018 3.84923 21.4592 3.05031 22.0767 2.13092Z" fill="white"></path></svg> Twitter'
+                                            , 'https://twitter.com/' . $userInfo['twitter_name'], ['class' => 'footer-link d-flex align-items-center', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter', 'data-size' => 'default', 'data-show-screen-name' => 'true']); ?>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
 
@@ -376,6 +393,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                 </div>
 
             </div>
+
             <div class="col-md-4 bg-darkblue-2 px-5 d-inline-block h-75">
                 <div class="inner-container">
                     <!-- Coins -->
@@ -414,8 +432,20 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
 
         <div class="row mt-5">
             <div class="col-md-8 ">
-                <div class="ad-block-container">
-                    <img src="https://via.placeholder.com/1170x264.png" class="img-fluid">
+                <div class="ad-block-container row">
+                    <div class="ad-block-item col-12">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- tsa.gg Index Partner -->
+                        <ins class="adsbygoogle"
+                            style="display:block"
+                            data-ad-client="ca-pub-8480651532892152"
+                            data-ad-slot="6811521719"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>
