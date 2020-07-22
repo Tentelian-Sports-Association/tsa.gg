@@ -6,9 +6,13 @@ use yii\helpers\Html;
  * @var $ourPartner array
  */
 
-app\modules\partner\assets\PartnerOverviewAsset::register($this);
+$this->title = 'Our Partners';
 
-$this->title = 'TSA - Our Partners';
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeMetaPartner($this, $this->title, 'We present our partners and sponsors: Tentelian, Steelseries, Commotron GmbH, Gamers Finest Salzburg, Pace Media Development GmbH');
+
+app\modules\partner\assets\PartnerOverviewAsset::register($this);
 
 ?>
 
