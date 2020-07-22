@@ -24,7 +24,7 @@ $this->title = \app\modules\news\Module::t('overview', 'overview_header');
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'news') . '.webp' ?>
                         type="image/jpeg">
                 <source media="(min-width: 300px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'news') . '.webp' ?>
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/mobile/', 'news') . '.webp' ?>
                         type="image/jpeg">
                 <img src="https://via.placeholder.com/1920x500" aria-label="News Header" class="img-fluid"/>
             </picture>

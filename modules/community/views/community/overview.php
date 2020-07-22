@@ -21,7 +21,7 @@ $this->title = \app\modules\community\Module::t('overview', 'overview_header');
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'community') . '.webp' ?>
                         type="image/jpeg">
                 <source media="(min-width: 300px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'community') . '.webp' ?>
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/mobile/', 'community') . '.webp' ?>
                         type="image/jpeg">
                 <img src="https://via.placeholder.com/1920x500" aria-label="News Header" class="img-fluid"/>
             </picture>
