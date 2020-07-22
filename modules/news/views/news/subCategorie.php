@@ -35,7 +35,7 @@ $this->title = \app\modules\news\Module::t('overview', 'overview_header');
 					News
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    Weit hinten, hinter den Wortbergen, fern der LÃ¤nder Vokalien und Konsonantien.
                 </p>
             </div>
         </div>
