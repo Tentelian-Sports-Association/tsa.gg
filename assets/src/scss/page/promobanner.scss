@@ -1,7 +1,7 @@
 .promo-banner {
     background: $primaryColor;
     color: $white;
-    padding: 26px 28px;
+    padding: 0;
     @media (min-width: $breakpoint-lg) {
         padding-left: 75px;
         padding-right: 75px;
@@ -14,7 +14,7 @@
     }
     @media (min-width: $breakpoint-sm+1) {
         .inner-wrapper {
-            padding: 40px 70px;
+            padding: 20px 70px;
         }
     }
     .promo-text {
@@ -81,7 +81,7 @@
         border: none;
         @media (max-width: $breakpoint-lg) {
             transform: none!important;
-            padding-bottom: 0;
+            padding-bottom: 10px;
             .dropdown-item {
                 display: inline-block;
                 width: auto;
