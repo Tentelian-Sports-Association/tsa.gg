@@ -13,7 +13,7 @@ $this->title = \app\modules\news\Module::t('overview', 'overview_header');
 
 /************* Meta Index ****************/
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
-Yii::$app->MetaClass->writeMetaNews($this, $this->title);
+Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Module::t('overview', 'news_page_description_overview'));
 
 \app\modules\news\assets\OverviewAsset::register($this);
 

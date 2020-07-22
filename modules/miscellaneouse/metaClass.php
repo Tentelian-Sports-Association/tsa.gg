@@ -166,12 +166,12 @@ class MetaClass
      * @param View $view
      * @param string $title
      */
-    public function writeMetaNews($view, $title)
+    public function writeMetaNews($view, $title, $description)
     {
         /*************** standart meta tags ***************/
         $view->registerMetaTag([
             'name' => 'description',
-            'content' => 'Tentelian Sports Association - News Section - All about Gaming, eSport and our TSA Partners and Sponsors',
+            'content' => $description,
         ]); // description
 
         $view->registerMetaTag([
@@ -187,7 +187,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'itemprop' => 'description',
-            'content' => 'Tentelian Sports Association - News Section - All about Gaming, eSport and our TSA Partners and Sponsors',
+            'content' => $description,
         ]); // itemprop description
 
         $view->registerMetaTag([
@@ -224,7 +224,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'name' => 'twitter:description',
-            'content' => 'Tentelian Sports Association - News Section - All about Gaming, eSport and our TSA Partners and Sponsors',
+            'content' => $description,
         ]); // twitter:description - less then 200 characters
 
         $view->registerMetaTag([
@@ -294,7 +294,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:description',
-            'content' => 'Tentelian Sports Association - News Section - All about Gaming, eSport and our TSA Partners and Sponsors',
+            'content' => $description,
         ]); // og:description
 
         $view->registerMetaTag([

@@ -10,9 +10,13 @@ use yii\helpers\ArrayHelper;
  * @var $categoryName string
  */
 
-\app\modules\news\assets\CategoryAsset::register($this);
-
 $this->title = $categoryName . \app\modules\news\Module::t('overview', 'overview_categorie_header');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeMetaNews($this, $this->title);
+
+\app\modules\news\assets\CategoryAsset::register($this);
 
 ?>
 
