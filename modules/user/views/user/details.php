@@ -30,7 +30,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                         </div>
 
                         <div class="avatarName col-6">
-                            <h3 class="mb-1"><?= $user->getUsername() ?><span class="ml-3 avatarID">ID: <?= $user->getID() ?></span></h3>
+                            <h3 class="mb-1"><?= $userInfo['user_name'] ?><span class="ml-3 avatarID">ID: <?= $userInfo['user_id'] ?></span></h3>
                             <ul class="personal-datalist list-inline">
                                 <li class="list-inline-item">
                                     <span><?= $userInfo['age'] ?> Jahre alt </span>
