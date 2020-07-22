@@ -1,6 +1,16 @@
 .event-hero {
     position: relative;
     padding: 0;
+    .inner-wrapper {
+        height: 680px;
+        position: absolute;
+        max-width: 1920px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
     &-image {
         position: relative;
         margin: 0 auto;
@@ -102,7 +112,7 @@
         bottom: 0;
         right: 0;
         @media (min-width: $breakpoint-sm) {
-            right: 400px;
+            right: 70px;
         }
 
         .upcoming-description {
