@@ -116,7 +116,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:url',
-            'content' => Url::base('https'),
+            'content' => Yii::$app->request->url,
         ]); // og:url
 
         $view->registerMetaTag([
@@ -257,7 +257,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:url',
-            'content' => Url::base('https'),
+            'content' => Yii::$app->request->url,
         ]); // og:url
 
         $view->registerMetaTag([
@@ -289,7 +289,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:image:alt',
-            'content' => 'TSA Logo Large',
+            'content' => 'TSA News Logo',
         ]); // og:image:alt
 
         $view->registerMetaTag([
