@@ -18,12 +18,12 @@ use yii\helpers\Html;
         <div class="hero-image">
             <picture>
                 <source media="(min-width: 1200px)"
-                        srcset="https://via.placeholder.com/1920x500"
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'events') . '.webp' ?>
                         type="image/jpeg">
                 <source media="(min-width: 300px)"
-                        srcset="https://via.placeholder.com/400x250"
+                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/mobile/', 'events') . '.webp' ?>
                         type="image/jpeg">
-                <img src="https://via.placeholder.com/1920x500" aria-label="News Header" class="img-fluid"/>
+                <img src="<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'events') . '.webp' ?>" aria-label="News Header" class="img-fluid"/>
                 <!--<img src="assets/images/hero/herobackground.png" aria-label="News Header" class="img-fluid"/>-->
             </picture>
         </div>

@@ -14,6 +14,7 @@ use app\modules\miscellaneouse\models\language\Language;
 
 use DateTime;
 use Yii;
+use yii\web\UploadedFile;
 
 class UserController extends BaseController
 {
@@ -107,6 +108,9 @@ class UserController extends BaseController
             'discord_name' => ($userSocials != null) ? $userSocials->getDiscordname() : '',
             'discord_server' => ($userSocials != null) ? $userSocials->getDiscordServer() : '',
             'teamspeak_server' => ($userSocials != null) ? $userSocials->getTeamSpeakServer() : '',
+            'twitch_name' => null,
+            'youtube_channel' => null,
+            'trovo_name' => null,
         ];
 
         /** @var Games $games */
