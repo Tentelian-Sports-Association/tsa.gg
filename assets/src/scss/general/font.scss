@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 body {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     background: $secondaryColor;
     color: $white;
 }
 
 h1 {
+    font-family: 'Ubuntu', sans-serif;
     font-size: 90px;
     font-weight: bold;
     line-height: 103px;
@@ -17,6 +19,7 @@ h1 {
 }
 
 h2 {
+    font-family: 'Ubuntu', sans-serif;
     font-size: 60px;
     font-weight: bold;
     line-height: 103px;
@@ -29,6 +32,7 @@ h2 {
 }
 
 h3 {
+    font-family: 'Ubuntu', sans-serif;
     font-size: 32px;
     font-weight: 500;
     line-height: 37px;
