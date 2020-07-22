@@ -1,5 +1,6 @@
 .site-user-overview {
     .inner-wrapper {
+        padding: 40px 20px;
         max-width: 1920px;
         margin: 0 auto;
         .row {
@@ -38,6 +39,11 @@
                     }
                 }
             }
+        }
+    }
+    @media (min-width: $breakpoint-sm+1) {
+        .inner-wrapper {
+            padding: 40px 70px;
         }
     }
 }

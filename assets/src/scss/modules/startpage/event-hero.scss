@@ -10,11 +10,17 @@
         left: 0;
         right: 0;
         margin: 0 auto;
-        padding: 0 49px;
+        padding: 0 20px;
     }
     @media (min-width: $breakpoint-sm) {
         .inner-wrapper {
             min-height: 560px;
+        }
+    }
+    @media (min-width: $breakpoint-sm+1) {
+        .inner-wrapper {
+            min-height: 560px;
+            padding: 0 49px;
         }
     }
     @media (min-width: $breakpoint-md) {

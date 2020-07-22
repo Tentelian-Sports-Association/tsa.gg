@@ -1,5 +1,5 @@
 header {
-    padding: 24px 28px;
+    padding: 24px 20px;
     border-bottom: 2px solid $white;
     @media (min-width: $breakpoint-md) {
         padding: 0px 71px;
@@ -7,12 +7,25 @@ header {
     .navbar {
         max-width: 1920px;
         margin: 0 auto;
+        padding: .5rem 0 !important;
         .navbar-collapse {
             justify-content: space-evenly;
             @media (max-width: $breakpoint-md-max) {
                 .nav-link {
                     padding: 15px 0;
                     border-bottom: 1px solid $white2;
+                }
+            }
+        }
+        .logo {
+            img {
+                width: 145px;
+            }
+        }
+        @media (min-width: $breakpoint-sm) {
+            .logo {
+                img {
+                    width: 238px;
                 }
             }
         }
@@ -82,4 +95,13 @@ header {
             }
         }
     }
+}
+@media (min-width: $breakpoint-sm+1) {
+    header {
+        padding: 24px 28px;
+        .navbar {
+            padding: .5rem 3rem !important;
+        }
+    }
+    
 }
