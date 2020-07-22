@@ -30,7 +30,7 @@ $searchString = '';
                 <source media="(min-width: 300px)"
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/mobile/', 'community') . '.webp' ?>
                         type="image/jpeg">
-                <img src="https://via.placeholder.com/1920x500" aria-label="News Header" class="img-fluid"/>
+                <img src="<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'community') . '.webp' ?>" aria-label="News Header" class="img-fluid"/>
             </picture>
         </div>
         <div class="hero-container row">
@@ -103,7 +103,7 @@ $searchString = '';
                                         . '<div class="langImg">'
                                         . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Language']['name'],'class' => 'IMG'])
                                         . '<div class"invite">' . '' . '</div>'
-                        , ['profile-details', 'userId' => $user['ID']]); ?>
+                        , ['/user/details', 'userId' => $user['ID']]); ?>
                     <?php endforeach; ?>
                 </div>
 
