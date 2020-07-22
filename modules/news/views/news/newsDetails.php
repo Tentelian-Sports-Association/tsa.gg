@@ -34,14 +34,34 @@ $this->title = \app\modules\news\Module::t('overview', 'overview_header');
 					News
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    Weit hinten, hinter den Wortbergen, fern der LÃ¤nder Vokalien und Konsonantien.
                 </p>
             </div>
         </div>
     </div>
 
     <!-- *************** Detailed News Bereich *************** -->
-
+    <section class="news-block">
+        <div class="inner-wrapper">
+            <div class="news-entry">
+                <div class="col-12 news-info">
+                    <div class="float-left">
+                        <span><?= $selectedNews['Author']?></span>
+                    </div>
+                    <div class="float-right">
+                        <span><?= $selectedNews['Date']?></span>
+                        <span><?= $selectedNews['Time']?></span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h3><?= $selectedNews['Headline']?></h3>
+                    <p><?= $selectedNews['Headline']?></p>
+                </div>
+                <div class="col-12">
+                </div>
+            </div>
+        </div>
+    </section>
     $selectedNews['ID']
     $selectedNews['CategorieID']
     $selectedNews['SubCategorieID']
