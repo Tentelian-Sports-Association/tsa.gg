@@ -129,7 +129,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <?php echo Html::a(Yii::t('app', 'tournaments_moreTournaments'), ["#"], ['class' => "filled-btn",'aria-label' => "show all tournaments Button"]); ?>
             <!-- If no Tournaments Availabel show what ever -->
             <?php else : ?>
-            
+                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/placeholder/', 'running_tournaments') . '.webp', ['class' => 'img-fluid',  'aria-label' => 'placeholder', 'id' => 'placeholder', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/placeholder/', 'running_tournaments') . '.png\'']); ?>
             <?php endif; ?>
         </div>
     </section>
