@@ -14,10 +14,20 @@
     }
     @media (min-width: $breakpoint-sm+1) {
         .inner-wrapper {
-            padding: 20px 0px;
+            padding: 20px 50px 20px 0;
         }
         .dropdown-item {
             padding: 5px 0;
+        }
+    }
+    @media (min-width: 1440px) {
+        .inner-wrapper {
+            padding: 20px 50px 20px 0;
+        }
+    }
+    @media (min-width: 1920px) {
+        .inner-wrapper {
+            padding: 20px 50px 20px 0;
         }
     }
     @media (min-width: 2070px) {
