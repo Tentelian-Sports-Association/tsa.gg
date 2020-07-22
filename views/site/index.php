@@ -64,7 +64,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <div class="event-hero-upcoming-events d-flex">
                     <div class="d-none d-sm-inline-block upcoming-image" aria-labelledby='<?= $upcomingEvents['Preview']['previewImage']?>' aria-describedby='smallEventContainer smallEventName'>
                         <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
-                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/index_300/', $upcomingEvents['Preview']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'smallEventContainer smallEventName',  'aria-label' => $upcomingEvents['Preview']['Name'], 'id' => $upcomingEvents['Preview']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/index_300/', $upcomingEvents['Preview']['previewImage']) . '.png\'']); ?>
+                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/Index_300/', $upcomingEvents['Preview']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'smallEventContainer smallEventName',  'aria-label' => $upcomingEvents['Preview']['Name'], 'id' => $upcomingEvents['Preview']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/Index_300/', $upcomingEvents['Preview']['previewImage']) . '.png\'']); ?>
                     </div>
                     <div class="d-inline-block upcoming-description" id="smallEventContainer">
                         <div class="inner">

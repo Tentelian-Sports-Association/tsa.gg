@@ -28,8 +28,8 @@ class BaseController extends Controller
             return false;
         }
         
-        //if(Yii::$app->controller->action->id !== 'construction' && Yii::$app->controller->id !== 'partner' && Yii::$app->controller->id !== 'site' && Yii::$app->controller->id !== 'news')
-        //    return $this->redirect(['/construction']);        
+        if(Yii::$app->controller->action->id !== 'construction' && Yii::$app->controller->id !== 'partner' && Yii::$app->controller->id !== 'site' && Yii::$app->controller->id !== 'news')
+            return $this->redirect(['/construction']);        
 
         if(Yii::$app->user->identity != null)
             Yii::$app->language = User::findIdentity(Yii::$app->user->identity->getId())->getLanguage()->getLocale();
