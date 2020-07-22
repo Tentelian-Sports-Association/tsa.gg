@@ -84,9 +84,13 @@ class NewsController extends BaseController
         /** Categories */
         $subCategories = NewsSubCategorie::find()->where(['categorie_id' => $categorieId])->orderBy(['name' => SORT_DESC])->limit(5)->all();
 
+        /** Category name */
+        $categoryName = NewsCategorie::find()->where(['id' => $categorieId])->one()->getName();
+
         return $this->render('category', [
             'latestNews' => $latestNews,
             'subCategories' => $subCategories,
+            'categoryName' => $categoryName,
         ]);
 	}
 
@@ -104,9 +108,15 @@ class NewsController extends BaseController
         /** Categories */
         $subCategorieNews = News::getNews($languageID, 'sub_categorie_id', $subCategorieId);
 
+        /** Category name */
+        $subCategorie = NewsSubCategorie::find()->where(['id' => $subCategorieId])->one();
+        $categoryName = NewsCategorie::find()->where(['id' => $subCategorie->getCategorieId()])->one()->getName();
+
         return $this->render('subCategorie', [
             'latestNews' => $latestNews,
             'subCategorieNews' => $subCategorieNews,
+            'categoryName' => $categoryName,
+            'subCategoryName' => $subCategorie['name'],
         ]);
     }
 

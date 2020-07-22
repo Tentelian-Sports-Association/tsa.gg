@@ -30,7 +30,7 @@ class MetaClass
         /*************** standart meta tags ***************/
         $view->registerMetaTag([
             'name' => 'description',
-            'content' => 'Tentelian Sports Association - Professional Gaming for everyone - Is a Tournament Site for Player from all Countries and all Skill Levels.',
+            'content' => 'Tentelian Sports Association - Professional Gaming for everyone - Is a Tournament Site for Players from all Countries and all Skill Levels.',
         ]); // description
 
         $view->registerMetaTag([
@@ -46,7 +46,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'itemprop' => 'description',
-            'content' => 'Tentelian Sports Association - Professional Gaming for everyone - Is a Tournament Site for Player from all Countries and all Skill Levels.',
+            'content' => 'Tentelian Sports Association - Professional Gaming for everyone - Is a Tournament Site for Players from all Countries and all Skill Levels.',
         ]); // itemprop description
 
         $view->registerMetaTag([
@@ -83,7 +83,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'name' => 'twitter:description',
-            'content' => 'Tentelian Sports Association - Professional Gaming for everyone - Is a Tournament Site for Player from all Countries and all Skill Levels.',
+            'content' => 'Tentelian Sports Association - Professional Gaming for everyone - Is a Tournament Site for Players from all Countries and all Skill Levels.',
         ]); // twitter:description - less then 200 characters
 
         $view->registerMetaTag([
@@ -153,7 +153,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:description',
-            'content' => 'Tentelian Sports Association - Professional Gaming for everyone - Is a Tournament Site for Player from all Countries and all Skill Levels.',
+            'content' => 'Tentelian Sports Association - Professional Gaming for everyone - Is a Tournament Site for Players from all Countries and all Skill Levels.',
         ]); // og:description
 
         $view->registerMetaTag([

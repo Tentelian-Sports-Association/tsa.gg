@@ -7,11 +7,13 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View
  * @var $latestNews array
  * @var $subCategorieNews array
+ * @var $categoryName string
+ * @var $subCategoryName string
  */
 
 \app\modules\news\assets\SubCategoryAsset::register($this);
 
-$this->title = \app\modules\news\Module::t('overview', 'overview_header');
+$this->title = $categoryName . ' - ' . $subCategoryName .  \app\modules\news\Module::t('overview', 'overview_categorie_header');;
 
 ?>
 
