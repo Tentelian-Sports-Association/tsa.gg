@@ -52,7 +52,7 @@
         top: 10%;
         position: absolute;
         width: 100%;
-        padding: 0 28px;
+        padding: 0;
         @media (min-width: $breakpoint-sm) {
             top: 32%;
         }
@@ -66,6 +66,9 @@
             margin: 0 auto;
             max-width: 1920px;
             right: 0;
+        }
+        .hero-text {
+            padding: 0;
         }
         .hero-title {
             font-size: 32px;

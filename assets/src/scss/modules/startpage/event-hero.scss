@@ -48,7 +48,7 @@
         top: 10%;
         position: absolute;
         width: 100%;
-        padding: 0 28px;
+        padding: 0;
         @media (min-width: $breakpoint-sm) {
             top: 32%;
         }
@@ -59,10 +59,12 @@
             bottom: 0;
             display: flex;
             top: 0;
-            padding: 0 71px;
             margin: 0 auto;
             max-width: 1920px;
             right: 0;
+        }
+        .hero-text {
+            padding: 0;
         }
         .event-hero-title {
             font-size: 32px;
