@@ -7,5 +7,7 @@ return [
 	'news_details_header' => ' News',
 
 	'news_page_description_overview' => 'Tentelian Sports Association - News Section - All about Gaming, eSport and our TSA Partners and Sponsors',
+	'news_page_description_categorie' => 'All news about our ',
+	'news_page_description_sub_categorie' => 'All news about our ',
 
 ];

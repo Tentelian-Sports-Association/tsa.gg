@@ -15,6 +15,10 @@ use yii\helpers\ArrayHelper;
 
 $this->title = $categoryName . ' - ' . $subCategoryName .  \app\modules\news\Module::t('overview', 'overview_categorie_header');;
 
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Module::t('overview', 'news_page_description_sub_categorie') . $subCategoryName);
+
 ?>
 
 <div class="news-block">

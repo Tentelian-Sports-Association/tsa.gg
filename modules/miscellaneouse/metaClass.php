@@ -51,7 +51,6 @@ class MetaClass
 
         $view->registerMetaTag([
             'itemprop' => 'image',
-            //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
             'content' => Url::base('https') . '/images/metafiles/TSA_Logo_Schrift_right_524x273_blackbg.png',
         ]); // itemprop image
 
@@ -93,13 +92,12 @@ class MetaClass
 
         $view->registerMetaTag([
             'name' => 'twitter:image:src',
-            //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
-            'content' => Url::base('https') . '/images/metafiles/TSA_Logo_Schrift_right_524x273_blackbg.png',
+            'content' => Url::base('https') . '/images/metafiles/TSA_Logo_Schrift_right_524x273_blackbg.webp',
         ]); // twitter:image:src
 
         $view->registerMetaTag([
             'name' => 'twitter:image:alt',
-            'content' => 'no pic availabel',
+            'content' => Url::base('https') . '/images/metafiles/TSA_Logo_Schrift_right_524x273_blackbg.png',
         ]); // twitter:image:alt
 
         /*************** Open Graph Data (and facebook) ***************/
@@ -121,13 +119,11 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:image',
-            //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
             'content' => Url::base('https') . '/images/metafiles/TSA_Logo_Schrift_right_524x273_blackbg.png',
         ]); // og:image
 
         $view->registerMetaTag([
             'property' => 'og:image:secure_url',
-            //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
             'content' => Url::base('https') . '/images/metafiles/TSA_Logo_Schrift_right_524x273_blackbg.png',
         ]); // og:image:secure_url
 
@@ -192,7 +188,6 @@ class MetaClass
 
         $view->registerMetaTag([
             'itemprop' => 'image',
-            //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
             'content' => Url::base('https') . '/images/metafiles/news_524x273.png',
         ]); // itemprop image
 
@@ -234,13 +229,12 @@ class MetaClass
 
         $view->registerMetaTag([
             'name' => 'twitter:image:src',
-            //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
-            'content' => Url::base('https') . '/images/metafiles/news_524x273.png',
+            'content' => Url::base('https') . '/images/metafiles/news_524x273.webp',
         ]); // twitter:image:src
 
         $view->registerMetaTag([
             'name' => 'twitter:image:alt',
-            'content' => 'no pic availabel',
+            'content' => Url::base('https') . '/images/metafiles/news_524x273.png',
         ]); // twitter:image:alt
 
         /*************** Open Graph Data (and facebook) ***************/
@@ -262,13 +256,11 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:image',
-            //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
             'content' => Url::base('https') . '/images/metafiles/news_524x273.png',
         ]); // og:image
 
         $view->registerMetaTag([
             'property' => 'og:image:secure_url',
-            //'content' => Yii::$app->HelperClass->checkImage('/images/company/', 'tsa_800x235'),
             'content' => Url::base('https') . '/images/metafiles/news_524x273.png',
         ]); // og:image:secure_url
 

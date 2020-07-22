@@ -8,9 +8,14 @@ use yii\helpers\ArrayHelper;
  * @var $selectedNews array
  */
 
+$this->title = \app\modules\news\Module::t('overview', 'news_details_header');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeMetaNews($this, $selectedNews['Headline'], $selectedNews['ShortBody']);
+
 \app\modules\news\assets\NewsDetailsAsset::register($this);
 
-$this->title = \app\modules\news\Module::t('overview', 'news_details_header');
 
 ?>
 
