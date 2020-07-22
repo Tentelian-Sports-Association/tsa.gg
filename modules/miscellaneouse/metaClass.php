@@ -114,7 +114,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:url',
-            'content' => Yii::$app->request->url,
+            'content' => Url::base('https') . Yii::$app->request->url,
         ]); // og:url
 
         $view->registerMetaTag([
@@ -251,7 +251,7 @@ class MetaClass
 
         $view->registerMetaTag([
             'property' => 'og:url',
-            'content' => Yii::$app->request->url,
+            'content' => Url::base('https') . Yii::$app->request->url,
         ]); // og:url
 
         $view->registerMetaTag([
