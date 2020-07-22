@@ -116,7 +116,7 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
 
 <!-- *************** Wir sind live Bereich (anpassen das nur gezeigt wird wenn wir live sind *************** -->
 <?php if(Yii::$app->HelperClass->getTwitchOnlineStat()) : ?>
-    <div class="promo-banner dropdown d-block d-lg-flex align-items-center justify-content-between">
+    <div class="promo-banner dropdown position-relative d-block d-lg-flex align-items-center justify-content-between">
         <div class="inner-wrapper">
             <h3 class="promo-text d-inline-flex align-items-center">
                 <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('redcircle'), ['class' => 'img-fluid', 'aria-label' => 'we are live']); ?><?= Yii::t('app', 'promotion_nowLive1') ?><span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline"><?= Yii::t('app', 'promotion_nowLive2') ?></span></h3>

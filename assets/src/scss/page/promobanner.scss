@@ -2,25 +2,27 @@
     background: $primaryColor;
     color: $white;
     padding: 0;
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: 992px) {
         padding-left: 75px;
         padding-right: 75px;
     }
     .inner-wrapper {
         padding: 40px 20px;
         max-width: 1920px;
-        margin: 0 auto;
         width: 100%;
     }
     @media (min-width: $breakpoint-sm+1) {
         .inner-wrapper {
-            padding: 20px 70px;
+            padding: 20px 0px;
+        }
+        .dropdown-item {
+            padding: 5px 0;
         }
     }
     .promo-text {
         font-size: 16px;
         line-height: 18px;
-        @media (min-width: $breakpoint-lg) {
+        @media (min-width: 992px) {
             font-size: 24px;
             line-height: 54px;
         }
@@ -35,7 +37,7 @@
                 fill: $primaryColor;
             }
         }
-        @media (min-width: $breakpoint-lg) {
+        @media (min-width: 992px) {
             font-size: 24px;
             line-height: 28px;
         }
@@ -53,12 +55,12 @@
         border: none;
     }
     .promo-links {
-        @media (min-width: $breakpoint-lg) {
+        @media (min-width: 992px) {
             width: auto;
             display: inline-block;
         }
         a {
-            @media (min-width: $breakpoint-lg) {
+            @media (min-width: 992px) {
                 display: inline-block;
                 width: auto;
             }
@@ -79,15 +81,23 @@
         background: transparent;
         float: none;
         border: none;
-        @media (max-width: $breakpoint-lg) {
+        @media (max-width: 991px) {
+            position: absolute!important;
+            background: $primaryColor;
+            border: none;
+            padding: 0 20px;
+            top: 60px !important;
+        }
+        @media (max-width: 991px) {
             transform: none!important;
-            padding-bottom: 10px;
+            padding-bottom: 0;
             .dropdown-item {
                 display: inline-block;
                 width: auto;
                 background: $secondaryColor;
                 border-radius: 35px;
                 padding: 8px 15px;
+                margin-bottom: 10px;
             }
         }
     }
