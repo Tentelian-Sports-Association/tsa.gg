@@ -2,7 +2,7 @@
     position: relative;
     padding: 0;
     .inner-wrapper {
-        height: 680px;
+        min-height: 360px;
         position: absolute;
         max-width: 1920px;
         width: 100%;
@@ -10,6 +10,18 @@
         left: 0;
         right: 0;
         margin: 0 auto;
+        padding: 0 49px;
+    }
+    @media (min-width: $breakpoint-sm) {
+        .inner-wrapper {
+            min-height: 560px;
+        }
+    }
+    @media (min-width: $breakpoint-md) {
+        .inner-wrapper {
+            padding: 0;
+            min-height: 680px;
+        }
     }
     &-image {
         position: relative;
@@ -36,7 +48,6 @@
                 min-height: 500px;
             }
         }
-
         @media (min-width: $breakpoint-lg) {
             height: 680px;
 
@@ -57,7 +68,6 @@
     &-container {
         top: 10%;
         position: absolute;
-        width: 100%;
         padding: 0;
         @media (min-width: $breakpoint-sm) {
             top: 32%;
