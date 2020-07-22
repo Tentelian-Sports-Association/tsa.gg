@@ -2,7 +2,7 @@ header {
     padding: 24px 28px;
     border-bottom: 2px solid $white;
     @media (min-width: $breakpoint-md) {
-        padding: 24px 71px;
+        padding: 0px 71px;
     }
     .navbar {
         max-width: 1920px;
