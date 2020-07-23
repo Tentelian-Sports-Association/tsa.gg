@@ -36,10 +36,10 @@ Yii::$app->MetaClass->writeMetaNews($this, $selectedNews['Headline'], $selectedN
         <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-					News
+					<?= $selectedNews['Headline'] ?>
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <?= $selectedNews['ShortBody'] ?>
                 </p>
             </div>
         </div>

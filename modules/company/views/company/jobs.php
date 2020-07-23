@@ -23,14 +23,16 @@ use yii\helpers\Html;
             </picture>
         </div>
         <div class="hero-container row">
+            <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-                    Jobs
+                    <?= \app\modules\company\Module::t('company', 'jobs_header') ?>
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <?= \app\modules\company\Module::t('company', 'jobs_description') ?>
                 </p>
             </div>
+        </div>
         </div>
     </div>
     <!-- Der Text dann.... -->

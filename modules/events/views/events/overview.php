@@ -29,10 +29,10 @@ use yii\helpers\Html;
         <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-					Events
+					<?= \app\modules\events\Module::t('events', 'event_overview_header') ?>
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <?= \app\modules\events\Module::t('events', 'event_overview_description') ?>
                 </p>
             </div>
         </div>

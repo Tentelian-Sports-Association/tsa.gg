@@ -26,6 +26,7 @@ class Module extends \yii\base\Module
             'class' => 'yii\i18n\PhpMessageSource',
             'basePath' => '@app/modules/company/messages',
             'fileMap' => [
+                'modules/company/company' => 'company.php',
  			],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
         ];

@@ -44,10 +44,9 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <source media="(min-width: 300px)"
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_300/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
                         type="image/jpeg">
-                <img src=""
+                <img src="<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>"
                      aria-label="Next Big Event Pictures" />
             </picture>
-
         </div>
         <div class="inner-wrapper">
             <div class="event-hero-container" id="bigEventContainer">
@@ -243,8 +242,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                             . '</div>'
                         , $partner['webadresse'], ['target'=>'_blank']); ?>
                     </div>
-                <?php endforeach; ?>
-               
+                <?php endforeach; ?> 
             </div>
             <div class="ad-block-container row">
                 <div class="ad-block-item col-12">

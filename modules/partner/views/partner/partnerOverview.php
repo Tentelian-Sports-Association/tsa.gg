@@ -33,10 +33,10 @@ app\modules\partner\assets\PartnerOverviewAsset::register($this);
         <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-					Partners
+					<?= \app\modules\partner\Module::t('partner', 'our_partners') ?>
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <?= \app\modules\partner\Module::t('partner', 'our_partners_description') ?>
                 </p>
             </div>
         </div>
@@ -44,25 +44,14 @@ app\modules\partner\assets\PartnerOverviewAsset::register($this);
     <section>
         <div class="inner-wrapper">
             <div class="partner-list">
-                <!-- Auf der Partnerseite soll das ein bisschen abwechslungsreich sein.
-                    immer abwechselnd:
-                    Bild links
-                    Beschreibung und �berschrift rechts
-                    next
-                    Bild rechts
-                    beschreibung und �berschrift links -->
                 <?php foreach($ourPartner as $partner) : ?>
                     <div class="partner-item">
                         <div class="row align-items-center text-center">
                             <div class="col-12 col-md-6 order-2 order-md-1">
-                                <!-- M�ssen heir aber noch auf das Design warten... -->
-                                <!-- name als �berschrift �ber dem langem text -->
                                 <h3><?= $partner['name']?></h3>
-                                <!-- beschreibung -->
                                 <p><?= $partner['description']?></p>
                             </div>
                             <div class="col-12 col-md-6 order-1 order-md-2" aria-labelledby='<?= $partner['Image']?>' aria-describedby='<?= $partner['Image']?>'>
-                                <!-- Background Image -->
                                 <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.webp', ['class' => 'img-fluid','description' => $partner['Name'],'aria-label' => $partner['Name'], 'id' => $partner['Image'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.png\'']), $partner['webadresse'], ['target'=>'_blank']); ?>
                             </div>
                         </div>

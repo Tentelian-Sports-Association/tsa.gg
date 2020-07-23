@@ -29,7 +29,6 @@ return [
 
 	/** Current News */
 	'currentNews_header' => 'Latest News',
-	'allNews_header' => 'News',
 	'currentNews_moreNews' => 'Show More',
 
 	/** Partners */

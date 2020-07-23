@@ -31,16 +31,16 @@ Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Modul
                 <source media="(min-width: 300px)"
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/mobile/', 'news') . '.webp' ?>
                         type="image/jpeg">
-                <img src="https://via.placeholder.com/1920x500" aria-label="News Header" class="img-fluid"/>
+                <img src="<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'news') . '.webp' ?>" aria-label="News Header" class="img-fluid"/>
             </picture>
         </div>
         <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-					News
+					<?= $categoryName ?>
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <?= \app\modules\news\Module::t('overview', 'news_description_category') . $categoryName ?>
                 </p>
             </div>
         </div>
@@ -49,7 +49,7 @@ Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Modul
     <!-- *************** Latest News Bereich images noch einbauen *************** -->
     <section class="news-block">
         <div class="inner-wrapper">
-            <h2><?= Yii::t('app', 'currentNews_header') ?></h2>
+            <h2><?= \app\modules\news\Module::t('overview', 'currentNews_header') ?></h2>
             <ul class="news-list row list-unstyled">
                 <?php foreach($latestNews as $news) : ?>
                     <li class="news-item col-12 col-lg-4">
@@ -110,7 +110,7 @@ Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Modul
     <!-- *************** Kategories *************** -->
     <section class="category-block">
         <div class="inner-wrapper">
-            <h2>Sub Kategorien</h2>
+            <h2><?= \app\modules\news\Module::t('overview', 'news_categorie_sub_categorie_header') ?></h2>
             <ul class="categorie-list row list-unstyled">
                 <?php foreach($subCategories as $categorie) : ?>
                     <li class="categorie-item col-12 col-lg-4">

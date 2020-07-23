@@ -25,10 +25,10 @@ use yii\helpers\Html;
         <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-                    Datenschutzerklärung
+                    <?= \app\modules\company\Module::t('company', 'privacy_header') ?>
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <?= \app\modules\company\Module::t('company', 'privacy_description') ?>
                 </p>
             </div>
         </div>

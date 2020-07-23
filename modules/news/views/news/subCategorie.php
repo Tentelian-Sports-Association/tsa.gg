@@ -38,10 +38,10 @@ Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Modul
         <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-					News
+					<?= $subCategoryName ?>
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <?= \app\modules\news\Module::t('overview', 'news_description_category') . $subCategoryName ?>
                 </p>
             </div>
         </div>
@@ -50,7 +50,7 @@ Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Modul
     <!-- *************** Latest News Bereich images noch einbauen *************** -->
     <section class="news-block">
         <div class="inner-wrapper">
-            <h2><?= Yii::t('app', 'currentNews_header') ?></h2>
+            <h2><?= \app\modules\news\Module::t('overview', 'currentNews_header') ?></h2>
             <ul class="news-list row list-unstyled">
                 <?php foreach($latestNews as $news) : ?>
                     <li class="news-item col-12 col-lg-4">
