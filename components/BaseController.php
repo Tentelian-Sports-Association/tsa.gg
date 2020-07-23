@@ -27,7 +27,7 @@ class BaseController extends Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
-
+/*
         if(Yii::$app->controller->action->id !== 'construction'
         && Yii::$app->controller->id !== 'partner'
         && Yii::$app->controller->id !== 'site'
@@ -38,7 +38,7 @@ class BaseController extends Controller
             if(Yii::$app->controller->id !== 'community' || Yii::$app->controller->action->id == 'orga-overview' || Yii::$app->controller->action->id == 'team-overview' || Yii::$app->controller->action->id == 'user-overview')
                 return $this->redirect(['/construction']);
 		}
-
+*/
         if(Yii::$app->user->identity != null)
             Yii::$app->language = User::findIdentity(Yii::$app->user->identity->getId())->getLanguage()->getLocale();
         
