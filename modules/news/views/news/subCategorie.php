@@ -111,7 +111,7 @@ Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Modul
     <!-- *************** All News *************** -->
     <section class="news-block">
         <div class="inner-wrapper">
-            <h2><?= Yii::t('app', 'allNews_header') ?></h2>
+            <h2><?= \app\modules\news\Module::t('overview', 'allNews_header') ?></h2>
             <ul class="news-list row list-unstyled">
                 <?php foreach($subCategorieNews as $news) : ?>
                     <li class="news-item col-12 col-lg-4">

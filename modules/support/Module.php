@@ -6,7 +6,7 @@ use Yii;
 
 /**
  * Class Module
- * @package app\modules\company
+ * @package app\modules\support
  */
 class Module extends \yii\base\Module
 {
@@ -26,7 +26,7 @@ class Module extends \yii\base\Module
             'class' => 'yii\i18n\PhpMessageSource',
             'basePath' => '@app/modules/support/messages',
             'fileMap' => [
-                'modules/support/support' => 'contact.php',
+                'modules/support/contact' => 'contact.php',
             ],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
         ];
