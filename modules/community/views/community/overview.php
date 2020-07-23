@@ -29,7 +29,7 @@ $this->title = \app\modules\community\Module::t('overview', 'overview_header');
         <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-                    Player
+                    Community
                 </h1>
                 <p class="description" >
                     Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
