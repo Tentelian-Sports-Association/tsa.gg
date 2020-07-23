@@ -10,8 +10,8 @@
 
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
-
-use kartik\date\DatePicker;
+use yii\bootstrap4\Modal;
+use yii\jui\DatePicker;
 
 //print_r(Yii::$app->params['bsVersion']);
 //die();
@@ -27,7 +27,7 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
 		
 		<?php $form = ActiveForm::begin([
 	        'id' => 'register-form',
-	        'options' => ['class' => 'form-horizontal needs-validation ','novalidate' => ' '],
+	        'options' => ['class' => 'form-horizontal needs-validation col-12 col-lg-7 px-0','novalidate' => ' '],
 	        'fieldConfig' => [
 	            'template' => "{label}\n<div class=\"col-12\">{input}</div>\n<div class=\"col-12\">{error}</div>",
 	            'labelOptions' => ['class' => 'col-12 control-label'],
@@ -62,15 +62,10 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
                 <input type="date" id="datepicker" class="input-default w-100" >
                 -->
 
-                <?= $form->field($model, 'birthday')->widget(DatePicker::className(), [
-        		    'options' => [
-            		    'class' => 'form-control form-control-color input-default'
-        		    ],
-        		    'pluginOptions' => [
-            		    'autoclose' => true,
-            		    'format' => 'dd.mm.yyyy'
-        		    ]
-    		    ]); ?>
+                <?= $form->field($model,'birthday')->widget(DatePicker::className(),[
+                        'options' => ['class' => 'input-default form-control','required' => true]
+                    ]) ?>
+                
             </div>
 
 
