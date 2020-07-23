@@ -35,7 +35,7 @@ class BaseController extends Controller
         && Yii::$app->controller->id !== 'account'
         && Yii::$app->controller->id !== 'support')
         {
-            if(Yii::$app->controller->id !== 'community' || Yii::$app->controller->action->id == 'orga-overview' || Yii::$app->controller->action->id == 'team-overview')
+            if(Yii::$app->controller->id !== 'community' || Yii::$app->controller->action->id == 'orga-overview' || Yii::$app->controller->action->id == 'team-overview' || Yii::$app->controller->action->id == 'user-overview')
                 return $this->redirect(['/construction']);
 		}
 
