@@ -147,8 +147,8 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
         <div class="col-sm-2 second-col">
             <h3 class="footer-header"><?= Yii::t('app', 'footer_areasHeader'); ?></h3>
             <?php echo Html::a(Yii::t('app', 'footer_areasHome'), ["/site/index"], ['class' => "footer-link d-block",'aria-label' => "Home Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'footer_areasNews'), ["#"], ['class' => "footer-link d-block",'aria-label' => "News Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'footer_areasPlayer'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Player Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'footer_areasNews'), ["/news/overview"], ['class' => "footer-link d-block",'aria-label' => "News Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'footer_areasPlayer'), ["/community/user-overview"], ['class' => "footer-link d-block",'aria-label' => "Player Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'footer_areasTeams'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Teams Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'footer_areasOrganisations'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Organisations Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'footer_areasTournaments'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Tournaments Button"]); ?>
@@ -156,10 +156,10 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
         </div>
         <div class="col-sm-2 third-col">
             <h3 class="footer-header"><?= Yii::t('app', 'footer_legalHeader') ?></h3>
-            <?php echo Html::a(Yii::t('app', 'footer_legalImprint'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Imprint Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'footer_legalPrivacy'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Privacy Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'footer_legalGTC'), ["#"], ['class' => "footer-link d-block",'aria-label' => "GTC Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'footer_legalJobs'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Jobs Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'footer_legalImprint'), ["/company/imprint"], ['class' => "footer-link d-block",'aria-label' => "Imprint Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'footer_legalPrivacy'), ["/company/privacy"], ['class' => "footer-link d-block",'aria-label' => "Privacy Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'footer_legalGTC'), ["/company/gtc"], ['class' => "footer-link d-block",'aria-label' => "GTC Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'footer_legalJobs'), ["/company/jobs"], ['class' => "footer-link d-block",'aria-label' => "Jobs Button"]); ?>
         </div>
         <div class="col-sm-2 fourth-col">
             <h3 class="footer-header"><?= Yii::t('app', 'footer_socialMediaHeader') ?></h3>
