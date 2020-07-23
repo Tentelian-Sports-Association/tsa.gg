@@ -28,8 +28,19 @@ class BaseController extends Controller
             return false;
         }
         
-        //if(Yii::$app->controller->action->id !== 'construction' && Yii::$app->controller->id !== 'partner' && Yii::$app->controller->id !== 'site' && Yii::$app->controller->id !== 'news')
-        //    return $this->redirect(['/construction']);        
+        if(Yii::$app->controller->action->id !== 'user-overview')
+            print_r(Yii::$app->controller->action->id);
+        //die();
+
+        if(Yii::$app->controller->action->id !== 'construction'
+        && Yii::$app->controller->id !== 'partner'
+        && Yii::$app->controller->id !== 'site'
+        && Yii::$app->controller->id !== 'news'
+        && Yii::$app->controller->id !== 'support')
+        {
+            if(Yii::$app->controller->id !== 'community' || Yii::$app->controller->action->id == 'orga-overview' || Yii::$app->controller->action->id == 'team-overview')
+                return $this->redirect(['/construction']);
+		}
 
         if(Yii::$app->user->identity != null)
             Yii::$app->language = User::findIdentity(Yii::$app->user->identity->getId())->getLanguage()->getLocale();
