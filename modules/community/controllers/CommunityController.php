@@ -143,7 +143,7 @@ class CommunityController extends BaseController
         // Datenbank anlegen wo das drin ist um das zu vereinfachen
         $sortOrder = [];
         $sortOrder[1] = \app\modules\community\Module::t('searchForm', 'searchForm_sortAscendLbl');
-        $sortOrder[2] = \app\modules\community\Module::t('searchForm', 'searchForm_sortDescendLbl');
+        $sortOrder[2] = \app\modules\community\Module::t('searchForm', 'searchForm_sortDescentLbl');
 
         $sortOrderBy = [];
         $sortOrderBy[1] = \app\modules\community\Module::t('searchForm', 'searchForm_byID');
