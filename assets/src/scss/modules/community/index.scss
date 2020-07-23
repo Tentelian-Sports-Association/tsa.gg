@@ -34,6 +34,86 @@
         padding: 40px 20px;
         max-width: 1920px;
         margin: 0 auto;
+        .quickSearch {
+            padding: 0;
+            padding-right: 15px;
+            .searchBox, .sortBox, .search-button {
+                padding: 0;
+            }
+            .sortBox {
+                .col-sortascend {
+                    padding-right: 0px;
+                }
+            }
+            .search-button {
+                button {
+                    width: 100%;
+                    background: $primaryColor;
+                    border: none;
+                }
+            }
+        }
+        .users {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .userBodyHead {
+            background: $thirdColor;
+            padding: 20px;
+        }
+        .userBody {
+            padding: 20px;
+            a {
+                width: 100%;
+            }
+            .avatar {
+                img {
+                    width: 40px;
+                    border-radius: 25px;
+                }
+            }
+            .id {
+                margin-top: 8px;
+            }
+            .username {
+                margin-top: 8px;
+                margin-left: 10px;
+            }
+            .IMG {
+                width: 40px;
+            }
+        }
+        .userBody:nth-child(even) {
+            background-color: #272f46;
+        }
+        .userBody:nth-child(odd) {
+            background-color: #1a223b;
+        }
+        .pagination {
+            max-width: 360px;
+            height: 35px;
+            width: 100%;
+            li {
+                width: 35px;
+                height: 35px;
+                background: $fourthColor;
+                position: relative;
+                vertical-align: middle;
+                margin-right: 5px;
+                a, span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 35px;
+                }
+            }
+            li.active {
+                background: $primaryColor;
+            }
+            li:last-child {
+                margin-right: 0;
+            }
+        }
         .row {
             margin-right: 0 !important;
 

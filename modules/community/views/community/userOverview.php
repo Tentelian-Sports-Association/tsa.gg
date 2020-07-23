@@ -48,67 +48,81 @@ $searchString = '';
 
     <div class="inner-wrapper">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="searchHeader">
-                    <div class="quickSearch">
+                    <div class="col-12 quickSearch">
                         <?php $form = ActiveForm::begin(['id' => 'user-search-form', 'options' => ['class' => 'form-horizontal user-search-bar']]); ?>
-                            <div class="col-12">
-                                <div class="col-5 searchBox">
-                                    <div class="vline_large"></div>
-                                    <?= $form->field($searchModel, 'searchString')->textInput(['class' => 'input-default'])->label(false); ?>
-                                </div>
-
-                                <div class="col-6 sortBox">
-                                    <div class="col-6 col-sortascend">
-                                        <?= $form->field($searchModel, 'sortAscend')->dropDownList($sortOrder, ['class' => 'select-wrapper input-default'])->label(false); ?>
-                                    </div>
-                                    <div class="vline_small"></div>
-                                    <div class="col-6 col-sortedby">
-                                        <?= $form->field($searchModel, 'sortedBy')->dropDownList($sortOrderBy, ['class' => 'select-wrapper input-default'])->label(false); ?>
-                                    </div>
-                                </div>
-                                <div class="col-1 search-button">
-                                    <?= Html::submitButton(\app\modules\community\Module::t('searchForm', 'searchForm_btnSort'), ['class' => 'btn btn-primary delete search-btn', 'name' => 'search-button']) ?>
-                                </div>
+                            <div class="col-5 searchBox">
+                                <div class="vline_large"></div>
+                                <?= $form->field($searchModel, 'searchString')->textInput(['class' => 'input-default'])->label(false); ?>
                             </div>
 
-                            <?php echo LinkPager::widget(['pagination' => $pagination]); ?>
+                            <div class="col-6 sortBox">
+                                <div class="col-6 col-sortascend">
+                                    <?= $form->field($searchModel, 'sortAscend')->dropDownList($sortOrder, ['class' => 'select-wrapper input-default'])->label(false); ?>
+                                </div>
+                                <div class="vline_small"></div>
+                                <div class="col-6 col-sortedby">
+                                    <?= $form->field($searchModel, 'sortedBy')->dropDownList($sortOrderBy, ['class' => 'select-wrapper input-default'])->label(false); ?>
+                                </div>
+                            </div>
+                            <div class="col-1 search-button">
+                                <?= Html::submitButton(\app\modules\community\Module::t('searchForm', 'searchForm_btnSort'), ['class' => 'btn btn-primary delete search-btn', 'name' => 'search-button']) ?>
+                            </div>
+                            <div class="clearfix"></div>
                         <?php ActiveForm::end(); ?>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-12">
-                <div class="users">
-                    <div class="userBodyHead">
-                        <div class="id"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byID') ?></div>
-                        <div class="username"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byName') ?></div>
-                        <div class="natImg"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byNationality') ?></div>
-                        <div class="langImg"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byLanguage') ?></div>
-                        <div class="invite"></div>
+                <div class="col-12">
+                    <div class="float-right">
+                        <?php echo LinkPager::widget(['pagination' => $pagination]); ?>
                     </div>
-                    
-                    <?php foreach ($sortedPaginatedUsers as $index => $user) : ?>
-                        <?= Html::a('<div class="userBody">'
-                                        . '<div class="id">' . $user['ID'] . '</div>'
-                                        .'</div>'
-                                        . '<div class="avatar">'
-                                        . Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.webp', ['aria-label' => $user['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.png\''])		
-                                        . '</div>'
-                                        . '<div class="username">' . $user['Name'] . '</div>'
-                                        . '</div>'
-                                        . '<div class="natImg">'
-                                        . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Nationality']['name'],'class' => 'IMG'])
-                                        . '</div>'
-                                        . '<div class="langImg">'
-                                        . Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Language']['name'],'class' => 'IMG'])
-                                        . '<div class"invite">' . '' . '</div>'
-                        , ['/user/details', 'userId' => $user['ID']]); ?>
-                    <?php endforeach; ?>
+                    <div class="clearfix"></div>
                 </div>
-
-                <?php echo LinkPager::widget(['pagination' => $pagination]); ?>
+                <div class="row users">
+                    <div class="col-12 col-md-12">
+                        <div class="col-12 userBodyHead">
+                            <div class="col-2 id float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byID') ?></div>
+                            <div class="col-3 username float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byName') ?></div>
+                            <div class="col-3 invite float-left"></div>
+                            <div class="col-2 natImg float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byNationality') ?></div>
+                            <div class="col-2 langImg float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byLanguage') ?></div>      
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    
+                        <?php foreach ($sortedPaginatedUsers as $index => $user) : ?>
+                        <div class="col-12 userBody">
+                            <div class="col-2 id float-left">
+                                <?php echo $user['ID']; ?>
+                            </div>
+                            <div class="col-3 float-left">
+                                <div class="avatar float-left">
+                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.webp', ['aria-label' => $user['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.png\'']) ?>		
+                                </div>
+                                <div class="username float-left">
+                                    <?php echo $user['Name']; ?>
+                                </div>
+                            </div>
+                            <div class="col-3 invite float-left"></div>
+                            <div class="col-2 natImg float-left">
+                                <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Nationality']['name'],'class' => 'IMG']) ?>
+                            </div>
+                            <div class="col-2 langImg float-left">
+                                <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Language']['name'],'class' => 'IMG']) ?>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="float-right">
+                        <?php echo LinkPager::widget(['pagination' => $pagination]); ?>
+                    </div>
+                </div>
             </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
 </div>
