@@ -1,0 +1,28 @@
+.inner-wrapper {
+    padding: 40px 49px;
+    max-width: 1920px;
+    margin: 0 auto;
+    #edit-details {
+        background: $thirdColor;
+        padding: 20px 80px;
+        .edit-user, .edit-user-details, .edit-user-social {
+            padding-bottom: 25px;
+            border-bottom: 1px solid $white;
+        }
+        .edit-user-social {
+            margin-bottom: 25px;
+        }
+        .col-6, .col-12 {
+            padding: 0;
+        }
+        .col-6:nth-child(even) {
+            padding-right: 5px;
+        }
+        .col-6:nth-child(odd) {
+            padding-left: 5px;
+        }
+        .input-default {
+            height: 51px !important;
+        }
+    }
+}
