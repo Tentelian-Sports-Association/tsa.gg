@@ -237,11 +237,12 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
             <h2><?= Yii::t('app', 'partners_ourPartners') ?></h2>
             <div class="row">
                 <?php foreach($ourPartner as $partner) : ?>
-                    <?= Html::a('<div class="col-6 col-sm-3 partner-item" aria-labelledby=' . $partner['image'] . 'aria-describedby=' . $partner['image'] . '>'
+                    <div class="col-6 col-sm-3">
+                    <?= Html::a('<div class="partner-item" aria-labelledby=' . $partner['image'] . 'aria-describedby=' . $partner['image'] . '>'
                             .Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.webp', ['aria-label' => $partner['name'], 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.png\''])		
                             . '</div>'
                         , $partner['webadresse'], ['target'=>'_blank']); ?>
-                    
+                    </div>
                 <?php endforeach; ?>
                
             </div>
