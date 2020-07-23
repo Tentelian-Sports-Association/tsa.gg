@@ -32,8 +32,8 @@ return [
 	'currentNews_moreNews' => 'Alle News',
 
 	/** Partners */
-	'partnerss_ourPartners' => 'Unsere Partner',
-	'partnerss_morePartners' => 'Alle Partner',
+	'partners_ourPartners' => 'Unsere Partner',
+	'partners_morePartners' => 'Alle Partner',
 
 	/** Footer */
 	'footer_copyright' => '&copy;Tentelian Sports Association ist eine Marke der Commotron GmbH ',

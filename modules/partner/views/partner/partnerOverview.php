@@ -27,7 +27,7 @@ app\modules\partner\assets\PartnerOverviewAsset::register($this);
                 <source media="(min-width: 300px)"
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/mobile/', 'partner') . '.webp' ?>
                         type="image/jpeg">
-                <img src="https://via.placeholder.com/1920x500" aria-label="partner Header" class="img-fluid"/>
+                <img src="<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'partner') . '.webp' ?>" aria-label="partner Header" class="img-fluid"/>
             </picture>
         </div>
         <div class="hero-container row">

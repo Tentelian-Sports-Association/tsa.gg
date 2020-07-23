@@ -234,14 +234,16 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
     <!-- *************** Our Partners Bereich *************** -->
     <section class="partner-block">
         <div class="inner-wrapper">
-            <h2><?= Yii::t('app', 'partnerss_ourPartners') ?></h2>
+            <h2><?= Yii::t('app', 'partners_ourPartners') ?></h2>
             <div class="row">
                 <?php foreach($ourPartner as $partner) : ?>
-                    <div class="col-6 col-sm-3 partner-item" aria-labelledby='<?= $partner['image']?>' aria-describedby='<?= $partner['image']?>'>
-                        <!-- Background Image -->
-                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.webp', ['class' => 'img-fluid','description' => $partner['name'],'aria-label' => $partner['name'], 'id' => $partner['image'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.png\'']), $partner['webadresse'], ['target'=>'_blank']); ?>
-                    </div>
+                    <?= Html::a('<div class="col-6 col-sm-3 partner-item" aria-labelledby=' . $partner['image'] . 'aria-describedby=' . $partner['image'] . '>'
+                            .Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.webp', ['aria-label' => $partner['name'], 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['image']) . '.png\''])		
+                            . '</div>'
+                        , $partner['webadresse'], ['target'=>'_blank']); ?>
+                    
                 <?php endforeach; ?>
+               
             </div>
             <div class="ad-block-container row">
                 <div class="ad-block-item col-12">
@@ -259,7 +261,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 </div>
             </div>
             <div class="partner-footer text-center">
-                <?php echo Html::a(Yii::t('app', 'partnerss_morePartners'), ["/partner/overview"], ['class' => "filled-btn",'aria-label' => "Show all Partners Button"]); ?>
+                <?php echo Html::a(Yii::t('app', 'partners_morePartners'), ["/partner/overview"], ['class' => "filled-btn",'aria-label' => "Show all Partners Button"]); ?>
             </div>
         </section>
     </div>

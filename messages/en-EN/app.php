@@ -33,8 +33,8 @@ return [
 	'currentNews_moreNews' => 'Show More',
 
 	/** Partners */
-	'partnerss_ourPartners' => 'Our partners',
-	'partnerss_morePartners' => 'Show More',
+	'partners_ourPartners' => 'Our partners',
+	'partners_morePartners' => 'Show More',
 
 	/** Footer */
 	'footer_copyright' => '&copy;Tentelian Sports Association is a Trademark of Commotron GmbH ',
