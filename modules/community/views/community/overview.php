@@ -37,15 +37,41 @@ $this->title = \app\modules\community\Module::t('overview', 'overview_header');
             </div>
         </div>
     </div>
+    <div class="community-overview">
+        <div class="inner-wrapper">
+            <div class="col-8">
+                <ul class="list-unstyled row">
+                    <li class="community-item col-12 col-lg-6">
+                        <!-- User Overview -->
+                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.webp', ['aria-label' => 'User Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.png\''])		
+                                        . '<h3 class="community-header">User Overview</h3>'
+                        , ['/community/user-overview'], ['class' => 'community-link']); ?>
+                    </li>
+                    <li class="community-item col-12 col-lg-6">
+                        <!-- Orga Overview -->
+                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.webp', ['aria-label' => 'Orga Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.png\''])		
+                                        . '<h3 class="community-header">Orga Overview</h3>'
+                        , ['/community/orga-overview'], ['class' => 'community-link']); ?>
+                    </li>
+                    <li class="community-item col-12 col-lg-6">
+                        <!-- Team Overview -->
+                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.webp', ['aria-label' => 'Team Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.png\''])		
+                                        . '<h3 class="community-header">Team Overview</h3>'
+                        , ['/community/team-overview'], ['class' => 'community-link']); ?>
+                    </li>
+                    <!-- 
+                    <li class="community-item col-12 col-lg-6">
 
-    <div class="container">
-        <!-- User Overview -->
-		<?php echo Html::a(\app\modules\community\Module::t('overview', 'overview_users'), ["/community/user-overview"], ['class' => 'footer-link d-flex align-items-center', 'aria-label' => "User Overview"]); ?>
-
-        <!-- Orga Overview -->
-		<?= Html::a(\app\modules\community\Module::t('overview', 'overview_organisations'), ["#"], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "User Overview"]); ?>
-
-        <!-- Team Overview -->
-		<?= Html::a(\app\modules\community\Module::t('overview', 'overview_teams'), ["#"], ['class' => 'footer-link d-flex align-items-center', 'aria-label' => "User Overview"]); ?>
+                    </li>
+                    -->
+                    <li class="community-item col-12 col-lg-12">
+                    <!-- Add Ad-Banner here -->
+                    </li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <!-- Add Ad-Banner here -->
+            </div>
+        </div>
     </div>
 </div>
