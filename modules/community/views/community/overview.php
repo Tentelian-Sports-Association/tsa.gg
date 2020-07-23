@@ -65,12 +65,36 @@ $this->title = \app\modules\community\Module::t('overview', 'overview_header');
                     </li>
                     -->
                     <li class="community-item col-12 col-lg-12">
-                    <!-- Add Ad-Banner here -->
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- TSA-Community-SideBanner -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-8480651532892152"
+                             data-ad-slot="2187242773"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                     </li>
                 </ul>
             </div>
             <div class="col-4">
-                <!-- Add Ad-Banner here -->
+                <div class="ad-block-container row">
+                <div class="ad-block-item col-12">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- TSA-Community-Footer -->
+                    <ins class="adsbygoogle"
+                            style="display:block"
+                            data-ad-client="ca-pub-8480651532892152"
+                            data-ad-slot="6889561650"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"></ins>
+                    <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
             </div>
         </div>
     </div>

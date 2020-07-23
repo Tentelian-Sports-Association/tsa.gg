@@ -80,28 +80,28 @@ Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Modul
             <div class="ad-block-container row">
                 <div class="ad-block-item col-12 col-sm-6">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- tsa.gg Index News Ad Left -->
+                    <!-- TSA-News-InAd-Left -->
                     <ins class="adsbygoogle"
-                        style="display:block"
-                        data-ad-client="ca-pub-8480651532892152"
-                        data-ad-slot="7168004119"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"></ins>
+                         style="display:block"
+                         data-ad-client="ca-pub-8480651532892152"
+                         data-ad-slot="7436356562"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
                     <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
+                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
                 <div class="ad-block-item col-12 col-sm-6">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- tsa.gg Index News Ad Right -->
+                    <!-- TSA-News-InAd-Right -->
                     <ins class="adsbygoogle"
-                            style="display:block"
-                            data-ad-client="ca-pub-8480651532892152"
-                            data-ad-slot="4621731829"
-                            data-ad-format="auto"
-                            data-full-width-responsive="true"></ins>
+                         style="display:block"
+                         data-ad-client="ca-pub-8480651532892152"
+                         data-ad-slot="7209125854"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
                     <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
+                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
             </div>
@@ -141,15 +141,15 @@ Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Modul
             <div class="ad-block-container row">
                 <div class="ad-block-item col-12">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- tsa.gg Index Partner -->
+                    <!-- TSA-News-Footer -->
                     <ins class="adsbygoogle"
-                        style="display:block"
-                        data-ad-client="ca-pub-8480651532892152"
-                        data-ad-slot="6811521719"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"></ins>
+                         style="display:block"
+                         data-ad-client="ca-pub-8480651532892152"
+                         data-ad-slot="2758744954"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
                     <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
+                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
             </div>

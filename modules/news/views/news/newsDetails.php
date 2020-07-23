@@ -87,24 +87,46 @@ Yii::$app->MetaClass->writeMetaNews($this, $selectedNews['Headline'], $selectedN
                 <div class="col-12 news-content">
                     <p><?= $selectedNews['LongBody']?></p>
                 </div>
-
             </div>
         </div>
+
+        <!-- Left Long Banner -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- TSA-News-Details-Left-Top -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8480651532892152"
+             data-ad-slot="3504193873"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <!-- Left short Banner -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- TSA-News-Details-Left-Mid -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8480651532892152"
+             data-ad-slot="7251867190"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <!-- Footer Ad -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- TSA-News-Details-Footer -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8480651532892152"
+             data-ad-slot="6063565140"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </section>
-    <!--
-    $selectedNews['ID']
-    $selectedNews['CategorieID']
-    $selectedNews['SubCategorieID']
-    
-    $selectedNews['AuthorID']
-    $selectedNews['Author']
-    
-    $selectedNews['Headline']
-    $selectedNews['ShortBody']
-    $selectedNews['LongBody']
-    
-    $selectedNews['previewImage']
-    $selectedNews['Date']
-    $selectedNews['Time']
-    -->
 </div>
