@@ -6,7 +6,7 @@
 
 use yii\helpers\Html;
 
-//\app\modules\community\assets\communityOverview\CommunityOverviewAsset::register($this);
+\app\modules\events\assets\OverviewAsset::register($this);
 
 //$this->title = \app\modules\community\Module::t('overview', 'overview_header');
 
@@ -23,17 +23,16 @@ use yii\helpers\Html;
                 <source media="(min-width: 300px)"
                         srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/banner/mobile/', 'events') . '.webp' ?>
                         type="image/jpeg">
-                <img src="<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'events') . '.webp' ?>" aria-label="News Header" class="img-fluid"/>
-                <!--<img src="assets/images/hero/herobackground.png" aria-label="News Header" class="img-fluid"/>-->
+                <img src="https://via.placeholder.com/1920x500" aria-label="Events Header" class="img-fluid"/>
             </picture>
         </div>
         <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-                    Events
+					Events
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    Weit hinten, hinter den Wortbergen, fern der LÃ¤nder Vokalien und Konsonantien.
                 </p>
             </div>
         </div>
