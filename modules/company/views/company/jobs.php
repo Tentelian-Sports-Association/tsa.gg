@@ -35,6 +35,8 @@ use yii\helpers\Html;
     </div>
     <!-- Der Text dann.... -->
 	<div class="jobs">
-    	<p>Steve Jobs war leider in letzter zeit nicht hier....</p>
+        <div class="inner-wrapper">
+            <p>Steve Jobs war leider in letzter zeit nicht hier....</p>
+        </div>
 	</div>
 </div>

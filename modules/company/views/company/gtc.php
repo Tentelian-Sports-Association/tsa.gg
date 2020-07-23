@@ -28,12 +28,14 @@ use yii\helpers\Html;
                     AGB
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    Weit hinten, hinter den Wortbergen, fern der Lï¿½nder Vokalien und Konsonantien.
                 </p>
             </div>
         </div>
     </div>
     <!-- Der Text dann.... -->
 	<div class="gtc">
+        <div class="inner-wrapper">
+        </div>
 	</div>
 </div>
