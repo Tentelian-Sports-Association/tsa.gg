@@ -7,6 +7,7 @@ $this->title = 'Contact Us';
 
 \app\modules\support\assets\contact\ContactAsset::register($this);
 
+
 ?>
 
 <div class="content-partnerOverviewpage">
@@ -27,6 +28,7 @@ $this->title = 'Contact Us';
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
 					<?= \app\modules\support\Module::t('contact', 'contact_header') ?>
+                </h1>
                 </h1>
                 <p class="description" >
                     <?= \app\modules\support\Module::t('contact', 'contact_header_description') ?>
