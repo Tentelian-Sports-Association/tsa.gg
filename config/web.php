@@ -76,6 +76,7 @@ $config = [
                 'organisation/<action>' => 'organisation/organisation/<action>',
                 'events/<action>' => 'events/events/<action>',
                 'company/<action>' => 'company/company/<action>',
+                'support/<action>' => 'support/support/<action>',
             ],
         ],
         'i18n' => [
@@ -104,6 +105,7 @@ $config = [
         'organisation' => 'app\modules\organisation\Module',
         'events' => 'app\modules\events\Module',
         'company' => 'app\modules\company\Module',
+        'support' => 'app\modules\support\Module',
 	],
     'params' => $params,
 ];

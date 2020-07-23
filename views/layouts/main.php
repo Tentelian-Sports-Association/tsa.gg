@@ -84,8 +84,8 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
             <?php echo Html::a(Yii::t('app', 'navbar_community'), ["/community/overview"], ['class' => ($controllerID == 'community' ? "nav-link active" : "nav-link" ),'aria-label' => "Community Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["/index"], ['class' => ($controllerID == 'tournaments' ? "nav-link active" : "nav-link" ),'aria-label' => "Tournaments Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => ($controllerID == 'partner' ? "nav-link active" : "nav-link" ),'aria-label' => "Partners Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_events'), ["/events/overview"], ['class' => ($controllerID == 'events' ? "nav-link active" : "nav-link" ),'aria-label' => "Events Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["/index"], ['class' => ($controllerID == '#' ? "nav-link active" : "nav-link" ),'aria-label' => "Contact Button"]); ?>
+            <!--?php echo Html::a(Yii::t('app', 'navbar_events'), ["/events/overview"], ['class' => ($controllerID == 'events' ? "nav-link active" : "nav-link" ),'aria-label' => "Events Button"]); ?-->
+            <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["/support/contact"], ['class' => ($controllerID == 'support' ? "nav-link active" : "nav-link" ),'aria-label' => "Contact Button"]); ?>
             <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
                 <?php if(!$user) : ?>
                     <?= Html::button(Yii::t('app', 'navbar_login'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/login']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
