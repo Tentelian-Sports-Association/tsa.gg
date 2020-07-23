@@ -136,11 +136,4 @@ Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Modul
             </div>
         </div>
     </section>
-</div>
-
-               
-
-                        
-                        
-                                                  
-                        
+</div>        
