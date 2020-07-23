@@ -85,7 +85,6 @@ Yii::$app->MetaClass->writeMetaNews($this, $selectedNews['Headline'], $selectedN
                     </div>
                 </div>
                 <div class="col-12 news-content">
-                    <h3><?= $selectedNews['Headline']?></h3>
                     <p><?= $selectedNews['LongBody']?></p>
                 </div>
 
