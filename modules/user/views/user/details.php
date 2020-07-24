@@ -117,8 +117,6 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                             ?>
                         <?php endif; ?>
                         </h3>
-                       
-
                         <?php foreach($ownedOrganisation as $organisation) : ?>
                         <div class="organisation-block">
                             <div class="organisation mb-5">
@@ -329,76 +327,74 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                 )
                                 ?>
                             <?php endif; ?>
-                        </h3>
-                        <div class="games-block">
-                            <div class="gameplatform mb-5">
-                                <div class="gameplatform-header d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                    <h3 class="d-inline-block mb-2 ml-3">Steam</h3>
-                                </div>
-                            </div>
-                            <div class="px-5 row">
-                                <div class="col-lg-6">
-                                    <div class="game mb-4">
-                                        <div class="game-header d-flex align-items-center">
-                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                            <h4 class="d-inline-block ml-3">Rocket League</h4>
-                                        </div>
-                                    </div>
-                                    <div class="game mb-4">
-                                        <div class="game-header d-flex align-items-center">
-                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle"  >
-                                            <h4 class="d-inline-block ml-3">DR!IFT</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </h3>                                   
                         <?php foreach ($userGames as $games) : ?>
-                            <div class="gameEntry d-flex align-items-center">
-                                <div class="gamePlatformIMG">
+                            <div class="games-block">
+                                <div class="gameplatform mb-5">
+                                    <div class="gameplatform-header d-flex align-items-center">
+                                        <div class="col-1">
+                                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.webp', ['class' => 'plattform-icon'] ,['aria-labelledby' => 'PeSp Image', 'alt' => $games['platformIcon'] . '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.png\'']); ?>
+                                        </div>
+                                        <div class="col-11">
+                                            <div class="col-12">
+                                                <h4 class="float-left"><?= $games['platformName']; ?></h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                    <!-- Html::img(Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $games['platformIcon'] . '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/platforms/', $games['platformIcon']) . '.png\'']);
-
-                                    -->
-                                </div>
-
-                                <div class="userAccountID d-inline-block">
-                                    <?= ($games['visible'] || $userInfo['isMySelfe'])? $games['playerId'] : 'ID Not Public' ?>
-                                </div>
-
-                                <?php if ($userInfo['isMySelfe']): ?>
-                                    <?php
-                                        echo Html::a('',
-                                            [
-                                                "account/toggle-game-account",
-                                                "gameId" => $games['gameId'],
-                                                "platformId" => $games['platformId'],
-                                                "userId" => $userInfo['user_id']
-                                            ],
-                                            ['class' => $games['visible'] == 1 ? "filled-btn btn btn-primary upload" : "glyphicon glyphicon-eye-close glyphicon-game-account btn btn-primary upload",
-                                                'title' => $games['visible'] == 1 ? \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountVisible') : \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountNotVisible')
-                                            ]
-                                        )
-                                    ?>
-                                    <?php if ($games['editable']): ?>
-                                        <?php
-                                        echo Html::a('',
-                                            [
-                                                "account/remove-game-account",
-                                                "gameId" => $games['gameId'],
-                                                "platformId" => $games['platformId'],
-                                                "userId" => $userInfo['user_id']
-                                            ],
-                                            ['class' => "	btn btn-primary upload",
-                                                'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_deleteGameAccount')
-                                            ]
-                                        )
+                                    <?php if ($userInfo['isMySelfe']): ?>
+                                        <?php /*
+                                            echo Html::a('',
+                                                [
+                                                    "account/toggle-game-account",
+                                                    "gameId" => $games['gameId'],
+                                                    "platformId" => $games['platformId'],
+                                                    "userId" => $userInfo['user_id']
+                                                ],
+                                                ['class' => $games['visible'] == 1 ? "filled-btn btn btn-primary upload" : "glyphicon glyphicon-eye-close glyphicon-game-account btn btn-primary upload",
+                                                    'title' => $games['visible'] == 1 ? \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountVisible') : \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountNotVisible')
+                                                ]
+                                            )
+                                            */
                                         ?>
+                                        <?php if ($games['editable']): ?>
+                                            <?php
+                                            echo Html::a('',
+                                                [
+                                                    "account/remove-game-account",
+                                                    "gameId" => $games['gameId'],
+                                                    "platformId" => $games['platformId'],
+                                                    "userId" => $userInfo['user_id']
+                                                ],
+                                                ['class' => "	btn btn-primary upload",
+                                                    'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_deleteGameAccount')
+                                                ]
+                                            )
+                                            ?>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                <?php endif; ?>
+                                </div>
+                                <div class="px-5 row">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="team mb-4">
+                                            <div class="col-2 float-left">
+                                                <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
+                                            </div>
+                                            <div class="col-10 float-left">
+                                                <div class="col-12">
+                                                    <h4 class="float-left"> <?= ($games['visible'] || $userInfo['isMySelfe'])? $games['playerId'] : 'ID Not Public' ?></h4>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         <?php endforeach; ?>
+                                
+                        
                     </div>
 
                     <!-- Social Media -->
