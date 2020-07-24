@@ -36,7 +36,7 @@ $searchString = '';
         <div class="hero-container row">
             <div class="hero-text col-lg-8">
                 <h1 class="hero-title">
-                    Player
+                    Organisation
                 </h1>
                 <p class="description" >
                     Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
