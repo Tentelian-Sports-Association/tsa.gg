@@ -21,7 +21,7 @@ class OrganisationRoles extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'organisation_roles';
+        return 'organisation_role';
     }
 
     /*********** Base Getter ***********/

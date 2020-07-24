@@ -120,6 +120,10 @@ class UserController extends BaseController
         $games = $user->getGames();
         $userGames = [];
 
+        /** Organisations */
+        $ownedOrganisation = $user->GetOwnOrganisations(1);
+        $memberOrganisations = $user->GetOwnOrganisations(5);
+
         /** in miscelleaneouse verschieben als globale function **/
         foreach ($games as $game) {
             $userGames[] = [
@@ -140,6 +144,8 @@ class UserController extends BaseController
             'profilePicModel' => $profilePicModel,
             'userGames' => $userGames,
             'userBalance' => $userBalance,
+            'ownedOrganisation' => $ownedOrganisation, 
+            'memberOrganisations' => $memberOrganisations
         ]);
     }
 }

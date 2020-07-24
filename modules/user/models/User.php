@@ -13,6 +13,9 @@ use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 
+use app\modules\organisation\models\Organisation;
+use app\modules\organisation\models\OrganisationMember;
+
 use app\modules\user\models\UserGames;
 
 
@@ -349,5 +352,14 @@ class User extends AbstractActiveRecord implements IdentityInterface
     {
         return $this->hasMany(UserGames::className(), ['user_id' => 'id'])->all();
     }
+
+    /** Organisations */
+    /**
+     * @return ActiveQuery
+     */
+     public function GetOwnOrganisations($roleId)
+     {
+        return OrganisationMember::FindOrganisationMember($this->id , $roleId);
+	 }
 
 }

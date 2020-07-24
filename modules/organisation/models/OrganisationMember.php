@@ -90,9 +90,12 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
 
         if($organisationMemberships)
         {
-            foreach($organisationMemberships as $organisationMembership)
+            foreach($organisationMemberships as $nr => $organisationMembership)
             {
-                $myOrganisations[$organisationMembership->getOrganisationId()] = Organisation::findOrganisationById($organisationMembership->getOrganisationId());
+                $organisation = Organisation::findOrganisationById($organisationMembership->getOrganisationId());
+                $myOrganisations[$nr]['ID'] = $organisation->getId();
+                $myOrganisations[$nr]['Name'] = $organisation->getName();
+                $myOrganisations[$nr]['OrganisationRole'] = OrganisationRoles::find(['id' => $roleID])->one()->getRoleName();
 			}
 		}
 
