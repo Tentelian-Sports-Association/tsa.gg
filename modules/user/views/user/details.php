@@ -69,17 +69,17 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                 </div>
                             </div>
 
-                            <div class="avatarName col-6">
+                            <div class="avatarName col-10">
                                 <h3 class="mb-1"><?= $userInfo['user_name'] ?><span class="ml-3 avatarID">ID: <?= $userInfo['user_id'] ?></span></h3>
                                 <ul class="personal-datalist list-inline">
                                     <li class="list-inline-item">
                                         <span><?= $userInfo['age'] ?> Jahre alt </span>
                                     </li>
                                     <li class="list-inline-item">
-                                        <span><?= $userInfo['language_img'] ?> <?= $userInfo['language'] ?></span>
+                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($userInfo['language_img'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $userInfo['language_img'],'class' => 'IMG']) ?> <?= $userInfo['language'] ?></span>
                                     </li>
                                     <li class="list-inline-item">
-                                        <span><?= $userInfo['nationality_img'] ?> <?= $userInfo['nationality'] ?></span>
+                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($userInfo['nationality_img'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $userInfo['nationality_img'],'class' => 'IMG']) ?> <?= $userInfo['nationality'] ?></span>
                                     </li>
                                 </ul>
                                 <div class="avatarjob-list">
@@ -400,39 +400,37 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
 
             </div>
 
-            <div class="col-md-4 bg-darkblue-2 px-5 d-inline-block h-75">
-                <div class="inner-container">
-                    <!-- Coins -->
-                    <div class="coins-block py-5">
-                        <h3 class="header">
-                            <?= \app\modules\user\Module::t('userDetails', 'userDetails_coinsHeader') ?>
-                        </h3>
-                        <div class="coin-wallet">
-                            <div class="d-flex align-items-center mb-5">
-                                <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                <span class="ml-3 d-inline-block">100.000 Coins</span>
-                            </div>
+            <div class="col-md-4">
+                <!-- Coins -->
+                <div class="coins-block py-5 bg-darkblue-2 ">
+                    <h3 class="header">
+                        <?= \app\modules\user\Module::t('userDetails', 'userDetails_coinsHeader') ?>
+                    </h3>
+                    <div class="coin-wallet">
+                        <div class="d-flex align-items-center mb-5">
+                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
+                            <span class="ml-3 d-inline-block">100.000 Coins</span>
+                        </div>
 
-                            <button class="filled-btn">Abrechnung</button>
-                        </div>
+                        <button class="filled-btn">Abrechnung</button>
                     </div>
-
-                    <!-- Open Invites
-                    <div class="new-invites-block py-5">
-                        <div class="header">
-                            <?= \app\modules\user\Module::t('userDetails', 'userDetails_invitesHeader') ?>
-                        </div>
-                    </div>
-                    -->
-                    <!-- Open Applications
-                    <div class="open-applications py-5">
-                        <div class="header">
-                            <?= \app\modules\user\Module::t('userDetails', 'userDetails_applicationsHeader') ?>
-                        </div>
-                    </div>
-                    -->
-                    <!-- Statistics -->
                 </div>
+
+                <!-- Open Invites
+                <div class="new-invites-block py-5 bg-darkblue-2 ">
+                    <div class="header">
+                        <?= \app\modules\user\Module::t('userDetails', 'userDetails_invitesHeader') ?>
+                    </div>
+                </div>
+                -->
+                <!-- Open Applications
+                <div class="open-applications py-5 bg-darkblue-2 ">
+                    <div class="header">
+                        <?= \app\modules\user\Module::t('userDetails', 'userDetails_applicationsHeader') ?>
+                    </div>
+                </div>
+                -->
+                <!-- Statistics -->
             </div>
         </div>
 
