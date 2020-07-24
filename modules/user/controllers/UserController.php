@@ -117,27 +117,11 @@ class UserController extends BaseController
         ];
 
         /** @var Games $games */
-        $games = $user->getGames();
-        $userGames = [];
+        $userGames = $user->getGames($languageID);
 
         /** Organisations */
         $ownedOrganisation = $user->GetOwnOrganisations(1);
         $memberOrganisations = $user->GetOwnOrganisations(5);
-
-        /** in miscelleaneouse verschieben als globale function **/
-        foreach ($games as $game) {
-            $userGames[] = [
-                'gameId' => $game->getGameId(),
-                'gameName' => $game->getGameName($languageID),
-                'gameIcon' => $game->getGameIcon(),
-                'platformId' => $game->getGamePlatformId(),
-                'platformName' => $game->getGamePlatformName($languageID),
-                'platformIcon' => $game->getGamePlatformIcon(),
-                'playerId' => $game->getPlayerId(),
-                'visible' => $game->getIsVisible(),
-                'editable' => $game->getIsEditable(),
-            ];
-        }
 
         return $this->render('details', [
             'userInfo' => $userInfo,

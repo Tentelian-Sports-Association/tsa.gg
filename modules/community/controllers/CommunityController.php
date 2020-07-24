@@ -171,6 +171,12 @@ class CommunityController extends BaseController
         $searchModel = null;
         
         $searchModel = new SearchForm();
+
+        if(Yii::$app->session['organisation_searchModel'])
+        {
+            $searchModel = Yii::$app->session['organisation_searchModel'];
+		}
+
         $sortedBy = "id";
 
         // ggf in helper CLass ausrangieren
