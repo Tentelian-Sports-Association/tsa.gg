@@ -138,4 +138,35 @@ class UserController extends BaseController
             'userGames' => $userGames,
         ]);
     }
+
+    public function actionToggleVisibility($gameId, $platformId, $userId)
+    {
+        /** @var User $user */
+        $user = User::findIdentity($userId);
+        $languageID = Language::findByLocale(Yii::$app->language)->getId();
+
+        /** Check if User ID my own User ID */
+        $isMySelfe = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $userId) ? true : false;
+
+        if(!$user || !$isMySelfe)
+        {
+            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            return $this->goHome();
+		}
+
+        $model = UserGames::find()->where(['game_id' => $gameId, 'game_platform_id' => $platformId, 'user_id' => Yii::$app->user->identity->getId()])->one();
+
+        if($model != null) {
+            $model->visible = !$model->visible;
+            $model->save();
+            $gameName = Games::find()->where(['id' => $gameId])->one()->getName($languageID);
+            //Alert::addInfo('Changed Visibility for ' . $gameName . ' from ' . (($model->visible)? 'invisible' : 'visible') . ' to ' . (($model->visible)? 'visible' : 'invisible')); 
+		}
+        else {
+	        //Alert::addError('This Service is currently not availabel'); 
+        }
+
+        
+        return $this->redirect("details?userId=" . $userId);
+	}
 }
