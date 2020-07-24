@@ -24,5 +24,9 @@
         .input-default {
             height: 51px !important;
         }
+        .form-control[readonly] {
+            background: $fourthColor;
+            color: $white3;
+        }
     }
 }
