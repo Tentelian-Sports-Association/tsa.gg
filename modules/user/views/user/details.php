@@ -22,12 +22,51 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
             <div class="col-md-8 ">
                 <div class="inner-container bg-darkblue-2">
                     <div class="section-row avatar py-5">
+                        <?php if ($userInfo['isMySelfe']) : ?>
+                            <?php
+                            echo Html::a('Edit <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                          </svg>',
+                                [
+                                    "account/edit-details",
+                                    "userId" => $userInfo['user_id']
+                                ],
+                                ['class' => "filled-btn btn btn-primary upload float-right",
+                                    'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
+                                ]
+                            )
+                            ?>
+                        <?php endif; ?>
                         <div class="avatarPanel d-md-flex align-items-center ">
 
-                            <div class="avatarSmall mr-md-2 ">
-                                <a href="#" class="change-image">
-                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.webp',  ['width' => '120','height' => '120','class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $userInfo['user_id']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.png\''] ); ?>
-                                </a>
+                            <div class="avatar-upload avatarSmall mr-md-2 ">
+                                <?php if ($userInfo['isMySelfe']) : ?>
+                                    <div class="avatar-edit">
+                                        <?php $form = ActiveForm::begin([
+                                            'id' => 'profile-pic-form',
+                                            'options' => ['enctype' => 'multipart/form-data'],
+                                            'fieldConfig' => [
+                                                'template' => "{input}\n{label}\n{error}"
+                                            ],
+                                        ]); ?> 
+                                        <?= $form->field($profilePicModel, 'file')->fileInput(['id' => 'imageUpload'])
+                                            ->label('<div class="upload-icon">
+                                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-camera-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                            <path fill-rule="evenodd" d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                                                        </svg>
+                                                    </div>'); 
+                                        ?>
+                                        <?= $form->field($profilePicModel, 'id')->hiddenInput()->label(false); ?>
+
+                                        <!--<?= Html::submitButton(\app\modules\user\Module::t('userDetails', 'userDetails_uploadImage'), ['class' => 'btn btn-primary upload filled-btn', 'name' => 'upload-button']) ?>-->
+                                        <?php ActiveForm::end(); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="avatar-preview">
+                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $userInfo['user_id']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.png\''] ); ?>
+                                </div>
                             </div>
 
                             <div class="avatarName col-6">
@@ -50,40 +89,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                 </div>
 
                             </div>
-
-
-
-                            <?php if ($userInfo['isMySelfe']) : ?>
-                                <?php $form = ActiveForm::begin([
-                                    'id' => 'profile-pic-form',
-                                    'options' => ['enctype' => 'multipart/form-data'],
-                                    'fieldConfig' => [
-                                        'template' => "<div class=\"col-12\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>"
-                                    ],
-                                ]); ?>
-                                <?= $form->field($profilePicModel, 'id')->hiddenInput()->label(false); ?>
-                                <?= $form->field($profilePicModel, 'file')->fileInput() ?>
-
-                                <?= Html::submitButton(\app\modules\user\Module::t('userDetails', 'userDetails_uploadImage'), ['class' => 'btn btn-primary upload filled-btn', 'name' => 'upload-button']) ?>
-                                <?php ActiveForm::end(); ?>
-                            <?php endif; ?>
-
-
                         </div>
-
-                        <?php if ($userInfo['isMySelfe']) : ?>
-                            <?php
-                            echo Html::a('',
-                                [
-                                    "account/edit-details",
-                                    "userId" => $userInfo['user_id']
-                                ],
-                                ['class' => "filled-btn btn btn-primary upload",
-                                    'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
-                                ]
-                            )
-                            ?>
-                        <?php endif; ?>
                     </div>
 
 

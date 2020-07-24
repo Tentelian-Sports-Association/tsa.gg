@@ -68,6 +68,7 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
     <?php $this->registerCsrfMetaTags() ?>
     <?php $this->head() ?>
     <!-- End Metatags und diverses andere -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>
