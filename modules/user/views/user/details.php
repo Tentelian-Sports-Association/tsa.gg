@@ -398,9 +398,9 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
 
                     <!-- Social Media -->
                     <div class="section-row social-media-accounts py-5">
-                        <div class="header mb-4">
+                        <h3 class="header">
                             <?= \app\modules\user\Module::t('userDetails', 'userDetails_socialMediaHeader') ?>
-                        </div>
+                        </h3>
                         <ul class="list-inline">
                             <?php if($userInfo['twitch_name']) : ?>
                                 <li class="list-inline-item">
@@ -449,11 +449,11 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                         </ul>
                     </div>
 
-                    <!-- Badges -->
+                    <!-- Badges 
                     <div class="section-row badges-block py-5">
-                        <div class="header mb-4">
+                        <h3 class="header">
                             <?= \app\modules\user\Module::t('userDetails', 'userDetails_badgesHeader') ?>
-                        </div>
+                        </h3>
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <div class="d-flex align-items-center">
@@ -475,6 +475,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                             </li>
                         </ul>
                     </div>
+                    -->
                 </div>
 
             </div>
