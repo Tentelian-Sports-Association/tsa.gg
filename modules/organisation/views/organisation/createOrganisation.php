@@ -3,6 +3,7 @@
  * @var $form yii\bootstrap\ActiveForm
  * @var $languageList array
  * @var $nationalityList array
+ * @var $currentUserID
  * @var $model app\modules\organisation\models\formModels\CreateOrganisationForm
  */
 
@@ -32,15 +33,16 @@ $this->title = \app\modules\organisation\Module::t('createOrganisation', 'header
 
             
 
-            <?= $form->field($model, 'name')->textInput(['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'namePlaceholder')],["class" => 'form-control form-control-color']) ?>
+            <?= $form->field($model, 'name')->textInput(['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'name_placeholder')],["class" => 'form-control form-control-color']) ?>
 
-            <?= $form->field($model, 'description')->textInput(['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'descriptionPlaceholder')],["class" => 'form-control form-control-color']) ?>
+            <?= $form->field($model, 'description')->textInput(['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'description_placeholder')],["class" => 'form-control form-control-color']) ?>
 
-            <?= $form->field($model, 'headquater_id')->dropDownList($nationalityList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\organisation\Module::t('createOrganisation', 'choose')]) ?>
+            <?= $form->field($model, 'headquater_id')->dropDownList($nationalityList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\organisation\Module::t('createOrganisation', 'choose_nationality')]) ?>
 
-            <?= $form->field($model, 'language_id')->dropDownList($languageList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\organisation\Module::t('createOrganisation', 'choose')]) ?>
+            <?= $form->field($model, 'language_id')->dropDownList($languageList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\organisation\Module::t('createOrganisation', 'choose_language')]) ?>
 
-            <?= Html::submitButton(\app\modules\organisation\Module::t('createOrganisation', 'save'), ['class' => 'btn btn-primary', 'name' => 'createOrganisation-button']) ?>
+            <?= Html::submitButton(\app\modules\organisation\Module::t('createOrganisation', 'create'), ['class' => 'btn btn-primary', 'name' => 'createOrganisation-button']) ?>
+            <?= Html::a(\app\modules\organisation\Module::t('createOrganisation', 'back'), ['user/details', 'userId' => $currentUserID], ['class' => 'outline-btn btn btn-primary delete float-left', 'name' => 'backToProfile-button']); ?>
 
         <?php ActiveForm::end(); ?>
         

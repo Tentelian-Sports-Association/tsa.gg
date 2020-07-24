@@ -80,6 +80,7 @@ class OrganisationController extends BaseController
             'model' => $model,
             'languageList' => $languageList,
             'nationalityList' => $nationalityList,
+            'currentUserID' => Yii::$app->user->identity->getId(),
         ]);
     }
 }

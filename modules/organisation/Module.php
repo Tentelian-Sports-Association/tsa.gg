@@ -26,7 +26,7 @@ use Yii;
  			'class' => 'yii\i18n\PhpMessageSource',
  			'basePath' => '@app/modules/organisation/messages',
  			'fileMap' => [
- 			//	'modules/organisation/create' => 'create.php',
+ 				'modules/organisation/createOrganisation' => 'create.php',
  			],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
  		];
