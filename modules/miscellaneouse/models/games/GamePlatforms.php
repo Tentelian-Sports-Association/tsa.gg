@@ -39,7 +39,7 @@ class GamePlatforms extends ActiveRecord
     /**
 	 * @return string name
 	 */
-	public function getTranslatedPlatformName($id, $languageID)
+	public function getTranslatedPlatformName($languageID)
 	{
 
 

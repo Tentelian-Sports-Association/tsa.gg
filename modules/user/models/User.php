@@ -13,6 +13,9 @@ use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 
+use app\modules\miscellaneouse\models\games\Games;
+use app\modules\miscellaneouse\models\games\GamePlatforms;
+
 use app\modules\organisation\models\Organisation;
 use app\modules\organisation\models\OrganisationMember;
 
@@ -348,9 +351,39 @@ class User extends AbstractActiveRecord implements IdentityInterface
     /**
      * @return ActiveQuery
      */
-    public function getGames()
+    public function getGames($languageID)
     {
-        return $this->hasMany(UserGames::className(), ['user_id' => 'id'])->all();
+        $platforms = GamePlatforms::Find()->all();
+        $userGamesSorted = [];
+
+        foreach($platforms as $nr => $platform)
+        {
+            $games =  UserGames::find()->where(['user_id' => $this->id])->andWhere(['game_platform_id' => $platform->getId()])->all();
+            //$games = $this->hasMany(UserGames::className(), ['user_id' => 'id', 'game_platform_id' => $platform->getId()]);
+
+            $userGamesSorted[$nr]['id'] = $platform->getId();
+            $userGamesSorted[$nr]['platformName'] = $platform->getTranslatedPlatformName($languageID);
+            $userGamesSorted[$nr]['icon'] = $platform->getIcon();
+            $userGamesSorted[$nr]['game'] = [];
+
+            foreach($games as $gnr => $game)
+            {
+                $gameDetails = Games::find()->where(['id' =>$game['game_id']])->one();
+
+                $userGamesSorted[$nr]['game'][$gnr]['id'] = $game['game_id'];
+                $userGamesSorted[$nr]['game'][$gnr]['gameName'] = $gameDetails->getName($languageID);
+                $userGamesSorted[$nr]['game'][$gnr]['icon'] = $gameDetails->getIcon();
+                $userGamesSorted[$nr]['game'][$gnr]['accountId'] = $game['player_id'];
+                $userGamesSorted[$nr]['game'][$gnr]['visible'] = $game['visible'];
+                $userGamesSorted[$nr]['game'][$gnr]['editable'] = $game['editable'];
+			}
+		}
+
+        //print_r($userGamesSorted);
+        //die();
+
+        return $userGamesSorted;
+
     }
 
     /** Organisations */
