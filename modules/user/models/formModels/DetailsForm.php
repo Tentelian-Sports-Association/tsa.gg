@@ -142,6 +142,7 @@ class DetailsForm extends FormModel
         /** Changeable Base Informations */
         $user->gender_id = $this->genderId;
         $user->language_id = $this->languageId;
+        $user->nationality_id = $this->nationalityId;
 
         /** Personal Informations */
         $userDetails = UserDetails::findByID($user->id);
@@ -166,6 +167,8 @@ class DetailsForm extends FormModel
         $userSocials->discord_name = $this->discord_name;
         $userSocials->discord_server = $this->discord_server;
         $userSocials->teamspeak_server = $this->teamspeak_server;
+        //$userSocials->youtube_channel = $this->youtube_channel;
+        //$userSocials->twitch_channel = $this->twitch_channel;
 
         /** Save User and Credentials **/
 
