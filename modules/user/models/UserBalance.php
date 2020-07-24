@@ -56,4 +56,12 @@ use yii\db\ActiveRecord;
     {
         return $this->dt_updated;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findByID($userId)
+    {
+        return static::findOne(['user_id' => $userId]);
+    }
 }
