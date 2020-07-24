@@ -58,6 +58,19 @@ function scripts() {
         .pipe($.notify({ message: 'Scripts task complete' }));
 };
 
+// secondary scripts
+function scripts_individual() {
+    return gulp.src(config.PATHS.src + '/js/*/*.js')
+        .pipe($.sourcemaps.init())
+        //.pipe($.concat('main.js'))
+        .pipe($.rename({ suffix: '.min' }))
+        .pipe($.uglify())
+        .pipe($.sourcemaps.write('.', { sourceRoot: '../../assets/src/js/' }))
+        .pipe(gulp.dest(config.PATHS.dist + '/js'))
+        .pipe(touch())
+        .pipe($.notify({ message: 'Secondary Scripts task complete' }));
+};
+
 // sprites
 function sprites() {
     var spriteData = gulp.src('data/avatars/*')
@@ -84,7 +97,7 @@ function clean(done) {
 gulp.task('build', gulp.series(
     clean,
     sprites,
-    gulp.parallel(styles, scripts)
+    gulp.parallel(styles, scripts, scripts_individual)
 ));
 
 // Watch

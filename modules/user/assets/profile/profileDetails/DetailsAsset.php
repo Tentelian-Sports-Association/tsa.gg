@@ -17,6 +17,6 @@ class DetailsAsset extends AssetBundle
     ];
 
     public $js = [
-      //'js/account-edit.js',
+      'js/user/account-edit.min.js',
     ];
 }
