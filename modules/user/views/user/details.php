@@ -3,6 +3,7 @@
 /* @var $this yii\web\View *
  * @var $profilePicModel app\modules\miscellaneouse\models\formModels\ProfilePicForm
  * @var $userInfo array - siehe UserController
+ * @var $userBalance string
  */
 
 use yii\bootstrap4\ActiveForm;
@@ -409,10 +410,10 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                     <div class="coin-wallet">
                         <div class="d-flex align-items-center mb-5">
                             <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                            <span class="ml-3 d-inline-block">100.000 Coins</span>
+                            <span class="ml-3 d-inline-block"><?= ($userBalance)? $userBalance->getBalance() : 'No Coins Availabel'  ?></span>
                         </div>
 
-                        <button class="filled-btn">Abrechnung</button>
+                        <!-- button class="filled-btn">Abrechnung</button -->
                     </div>
                 </div>
 

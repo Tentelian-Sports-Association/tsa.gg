@@ -346,4 +346,9 @@ class AccountController extends BaseController
         
         return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
 	}
+
+    public function actionToggleAccountBalance($userId)
+    {
+        // test
+	}
 }
