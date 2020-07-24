@@ -13,9 +13,17 @@
     .content-profileDetails {
         padding: 20px 50px;
     }
-    .plattform-icon {
-        width: 46px;
-        height: 46px;
+    .game-accounts {
+        .col-12 {
+            padding: 0;
+        }
+        .plattform-icon {
+            width: 46px;
+            height: 46px;
+        }
+        .account-details {
+            margin-top: 10px;
+        }
     }
     @media (max-width: $breakpoint-md) {
         .inner-wrapper {
