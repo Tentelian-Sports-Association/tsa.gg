@@ -40,11 +40,14 @@ $this->title = \app\modules\user\Module::t('addGameAccount', 'addGameAccount_hea
 
                 </div>
             </div>
-            <div class="text-right">
-				<?= Html::a(\app\modules\user\Module::t('addGameAccount', 'addGameAccount_backToProfile'), ['user/details', 'userId' => $currentUserID], ['class' => 'outline-btn btn btn-primary delete', 'name' => 'backToProfile-button']); ?>
-
-				<?= Html::submitButton(\app\modules\user\Module::t('addGameAccount', 'addGameAccount_save'), ['class' => 'filled-btn btn btn-primary', 'name' => 'saveGameId-button']) ?>
-
+            <div class="col-12">
+                <div class="float-left">
+                    <?= Html::a(\app\modules\user\Module::t('addGameAccount', 'addGameAccount_backToProfile'), ['user/details', 'userId' => $currentUserID], ['class' => 'outline-btn btn btn-primary delete', 'name' => 'backToProfile-button']); ?>
+                </div>
+                <div class="float-right">
+                    <?= Html::submitButton(\app\modules\user\Module::t('addGameAccount', 'addGameAccount_save'), ['class' => 'filled-btn btn btn-primary', 'name' => 'saveGameId-button']) ?>
+                </div>
+                <div class="clearfix"></div>
             </div>
 
 
