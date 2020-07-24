@@ -98,7 +98,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
 
                     <!-- Orgas and Teams -->
                     <div class="section-row py-5">
-                        <h3 class="header mb-5">
+                        <h3 class="header">
                             Meine Teams & Organisationen
                             <?php if ($userInfo['isMySelfe']) : ?>
                             <?php
