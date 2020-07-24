@@ -143,7 +143,7 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
         <div class="col-xl-4 col-md-12 first-col">
             <?= Html::img(Yii::$app->HelperClass->checkImage('/images/icons/', 'TSA_Logo_Schrift_right_238x70'). '.webp',['class' => 'img-fluid logo', 'aria-label' => 'Tentelian Sports Association']); ?>
             <p><?= Yii::t('app', 'footer_copyright') ?><?= date('Y') ?></p>
-            <?php echo Html::a(Yii::t('app', 'footer_contact'), ["#"], ['class' => "filled-btn",'aria-label' => "Body Contact Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'footer_contact'), ["/support/contact"], ['class' => "filled-btn",'aria-label' => "Body Contact Button"]); ?>
         </div>
         <div class="col-xl-2 col-md-6 second-col">
             <nav class="footer_menu">

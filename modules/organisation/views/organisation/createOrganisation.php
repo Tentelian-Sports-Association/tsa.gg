@@ -32,9 +32,9 @@ $this->title = \app\modules\organisation\Module::t('createOrganisation', 'header
                     ],
                 ]); ?>
 
-                    <?= $form->field($model, 'name')->textInput(['class' => 'input-default'], ['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'name_placeholder')],["class" => 'form-control form-control-color']) ?>
+                    <?= $form->field($model, 'name')->textInput(['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'name_placeholder'), "class" => 'input-default']) ?>
 
-                    <?= $form->field($model, 'description')->textInput(['class' => 'input-default'], ['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'description_placeholder')],["class" => 'form-control form-control-color']) ?>
+                    <?= $form->field($model, 'description')->textInput(['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'description_placeholder'), "class" => 'input-default']) ?>
 
                     <?= $form->field($model, 'headquater_id')->dropDownList($nationalityList, ["class" => 'input-default', 'prompt' => \app\modules\organisation\Module::t('createOrganisation', 'choose_nationality')]) ?>
 
