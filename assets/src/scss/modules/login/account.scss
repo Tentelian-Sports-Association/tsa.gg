@@ -10,6 +10,17 @@
         max-width: 1920px;
         margin: 0 auto;
     }
+    .content-profileDetails {
+        padding: 20px 50px;
+    }
+    @media (max-width: $breakpoint-md) {
+        .inner-wrapper {
+            padding: 0;
+        }
+        .p-md-5 {
+            padding: 1rem !important;
+        }
+    }
     .IMG {
         margin-top: 2px;
         float: left;
@@ -25,6 +36,26 @@
     }
     .section-row:last-child {
         border-bottom: none;
+    }
+    .avatar-image {
+        width: 46px;
+        height: 46px;
+    }
+    .add-btn {
+        padding: 0px 4px;
+        svg {
+            width: 20px;
+            margin-top: 3px;
+            height: 20px;
+        }
+    }
+    .organisation-block {
+        .col-12 {
+            padding: 0;
+        }
+        h4 {
+            margin-bottom: 0;
+        }
     }
     .avatarName {
         h3 {

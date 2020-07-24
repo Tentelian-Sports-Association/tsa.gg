@@ -21,9 +21,9 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
 
 <div class="site-profileDetails p-3 p-md-5">
     <div class="inner-wrapper">
-        <div class="row">
-            <div class="col-md-8 ">
-                <div class="inner-container bg-darkblue-2">
+        <div class="row ">
+            <div class="col-12 col-lg-8 ">
+                <div class="content-profileDetails bg-darkblue-2">
                     <div class="section-row avatar py-5">
                         <?php if ($userInfo['isMySelfe']) : ?>
                             <?php
@@ -100,142 +100,207 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                     <div class="section-row py-5">
                         <h3 class="header mb-5">
                             Meine Teams & Organisationen
-                        </h3>
-                        <?php if ($userInfo['isMySelfe']) : ?>
+                            <?php if ($userInfo['isMySelfe']) : ?>
                             <?php
-                            echo Html::a('Edit <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
-                            </svg>',
+                            echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                                            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                                        </svg>',
                                 [
                                     "/organisation/create-orgnisation",
                                     //"userId" => $userInfo['user_id']
                                 ],
-                                ['class' => "filled-btn btn btn-primary upload float-right",
+                                ['class' => "filled-btn btn btn-primary add-btn",
                                     'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
                                 ]
                             )
                             ?>
                         <?php endif; ?>
+                        </h3>
+                       
 
                         <?php foreach($ownedOrganisation as $organisation) : ?>
                         <div class="organisation-block">
                             <div class="organisation mb-5">
                                 <div class="organisation-header d-flex align-items-center">
-                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.webp',  ['class' => 'rounded-circl', 'aria-label' => $organisation['ID']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.png\''] ); ?>
-                                    <h3 class="d-inline-block mb-2 ml-3"><?= $organisation['Name'] ?></h3>
+                                    <div class="col-1">
+                                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.webp',  ['class' => 'rounded-circle avatar-image', 'aria-label' => $organisation['ID']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.png\''] ); ?>
+                                    </div>
+                                    <div class="col-11">
+                                        <div class="col-12">
+                                            <h4 class="float-left"><?= $organisation['Name'] ?></h4>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="col-12">
+                                            <ul class="organisation-title-list list-inline float-left">
+                                                <li class="list-inline-item">
+                                                    <span class="organisation-title"><?= $organisation['OrganisationRole'] ?></span>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <ul class="organisation-title-list list-inline">
-                                    <li class="list-inline-item">
-                                        <span class="organisation-title"><?= $organisation['OrganisationRole'] ?></span>
-                                    </li>
-                                </ul>
                             </div>
                             <div class="px-5 row">
-                                <div class="col-sm-6">
+                                <div class="col-12 col-lg-6">
                                     <div class="team mb-4">
-                                        <div class="team-header d-flex align-items-center">
+                                        <div class="col-2 float-left">
                                             <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                            <h4 class="d-inline-block ml-3">Teamname</h4>
                                         </div>
-                                        <ul class="team-title-list list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Leader</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Admin</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Platzhalter</span>
-                                            </li>
-                                        </ul>
+                                        <div class="col-10 float-left">
+                                            <div class="col-12">
+                                                <h4 class="float-left">Teamname</h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Leader</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Admin</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Platzhalter</span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                     <div class="team mb-4">
-                                        <div class="team-header d-flex align-items-center">
-                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle"  >
-                                            <h4 class="d-inline-block ml-3">Teamname</h4>
+                                        <div class="col-2 float-left">
+                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
                                         </div>
-                                        <ul class="team-title-list list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Leader</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Admin</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Platzhalter</span>
-                                            </li>
-                                        </ul>
+                                        <div class="col-10 float-left">
+                                            <div class="col-12">
+                                                <h4 class="float-left">Teamname</h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Leader</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Admin</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Platzhalter</span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                     <div class="team mb-4">
-                                        <div class="team-header d-flex align-items-center">
-                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle"  >
-                                            <h4 class="d-inline-block ml-3">Teamname</h4>
+                                        <div class="col-2 float-left">
+                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
                                         </div>
-                                        <ul class="team-title-list list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Leader</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Admin</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Platzhalter</span>
-                                            </li>
-                                        </ul>
+                                        <div class="col-10 float-left">
+                                            <div class="col-12">
+                                                <h4 class="float-left">Teamname</h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Leader</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Admin</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Platzhalter</span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-12 col-lg-6">
                                     <div class="team mb-4">
-                                        <div class="team-header d-flex align-items-center">
-                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle"  >
-                                            <h4 class="d-inline-block ml-3">Teamname</h4>
+                                        <div class="col-2 float-left">
+                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
                                         </div>
-                                        <ul class="team-title-list list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Leader</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Admin</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Platzhalter</span>
-                                            </li>
-                                        </ul>
+                                        <div class="col-10 float-left">
+                                            <div class="col-12">
+                                                <h4 class="float-left">Teamname</h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Leader</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Admin</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Platzhalter</span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                     <div class="team mb-4">
-                                        <div class="team-header d-flex align-items-center">
-                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle"  >
-                                            <h4 class="d-inline-block ml-3">Teamname</h4>
+                                        <div class="col-2 float-left">
+                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
                                         </div>
-                                        <ul class="team-title-list list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Leader</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Admin</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Platzhalter</span>
-                                            </li>
-                                        </ul>
+                                        <div class="col-10 float-left">
+                                            <div class="col-12">
+                                                <h4 class="float-left">Teamname</h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Leader</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Admin</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Platzhalter</span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                     <div class="team mb-4">
-                                        <div class="team-header d-flex align-items-center">
-                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle"  >
-                                            <h4 class="d-inline-block ml-3">Teamname</h4>
+                                        <div class="col-2 float-left">
+                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
                                         </div>
-                                        <ul class="team-title-list list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Leader</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Admin</span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span class="team-title">Platzhalter</span>
-                                            </li>
-                                        </ul>
+                                        <div class="col-10 float-left">
+                                            <div class="col-12">
+                                                <h4 class="float-left">Teamname</h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Leader</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Admin</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="team-title">Platzhalter</span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </div>
@@ -250,12 +315,15 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                             <?= \app\modules\user\Module::t('userDetails', 'userDetails_gameAccountHeader') ?>
                             <?php if ($userInfo['isMySelfe']) : ?>
                                 <?php
-                                echo Html::a('',
+                                echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                                                <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                                            </svg>',
                                     [
                                         "account/add-game-account",
                                         "userId" => $userInfo['user_id']
                                     ],
-                                    ['class' => "filled-btn btn btn-primary upload",
+                                    ['class' => "filled-btn btn btn-primary add-btn",
                                         'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_addGameAccount')
                                     ]
                                 )
@@ -270,7 +338,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                 </div>
                             </div>
                             <div class="px-5 row">
-                                <div class="col-sm-6">
+                                <div class="col-lg-6">
                                     <div class="game mb-4">
                                         <div class="game-header d-flex align-items-center">
                                             <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
@@ -416,7 +484,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-12 col-lg-4">
                 <!-- Coins -->
                 <div class="coins-block py-5 bg-darkblue-2 ">
                     <h3 class="header">
@@ -451,7 +519,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
         </div>
 
         <div class="row mt-5">
-            <div class="col-md-8 ">
+            <div class="col-lg-8 ">
                 <div class="ad-block-container row">
                     <div class="ad-block-item col-12">
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
