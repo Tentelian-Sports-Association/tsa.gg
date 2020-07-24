@@ -1,4 +1,16 @@
 .site-profileDetails {
+    .delete-btn {
+        margin-left: 25px;
+        border-radius: 25px;
+        background: $red;
+        border: none;
+        padding: 0 4px;
+        svg {
+            width: 20px;
+            margin-top: 3px;
+            height: 20px;
+        }
+    }
     * {
         font-weight: normal;
     }

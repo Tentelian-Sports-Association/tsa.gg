@@ -354,6 +354,24 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                                     <div class="col-12 account-details">
                                                         <h4 class="float-left"><?= ($game['visible'] || $userInfo['isMySelfe'])? $game['accountId'] : 'ID Not Public' ?></h4>
                                                         <?php if ($userInfo['isMySelfe']): ?>
+                                                            <?php if ($game['editable']): ?>
+                                                                <?php
+                                                                echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                                                                                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                                                                            </svg>',
+                                                                    [
+                                                                        "account/remove-game-account",
+                                                                        "gameId" => $game['id'],
+                                                                        "platformId" => $platform['id'],
+                                                                        "userId" => $userInfo['user_id']
+                                                                    ],
+                                                                    ['class' => "	btn btn-primary delete-btn float-right",
+                                                                        'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_deleteGameAccount')
+                                                                    ]
+                                                                )
+                                                                ?>
+                                                            <?php endif; ?>
                                                             <?php
                                                                 echo Html::a(($game['visible'] == 1 ? 
                                                                 '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -377,21 +395,6 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                                                     ]
                                                                 )
                                                             ?>
-                                                            <?php if ($game['editable']): ?>
-                                                                <?php
-                                                                echo Html::a('',
-                                                                    [
-                                                                        "account/remove-game-account",
-                                                                        "gameId" => $game['id'],
-                                                                        "platformId" => $platform['id'],
-                                                                        "userId" => $userInfo['user_id']
-                                                                    ],
-                                                                    ['class' => "	btn btn-primary upload",
-                                                                        'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_deleteGameAccount')
-                                                                    ]
-                                                                )
-                                                                ?>
-                                                            <?php endif; ?>
                                                         <?php endif; ?>
                                                         <div class="clearfix"></div>
                                                     </div>
