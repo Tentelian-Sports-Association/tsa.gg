@@ -19,33 +19,32 @@ $this->title = \app\modules\organisation\Module::t('createOrganisation', 'header
 
 <div class="site-create-organisation">
     <div class="inner-wrapper">
-        <div class="title">
-            <h1><?= Html::encode($this->title) ?></h1>
+        <div class="col-8">
+            <div class="edit-orga mt-4 mb-4">
+                <h2><?= Html::encode($this->title) ?></h2>
 
-            <?php $form = ActiveForm::begin([
-            'id' => 'edit-details-form',
-            'options' => [ 'class' => 'form-horizontal'],
-                'fieldConfig' => [
-                    'template' => "{label}\n<div class=\"col-lg-12\">{input}</div>\n<div class=\"col-lg-12\">{error}</div>",
-                    'labelOptions' => ['class' => 'col-lg-2 control-label'],
-                ],
-            ]); ?>
+                <?php $form = ActiveForm::begin([
+                'id' => 'edit-details-form',
+                'options' => [ 'class' => 'form-horizontal'],
+                    'fieldConfig' => [
+                        'template' => "{label}\n<div class=\"col-lg-12\">{input}</div>\n<div class=\"col-lg-12\">{error}</div>",
+                        'labelOptions' => ['class' => 'col-lg-2 control-label'],
+                    ],
+                ]); ?>
 
-            
+                    <?= $form->field($model, 'name')->textInput(['class' => 'input-default'], ['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'name_placeholder')],["class" => 'form-control form-control-color']) ?>
 
-            <?= $form->field($model, 'name')->textInput(['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'name_placeholder')],["class" => 'form-control form-control-color']) ?>
+                    <?= $form->field($model, 'description')->textInput(['class' => 'input-default'], ['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'description_placeholder')],["class" => 'form-control form-control-color']) ?>
 
-            <?= $form->field($model, 'description')->textInput(['placeholder' => \app\modules\organisation\Module::t('createOrganisation', 'description_placeholder')],["class" => 'form-control form-control-color']) ?>
+                    <?= $form->field($model, 'headquater_id')->dropDownList($nationalityList, ["class" => 'input-default', 'prompt' => \app\modules\organisation\Module::t('createOrganisation', 'choose_nationality')]) ?>
 
-            <?= $form->field($model, 'headquater_id')->dropDownList($nationalityList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\organisation\Module::t('createOrganisation', 'choose_nationality')]) ?>
-
-            <?= $form->field($model, 'language_id')->dropDownList($languageList, ["class" => 'form-control form-control-color', 'prompt' => \app\modules\organisation\Module::t('createOrganisation', 'choose_language')]) ?>
-
-            <?= Html::submitButton(\app\modules\organisation\Module::t('createOrganisation', 'create'), ['class' => 'btn btn-primary', 'name' => 'createOrganisation-button']) ?>
-            <?= Html::a(\app\modules\organisation\Module::t('createOrganisation', 'back'), ['/user/details', 'userId' => $currentUserID], ['class' => 'outline-btn btn btn-primary delete float-left', 'name' => 'backToProfile-button']); ?>
-
-        <?php ActiveForm::end(); ?>
-        
+                    <?= $form->field($model, 'language_id')->dropDownList($languageList, ["class" => 'input-default', 'prompt' => \app\modules\organisation\Module::t('createOrganisation', 'choose_language')]) ?>
+    
+                    <?= Html::a(\app\modules\organisation\Module::t('createOrganisation', 'back'), ['/user/details', 'userId' => $currentUserID], ['class' => 'outline-btn btn btn-primary delete float-left', 'name' => 'backToProfile-button']); ?>
+                    <?= Html::submitButton(\app\modules\organisation\Module::t('createOrganisation', 'create'), ['class' => 'filled-btn btn btn-primary float-right', 'name' => 'createOrganisation-button']) ?>
+                    <div class="clearfix"></div>
+                <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
 </div>

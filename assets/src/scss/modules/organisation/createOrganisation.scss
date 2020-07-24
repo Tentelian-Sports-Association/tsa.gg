@@ -2,4 +2,12 @@
     padding: 0 90px 0 49px;
     max-width: 1920px;
     margin: 0 auto;
+    .edit-orga {
+        background: #00061b;
+        padding: 20px 80px;
+        .input-default {
+            height: 51px !important;
+            width: 100%;
+        }
+    }
 }
