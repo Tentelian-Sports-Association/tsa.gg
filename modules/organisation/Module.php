@@ -27,6 +27,7 @@ use Yii;
  			'basePath' => '@app/modules/organisation/messages',
  			'fileMap' => [
  				'modules/organisation/createOrganisation' => 'create.php',
+ 				'modules/organisation/organisationDetails' => 'details.php',
  			],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
  		];

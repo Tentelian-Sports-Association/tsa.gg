@@ -14,7 +14,7 @@ use yii\helpers\Html;
 
 use app\widgets\Alert;
 
-\app\modules\user\assets\profile\profileDetails\DetailsAsset::register($this);
+\app\modules\organisation\assets\organisationDetails\DetailsAssets::register($this);
 
 //$this->title = $userInfo['user_name'] . '\'s Player profile';
 
@@ -57,7 +57,7 @@ use app\widgets\Alert;
                                     "userId" => $organisation['id']
                                 ],
                                 ['class' => "filled-btn btn btn-primary upload float-right",
-                                    'title' => \app\modules\user\Module::t('organisationDetails', 'organisationDetails_info_editOrganisationDetails')
+                                    'title' => \app\modules\organisation\Module::t('organisationDetails', 'details')
                                 ]
                             )
                             ?>
@@ -84,7 +84,7 @@ use app\widgets\Alert;
                                         ?>
                                         <?= $form->field($organisationPicModel, 'id')->hiddenInput()->label(false); ?>
 
-                                        <!--<?= Html::submitButton(\app\modules\user\Module::t('userDetails', 'userDetails_uploadImage'), ['class' => 'btn btn-primary upload filled-btn', 'name' => 'upload-button']) ?>-->
+                                        <!--<?= Html::submitButton(\app\modules\organisation\Module::t('organisationDetails', 'details'), ['class' => 'btn btn-primary upload filled-btn', 'name' => 'upload-button']) ?>-->
                                         <?php ActiveForm::end(); ?>
                                     </div>
                                 <?php endif; ?>

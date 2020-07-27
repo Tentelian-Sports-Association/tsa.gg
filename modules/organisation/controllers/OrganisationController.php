@@ -16,6 +16,7 @@ use app\modules\organisation\models\formModels\CreateOrganisation;
 
 use DateTime;
 use Yii;
+use yii\web\UploadedFile;
 
 class OrganisationController extends BaseController
 {
@@ -93,8 +94,6 @@ class OrganisationController extends BaseController
         $organisation = Organisation::findOrganisationById($organisationId);
         $languageID = Language::findByLocale(Yii::$app->language)->getId();
 
-        
-
         if(!$organisation)
         {
             //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
@@ -104,6 +103,9 @@ class OrganisationController extends BaseController
         $OrganisationOwner = $organisation->getOwner();
         $organisationMember = $organisation->getMember();
         $organisationSocial = $organisation->getSocialDetails();
+
+        //print_r($OrganisationOwner);
+        //die();
 
         /** @var ProfilePicForm $profilePicModel */
         $organisationPicModel = new ProfilePicForm(ProfilePicForm::SCENARIO_ORGANISATION);
@@ -117,10 +119,11 @@ class OrganisationController extends BaseController
         }
 
         /** Check if User ID my own User ID */
-        $isOwner = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $OrganisationOwner->getUserId()) ? true : false;
+        $isOwner = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $OrganisationOwner['id']) ? true : false;
 
         return $this->render('details', [
             'organisation' => $organisation,
+            'OrganisationOwner' => $OrganisationOwner,
             'isOwner' => $isOwner,
             'organisationSocial' => $organisationSocial,
             'organisationMember' => $organisationMember,

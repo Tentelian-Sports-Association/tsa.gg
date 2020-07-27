@@ -104,6 +104,17 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
 
     public static function FindOrganisationOwner($organisationId)
     {
+        $owner = OrganisationMember::find()->where(['organisation_id' => $organisationId])->andWhere(['role_id' => 1])->one();
+
+        //print_r($owner);
+        //die();
+
+        $orgaOwner = [];
+
+        $orgaOwner['id'] = $owner['user_id'];
+
+
+        return $orgaOwner;
         return OrganisationMember::find()->where(['organisation_id' => $organisationId])->andWhere(['role_id' => 1])->one();
 	}
 

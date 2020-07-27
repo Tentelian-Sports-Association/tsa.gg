@@ -4,7 +4,7 @@ namespace app\modules\organisation\assets\organisationDetails;
 
 use yii\web\AssetBundle;
 
-class DetailsAsset extends AssetBundle
+class DetailsAssets extends AssetBundle
 {
     public $sourcePath = '@app/assets/dist';
  
