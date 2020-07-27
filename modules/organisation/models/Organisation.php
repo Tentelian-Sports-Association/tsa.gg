@@ -7,6 +7,9 @@ use yii\db\ActiveRecord;
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 
+use app\modules\organisation\models\OrganisationMember;
+use app\modules\organisation\models\OrganisationSocial;
+
 use app\modules\teams\models\Team;
 
 use DateTime;
@@ -52,6 +55,11 @@ class Organisation extends ActiveRecord
         return $this->name;
     }
 
+    public function getOwner()
+    {
+        return OrganisationMember::FindOrganisationOwner($this->id);
+	}
+
     /**
      * @return string
      */
@@ -59,6 +67,11 @@ class Organisation extends ActiveRecord
     {
         return $this->description;
     }
+
+    public function getSocialDetails()
+    {
+     return OrganisationSocial::findByID($this->id);
+	}
 
     /**
      * @return int
@@ -75,6 +88,11 @@ class Organisation extends ActiveRecord
     {
         return $this->language_id;
     }
+
+    public function getMember()
+    {
+        return OrganisationMember::findMember($this->id);
+	}
 
     /**
      * @return string
@@ -158,12 +176,10 @@ class Organisation extends ActiveRecord
         $organisationWithDetails['ID'] = $organisation->getId();
         $organisationWithDetails['Name'] = $organisation->getName();
            
-        $organisationWithDetails['Nationality']['webp'] = $organisation->getNationality()->getWebpImage();
-        $organisationWithDetails['Nationality']['png'] = $organisation->getNationality()->getPNGImage();
+        $organisationWithDetails['Nationality']['icon'] = $organisation->getNationality()->getIconLocale();
         $organisationWithDetails['Nationality']['name'] = $organisation->getNationality()->getName($languageID);
 
-        $organisationWithDetails['Language']['webp'] = $organisation->getLanguage()->getWebpImage();
-        $organisationWithDetails['Language']['png'] = $organisation->getLanguage()->getPNGImage();
+        $organisationWithDetails['Language']['icon'] = $organisation->getLanguage()->getIconLocale();
         $organisationWithDetails['Language']['name'] = $organisation->getLanguage()->getName($languageID);
 
         return $organisationWithDetails;

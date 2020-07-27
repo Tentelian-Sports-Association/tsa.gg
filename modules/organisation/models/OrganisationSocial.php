@@ -25,7 +25,7 @@ class OrganisationSocial extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'organisation_socials';
+        return 'organisation_social';
     }
 
     /**

@@ -2,7 +2,11 @@
 
 /* @var $this yii\web\View *
  * @var $profilePicModel app\modules\miscellaneouse\models\formModels\ProfilePicForm
- * @var $userInfo array - siehe UserController
+ * @var $organisation array,
+ * @var $isOwner bool,
+ * @var $organisationSocial array,
+ * @var $organisationMember array,
+ * @var $orgaInfo array - siehe OrgaController
  */
 
 use yii\bootstrap4\ActiveForm;
@@ -19,9 +23,9 @@ use app\widgets\Alert;
 <div class="site-profileDetails">
     <div class="avatarPanel">
 		<div class="avatarSmall">
-			<?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $userInfo['user_id']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.png\'']); ?>		
+			<?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['id']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $organisation['id']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['id']) . '.png\'']); ?>		
 		</div>
-		<?php if ($userInfo['isMySelfe']) : ?>
+		<?php if ($isOwner) : ?>
 		    <?php $form = ActiveForm::begin([
 		        'id' => 'profile-pic-form',
 		        'options' => ['enctype' => 'multipart/form-data'],

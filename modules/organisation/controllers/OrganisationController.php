@@ -9,7 +9,10 @@ use app\modules\miscellaneouse\models\formModels\ProfilePicForm;
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 
+use app\modules\organisation\models\Organisation;
+
 use app\modules\organisation\models\formModels\CreateOrganisationForm;
+use app\modules\organisation\models\formModels\CreateOrganisation;
 
 use DateTime;
 use Yii;
@@ -83,4 +86,33 @@ class OrganisationController extends BaseController
             'currentUserID' => Yii::$app->user->identity->getId(),
         ]);
     }
+
+    public function actionDetails($organisationId = 0)
+    {
+        /** @var User $user */
+        $organisation = Organisation::findOrganisationById($organisationId);
+        $languageID = Language::findByLocale(Yii::$app->language)->getId();
+
+        
+
+        if(!$organisation)
+        {
+            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            return $this->goHome();
+		}
+
+        $OrganisationOwner = $organisation->getOwner();
+        $organisationMember = $organisation->getMember();
+        $organisationSocial = $organisation->getSocialDetails();
+
+        /** Check if User ID my own User ID */
+        $isOwner = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $OrganisationOwner->getUserId()) ? true : false;
+
+        return $this->render('details', [
+            'organisation' => $organisation,
+            'isOwner' => $isOwner,
+            'organisationSocial' => $organisationSocial,
+            'organisationMember' => $organisationMember,
+        ]);
+	}
 }
