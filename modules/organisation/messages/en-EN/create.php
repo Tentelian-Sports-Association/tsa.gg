@@ -19,4 +19,5 @@ return [
 	/** Buttons **/
 	'create' => 'Create Organisation',
 	'back' => 'Back to Profile',
+	'organisationDetails_info_editOrganisationDetails' => 'edit Organisation Avatar',
 ];
