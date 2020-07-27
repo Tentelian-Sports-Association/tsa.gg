@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View *
- * @var $profilePicModel app\modules\miscellaneouse\models\formModels\ProfilePicForm
+ * @var $organisationPicModel app\modules\miscellaneouse\models\formModels\ProfilePicForm
  * @var $organisation array,
  * @var $isOwner bool,
  * @var $organisationSocial array,
