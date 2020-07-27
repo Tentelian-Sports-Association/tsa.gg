@@ -8,6 +8,8 @@ use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 
+use app\modules\organisation\models\Organisation;
+
 use app\modules\miscellaneouse\models\formModels\SearchForm;
 
 use app\modules\user\models\User;
@@ -116,7 +118,6 @@ class CommunityController extends BaseController
             }
         }
 
-
         // Ausgliedern in User Model
         $allUser = User::find()->where(['like', 'username', $searchModel->searchString])->orderBy([$sortedBy => ($searchModel->sortAscend == 1) ? SORT_ASC : SORT_DESC]); //User::getSortedUser($searchModel->searchString, ($searchModel->sortAscend == 3) ? SORT_DESC : SORT_ASC);
         
@@ -172,15 +173,24 @@ class CommunityController extends BaseController
         
         $searchModel = new SearchForm();
 
+        $sortedBy = "id";
+
+
         if(Yii::$app->session['organisation_searchModel'])
         {
             $searchModel = Yii::$app->session['organisation_searchModel'];
 		}
 
-        $sortedBy = "id";
+        // Ausgliedern in User Model
+        $allOrgnisaions = Organisation::find()->where(['like', 'name', $searchModel->searchString])->orderBy([$sortedBy => ($searchModel->sortAscend == 1) ? SORT_ASC : SORT_DESC]);
+        
+        $count = $allOrgnisaions->count();
 
         // ggf in helper CLass ausrangieren
         if ($searchModel->load(Yii::$app->request->post())) {
+            
+            Yii::$app->session['organisation_searchModel'] = $searchModel;
+
             if ($searchModel->validate()) {
                 // get sorting code
                 $sortedBy = "";
@@ -203,13 +213,29 @@ class CommunityController extends BaseController
                 }
             }
         }
-        else
-        {
-            $searchModel->pageNumber = $page;
-        }
+
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 25]);
+        $sortedPaginatedOrganisation = $allOrgnisaions->offset($pagination->offset)->limit($pagination->limit)->all();
+
+        $paginatedOrganisation = Organisation::GetDetails($sortedPaginatedOrganisation, $languageID);
+
+        // Datenbank anlegen wo das drin ist um das zu vereinfachen
+        $sortOrder = [];
+        $sortOrder[1] = \app\modules\community\Module::t('searchForm', 'searchForm_sortAscendLbl');
+        $sortOrder[2] = \app\modules\community\Module::t('searchForm', 'searchForm_sortDescentLbl');
+
+        $sortOrderBy = [];
+        $sortOrderBy[1] = \app\modules\community\Module::t('searchForm', 'searchForm_byID');
+        $sortOrderBy[2] = \app\modules\community\Module::t('searchForm', 'searchForm_byNationality');
+        $sortOrderBy[3] = \app\modules\community\Module::t('searchForm', 'searchForm_byLanguage');
+        $sortOrderBy[4] = \app\modules\community\Module::t('searchForm', 'searchForm_byName');
 
         return $this->render('organisationOverview', [
-            //'users' => $users,
+            'searchModel' => $searchModel,
+            'sortOrder' => $sortOrder,
+            'sortOrderBy' => $sortOrderBy,
+            'pagination' => $pagination,
+            'sortedPaginatedOrganisation' => $paginatedOrganisation,
         ]);
 	}
 

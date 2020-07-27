@@ -4,7 +4,7 @@
  * @var $pagination int
  * @var $sortOrder array
  * @var $sortOrderBy array
- * @var $sortedPaginatedUsers array
+ * @var sortedPaginatedOrganisation array
  * @var $searchModel app\modules\miscellaneouse\models\formModels\SearchForm
  */
 
@@ -17,6 +17,18 @@ use yii\widgets\LinkPager;
 $this->title = \app\modules\community\Module::t('overview', 'overview_header_users');
 
 $searchString = '';
+
+/** Array  Organisation Details Like UserOverview zeile 94 **/
+/*
+sortedPaginatedOrganisation[$nr]['ID']
+sortedPaginatedOrganisation[$nr]['Name']
+
+sortedPaginatedOrganisation[$nr]['Nationality']['icon']
+sortedPaginatedOrganisation[$nr]['Nationality']['name']
+
+sortedPaginatedOrganisation[$nr]['Language']['icon']
+sortedPaginatedOrganisation[$nr]['Language']['name']
+*/
 
 ?>
 

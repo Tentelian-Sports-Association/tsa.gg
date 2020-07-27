@@ -12,7 +12,7 @@ use app\widgets\Alert;
 
 \app\modules\user\assets\profile\profileDetails\DetailsAsset::register($this);
 
-$this->title = $userInfo['user_name'] . '\'s Player profile';
+//$this->title = $userInfo['user_name'] . '\'s Player profile';
 
 ?>
 

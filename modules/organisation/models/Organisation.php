@@ -135,12 +135,10 @@ class Organisation extends ActiveRecord
            $paginatedOrganisationWithDetails[$nr]['ID'] = $organisation->getId();
            $paginatedOrganisationWithDetails[$nr]['Name'] = $organisation->getName();
            
-           $paginatedOrganisationWithDetails[$nr]['Nationality']['webp'] = $organisation->getNationality()->getWebpImage();
-           $paginatedOrganisationWithDetails[$nr]['Nationality']['png'] = $organisation->getNationality()->getPNGImage();
+           $paginatedOrganisationWithDetails[$nr]['Nationality']['icon'] = $organisation->getNationality()->getIconLocale();
            $paginatedOrganisationWithDetails[$nr]['Nationality']['name'] = $organisation->getNationality()->getName($languageID);
 
-           $paginatedOrganisationWithDetails[$nr]['Language']['webp'] = $organisation->getLanguage()->getWebpImage();
-           $paginatedOrganisationWithDetails[$nr]['Language']['png'] = $organisation->getLanguage()->getPNGImage();
+           $paginatedOrganisationWithDetails[$nr]['Language']['icon'] = $organisation->getLanguage()->getIconLocale();
            $paginatedOrganisationWithDetails[$nr]['Language']['name'] = $organisation->getLanguage()->getName($languageID);
 	    }
 
