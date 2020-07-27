@@ -93,6 +93,10 @@ class OrganisationController extends BaseController
         /** @var User $user */
         $organisation = Organisation::findOrganisationById($organisationId);
         $languageID = Language::findByLocale(Yii::$app->language)->getId();
+        $detailedOrganisation = Organisation::GetOrgansiationDetails($organisationId, $languageID);
+
+        //print_r($detailedOrganisation);
+        //die();
 
         if(!$organisation)
         {
@@ -103,9 +107,6 @@ class OrganisationController extends BaseController
         $OrganisationOwner = $organisation->getOwner();
         $organisationMember = $organisation->getMember();
         $organisationSocial = $organisation->getSocialDetails();
-
-        //print_r($OrganisationOwner);
-        //die();
 
         /** @var ProfilePicForm $profilePicModel */
         $organisationPicModel = new ProfilePicForm(ProfilePicForm::SCENARIO_ORGANISATION);
@@ -122,7 +123,7 @@ class OrganisationController extends BaseController
         $isOwner = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $OrganisationOwner['id']) ? true : false;
 
         return $this->render('details', [
-            'organisation' => $organisation,
+            'organisation' => $detailedOrganisation,
             'OrganisationOwner' => $OrganisationOwner,
             'isOwner' => $isOwner,
             'organisationSocial' => $organisationSocial,

@@ -106,16 +106,13 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
     {
         $owner = OrganisationMember::find()->where(['organisation_id' => $organisationId])->andWhere(['role_id' => 1])->one();
 
-        //print_r($owner);
-        //die();
-
         $orgaOwner = [];
 
         $orgaOwner['id'] = $owner['user_id'];
+        $orgaOwner['Name'] = User::findIdentity($owner['user_id'])->getUsername();
 
 
         return $orgaOwner;
-        return OrganisationMember::find()->where(['organisation_id' => $organisationId])->andWhere(['role_id' => 1])->one();
 	}
 
     public static function FindOrganisationDeputy($organisationId)

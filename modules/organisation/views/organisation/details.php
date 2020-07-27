@@ -18,12 +18,24 @@ use app\widgets\Alert;
 
 //$this->title = $userInfo['user_name'] . '\'s Player profile';
 
+/** Usabel Variables **/
+/*
+$organisation['ID']
+$organisation['Name']
+$organisation['Description']
+$organisation['FoundingDate']
+$organisation['Nationality']['icon']
+$organisation['Nationality']['name']
+$organisation['Language']['icon']
+$organisation['Language']['name']
+*/
+
 ?>
 
 <div class="site-profileDetails">
     <div class="avatarPanel">
 		<div class="avatarSmall">
-			<?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['id']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $organisation['id']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['id']) . '.png\'']); ?>		
+			<?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $organisation['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.png\'']); ?>		
 		</div>
 		<?php if ($isOwner) : ?>
 		    <?php $form = ActiveForm::begin([
@@ -54,7 +66,7 @@ use app\widgets\Alert;
                           </svg>',
                                 [
                                     "account/edit-details",
-                                    "userId" => $organisation['id']
+                                    "organisationId" => $organisation['ID']
                                 ],
                                 ['class' => "filled-btn btn btn-primary upload float-right",
                                     'title' => \app\modules\organisation\Module::t('organisationDetails', 'details')
@@ -89,18 +101,18 @@ use app\widgets\Alert;
                                     </div>
                                 <?php endif; ?>
                                 <div class="avatar-preview">
-                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $organisation['id']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $organisation['id']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $organisation['id']) . '.png\''] ); ?>
+                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $organisation['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.png\''] ); ?>
                                 </div>
                             </div>
 
                             <div class="avatarName col-10">
-                                <h3 class="mb-1"><?= $organisation['Name'] ?><span class="ml-3 avatarID">ID: <?= $organisation['id'] ?></span></h3>
+                                <h3 class="mb-1"><?= $organisation['Name'] ?><span class="ml-3 avatarID">ID: <?= $organisation['ID'] ?></span></h3>
                                 <ul class="personal-datalist list-inline">
                                     <li class="list-inline-item">
-                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($organisation['language_img'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $organisation['language_img'],'class' => 'IMG']) ?> <?= $organisation['language'] ?></span>
+                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($organisation['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $organisation['Language']['name'],'class' => 'IMG']) ?> <?= $organisation['Language']['icon'] ?></span>
                                     </li>
                                     <li class="list-inline-item">
-                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($organisation['nationality_img'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $organisation['nationality_img'],'class' => 'IMG']) ?> <?= $organisation['nationality'] ?></span>
+                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($organisation['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $organisation['Nationality']['name'],'class' => 'IMG']) ?> <?= $organisation['Nationality']['icon'] ?></span>
                                     </li>
                                 </ul>
                                 <div class="avatarjob-list">
@@ -129,7 +141,7 @@ use app\widgets\Alert;
                                     //"userId" => $userInfo['user_id']
                                 ],
                                 ['class' => "filled-btn btn btn-primary add-btn",
-                                    'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
+                                    'title' => \app\modules\organisation\Module::t('userDetails', 'userDetails_info_editAccountDetails')
                                 ]
                             )
                             ?>
@@ -328,7 +340,7 @@ use app\widgets\Alert;
 
                     <div class="section-row game-accounts py-5">
                         <h3 class="header">
-                            <?= \app\modules\user\Module::t('userDetails', 'userDetails_gameAccountHeader') ?>
+                            <?= \app\modules\organisation\Module::t('organisationDetails', 'details') ?>
                             <?php if ($userInfo['isMySelfe']) : ?>
                                 <?php
                                 echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -340,7 +352,7 @@ use app\widgets\Alert;
                                         "userId" => $userInfo['user_id']
                                     ],
                                     ['class' => "filled-btn btn btn-primary add-btn",
-                                        'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_addGameAccount')
+                                        'title' => \app\modules\organisation\Module::t('organisationDetails', 'details')
                                     ]
                                 )
                                 ?>
@@ -385,7 +397,7 @@ use app\widgets\Alert;
                                                                         "userId" => $userInfo['user_id']
                                                                     ],
                                                                     ['class' => "	btn btn-primary delete-btn float-right",
-                                                                        'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_deleteGameAccount')
+                                                                        'title' => \app\modules\organisation\Module::t('organisationDetails', 'details')
                                                                     ]
                                                                 )
                                                                 ?>
@@ -409,7 +421,7 @@ use app\widgets\Alert;
                                                                         "userId" => $userInfo['user_id']
                                                                     ],
                                                                     ['class' => $game['visible'] == 1 ? "filled-btn btn btn-primary add-btn float-right" : "outline-btn btn btn-primary add-btn float-right",
-                                                                        'title' => $game['visible'] == 1 ? \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountVisible') : \app\modules\user\Module::t('userDetails', 'userDetails_info_gameAccountNotVisible')
+                                                                        'title' => $game['visible'] == 1 ? \app\modules\organisation\Module::t('organisationDetails', 'details'): \app\modules\organisation\Module::t('organisationDetails', 'details')
                                                                     ]
                                                                 )
                                                             ?>
@@ -430,7 +442,7 @@ use app\widgets\Alert;
                     <!-- Social Media -->
                     <div class="section-row social-media-accounts py-5">
                         <h3 class="header">
-                            <?= \app\modules\user\Module::t('userDetails', 'userDetails_socialMediaHeader') ?>
+                            <?= \app\modules\organisation\Module::t('organisationDetails', 'details') ?>
                         </h3>
                         <ul class="list-inline">
                             <?php if($userInfo['twitch_name']) : ?>

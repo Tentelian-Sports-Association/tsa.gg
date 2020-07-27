@@ -175,6 +175,9 @@ class Organisation extends ActiveRecord
 
         $organisationWithDetails['ID'] = $organisation->getId();
         $organisationWithDetails['Name'] = $organisation->getName();
+        $organisationWithDetails['Description'] = $organisation->getDescription();
+        $organisationWithDetails['FoundingDate'] = $organisation->getDtCreated();
+
            
         $organisationWithDetails['Nationality']['icon'] = $organisation->getNationality()->getIconLocale();
         $organisationWithDetails['Nationality']['name'] = $organisation->getNationality()->getName($languageID);
