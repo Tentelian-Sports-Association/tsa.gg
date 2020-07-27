@@ -4,7 +4,7 @@
  * @var $pagination int
  * @var $sortOrder array
  * @var $sortOrderBy array
- * @var $sortedPaginatedUsers array
+ * @var sortedPaginatedTeam array
  * @var $searchModel app\modules\miscellaneouse\models\formModels\SearchForm
  */
 
@@ -14,9 +14,21 @@ use yii\widgets\LinkPager;
 
 \app\modules\community\assets\searchOverview\SearchOverviewAsset::register($this);
 
-$this->title = \app\modules\community\Module::t('overview', 'overview_header_users');
+$this->title = \app\modules\community\Module::t('overview', 'overview_header_teams');
 
 $searchString = '';
+
+/** Array  Organisation Details Like UserOverview zeile 94 **/
+/*
+sortedPaginatedTeam[$nr]['ID']
+sortedPaginatedTeam[$nr]['Name']
+
+sortedPaginatedTeam[$nr]['Nationality']['icon']
+sortedPaginatedTeam[$nr]['Nationality']['name']
+
+sortedPaginatedTeam[$nr]['Language']['icon']
+sortedPaginatedTeam[$nr]['Language']['name']
+*/
 
 ?>
 

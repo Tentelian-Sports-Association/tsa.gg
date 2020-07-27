@@ -10,6 +10,8 @@ use app\modules\miscellaneouse\models\nationality\Nationality;
 
 use app\modules\organisation\models\Organisation;
 
+use app\modules\team\models\Team;
+
 use app\modules\miscellaneouse\models\formModels\SearchForm;
 
 use app\modules\user\models\User;
@@ -175,7 +177,6 @@ class CommunityController extends BaseController
 
         $sortedBy = "id";
 
-
         if(Yii::$app->session['organisation_searchModel'])
         {
             $searchModel = Yii::$app->session['organisation_searchModel'];
@@ -241,8 +242,79 @@ class CommunityController extends BaseController
 
     public function actionTeamOverview($page = 1)
     {
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+        $languageLocale = Yii::$app->HelperClass->getUserLanguage($user, true);
+
+        $searchModel = null;
+        
+        $searchModel = new SearchForm();
+
+        $sortedBy = "id";
+
+        if(Yii::$app->session['team_searchModel'])
+        {
+            $searchModel = Yii::$app->session['team_searchModel'];
+		}
+
+        // Ausgliedern in User Model
+        $allTeams = Team::find()->where(['like', 'name', $searchModel->searchString])->orderBy([$sortedBy => ($searchModel->sortAscend == 1) ? SORT_ASC : SORT_DESC]);
+        
+        $count = $allTeams->count();
+
+        // ggf in helper CLass ausrangieren
+        if ($searchModel->load(Yii::$app->request->post())) {
+            
+            Yii::$app->session['team_searchModel'] = $searchModel;
+
+            if ($searchModel->validate()) {
+                // get sorting code
+                $sortedBy = "";
+                switch ($searchModel->sortedBy) {
+	                case 1:
+		                $sortedBy = "id";
+		                break;
+
+                    case 2:
+		                $sortedBy = "nationality_id";
+		                break;
+
+                    case 3:
+		                $sortedBy = "language_id";
+		                break;
+
+                    case 4:
+		                $sortedBy = "username";
+		                break;
+                }
+            }
+        }
+
+
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 25]);
+        $sortedPaginatedTeams = $allTeams->offset($pagination->offset)->limit($pagination->limit)->all();
+
+        $paginatedTeams = Team::GetDetails($sortedPaginatedTeams, $languageID);
+
+        // Datenbank anlegen wo das drin ist um das zu vereinfachen
+        $sortOrder = [];
+        $sortOrder[1] = \app\modules\community\Module::t('searchForm', 'searchForm_sortAscendLbl');
+        $sortOrder[2] = \app\modules\community\Module::t('searchForm', 'searchForm_sortDescentLbl');
+
+        $sortOrderBy = [];
+        $sortOrderBy[1] = \app\modules\community\Module::t('searchForm', 'searchForm_byID');
+        $sortOrderBy[2] = \app\modules\community\Module::t('searchForm', 'searchForm_byNationality');
+        $sortOrderBy[3] = \app\modules\community\Module::t('searchForm', 'searchForm_byLanguage');
+        $sortOrderBy[4] = \app\modules\community\Module::t('searchForm', 'searchForm_byName');
+
         return $this->render('teamOverview', [
-            //'users' => $users,
+            'searchModel' => $searchModel,
+            'sortOrder' => $sortOrder,
+            'sortOrderBy' => $sortOrderBy,
+            'pagination' => $pagination,
+            'sortedPaginatedOrganisation' => $paginatedTeams,
         ]);
 	}
 }

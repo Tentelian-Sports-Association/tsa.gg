@@ -142,7 +142,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <ul class="news-list row list-unstyled">
                     <?php foreach($latestNews as $news) : ?>
                         <li class="news-item col-12 col-lg-4">
-                            <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/news/news/', $news['ID']) . '.webp', ['aria-label' => $news['Headline'], 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/news/categorie/', $news['ID']) . '.png\''])		
+                            <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/news/news/', $news['ID']) . '.webp', ['aria-label' => $news['Headline'], 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/news/news/', $news['ID']) . '.png\''])		
                                         . '<span class="news-date d-inline-flex align-items-center">
                                                 <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M25.1875 4.84375H5.8125C4.20742 4.84375 2.90625 6.14492 2.90625 7.75V25.1875C2.90625 26.7926 4.20742 28.0938 5.8125 28.0938H25.1875C26.7926 28.0938 28.0938 26.7926 28.0938 25.1875V7.75C28.0938 6.14492 26.7926 4.84375 25.1875 4.84375Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>

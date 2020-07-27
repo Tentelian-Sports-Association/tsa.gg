@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\modules",
+    "\\modules\\organisation",
+    "\\modules\\organisation\\models",
+    "\\modules\\team"
   ],
-  "SelectedNode": "\\config",
+  "SelectedNode": "\\modules\\organisation",
   "PreviewInSolutionExplorer": false
 }
