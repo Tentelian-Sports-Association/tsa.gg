@@ -105,6 +105,17 @@ class OrganisationController extends BaseController
         $organisationMember = $organisation->getMember();
         $organisationSocial = $organisation->getSocialDetails();
 
+        /** @var ProfilePicForm $profilePicModel */
+        $organisationPicModel = new ProfilePicForm(ProfilePicForm::SCENARIO_ORGANISATION);
+        $organisationPicModel->id = $organisationId;
+
+        if ($organisationPicModel->load(Yii::$app->request->post())) {
+            $organisationPicModel->file = UploadedFile::getInstance($organisationPicModel, 'file');
+            if ($organisationPicModel->validate()) {
+                $organisationPicModel->save();
+            }
+        }
+
         /** Check if User ID my own User ID */
         $isOwner = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $OrganisationOwner->getUserId()) ? true : false;
 
@@ -113,6 +124,7 @@ class OrganisationController extends BaseController
             'isOwner' => $isOwner,
             'organisationSocial' => $organisationSocial,
             'organisationMember' => $organisationMember,
+            'organisationPicModel' => $organisationPicModel,
         ]);
 	}
 }
