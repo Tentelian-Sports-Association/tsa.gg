@@ -3,6 +3,7 @@
 /* @var $this yii\web\View *
  * @var $organisationPicModel app\modules\miscellaneouse\models\formModels\ProfilePicForm
  * @var $organisation array,
+ * @var $OrganisationOwner
  * @var $isOwner bool,
  * @var $organisationSocial array,
  * @var $organisationMember array,
@@ -28,6 +29,9 @@ $organisation['Nationality']['icon']
 $organisation['Nationality']['name']
 $organisation['Language']['icon']
 $organisation['Language']['name']
+
+$OrganisationOwner['id']
+$OrganisationOwner['Name']
 */
 
 ?>

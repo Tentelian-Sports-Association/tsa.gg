@@ -105,6 +105,9 @@ class OrganisationController extends BaseController
 		}
 
         $OrganisationOwner = $organisation->getOwner();
+        print_r($OrganisationOwner);
+        die();
+
         $organisationMember = $organisation->getMember();
         $organisationSocial = $organisation->getSocialDetails();
 
