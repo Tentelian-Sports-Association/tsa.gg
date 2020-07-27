@@ -41,7 +41,7 @@ use app\widgets\Alert;
 		<?php endif; ?>
 	</div>
 
-	div class="inner-wrapper">
+	<div class="inner-wrapper">
         <div class="row ">
             <div class="col-12 col-lg-8 ">
                 <div class="content-profileDetails bg-darkblue-2">
@@ -94,11 +94,8 @@ use app\widgets\Alert;
                             </div>
 
                             <div class="avatarName col-10">
-                                <h3 class="mb-1"><?= $organisation['user_name'] ?><span class="ml-3 avatarID">ID: <?= $organisation['id'] ?></span></h3>
+                                <h3 class="mb-1"><?= $organisation['Name'] ?><span class="ml-3 avatarID">ID: <?= $organisation['id'] ?></span></h3>
                                 <ul class="personal-datalist list-inline">
-                                    <li class="list-inline-item">
-                                        <span><?= $organisation['age'] ?> Jahre alt </span>
-                                    </li>
                                     <li class="list-inline-item">
                                         <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($organisation['language_img'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $organisation['language_img'],'class' => 'IMG']) ?> <?= $organisation['language'] ?></span>
                                     </li>
