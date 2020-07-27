@@ -33,8 +33,8 @@ use app\widgets\Alert;
 		            'template' => "<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>"
 		        ],
 		    ]); ?>
-		    <?= $form->field($profilePicModel, 'id')->hiddenInput()->label(false); ?>
-		    <?= $form->field($profilePicModel, 'file')->fileInput() ?>
+		    <?= $form->field($organisationPicModel, 'id')->hiddenInput()->label(false); ?>
+		    <?= $form->field($organisationPicModel, 'file')->fileInput() ?>
 
 		    <?= Html::submitButton(Yii::t('app', 'upload'), ['class' => 'btn btn-primary upload', 'name' => 'upload-button']) ?>
 		    <?php ActiveForm::end(); ?>
