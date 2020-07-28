@@ -112,7 +112,7 @@ sortedPaginatedOrganisation[$nr]['Language']['name']
                                     <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $orga['ID']) . '.webp', ['aria-label' => $orga['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $orga['ID']) . '.png\'']) ?>		
                                 </div>
                                 <div class="username float-left">
-                                    <?php echo $orga['Name']; ?>
+                                    <?= Html::a($orga['Name'], ['/organisation/details', 'organisationId' => $orga['ID']], ['class' => '']); ?>
                                 </div>
                             </div>
                             <div class="col-3 invite float-left"></div>

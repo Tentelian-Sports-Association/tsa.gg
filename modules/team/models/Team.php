@@ -158,6 +158,7 @@ class Team extends ActiveRecord
        {
            $paginatedTeamsWithDetails[$nr]['ID'] = $Team->getId();
            $paginatedTeamsWithDetails[$nr]['Name'] = $Team->getName();
+           $paginatedTeamsWithDetails[$nr]['OrgID'] = $Team->getOrganisationId();
            
            $paginatedTeamsWithDetails[$nr]['Nationality']['icon'] = $Team->getNationality()->getIconLocale();
            $paginatedTeamsWithDetails[$nr]['Nationality']['name'] = $Team->getNationality()->getName($languageID);

@@ -109,10 +109,11 @@ sortedPaginatedTeam[$nr]['Language']['name']
                             </div>
                             <div class="col-3 float-left">
                                 <div class="avatar float-left">
-                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/team/', $team['ID']) . '.webp', ['aria-label' => $team['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/team/', $team['ID']) . '.png\'']) ?>		
+                                    <?= Html::img(Yii::$app->HelperClass->checkTeamImage($team['ID'], $team['OrgID']) . '.webp', ['aria-label' => $team['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkTeamImage($team['ID'], $team['OrgID']) . '.png\'']) ?>		
                                 </div>
                                 <div class="username float-left">
-                                    <?php echo $team['Name']; ?>
+                                    <?= Html::a($team['Name'], ['/team/details', 'teamID' => $team['ID']], ['class' => '']); ?>
+
                                 </div>
                             </div>
                             <div class="col-3 invite float-left"></div>

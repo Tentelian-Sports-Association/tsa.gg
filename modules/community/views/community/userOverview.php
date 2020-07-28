@@ -101,7 +101,7 @@ $searchString = '';
                                     <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.webp', ['aria-label' => $user['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.png\'']) ?>		
                                 </div>
                                 <div class="username float-left">
-                                    <?php echo $user['Name']; ?>
+                                    <?= Html::a($user['Name'], ['/user/details', 'userId' => $user['ID']], ['class' => '']); ?>
                                 </div>
                             </div>
                             <div class="col-3 invite float-left"></div>

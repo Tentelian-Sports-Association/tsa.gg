@@ -60,6 +60,12 @@ class UserController extends BaseController
      */
     public function actionDetails($userId = 0)
     {
+        if($userId == 0)
+        {
+            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            return $this->goHome();
+		}
+
         /** @var User $user */
         $user = User::findIdentity($userId);
         $languageID = Language::findByLocale(Yii::$app->language)->getId();

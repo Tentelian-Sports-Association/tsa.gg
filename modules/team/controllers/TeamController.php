@@ -59,6 +59,12 @@ class TeamController extends BaseController
 
     public function actionDetails($teamID = 0)
     {
+        if($teamID == 0)
+        {
+            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            return $this->goHome();
+		}
+
         /** @var Team $team */
         $team = Team::findTeamById($teamID);
         $languageID = Language::findByLocale(Yii::$app->language)->getId();

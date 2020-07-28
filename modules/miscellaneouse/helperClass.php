@@ -41,6 +41,25 @@ class HelperClass
     }
 
     /**
+     * Check if Image exists ore use Default
+     *
+     * @param $imagePath
+     * @param $id
+     * @return string
+     */
+    public function checkTeamImage($id, $orgId)
+    {
+        $imagePath = Yii::getAlias("@web") . '/images/avatars/team/';
+
+        if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $id . '.webp')) {
+            if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $id .'.png')) {
+                return $this->checkImage('/images/avatars/organisation/', $orgId);
+            }
+        }
+        return $imagePath . $id;
+    }
+
+    /**
      * Check if Nationality Icon exists ore use Default
      *
      * @param $icon_locale
