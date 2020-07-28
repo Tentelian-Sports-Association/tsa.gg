@@ -6,12 +6,13 @@ use app\components\BaseController;
 
 use app\modules\miscellaneouse\models\formModels\ProfilePicForm;
 
+use app\modules\miscellaneouse\models\language\Language;
+
 use app\modules\user\models\User;
 use app\modules\user\models\UserDetails;
 use app\modules\user\models\UserSocials;
 use app\modules\user\models\UserBalance;
 
-use app\modules\miscellaneouse\models\language\Language;
 
 use DateTime;
 use Yii;
@@ -138,4 +139,6 @@ class UserController extends BaseController
             'memberOrganisations' => $memberOrganisations
         ]);
     }
+
+    
 }

@@ -324,7 +324,7 @@ class User extends AbstractActiveRecord implements IdentityInterface
 	}
 
     /* Get User for Community Overview */
-    public static function GetDetails($paginatedUser, $languageID)
+    public static function GetDetails($paginatedUser, $languageID, $organisationId)
     {
        $paginatedUserWithDetails = array();
 
@@ -338,6 +338,9 @@ class User extends AbstractActiveRecord implements IdentityInterface
 
            $paginatedUserWithDetails[$nr]['Language']['icon'] = $user->getLanguage()->getIconLocale();
            $paginatedUserWithDetails[$nr]['Language']['name'] = $user->getLanguage()->getName($languageID);
+
+           /** for Invites */
+           $paginatedUserWithDetails[$nr]['invitabel'] = (OrganisationMember::find()->where(['user_id' => $user->getId()])->andWhere(['organisation_id' => $organisationId])->one()) ? false : true;
 	    }
 
         //print_r($paginatedUserWithDetails);

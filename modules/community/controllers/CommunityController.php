@@ -9,6 +9,7 @@ use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 
 use app\modules\organisation\models\Organisation;
+use app\modules\organisation\models\OrganisationMember;
 
 use app\modules\team\models\Team;
 
@@ -141,7 +142,22 @@ class CommunityController extends BaseController
         $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 25]);
         $sortedPaginatedUsers = $allUser->offset($pagination->offset)->limit($pagination->limit)->all();
 
-        $paginatedUsers = User::GetDetails($sortedPaginatedUsers, $languageID);
+        /** Bereich für Invites **/
+
+        $ownId = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getId() : 0;
+
+        $canInvite = false;
+
+        if($ownId != 0)
+        {
+            $invitabelOrgaisationId = OrganisationMember::find()->where(['user_id' => $ownId])->andWhere(['<', 'role_id', '3'])->one()->getOrganisationId();
+                if($invitabelOrgaisationId != null)
+                    $canInvite = true;
+		}
+
+        /** Ende Ivites Bereich **/
+
+        $paginatedUsers = User::GetDetails($sortedPaginatedUsers, $languageID, $invitabelOrgaisationId);
 
         // Datenbank anlegen wo das drin ist um das zu vereinfachen
         $sortOrder = [];
@@ -160,6 +176,8 @@ class CommunityController extends BaseController
             'sortOrderBy' => $sortOrderBy,
             'pagination' => $pagination,
             'sortedPaginatedUsers' => $paginatedUsers,
+            'canInvite' => $canInvite,
+            'invitabelOrgaisationId' => $invitabelOrgaisationId,
         ]);
 	}
 

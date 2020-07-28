@@ -5,6 +5,8 @@
  * @var $sortOrder array
  * @var $sortOrderBy array
  * @var $sortedPaginatedUsers array
+ * @var canInvite bool
+ * @var $invitabelOrgaisationId int
  * @var $searchModel app\modules\miscellaneouse\models\formModels\SearchForm
  */
 
@@ -104,7 +106,23 @@ $searchString = '';
                                     <?= Html::a($user['Name'], ['/user/details', 'userId' => $user['ID']], ['class' => '']); ?>
                                 </div>
                             </div>
-                            <div class="col-3 invite float-left"></div>
+                            <div class="col-3 invite float-left">
+                            <?php if($canInvite && $user['invitabel']) : ?>
+                                <?php
+									echo Html::a('Invite',
+										[
+											"/account/invite",
+											"userId" => $user['ID'],
+											"orgID" => $invitabelOrgaisationId,
+											"inviterID" => Yii::$app->user->identity->getId()
+										],
+										['class' => "",
+											'title' => 'Invite'
+										]
+									)
+								?>
+                            <?php endif; ?>
+                            </div>
                             <div class="col-2 natImg float-left">
                                 <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Nationality']['name'],'class' => 'IMG']) ?>
                             </div>

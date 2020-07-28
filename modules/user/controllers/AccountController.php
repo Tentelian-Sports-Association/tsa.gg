@@ -14,6 +14,7 @@ use app\modules\user\models\formModels\DetailsForm;
 use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
+use app\modules\miscellaneouse\models\invitations\Invitation;
 
 use app\modules\miscellaneouse\models\games\GamePlatforms;
 use app\modules\miscellaneouse\models\games\Games;
@@ -22,6 +23,8 @@ use app\modules\user\models\User;
 use app\modules\user\models\UserGames;
 use app\modules\user\models\UserDetails;
 use app\modules\user\models\UserSocials;
+
+use app\modules\organisation\models\OrganisationMember;
 
 use DateTime;
 use Yii;
@@ -350,5 +353,51 @@ class AccountController extends BaseController
     public function actionToggleAccountBalance($userId)
     {
         // test
+	}
+
+    public function actionInvite($userId, $orgID, $inviterID)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
+            return $this->goHome();
+        }
+
+        $canInvite = OrganisationMember::find()->where(['organisation_id' => $orgID])->andWhere(['user_id' => $inviterID])->andWhere(['<', 'role_id', '3'])->one();
+
+        /*
+
+        if($canBeInvited) {
+            $model = new Invitations();
+        
+            $model->organisation_id = $orgID;
+            $model->invited_user_id = $userId;
+            $model->inviter_user_id = $inviterID;
+            $model->declined = false;
+        
+            /** Save Credentials **/
+            /*try {
+                $model->save();
+        
+                Alert::addSuccess('Player Invited');
+                return $this->goBack(Yii::$app->request->referrer);
+            } catch (Exception $e) {
+                print_r($e);
+        
+                Alert::addError('Cannot Invite Player');
+                return $this->goBack(Yii::$app->request->referrer);
+            }*/
+		//}
+
+        //Alert::addError('You are not Allowed to Invite this Player');
+        return $this->goBack(Yii::$app->request->referrer);
+	}
+
+    public function actionAcceptInvitation($userId, $orgID, $inviterID)
+    {
+        
+	}
+
+    public function actionDeclineInvitation($userId, $orgID, $inviterID)
+    {
+        
 	}
 }
