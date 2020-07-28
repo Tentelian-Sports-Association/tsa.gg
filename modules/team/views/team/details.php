@@ -13,7 +13,7 @@ use yii\helpers\Html;
 
 use app\widgets\Alert;
 
-\app\modules\organisation\assets\organisationDetails\DetailsAssets::register($this);
+\app\modules\team\assets\teamDetails\DetailsAssets::register($this);
 
 //$this->title = $userInfo['user_name'] . '\'s Player profile';
 
