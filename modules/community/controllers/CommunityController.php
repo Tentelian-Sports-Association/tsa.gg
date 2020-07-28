@@ -314,7 +314,7 @@ class CommunityController extends BaseController
             'sortOrder' => $sortOrder,
             'sortOrderBy' => $sortOrderBy,
             'pagination' => $pagination,
-            'sortedPaginatedOrganisation' => $paginatedTeams,
+            'sortedPaginatedTeam' => $paginatedTeams,
         ]);
 	}
 }
