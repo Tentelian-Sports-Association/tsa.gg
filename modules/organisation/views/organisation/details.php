@@ -7,7 +7,6 @@
  * @var $isOwner bool,
  * @var $organisationSocial array,
  * @var $organisationMember array,
- * @var $orgaInfo array - siehe OrgaController
  */
 
 use yii\bootstrap4\ActiveForm;
