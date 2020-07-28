@@ -384,42 +384,15 @@ class AccountController extends BaseController
                 return $this->goBack(Yii::$app->request->referrer);
             }
 		}
-
-
-        /*
-
-        if($canBeInvited) {
-            $model = new Invitations();
-        
-            $model->organisation_id = $orgID;
-            $model->invited_user_id = $userId;
-            $model->inviter_user_id = $inviterID;
-            $model->declined = false;
-        
-            /** Save Credentials **/
-            /*try {
-                $model->save();
-        
-                Alert::addSuccess('Player Invited');
-                return $this->goBack(Yii::$app->request->referrer);
-            } catch (Exception $e) {
-                print_r($e);
-        
-                Alert::addError('Cannot Invite Player');
-                return $this->goBack(Yii::$app->request->referrer);
-            }*/
-		//}
-
-        //Alert::addError('You are not Allowed to Invite this Player');
         return $this->goBack(Yii::$app->request->referrer);
 	}
 
-    public function actionAcceptInvitation($userId, $orgID, $inviterID)
+    public function actionAcceptInvitation($userId, $orgID)
     {
         
 	}
 
-    public function actionDeclineInvitation($userId, $orgID, $inviterID)
+    public function actionDeclineInvitation($userId, $orgID)
     {
         
 	}

@@ -7,6 +7,7 @@ use app\components\BaseController;
 use app\modules\miscellaneouse\models\formModels\ProfilePicForm;
 
 use app\modules\miscellaneouse\models\language\Language;
+use app\modules\miscellaneouse\models\invitations\Invitation;
 
 use app\modules\user\models\User;
 use app\modules\user\models\UserDetails;
@@ -86,6 +87,9 @@ class UserController extends BaseController
         /** @var User Socials $userSocials */
         $userSocials = UserSocials::findByID($user->getID());
 
+        /** @var User Socials $openInvites */
+        $openInvites = Invitation::GetOpenInvitations($user->getID());
+
         /** @var ProfilePicForm $profilePicModel */
         $profilePicModel = new ProfilePicForm(ProfilePicForm::SCENARIO_USER);
         $profilePicModel->id = $userId;
@@ -136,7 +140,8 @@ class UserController extends BaseController
             'userGames' => $userGames,
             'userBalance' => $userBalance,
             'ownedOrganisation' => $ownedOrganisation, 
-            'memberOrganisations' => $memberOrganisations
+            'memberOrganisations' => $memberOrganisations,
+            'openInvites' => $openInvites,
         ]);
     }
 

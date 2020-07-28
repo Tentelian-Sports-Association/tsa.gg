@@ -6,6 +6,7 @@
  * @var $userBalance string
  * @var $ownedOrganisation array
  * @var $memberOrganisations array
+ * @var $openInvites array
  */
 
 use yii\bootstrap4\ActiveForm;
@@ -14,9 +15,7 @@ use yii\helpers\Html;
 use app\widgets\Alert;
 
 \app\modules\user\assets\profile\profileDetails\DetailsAsset::register($this);
-$user = Yii::$app->HelperClass->getUser();
 $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('userDetails', 'userDetails_title');
-
 ?>
 
 <div class="site-profileDetails p-3 p-md-5">
@@ -509,13 +508,48 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                     </div>
                 </div>
 
-                <!-- Open Invites
+                <!-- Open Invites -->
                 <div class="new-invites-block py-5 bg-darkblue-2 ">
                     <div class="header">
                         <?= \app\modules\user\Module::t('userDetails', 'userDetails_invitesHeader') ?>
                     </div>
+                    <?php foreach($openInvites as $invite) : ?>
+                        <!-- Überschrift -->
+                        <?= Html::a($invite['Organisation']['Name'], ['/organisation/details', 'organisationId' => $invite['Organisation']['ID']], ['class' => '']); ?>
+                        <!-- direkt unter dem Organisations namen in kleiner -->
+                        <?= Html::a($invite['Inviter']['Name'], ['/user/details', 'userId' => $invite['Inviter']['ID']], ['class' => '']); ?>
+
+                        <!-- Buttons zum annehmenudn ablehnen -->
+                        <?php if($userInfo['isMySelfe']) : ?>
+                            <?php
+							    echo Html::a('',
+								    [
+									    "/account/accept-invitation",
+									    "userId" => $userInfo['user_id'],
+									    "orgID" => $invite['Organisation']['ID'],
+								    ],
+								    ['class' => "",
+									    'title' => 'Invite'
+								    ]
+							    )
+						    ?>
+                        <?php endif; ?>
+                        <?php if($userInfo['isMySelfe']) : ?>
+                            <?php
+							    echo Html::a('',
+								    [
+									    "/account/decline-invitation",
+									    "userId" => $userInfo['user_id'],
+									    "orgID" => $invite['Organisation']['ID'],
+								    ],
+								    ['class' => "",
+									    'title' => 'Invite'
+								    ]
+							    )
+						    ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
-                -->
                 <!-- Open Applications
                 <div class="open-applications py-5 bg-darkblue-2 ">
                     <div class="header">
