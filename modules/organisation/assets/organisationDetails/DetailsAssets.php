@@ -9,7 +9,7 @@ class DetailsAssets extends AssetBundle
     public $sourcePath = '@app/assets/dist';
  
     public $css = [
-		'css/profileDetails.css'
+		'css/organisation.css'
     ];
 
     public $cssOptions = [
