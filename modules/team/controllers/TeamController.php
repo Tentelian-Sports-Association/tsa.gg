@@ -6,8 +6,10 @@ use app\components\BaseController;
 
 use app\modules\miscellaneouse\models\formModels\ProfilePicForm;
 
+use app\modules\miscellaneouse\models\games\Games;
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
+use app\modules\miscellaneouse\models\tournamentMode\TournamentMode;
 
 use app\modules\organisation\models\Organisation;
 
@@ -94,9 +96,41 @@ class TeamController extends BaseController
         ]);
 	}
 
-    public function actionCreateTeam($gameID = 0)
+    public function actionCreateTeam($orgID, $gameID)
     {
-        
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        /** @var Language $languageID */
+        $languageID = Language::findByLocale(Yii::$app->language)->getId();
+
+        $model = new CreateTeamForm();
+        $model->organisation_id = $orgID;
+        $model->game_id = $gameID;
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
+            return $this->redirect(['/organisation/details?organisationId=' . $orgID]);
+        }
+
+        $languageList = [];
+        foreach (Language::find()->all() as $language) { $languageList[$language->getId()] = $language->getName($languageID); }
+
+        $nationalityList = [];
+        foreach (Nationality::find()->all() as $nationality) { $nationalityList[$nationality->getId()] = $nationality->getName($languageID); }
+
+        $modeList = [];
+        foreach (TournamentMode::find()->where(['game_id' => $gameID])->all() as $Mode) { $modeList[$Mode->getId()] = $Mode->getName($languageID); }
+
+        $model->gameName = Games::find()->where(['id' => $gameID])->one()->getName($languageID);
+
+        return $this->render('createTeam', [
+           'model' => $model,
+            'languageList' => $languageList,
+            'nationalityList' => $nationalityList,
+            'modeList' => $modeList,
+            'gameId' => $gameID,
+        ]);
 	}
 
     public function actionEditTeam($teamID = 0)
