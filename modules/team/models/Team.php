@@ -25,7 +25,7 @@ use DateTime;
  * @property int $nationality_id
  * @property int $mode_id
  * @property string $name
- * @property string $shortcode
+ * @property string $shortCode
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -112,7 +112,7 @@ class Team extends ActiveRecord
      */
     public function getShortcode()
     {
-        return $this->shortcode;
+        return $this->shortCode;
     }
 
     /**

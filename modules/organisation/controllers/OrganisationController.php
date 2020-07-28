@@ -89,6 +89,12 @@ class OrganisationController extends BaseController
 
     public function actionDetails($organisationId = 0)
     {
+        if($organisationId == 0)
+        {
+            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            return $this->goHome();
+		}
+        
         /** @var User $user */
         $organisation = Organisation::findOrganisationById($organisationId);
         $languageID = Language::findByLocale(Yii::$app->language)->getId();
