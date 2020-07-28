@@ -12,6 +12,7 @@ use yii\web\IdentityInterface;
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\gender\Gender;
 use app\modules\miscellaneouse\models\nationality\Nationality;
+use app\modules\miscellaneouse\models\invitations\Invitation;
 
 use app\modules\miscellaneouse\models\games\Games;
 use app\modules\miscellaneouse\models\games\GamePlatforms;
@@ -326,25 +327,32 @@ class User extends AbstractActiveRecord implements IdentityInterface
     /* Get User for Community Overview */
     public static function GetDetails($paginatedUser, $languageID, $organisationId)
     {
-       $paginatedUserWithDetails = array();
+        $paginatedUserWithDetails = array();
 
-       foreach($paginatedUser as $nr => $user)
-       {
-           $paginatedUserWithDetails[$nr]['ID'] = $user->getId();
-           $paginatedUserWithDetails[$nr]['Name'] = $user->getUsername();
+        foreach($paginatedUser as $nr => $user)
+        {
+            $paginatedUserWithDetails[$nr]['ID'] = $user->getId();
+            $paginatedUserWithDetails[$nr]['Name'] = $user->getUsername();
            
-           $paginatedUserWithDetails[$nr]['Nationality']['icon'] = $user->getNationality()->getIconLocale();
-           $paginatedUserWithDetails[$nr]['Nationality']['name'] = $user->getNationality()->getName($languageID);
+            $paginatedUserWithDetails[$nr]['Nationality']['icon'] = $user->getNationality()->getIconLocale();
+            $paginatedUserWithDetails[$nr]['Nationality']['name'] = $user->getNationality()->getName($languageID);
 
-           $paginatedUserWithDetails[$nr]['Language']['icon'] = $user->getLanguage()->getIconLocale();
-           $paginatedUserWithDetails[$nr]['Language']['name'] = $user->getLanguage()->getName($languageID);
+            $paginatedUserWithDetails[$nr]['Language']['icon'] = $user->getLanguage()->getIconLocale();
+            $paginatedUserWithDetails[$nr]['Language']['name'] = $user->getLanguage()->getName($languageID);
 
-           /** for Invites */
-           $paginatedUserWithDetails[$nr]['invitabel'] = (OrganisationMember::find()->where(['user_id' => $user->getId()])->andWhere(['organisation_id' => $organisationId])->one()) ? false : true;
+            /** for Invites */
+            $paginatedUserWithDetails[$nr]['invitabel'] = true;
+            
+            if(OrganisationMember::find()->where(['user_id' => $user->getId()])->andWhere(['organisation_id' => $organisationId])->one())
+            {
+                $paginatedUserWithDetails[$nr]['invitabel'] = false;
+		    }
+            
+            if(Invitation::find()->where(['invited_user_id' => $user->getId()])->andWhere(['organisation_id' => $organisationId])->one())
+            {
+                $paginatedUserWithDetails[$nr]['invitabel'] = false;
+		    }
 	    }
-
-        //print_r($paginatedUserWithDetails);
-        //die();
 
         return $paginatedUserWithDetails;
 	}
@@ -382,11 +390,7 @@ class User extends AbstractActiveRecord implements IdentityInterface
 			}
 		}
 
-        //print_r($userGamesSorted);
-        //die();
-
         return $userGamesSorted;
-
     }
 
     /** Organisations */

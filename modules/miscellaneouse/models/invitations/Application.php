@@ -21,7 +21,7 @@ class Application extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'organisation_invitations';
+        return 'organisation_invitation';
     }
 
     /**
