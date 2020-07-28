@@ -12,7 +12,6 @@ use app\modules\miscellaneouse\models\nationality\Nationality;
 use app\modules\organisation\models\Organisation;
 
 use app\modules\organisation\models\formModels\CreateOrganisationForm;
-//use app\modules\organisation\models\formModels\CreateOrganisation;
 
 use DateTime;
 use Yii;
@@ -94,9 +93,6 @@ class OrganisationController extends BaseController
         $organisation = Organisation::findOrganisationById($organisationId);
         $languageID = Language::findByLocale(Yii::$app->language)->getId();
         $detailedOrganisation = Organisation::GetOrgansiationDetails($organisationId, $languageID);
-
-        //print_r($detailedOrganisation);
-        //die();
 
         if(!$organisation)
         {

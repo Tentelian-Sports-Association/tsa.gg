@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 
+use app\modules\organisation\models\Organisation;
 
 use app\modules\team\models\Team;
 
@@ -15,13 +16,13 @@ use DateTime;
 
 /**
  * Class Organisation
- * @package app\modules\organisation\models
+ * @package app\modules\team\models
  *
  * @property int $id
  * @property int $organisation_id
  * @property int $game_id
  * @property int $language_id
- * @property int $headquater_id
+ * @property int $nationality_id
  * @property int $mode_id
  * @property string $name
  * @property string $shortcode
@@ -77,7 +78,7 @@ class Team extends ActiveRecord
      */
     public function getHeadquaterId()
     {
-        return $this->headquater_id;
+        return $this->nationality_id;
     }
 
     /**
@@ -95,6 +96,16 @@ class Team extends ActiveRecord
     {
         return $this->name;
     }
+
+    public function getManager()
+    {
+        return TeamMember::FindTeamManager($this->id);
+	}
+
+    public function getMember()
+    {
+        return TeamMember::findMember($this->id);
+	}
 
     /**
      * @return string
@@ -135,7 +146,7 @@ class Team extends ActiveRecord
      */
     public function getNationality()
     {
-        return $this->hasOne(Nationality::className(), ['id' => 'headquater_id'])->one();
+        return $this->hasOne(Nationality::className(), ['id' => 'nationality_id'])->one();
     }
 
     /* Get Teams for Community Overview */
@@ -160,4 +171,48 @@ class Team extends ActiveRecord
 
         return $paginatedTeamsWithDetails;
 	}
+
+    /* Get Organisation for Details Overview */
+    public static function GetTeamDetails($teamId, $languageID)
+    {
+        $team = static::findOne(['id' => $teamId]);
+        
+        $teamWithDetails = array();
+
+        $teamWithDetails['ID'] = $team->getId();
+        $teamWithDetails['Name'] = $team->getName();
+        $teamWithDetails['FoundingDate'] = $team->getDtCreated();
+        $teamWithDetails['Organisation']['ID'] = $team->getOrganisationId();
+        $teamWithDetails['Organisation']['Name'] = Organisation::findOne(['id' => $team->getOrganisationId()])->getName();;
+
+
+           
+        $teamWithDetails['Nationality']['icon'] = $team->getNationality()->getIconLocale();
+        $teamWithDetails['Nationality']['name'] = $team->getNationality()->getName($languageID);
+
+        $teamWithDetails['Language']['icon'] = $team->getLanguage()->getIconLocale();
+        $teamWithDetails['Language']['name'] = $team->getLanguage()->getName($languageID);
+
+        return $teamWithDetails;
+	}
+
+    /**
+     * @return ActiveQuery
+     * @param string $organisationName the username
+     * @return static|null the organisation, if a user with that username exists
+     */
+    public static function findTeamByName($teamName)
+    {
+        return static::findOne(['name' => $teamName]);
+    }
+
+    public static function findTeamByShortCode($shortCode)
+    {
+        return static::findOne(['name' => $teamName]);
+    }
+
+    public static function findTeamById($teamId)
+    {
+        return static::findOne(['id' => $teamId]);
+    }
 }

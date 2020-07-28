@@ -33,7 +33,7 @@ use app\modules\team\models\TeamRoles;
     /**
      * @return int
      */
-    public function getOrganisationId()
+    public function getTeamId()
     {
         return $this->team_id;
     }
@@ -69,4 +69,55 @@ use app\modules\team\models\TeamRoles;
     {
         return $this->dt_updated;
     }
+
+    public static function FindTeamMemberByRole($userId, $roleID)
+    {
+        $teamMemberships = TeamMember::find()->where(['user_id' => $userId])->andWhere(['role_id' => $roleID])->all();
+
+        $myTeams = array();
+
+        if($teamMemberships)
+        {
+            foreach($teamMemberships as $nr => $teamMembership)
+            {
+                $team = Team::findTeamById($teamMembership->getTeamId());
+                $myOrganisations[$nr]['ID'] = $team->getId();
+                $myOrganisations[$nr]['Name'] = $team->getName();
+                $myOrganisations[$nr]['OrganisationRole'] = TeamRoles::find(['id' => $roleID])->one()->getRoleName();
+			}
+		}
+
+        return $myOrganisations;
+	}
+
+    public static function findMember($teamID)
+    {
+        $members = static::findAll(['team_id' => $teamID]);
+        $teamMembers = array();
+
+        foreach($members as $nr =>  $member)
+        {
+            $user = User::findIdentity($member->getUserId());
+
+            $teamMembers[$nr]['UserID'] = $user->getId();
+            $teamMembers[$nr]['UserName'] = $user->getUsername();
+            $teamMembers[$nr]['RoleID'] = $member->getRoleId();
+            $teamMembers[$nr]['RoleName'] = TeamRoles::getRoleByID($member->getRoleId());
+		}
+
+        return $teamMembers;
+    }
+
+    public static function FindTeamManager($teamId)
+    {
+        $manager = TeamMember::find()->where(['team_id' => $teamId])->andWhere(['role_id' => 1])->one();
+
+        $teamManager = [];
+
+        $teamManager['id'] = $manager['user_id'];
+        $teamManager['Name'] = User::findIdentity($manager['user_id'])->getUsername();
+
+
+        return $teamManager;
+	}
 }

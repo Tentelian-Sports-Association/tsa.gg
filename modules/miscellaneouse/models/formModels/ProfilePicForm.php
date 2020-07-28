@@ -9,6 +9,7 @@ class ProfilePicForm extends FormModel
 {
 	const SCENARIO_USER = 'user';
 	const SCENARIO_ORGANISATION = 'organisation';
+	const SCENARIO_TEAM = 'team';
 	//const SCENARIO_TEAM = 'teams/subTeams';
 
 	public $id;
@@ -19,7 +20,7 @@ class ProfilePicForm extends FormModel
 		return [
 			ProfilePicForm::SCENARIO_USER => $this->attributes(),
             ProfilePicForm::SCENARIO_ORGANISATION => $this->attributes(),
-            //ProfilePicForm::SCENARIO_TEAM => $this->attributes()
+            ProfilePicForm::SCENARIO_TEAM => $this->attributes(),
 		];
 	}
 
@@ -60,7 +61,7 @@ class ProfilePicForm extends FormModel
 
         $this->file->saveAs($filePathPng);
 
-        // Buggy mit 7.0.33, sollte ab 7.1.x aufwärts laufen, wenn "WebP Support === true"
+        //Buggy mit 7.0.33, sollte ab 7.1.x aufwärts laufen, wenn "WebP Support === true"
         //$im = imagecreatefrompng($filePathPng);
         //imagewebp($im, $filePathWebp);
 
