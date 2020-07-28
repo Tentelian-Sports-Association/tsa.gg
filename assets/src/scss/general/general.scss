@@ -1,11 +1,12 @@
-.content-under-construction {
+.content-under-construction, .site-error {
     text-align: center;
     h1 {
         margin-top: 100px;
     }
     .inner-wrapper {
+        padding: 0 60px 0px 40px;
         max-width: 1920px;
         margin: 0 auto;
-    }    
+    }
 }
 
