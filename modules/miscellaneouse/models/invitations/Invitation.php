@@ -15,14 +15,14 @@ use yii\db\ActiveRecord;
  * @property string $dt_created
  * @property string $dt_updated
  */
-class Invitations extends ActiveRecord
+class Invitation extends ActiveRecord
 {
 	/**
      * @return string
      */
     public static function tableName()
     {
-        return 'organisation_invitations';
+        return 'organisation_invitation';
     }
 
     /**

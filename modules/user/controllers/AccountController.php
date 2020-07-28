@@ -361,7 +361,30 @@ class AccountController extends BaseController
             return $this->goHome();
         }
 
-        $canInvite = OrganisationMember::find()->where(['organisation_id' => $orgID])->andWhere(['user_id' => $inviterID])->andWhere(['<', 'role_id', '3'])->one();
+        $canInvite = (OrganisationMember::find()->where(['organisation_id' => $orgID])->andWhere(['user_id' => $inviterID])->andWhere(['<', 'role_id', '3'])->one()) ? true : false;
+
+        if($canInvite)
+        {
+            $model = new Invitation();
+
+            $model->organisation_id = $orgID;
+            $model->invited_user_id = $userId;
+            $model->inviter_user_id = $inviterID;
+
+            /** Save Credentials **/
+            try {
+                $model->save();
+        
+                //Alert::addSuccess('Player Invited');
+                return $this->goBack(Yii::$app->request->referrer);
+            } catch (Exception $e) {
+                print_r($e);
+        
+                //Alert::addError('Cannot Invite Player');
+                return $this->goBack(Yii::$app->request->referrer);
+            }
+		}
+
 
         /*
 
