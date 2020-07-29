@@ -165,10 +165,13 @@ class Team extends ActiveRecord
 
            $paginatedTeamsWithDetails[$nr]['Language']['icon'] = $Team->getLanguage()->getIconLocale();
            $paginatedTeamsWithDetails[$nr]['Language']['name'] = $Team->getLanguage()->getName($languageID);
+
+           $paginatedTeamsWithDetails[$nr]['Captain']['ID'] = $Team->getManager()['id'];
+           $paginatedTeamsWithDetails[$nr]['Captain']['Name'] = $Team->getManager()['Name'];
 	    }
 
-        //print_r($paginatedUserWithDetails);
-        //die();
+        print_r($paginatedTeamsWithDetails);
+        die();
 
         return $paginatedTeamsWithDetails;
 	}
