@@ -121,7 +121,7 @@ $OrganisationOwner['Name']
                     <!-- Teams -->
                     <div class="section-row py-5">
                         <h3 class="header">
-                            Meine Teams
+                            Current Teams
                             <?php if ($isOwner) : ?>
                             <?php
                             echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -139,6 +139,15 @@ $OrganisationOwner['Name']
                             ?>
                         <?php endif; ?>
                         </h3>
+                        <?php foreach($organisation['Teams'] as $team) : ?>
+                                <?php 
+                                
+                                $team['Id'];
+                                $team['Name'];
+                                $team['ShortCode'];
+
+                                ?>
+                                <?php endforeach; ?>
                         <div class="team-block">
                             <div class="team mb-1">
                                 <div class="team-header d-flex align-items-center">

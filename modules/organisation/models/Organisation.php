@@ -195,6 +195,7 @@ class Organisation extends ActiveRecord
     public static function GetOrgansiationDetails($organisationId, $languageID)
     {
         $organisation = static::findOne(['id' => $organisationId]);
+        $teams = Team::find()->where(['organisation_id' => $organisation->getId()])->all();
         
         $organisationWithDetails = array();
 
@@ -209,6 +210,13 @@ class Organisation extends ActiveRecord
 
         $organisationWithDetails['Language']['icon'] = $organisation->getLanguage()->getIconLocale();
         $organisationWithDetails['Language']['name'] = $organisation->getLanguage()->getName($languageID);
+
+        foreach($teams as $nr => $team)
+        {
+            $organisationWithDetails['Teams'][$nr]['Id'] = $team->getId();
+            $organisationWithDetails['Teams'][$nr]['Name'] = $team->getName();
+            $organisationWithDetails['Teams'][$nr]['ShortCode'] = $team->getShortCode();
+		}
 
         return $organisationWithDetails;
 	}
