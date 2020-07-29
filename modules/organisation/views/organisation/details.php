@@ -104,7 +104,19 @@ $OrganisationOwner['Name']
                             </div>
                         </div>
                     </div>
-
+                    <!-- Foundation -->
+                    <div class="section-row py-2">
+                        Gründung: <?= $organisation['FoundingDate']; ?>
+                    </div>               
+                    <!-- Description -->
+                    <div class="section-row py-5">
+                        <h3 class="header">
+                            Description
+                        </h3>
+                        <div class="col-12 description">
+                            <?= $organisation['Description']; ?>
+                        </div>
+                    </div>
 
                     <!-- Teams -->
                     <div class="section-row py-5">
