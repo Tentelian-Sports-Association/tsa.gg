@@ -16,6 +16,7 @@ use app\modules\organisation\models\Organisation;
 use app\modules\team\models\Team;
 
 use app\modules\team\models\formModels\CreateTeamForm;
+use app\modules\team\models\formModels\DetailsForm;
 
 use DateTime;
 use Yii;
@@ -139,8 +140,43 @@ class TeamController extends BaseController
         ]);
 	}
 
-    public function actionEditTeam($teamID = 0)
+    public function actionEditTeam($teamId = 0)
     {
-        
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Change this Team, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** @var Language $languageID */
+        $languageID = Language::findByLocale(Yii::$app->language)->getId();
+
+        $model = new DetailsForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save($teamId)) {
+            return $this->redirect(['details?teamID=' . $teamId]);
+        }
+
+
+        $team = Team::find(['id' => $teamId])->one();
+
+        $model->name = $team->getName();
+        $model->shortCode = $team->getShortCode();
+        $model->language_id = $team->getLanguage();
+        $model->nationality_id = $team->getHeadquaterId();
+
+        $languageList = [];
+        foreach (Language::find()->all() as $language) { $languageList[$language->getId()] = $language->getName($languageID); }
+
+        $nationalityList = [];
+        foreach (Nationality::find()->all() as $nationality) { $nationalityList[$nationality->getId()] = $nationality->getName($languageID); }
+
+
+        return $this->render('editDetails',
+        [
+            'model' => $model,
+            'languageList' => $languageList,
+            'nationalityList' => $nationalityList,
+            'currentTeamID' => $teamId,
+        ]);
 	}
 }
