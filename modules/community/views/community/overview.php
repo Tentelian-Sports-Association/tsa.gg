@@ -39,7 +39,7 @@ $this->title = \app\modules\community\Module::t('overview', 'overview_header');
     </div>
     <div class="community-overview">
         <div class="inner-wrapper">
-            <div class="col-8">
+            <div class="col-12 col-lg-8">
                 <ul class="list-unstyled row">
                     <li class="community-item col-12 col-lg-6">
                         <!-- User Overview -->

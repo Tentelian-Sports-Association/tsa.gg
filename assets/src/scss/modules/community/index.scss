@@ -53,6 +53,12 @@
                 }
             }
         }
+        .mobile {
+            display: none;
+        }
+        .desktop {
+            display: block;
+        }
         .users {
             margin-top: 25px;
             margin-bottom: 25px;
@@ -156,6 +162,26 @@
     @media (min-width: $breakpoint-sm+1) {
         .inner-wrapper {
             padding: 40px 70px;
+        }
+    }
+    @media (max-width: $breakpoint-sm) {
+        .col-12 {
+            padding: 0;
+        }
+        .inner-wrapper {
+            padding: 40px 0px 70px 30px;
+        }
+        .mobile {
+            display: block !important;
+        }
+        .desktop {
+            display: none !important;
+        }
+        .userBody div{
+            padding: 0;
+        }
+        .IMG {
+            width: 20px !important;
         }
     }
 }

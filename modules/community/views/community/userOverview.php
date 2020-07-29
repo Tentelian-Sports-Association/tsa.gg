@@ -50,7 +50,7 @@ $searchString = '';
 
     <div class="inner-wrapper">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-12 col-lg-10">
                 <div class="searchHeader">
                     <div class="col-12 quickSearch">
                         <?php $form = ActiveForm::begin(['id' => 'user-search-form', 'options' => ['class' => 'form-horizontal user-search-bar']]); ?>
@@ -81,24 +81,24 @@ $searchString = '';
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="row users">
+                <div class="row users desktop">
                     <div class="col-12 col-md-12">
                         <div class="col-12 userBodyHead">
-                            <div class="col-2 id float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byID') ?></div>
-                            <div class="col-3 username float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byName') ?></div>
-                            <div class="col-3 invite float-left"></div>
-                            <div class="col-2 natImg float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byNationality') ?></div>
-                            <div class="col-2 langImg float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byLanguage') ?></div>      
+                            <div class="col-lg-2 id float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byID') ?></div>
+                            <div class="col-3 col-lg-3 username float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byName') ?></div>
+                            <div class="col-3 col-lg-3 invite float-left"></div>
+                            <div class="col-3 col-lg-2 natImg float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byNationality') ?></div>
+                            <div class="col-3 col-lg-2 langImg float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byLanguage') ?></div>      
                             <div class="clearfix"></div>
                         </div>
                         <div class="clearfix"></div>
                     
                         <?php foreach ($sortedPaginatedUsers as $index => $user) : ?>
                         <div class="col-12 userBody">
-                            <div class="col-2 id float-left">
+                            <div class="col-lg-2 id float-left">
                                 <?php echo $user['ID']; ?>
                             </div>
-                            <div class="col-3 float-left">
+                            <div class="col-3 col-lg-3 float-left">
                                 <div class="avatar float-left">
                                     <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.webp', ['aria-label' => $user['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.png\'']) ?>		
                                 </div>
@@ -106,7 +106,7 @@ $searchString = '';
                                     <?= Html::a($user['Name'], ['/user/details', 'userId' => $user['ID']], ['class' => '']); ?>
                                 </div>
                             </div>
-                            <div class="col-3 invite float-left">
+                            <div class="col-3 col-lg-3 invite float-left">
                             <?php if($canInvite && $user['invitabel']) : ?>
                                 <?php
 									echo Html::a('Invite',
@@ -123,11 +123,60 @@ $searchString = '';
 								?>
                             <?php endif; ?>
                             </div>
-                            <div class="col-2 natImg float-left">
+                            <div class="col-3 col-lg-2 natImg float-left">
                                 <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Nationality']['name'],'class' => 'IMG']) ?>
                             </div>
-                            <div class="col-2 langImg float-left">
+                            <div class="col-3 col-lg-2 langImg float-left">
                                 <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Language']['name'],'class' => 'IMG']) ?>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="row users mobile">
+                    <div class="col-12 col-md-12">
+                        <?php foreach ($sortedPaginatedUsers as $index => $user) : ?>
+                        <div class="col-12 userBody">
+
+                            <div class="col-2 float-left">
+                                <div class="avatar">
+                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.webp', ['aria-label' => $user['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user['ID']) . '.png\'']) ?>		
+                                </div>
+                            </div>
+                            <div class="col-8 float-left">
+                                <div class="col-12">
+                                    <?= Html::a($user['Name'], ['/user/details', 'userId' => $user['ID']], ['class' => '']); ?>
+                                </div>
+                                <div class="col-12">
+                                    <div class="col-6 natImg float-left">
+                                        Nationality: <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Nationality']['name'],'class' => 'IMG']) ?>
+                                    </div>
+                                    <div class="col-6 langImg float-left">
+                                        Language: <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($user['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $user['Language']['name'],'class' => 'IMG']) ?>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-12">
+                                    <?php if($canInvite && $user['invitabel']) : ?>
+                                        <?php
+                                            echo Html::a('Invite',
+                                                [
+                                                    "/account/invite",
+                                                    "userId" => $user['ID'],
+                                                    "orgID" => $invitabelOrgaisationId,
+                                                    "inviterID" => Yii::$app->user->identity->getId()
+                                                ],
+                                                ['class' => "",
+                                                    'title' => 'Invite'
+                                                ]
+                                            )
+                                        ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="col-2 float-right">
+                                ID: <?php echo $user['ID']; ?>
                             </div>
                             <div class="clearfix"></div>
                         </div>
