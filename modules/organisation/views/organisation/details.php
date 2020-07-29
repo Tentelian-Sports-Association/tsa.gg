@@ -106,7 +106,7 @@ $OrganisationOwner['Name']
                     </div>
                     <!-- Foundation -->
                     <div class="section-row py-2">
-                        Gründung: <?= $organisation['FoundingDate']; ?>
+                        Foundation Date: <?= $organisation['FoundingDate']; ?>
                     </div>               
                     <!-- Description -->
                     <div class="section-row py-5">
