@@ -168,11 +168,8 @@ class Team extends ActiveRecord
 
            $paginatedTeamsWithDetails[$nr]['Captain']['ID'] = $Team->getManager()['id'];
            $paginatedTeamsWithDetails[$nr]['Captain']['Name'] = $Team->getManager()['Name'];
-	    }
-
-        print_r($paginatedTeamsWithDetails);
-        die();
-
+        }
+        
         return $paginatedTeamsWithDetails;
 	}
 
