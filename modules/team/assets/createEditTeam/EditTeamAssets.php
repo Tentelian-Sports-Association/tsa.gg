@@ -9,7 +9,7 @@ class EditTeamAssets extends AssetBundle
     public $sourcePath = '@app/assets/dist';
  
     public $css = [
-		'css/team/edit.css'
+		'css/editTeam.css'
     ];
 
     public $cssOptions = [

@@ -104,7 +104,7 @@ $this->title = 'Edit Details';
 						<?= Html::submitButton(\app\modules\organisation\Module::t('editDetails', 'save'), ['class' => 'filled-btn float-right', 'name' => 'save-credentials-button']) ?>
 						<div class="placeholder"></div>
 						<?= Html::a(\app\modules\organisation\Module::t('editDetails', 'backToProfile'), ['details', 'organisationId' => $currentOrgaID], ['class' => 'outline-btn btn btn-primary delete float-left', 'name' => 'backToProfile-button']); ?>
-					<div class="clearfix"></div>
+						<div class="clearfix"></div>
 					</div>
 				</div>
 			</div>
