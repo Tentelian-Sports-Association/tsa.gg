@@ -389,11 +389,68 @@ class AccountController extends BaseController
 
     public function actionAcceptInvitation($userId, $orgID)
     {
-        
+        /** If not Owner, Admin or is Guest */
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $userId) {
+            //Alert::addError('You are not Allowed to change this settings'); 
+            return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
+        }
+
+        $invitationModel = Invitation::find()->where(['invited_user_id' => $userId, 'organisation_id' => $orgID])->one();
+
+        if($invitationModel)
+        {
+            $organisationMemberModel = new organisationMember();
+            $organisationMemberModel->organisation_id = $orgID;
+            $organisationMemberModel->user_id = $userId;
+            $organisationMemberModel->role_id = 5;
+
+            $invitationModel->accepted = true;
+
+            try {
+                $organisationMemberModel->save();
+                $invitationModel->delete();
+
+                //Alert::addInfo('Invitation to ' . $invitationModel->getOrganisationName() . ' succesfully accepted'); 
+            } catch (Exception $e) {
+                print_r($e->getMessage());
+            }
+		}
+        else {
+	        Alert::addError('This Service is currently not availabel');  
+        }
 	}
 
     public function actionDeclineInvitation($userId, $orgID)
     {
-        
+        /** If not Owner, Admin or is Guest */
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $userId) {
+            //Alert::addError('You are not Allowed to change this settings'); 
+            return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
+        }
+
+        $invitationModel = Invitation::find()->where(['invited_user_id' => $userId, 'organisation_id' => $orgID])->one();
+
+        if($invitationModel)
+        {
+            $organisationMemberModel = new organisationMember();
+            $organisationMemberModel->organisation_id = $orgID;
+            $organisationMemberModel->user_id = $userId;
+            $organisationMemberModel->role_id = 5;
+
+            $invitationModel->accepted = false;
+
+            try {
+                $organisationMemberModel->save();
+                $invitationModel->delete();
+
+                //Alert::addInfo('Invitation to ' . $invitationModel->getOrganisationName() . ' succesfully accepted'); 
+            } catch (Exception $e) {
+                print_r($e->getMessage());
+            }
+		}
+        else {
+	        Alert::addError('This Service is currently not availabel');  
+        }
+
 	}
 }

@@ -8,6 +8,9 @@ use app\modules\user\models\User;
 
 use app\modules\organisation\models\OrganisationRoles;
 
+use app\modules\team\models\Team;
+use app\modules\team\models\TeamMember;
+
 use app\modules\miscellaneouse\models\invitations\Invitations;
 
 /**
@@ -82,6 +85,11 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
         //return $this->name;
     }
 
+    public function getTeamsHeIsMemberOf($userId)
+    {
+        return $this::hasOne(TeamMember::className(), ['user_id' => 'user_id']);
+	}
+
     public static function FindOrganisationMember($userId, $roleID)
     {
         $organisationMemberships = OrganisationMember::find()->where(['user_id' => $userId])->andWhere(['role_id' => $roleID])->all();
@@ -96,6 +104,7 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
                 $myOrganisations[$nr]['ID'] = $organisation->getId();
                 $myOrganisations[$nr]['Name'] = $organisation->getName();
                 $myOrganisations[$nr]['OrganisationRole'] = OrganisationRoles::find(['id' => $roleID])->one()->getRoleName();
+                $myOrganisations[$nr]['Teams'] = $organisation->getTeamsByUser($userId);
 			}
 		}
 

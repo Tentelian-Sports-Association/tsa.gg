@@ -10,7 +10,9 @@ use app\modules\miscellaneouse\models\nationality\Nationality;
 use app\modules\organisation\models\OrganisationMember;
 use app\modules\organisation\models\OrganisationSocial;
 
-use app\modules\teams\models\Team;
+use app\modules\team\models\Team;
+use app\modules\team\models\TeamRoles;
+use app\modules\team\models\TeamMember;
 
 use DateTime;
 
@@ -127,6 +129,29 @@ class Organisation extends ActiveRecord
     {
         return $this->hasOne(Nationality::className(), ['id' => 'headquater_id'])->one();
     }
+
+    public function getTeamsByUser($userId)
+    {
+        $orgaTeams = $this->hasMany(Team::className(), ['organisation_id' => 'id'])->all();
+
+        $userTeams = [];
+
+        foreach($orgaTeams as $nr => $orgaTeam)
+        {
+            $member = TeamMember::find()->where(['team_id' => $orgaTeam->getId()])->andWhere(['user_id' => $userId])->one();
+            
+            if($member != null)
+            {
+                $userTeams[$nr]['Id'] = $orgaTeam->getId();
+                $userTeams[$nr]['Name'] = $orgaTeam->getName();
+                $userTeams[$nr]['ShortCode'] = $orgaTeam->getShortcode();
+                $userTeams[$nr]['Position']['Id'] = $member->getRoleId();
+                $userTeams[$nr]['Position']['Name'] = TeamRoles::find()->where(['id' => $member->getRoleId()])->one()->getRoleName();
+			}
+		}
+        
+        return $userTeams;
+	}
 
     /**
      * @return ActiveQuery
