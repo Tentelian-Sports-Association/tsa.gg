@@ -28,6 +28,7 @@ use Yii;
  			'fileMap' => [
  				'modules/organisation/createOrganisation' => 'create.php',
  				'modules/organisation/organisationDetails' => 'details.php',
+ 				'modules/organisation/editDetails' => 'edit.php',
  			],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
  		];

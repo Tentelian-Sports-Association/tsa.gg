@@ -102,6 +102,23 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
         return $myOrganisations;
 	}
 
+    public static function FindOrganisationMemberForEdit($userId, $roleID)
+    {
+        $organisationMemberships = OrganisationMember::find()->where(['user_id' => $userId])->andWhere(['role_id' => $roleID])->all();
+
+        $myOrganisations = array();
+
+        if($organisationMemberships)
+        {
+            foreach($organisationMemberships as $organisationMembership)
+            {
+                $myOrganisations[$organisationMembership->getOrganisationId()] = Organisation::findOrganisationById($organisationMembership->getOrganisationId());
+			}
+		}
+
+        return $myOrganisations;
+	}
+
     public static function FindOrganisationOwner($organisationId)
     {
         $owner = OrganisationMember::find()->where(['organisation_id' => $organisationId])->andWhere(['role_id' => 1])->one();
