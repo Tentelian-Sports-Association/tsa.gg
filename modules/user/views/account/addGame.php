@@ -17,7 +17,7 @@ $this->title = \app\modules\user\Module::t('addGameAccount', 'addGameAccount_hea
 
 <div class="site-add-gameid">
     <div class="inner-wrapper">
-        <div class="addGameID bg-darkblue-2 p-5 my-5 col-8">
+        <div class="addGameID bg-darkblue-2 p-5 my-5 col-12 col-lg-8">
             <h3><?= Html::encode($this->title) ?></h3>
 
             <?php $form = ActiveForm::begin([

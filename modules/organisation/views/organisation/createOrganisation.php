@@ -19,7 +19,7 @@ $this->title = \app\modules\organisation\Module::t('createOrganisation', 'header
 
 <div class="site-create-organisation">
     <div class="inner-wrapper">
-        <div class="col-8">
+        <div class="col-12 col-lg-8 bg-darkblue-2">
             <div class="edit-orga mt-4 mb-4">
                 <h2><?= Html::encode($this->title) ?></h2>
 

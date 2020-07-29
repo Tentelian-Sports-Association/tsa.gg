@@ -7,7 +7,7 @@ return [
 
 	/** Orga */
 	'name' => 'Name of the organization',
-	'description' => 'Description of the organisation (max 140 characters)',
+	'description' => 'Description of the organisation',
 	'languageId' => 'Language of the organization',
 	'headquaterId' => 'Seat of the organization',	
 
