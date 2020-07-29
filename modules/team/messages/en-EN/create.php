@@ -4,7 +4,7 @@ return [
 	'create_title' => 'Create Team',
 
 	/** Labels **/
-	'name' => 'Name of the team',
+	'name' => 'Name of the Team',
 	'shortcode' => 'Shortcode',
 	'headquater_id' => 'Nationality',
 	'language_id' => 'Language',

@@ -48,8 +48,8 @@ teamManager['Name']
                             <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
                           </svg>',
                                 [
-                                    "team/edit-details",
-                                    "team" => $team['ID']
+                                    "team/edit-team",
+                                    "teamId" => $team['ID']
                                 ],
                                 ['class' => "filled-btn btn btn-primary upload float-right",
                                     'title' => \app\modules\team\Module::t('teamDetails', 'details')
