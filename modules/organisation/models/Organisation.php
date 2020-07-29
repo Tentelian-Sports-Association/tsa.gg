@@ -158,10 +158,10 @@ class Organisation extends ActiveRecord
 
            $paginatedOrganisationWithDetails[$nr]['Language']['icon'] = $organisation->getLanguage()->getIconLocale();
            $paginatedOrganisationWithDetails[$nr]['Language']['name'] = $organisation->getLanguage()->getName($languageID);
-	    }
 
-        //print_r($paginatedUserWithDetails);
-        //die();
+           $paginatedOrganisationWithDetails[$nr]['Owner']['Name'] = $organisation->getOwner()['Name'];
+           $paginatedOrganisationWithDetails[$nr]['Owner']['ID'] = $organisation->getOwner()['id'];
+	    }
 
         return $paginatedOrganisationWithDetails;
 	}
