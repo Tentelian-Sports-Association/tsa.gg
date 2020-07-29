@@ -34,3 +34,8 @@
         background: $primaryColor;
     }
 }
+
+.form-control[readonly] {
+    background: $fourthColor;
+    color: $white3;
+}
