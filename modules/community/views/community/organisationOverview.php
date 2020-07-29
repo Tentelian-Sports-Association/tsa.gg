@@ -90,12 +90,12 @@ sortedPaginatedOrganisation[$nr]['Language']['name']
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="row users">
+                <div class="row users desktop">
                     <div class="col-12 col-md-12">
                         <div class="col-12 userBodyHead">
                             <div class="col-2 id float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byID') ?></div>
                             <div class="col-3 username float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byName') ?></div>
-                            <div class="col-3 invite float-left"></div>
+                            <div class="col-3 owner float-left">Owner</div>
                             <div class="col-2 natImg float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byNationality') ?></div>
                             <div class="col-2 langImg float-left"><?= \app\modules\community\Module::t('searchForm', 'searchForm_byLanguage') ?></div>      
                             <div class="clearfix"></div>
@@ -115,12 +115,48 @@ sortedPaginatedOrganisation[$nr]['Language']['name']
                                     <?= Html::a($orga['Name'], ['/organisation/details', 'organisationId' => $orga['ID']], ['class' => '']); ?>
                                 </div>
                             </div>
-                            <div class="col-3 invite float-left"></div>
+                            <div class="col-3 owner float-left">
+                                <?= Html::a($orga['Owner']['Name'], ['/user/details', 'userId' => $orga['Owner']['ID']], ['class' => '']); ?>
+                            </div>
                             <div class="col-2 natImg float-left">
                                 <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($orga['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $orga['Nationality']['name'],'class' => 'IMG']) ?>
                             </div>
                             <div class="col-2 langImg float-left">
                                 <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($orga['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $orga['Language']['name'],'class' => 'IMG']) ?>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="row users mobile">
+                    <div class="col-12 col-md-12">
+                        <?php foreach ($sortedPaginatedOrganisation as $index => $orga) : ?>
+                        <div class="col-12 userBody">
+                            <div class="col-2 float-left">
+                                <div class="avatar">
+                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $orga['ID']) . '.webp', ['aria-label' => $orga['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $orga['ID']) . '.png\'']) ?>		
+                                </div>
+                            </div>
+                            <div class="col-8 float-left">
+                                <div class="col-12">
+                                    <?= Html::a($orga['Name'], ['/organisation/details', 'userId' => $orga['ID']], ['class' => '']); ?>
+                                </div>
+                                <div class="col-12">
+                                    <?= Html::a($orga['Owner']['Name'], ['/user/details', 'userId' => $orga['Owner']['ID']], ['class' => '']); ?>
+                                </div>
+                                <div class="col-12">
+                                    <div class="col-6 natImg float-left">
+                                        Nationality: <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($orga['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $orga['Nationality']['name'],'class' => 'IMG']) ?>
+                                    </div>
+                                    <div class="col-6 langImg float-left">
+                                        Language: <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($orga['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $orga['Language']['name'],'class' => 'IMG']) ?>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="col-2 float-right">
+                                ID: <?php echo $orga['ID']; ?>
                             </div>
                             <div class="clearfix"></div>
                         </div>
