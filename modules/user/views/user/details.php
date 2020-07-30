@@ -9,6 +9,14 @@
  * @var $openInvites array
  */
 
+ /*
+  * $team['Id'];
+  * $team['Name'];
+  * $team['ShortCode'];
+  * $team['Position']['Id'];
+  * $team['Position']['Name'];
+  */
+
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
@@ -152,38 +160,22 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                         </div>
                                     </div>
                                 </div>
-                                <?php foreach($organisation['Teams'] as $team) : ?>
-                                <?php 
-                                
-                                $team['Id'];
-                                $team['Name'];
-                                $team['ShortCode'];
-                                $team['Position']['Id'];
-                                $team['Position']['Name'];
-
-                                ?>
-                                <?php endforeach; ?>
                                 <div class="px-5 row">
-                                    <div class="col-12 col-lg-6">
-                                        <div class="team mb-4">
+                                    <div class="col-12 col-lg-12">
+                                        <?php foreach($organisation['Teams'] as $team) : ?>
+                                        <div class="team mb-4 col-12 col-lg-6 float-left">
                                             <div class="col-2 float-left">
                                                 <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
                                             </div>
                                             <div class="col-10 float-left">
                                                 <div class="col-12">
-                                                    <h4 class="float-left">Teamname</h4>
+                                                    <h4 class="float-left"><?= $team['Name']; ?></h4>
                                                     <div class="clearfix"></div>
                                                 </div>
                                                 <div class="col-12">
                                                     <ul class="organisation-title-list list-inline float-left">
                                                         <li class="list-inline-item">
-                                                            <span class="team-title">Leader</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Admin</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Platzhalter</span>
+                                                            <span class="team-title"><?= $team['Position']['Name']; ?></span>
                                                         </li>
                                                     </ul>
                                                     <div class="clearfix"></div>
@@ -191,138 +183,8 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-                                        <div class="team mb-4">
-                                            <div class="col-2 float-left">
-                                                <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                            </div>
-                                            <div class="col-10 float-left">
-                                                <div class="col-12">
-                                                    <h4 class="float-left">Teamname</h4>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <ul class="organisation-title-list list-inline float-left">
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Leader</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Admin</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Platzhalter</span>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="team mb-4">
-                                            <div class="col-2 float-left">
-                                                <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                            </div>
-                                            <div class="col-10 float-left">
-                                                <div class="col-12">
-                                                    <h4 class="float-left">Teamname</h4>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <ul class="organisation-title-list list-inline float-left">
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Leader</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Admin</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Platzhalter</span>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-6">
-                                        <div class="team mb-4">
-                                            <div class="col-2 float-left">
-                                                <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                            </div>
-                                            <div class="col-10 float-left">
-                                                <div class="col-12">
-                                                    <h4 class="float-left">Teamname</h4>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <ul class="organisation-title-list list-inline float-left">
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Leader</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Admin</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Platzhalter</span>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="team mb-4">
-                                            <div class="col-2 float-left">
-                                                <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                            </div>
-                                            <div class="col-10 float-left">
-                                                <div class="col-12">
-                                                    <h4 class="float-left">Teamname</h4>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <ul class="organisation-title-list list-inline float-left">
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Leader</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Admin</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Platzhalter</span>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="team mb-4">
-                                            <div class="col-2 float-left">
-                                                <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                            </div>
-                                            <div class="col-10 float-left">
-                                                <div class="col-12">
-                                                    <h4 class="float-left">Teamname</h4>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <ul class="organisation-title-list list-inline float-left">
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Leader</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Admin</span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title">Platzhalter</span>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
+                                        <?php endforeach; ?>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </div>
@@ -538,7 +400,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                         <?= \app\modules\user\Module::t('userDetails', 'userDetails_invitesHeader') ?>
                     </div>
                     <?php foreach($openInvites as $invite) : ?>
-                        <!-- Überschrift -->
+                        <!-- ï¿½berschrift -->
                         <?= Html::a($invite['Organisation']['Name'], ['/organisation/details', 'organisationId' => $invite['Organisation']['ID']], ['class' => '']); ?>
                         <!-- direkt unter dem Organisations namen in kleiner -->
                         <?= Html::a($invite['Inviter']['Name'], ['/user/details', 'userId' => $invite['Inviter']['ID']], ['class' => '']); ?>
