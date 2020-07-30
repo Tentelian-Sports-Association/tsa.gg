@@ -237,22 +237,31 @@ class m200723_190825_organisation extends Migration
     {
         // Organisation Billing
         $this->dropTable('organisation_billing');
+
         // Organisation Payment
         $this->dropTable('organisation_payment');
+
         // Organisation Social
         $this->dropTable('organisation_social');
+
         // Organisation Member
         $this->dropTable('organisation_member');
+
         // Organisation Role
         $this->dropTable('organisation_role');
+
         // Organisation Balance
         $this->dropTable('organisation_balance');
+
         // Organisation
         $this->dropTable('organisation');
+
         // User Balance
         $this->dropTable('user_billing');
+
         // User Balance
         $this->dropTable('user_balance');
+
         // User Balance
         $this->dropTable('billing_reason');
     }

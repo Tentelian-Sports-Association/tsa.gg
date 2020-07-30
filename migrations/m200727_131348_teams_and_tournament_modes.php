@@ -128,11 +128,13 @@ class m200727_131348_teams_and_tournament_modes extends Migration
     {
         // Team Member
         $this->dropTable('team_member');
-        // Tournament Mode
+
         // Team
         $this->dropTable('team');
+
         // Tournament Mode
         $this->dropTable('tournament_mode');
+
         // Team Role
         $this->dropTable('team_role');
     }

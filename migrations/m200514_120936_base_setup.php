@@ -53,7 +53,8 @@ class m200514_120936_base_setup extends Migration
             ENGINE = InnoDB"
         );
 
-        $this->inserti18nLanguage();
+        $this->inserti18nLanguageGerman();
+        //$this->inserti18nLanguageFrance();
 
         // Gender
         $this->execute("
@@ -95,7 +96,8 @@ class m200514_120936_base_setup extends Migration
             ENGINE = InnoDB"
         );
 
-        $this->inserti18nGender();
+        $this->inserti18nGenderGerman();
+        //$this->inserti18nGenderFrance();
 
         // Nationality
         $this->execute("
@@ -137,7 +139,7 @@ class m200514_120936_base_setup extends Migration
             ENGINE = InnoDB"
         );
 
-        $this->inserti18nNationality();
+        $this->inserti18nNationalityGerman();
     }
 
     /**
@@ -158,7 +160,7 @@ class m200514_120936_base_setup extends Migration
         $this->dropTable('language');
     }
 
-    /** Language i18n */
+    /** Language */
     private function insertStandardLanguage()
     {
         // Base languages as standard English
@@ -174,14 +176,15 @@ class m200514_120936_base_setup extends Migration
             'icon_locale' => 'de'
         ]);
 
-        $this->insert('language',  [
+        /*$this->insert('language',  [
             'name' => 'French',
             'locale' => 'fr-FR',
             'icon_locale' => 'fr'
-        ]);
+        ]);*/
 	}
 
-    private function inserti18nLanguage()
+    /** Language i18n German */
+    private function inserti18nLanguageGerman()
     {
         // i18n German Translation for Languages
         $this->insert('language_i18n',  [
@@ -201,8 +204,11 @@ class m200514_120936_base_setup extends Migration
             'language_id' => '2',
             'name' => 'Französisch'
         ]);
+	}
 
-        // i18n French Translation for Languages
+    /** Language i18n France */
+    private function inserti18nLanguageFrance()
+    {
         $this->insert('language_i18n',  [
             'id' => '1',
             'language_id' => '3',
@@ -222,8 +228,8 @@ class m200514_120936_base_setup extends Migration
         ]);
 	}
 
-    /** Gender i18n */
-    private function insertStandardGender()
+    /** Gender */
+    private function insertStandardGenderGerman()
     {
         // Base Gender as standart English
         $this->insert('gender',  [
@@ -242,7 +248,8 @@ class m200514_120936_base_setup extends Migration
         ]);
 	}
 
-    private function inserti18nGender()
+    /** Gender i18n German */
+    private function inserti18nGenderGerman()
     {
         // i18n German Translation for Gender
         $this->insert('gender_i18n',  [
@@ -262,7 +269,11 @@ class m200514_120936_base_setup extends Migration
             'language_id' => '2',
             'name' => 'Divers'
         ]);
+	}
 
+    /** Gender i18n France */
+    private function inserti18nGenderFrance()
+    {
         // i18n French Translation for Gender
         $this->insert('gender_i18n',  [
             'gender_id' => '1',
@@ -283,6 +294,7 @@ class m200514_120936_base_setup extends Migration
         ]);
 	}
 
+    /** Nationality */
     private function insertStandardNationality()
     {
         // Base Nationality as Standart English
@@ -572,7 +584,14 @@ class m200514_120936_base_setup extends Migration
         ]);
 	}
 
-    private function inserti18nNationality()
+    /** Nationality i18n German */
+    private function inserti18nNationalityGerman()
+    {
+        
+	}
+
+    /** Nationality i18n France */
+    private function inserti18nNationalityGerman()
     {
         
 	}
