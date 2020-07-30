@@ -93,7 +93,7 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
                     <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/register']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
                 <?php else : ?>
                     <div class="logged-in dropdown">
-                        <div class="user-image d-inline-block">
+                        <div class="user-image d-inline-block float-left">
 							<?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $user->getId(). '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.png\'']); ?>
                         </div>
                         <button class="btn dropdown-toggle" type="button" id="usermenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
