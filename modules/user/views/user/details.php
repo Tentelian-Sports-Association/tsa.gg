@@ -397,14 +397,29 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                 <!-- Open Invites -->
                 <div class="new-invites-block py-5 bg-darkblue-2 ">
                     <div class="header">
-                        <?= \app\modules\user\Module::t('userDetails', 'userDetails_invitesHeader') ?>
+                        <h3><?= \app\modules\user\Module::t('userDetails', 'userDetails_invitesHeader') ?></h3>
                     </div>
                     <?php foreach($openInvites as $invite) : ?>
                         <!-- �berschrift -->
-                        <?= Html::a($invite['Organisation']['Name'], ['/organisation/details', 'organisationId' => $invite['Organisation']['ID']], ['class' => '']); ?>
-                        <!-- direkt unter dem Organisations namen in kleiner -->
-                        <?= Html::a($invite['Inviter']['Name'], ['/user/details', 'userId' => $invite['Inviter']['ID']], ['class' => '']); ?>
-
+                        <div class="col-12">
+                            <div class="col-2 float-left">
+                                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $invite['Organisation']['ID']) . '.webp',  ['class' => 'rounded-circle avatar-image', 'aria-label' => $invite['Organisation']['ID']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $invite['Organisation']['ID']) . '.png\''] ); ?>
+                            </div>
+                            <div class="col-7 text float-left">
+                                <?= Html::a($invite['Organisation']['Name'], ['/organisation/details', 'organisationId' => $invite['Organisation']['ID']], ['class' => '']); ?>
+                            </div>
+                            <div class="col-3 text float-left">
+                                <!-- Accept Icon -->
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+                                </svg>
+                                <!-- Decline Icon -->
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                                    <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                                </svg>
+                            </div>
+                        </div>
                         <!-- Buttons zum annehmenudn ablehnen -->
                         <?php if($userInfo['isMySelfe']) : ?>
                             <?php
