@@ -9,6 +9,7 @@ return [
     'navbar_events' => 'Events',
 	'navbar_contact' => 'Kontakt',
 	'navbar_account' => 'Profile',
+	'navbar_change_Password' => 'Passwort ändern',
 
 	/**Navbar Buttons */
     'navbar_login' => 'Anmelden',

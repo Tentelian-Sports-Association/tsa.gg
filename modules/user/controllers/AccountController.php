@@ -432,15 +432,9 @@ class AccountController extends BaseController
 
         if($invitationModel)
         {
-            $organisationMemberModel = new organisationMember();
-            $organisationMemberModel->organisation_id = $orgID;
-            $organisationMemberModel->user_id = $userId;
-            $organisationMemberModel->role_id = 5;
-
             $invitationModel->accepted = false;
 
             try {
-                $organisationMemberModel->save();
                 $invitationModel->delete();
 
                 //Alert::addInfo('Invitation to ' . $invitationModel->getOrganisationName() . ' succesfully accepted'); 

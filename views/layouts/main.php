@@ -107,6 +107,9 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
                             <li>
 								<?= Html::button(Yii::t('app', 'navbar_logout'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/logout']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
                             </li>
+                            <li>
+								<?= Html::button(Yii::t('app', 'navbar_change_Password'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/change-password']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                            </li>
                         </ul>
                     </div>
                 <?php endif; ?>

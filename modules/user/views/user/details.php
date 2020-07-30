@@ -39,6 +39,17 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                 ]
                             )
                             ?>
+                            <?php
+                                echo Html::a(Yii::t('app', 'navbar_change_Password'),
+                                    [
+                                        "account/change-password"                       
+									],
+                                    [
+                                        'class' => "filled-btn btn btn-primary upload float-right",
+                                        'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
+									]
+                                )
+                            ?>
                         <?php endif; ?>
                         <div class="avatarPanel d-md-flex align-items-center ">
 

@@ -6,8 +6,8 @@ return [
 	'userDetails_socialMediaHeader' => 'Social Media',
 	'userDetails_badgesHeader' => 'Abzeichen',
 	'userDetails_coinsHeader' => 'Münzen',
-	'userDetails_invitesHeader' => 'Öffne Einladungen',
-	'userDetails_applicationsHeader' => 'Öffne Applikationen',
+	'userDetails_invitesHeader' => 'Offene Einladungen',
+	'userDetails_applicationsHeader' => 'Offene Bewerbungen',
 	'userDetails_statisticsHeader' => 'Statistiken',
 
 	/** Field Labels */
