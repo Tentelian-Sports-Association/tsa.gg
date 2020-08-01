@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use yii\db\Migration;
 
@@ -34,6 +34,7 @@ class m200514_142357_partner_setup extends Migration
             CREATE TABLE IF NOT EXISTS `partner_i18n` (
               `partner_id` INT NOT NULL,
               `language_id` INT NOT NULL,
+              `name` TEXT NOT NULL,
               `description` TEXT NOT NULL,
               `dt_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
               `dt_updated` DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -74,7 +75,7 @@ class m200514_142357_partner_setup extends Migration
     {
         /** Tentelian */
         $this->insert('partner',  [
-            'name' => 'Tentelian - DIE MIT DEM KOPF',
+            'name' => 'Tentelian - THE ONE WITH THE HEAD',
             'description' => 'Only the best for your Tentelian so that unlimited gaming is possible. Our demands are high on our gaming machines, therefore we only select the best possible components.',
             'image' => 'tentelian',
             'webadresse' => 'https://tentelian.com'
@@ -108,7 +109,7 @@ class m200514_142357_partner_setup extends Migration
         $this->insert('partner',  [
             'name' => 'Munich eSports e.V.',
             'description' => 'Munich eSports e.V. was founded as an organization to help strengthen and grow the local esports scene, by providing an extensive community for casual gamers, competitive players and fans alike. With a string of teams successfully competing in countrywide tournaments across different game genres and tiers, as well as regular gaming events targeted at the casual audience, the club welcomes all that are interested in the world of gaming and esports.',
-            'image' => 'munich_esport',
+            'image' => 'munichesport',
             'webadresse' => 'https://munich-esports.de'
         ]);
 	}
@@ -120,6 +121,7 @@ class m200514_142357_partner_setup extends Migration
         $this->insert('partner_i18n',  [
             'partner_id' => 1,
             'language_id' => 2,
+            'name' => 'Tentelian - DIE MIT DEM KOPF',
             'description' => 'Nur das Beste für deinen Tentelian so dass uneingeschränktes Zocken möglich ist. Unsere Ansprüche sind hoch an unsere Gaming Maschinen, deswegen wählen wir nur die bestmöglichen Komponenten aus.'
         ]);
 
@@ -127,6 +129,7 @@ class m200514_142357_partner_setup extends Migration
         $this->insert('partner_i18n',  [
             'partner_id' => 2,
             'language_id' => 2,
+            'name' => 'Commotron GmbH',
             'description' => 'Als IT-Dienstleister mit Sitz in Fürstenfeldbruck bei München unterstützen wir seit 2008 kleine, mittelständische und große Unternehmen. Sie erhalten das komplette Leistungsangebot von der Planung, Installation, Betreuung von Klein- und Großprojekten auf Standardsystemen bis hin zu und individuellen IT-Lösungen.'
         ]);
 
@@ -134,6 +137,7 @@ class m200514_142357_partner_setup extends Migration
         $this->insert('partner_i18n',  [
             'partner_id' => 3,
             'language_id' => 2,
+            'name' => 'Gamers Finest',
             'description' => 'Die Gamers Finest Lounge bietet ein gemütliches Ambiente, gute Küche, kalte Getränke und die Möglichkeit Magic: The Gathering, Tabletop-, Brett-, Onlinespiele und vieles mehr zu zocken.'
         ]);
 
@@ -141,6 +145,7 @@ class m200514_142357_partner_setup extends Migration
         $this->insert('partner_i18n',  [
             'partner_id' => 4,
             'language_id' => 2,
+            'name' => 'SteelSeries',
             'description' => 'SteelSeries befeuert die Gaming-Branche mit innovativen neuen Produkten, die eigens für den E-Sport und passionierte Gamer in aller Welt konzipiert wurden.'
         ]);
         
@@ -148,6 +153,7 @@ class m200514_142357_partner_setup extends Migration
         $this->insert('partner_i18n',  [
             'partner_id' => 5,
             'language_id' => 2,
+            'name' => 'Munich eSports e.V.',
             'description' => 'Munich eSports e.V. wurde als Organisation gegründet, um die lokale E-Sports-Szene zu stärken und wachsen zu lassen, indem eine umfangreiche Community für Gelegenheitsspieler, Wettkampfspieler und Fans gleichermaßen bereitgestellt wird. Mit einer Reihe von Teams, die erfolgreich an landesweiten Turnieren über verschiedene Spielgenres und Spielklassen hinweg teilnehmen, sowie regelmäßigen Spielveranstaltungen, die sich an das Gelegenheitssportpublikum richten, heißt der Verein alle willkommen, die an der Welt der Spiele und des E-Sports interessiert sind.'
         ]);
 	}

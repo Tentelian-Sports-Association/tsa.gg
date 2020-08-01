@@ -43,19 +43,19 @@ $this->title = \app\modules\community\Module::t('overview', 'overview_header');
                 <ul class="list-unstyled row">
                     <li class="community-item col-12 col-lg-6">
                         <!-- User Overview -->
-                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.webp', ['aria-label' => 'User Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.png\''])		
+                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/community', 'players') . '.webp', ['aria-label' => 'User Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.png\''])		
                                         . '<h3 class="community-header">User Overview</h3>'
                         , ['/community/user-overview'], ['class' => 'community-link']); ?>
                     </li>
                     <li class="community-item col-12 col-lg-6">
                         <!-- Orga Overview -->
-                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.webp', ['aria-label' => 'Orga Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.png\''])		
+                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/community/', 'organisations') . '.webp', ['aria-label' => 'Orga Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/community/', 'organisations') . '.png\''])		
                                         . '<h3 class="community-header">Orga Overview</h3>'
                         , ['/community/orga-overview'], ['class' => 'community-link']); ?>
                     </li>
                     <li class="community-item col-12 col-lg-6">
                         <!-- Team Overview -->
-                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.webp', ['aria-label' => 'Team Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/news/news/', 'default') . '.png\''])		
+                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/community/', 'teams') . '.webp', ['aria-label' => 'Team Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/community/', 'teams') . '.png\''])		
                                         . '<h3 class="community-header">Team Overview</h3>'
                         , ['/community/team-overview'], ['class' => 'community-link']); ?>
                     </li>

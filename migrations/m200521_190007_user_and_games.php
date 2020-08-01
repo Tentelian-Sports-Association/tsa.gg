@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m200521_190007_user
  */
-class m200521_190007_user extends Migration
+class m200521_190007_user_and_games extends Migration
 {
     /**
      * {@inheritdoc}
@@ -167,6 +167,50 @@ class m200521_190007_user extends Migration
             ENGINE = InnoDB"
         );
 
+        // Base Games
+        $this->insertBaseGames();
+
+        // Base Platforms
+        $this->insertBasePlattforms();
+
+        /* Base user 'Admin' */
+        $this->insert('user', [
+            'username' => 'TSA_Observer',
+            'password' => Yii::$app->getSecurity()->generatePasswordHash('Birnchen2016'),
+            'email' => 'admin@tsa.gg',
+            'language_id' => '2',
+            'gender_id' => '3',
+            'nationality_id' => '18',
+            'birthday' => '1986-03-25'
+        ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function safeDown()
+    {   
+        // User Games
+        $this->dropTable('user_games');
+
+        // User Game Platforms
+        $this->dropTable('game_platforms');
+
+        // Games
+        $this->dropTable('games');
+
+        // User Socials
+        $this->dropTable('user_socials');
+
+        // User Details
+        $this->dropTable('user_details');
+
+        // User
+        $this->dropTable('user');
+    }
+
+    private function insertBaseGames()
+    {
         // Base Game Roket League standart english
         $this->insert('games',  [
             'name' => 'Rocket League',
@@ -217,11 +261,14 @@ class m200521_190007_user extends Migration
             'description' => 'SSBU for Live',
             'twitter_developer_tag' => '',
             'twitter_game_tag' => '',
-            'twitter_channel' => '#fssbu',
+            'twitter_channel' => '#ssbu',
             'verification_phrase' => '//',
             'icon' => 'ssbu'
         ]);
+	}
 
+    private function insertBasePlattforms()
+    {
         // Base Platform Steam standart english
         $this->insert('game_platforms',  [
             'name' => 'Steam',
@@ -284,29 +331,5 @@ class m200521_190007_user extends Migration
             'twitter_channel' => '',
             'icon' => 'xbox_one'
         ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function safeDown()
-    {   
-        // User Games
-        $this->dropTable('user_games');
-
-        // User Game Platforms
-        $this->dropTable('game_platforms');
-
-        // Games
-        $this->dropTable('games');
-
-        // User Socials
-        $this->dropTable('user_socials');
-
-        // User Details
-        $this->dropTable('user_details');
-
-        // User
-        $this->dropTable('user');
-    }
+	}
 }

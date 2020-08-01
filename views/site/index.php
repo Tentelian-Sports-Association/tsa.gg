@@ -27,60 +27,61 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
 
     <!-- *************** Upcoming Events Bereich *************** -->
     <section class="event-hero">
-        <div class="event-hero-image"  aria-labelledby='<?= $upcomingEvents['Next']['previewImage']?>' aria-describedby='bigEventContainer bigEventDescription'>
-            <picture>
-                <source media="(min-width: 1200px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
-                        type="image/jpeg">
-                <source media="(min-width: 768px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_768/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
-                        type="image/jpeg">
-                <source media="(min-width: 425px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_425/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
-                        type="image/jpeg">
-                <source media="(min-width: 375px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_375/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
-                        type="image/jpeg">
-                <source media="(min-width: 300px)"
-                        srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_300/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
-                        type="image/jpeg">
-                <img src="<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>"
-                     aria-label="Next Big Event Pictures" />
-            </picture>
-        </div>
-        <div class="inner-wrapper">
-            <div class="event-hero-container" id="bigEventContainer">
-                <div class="event-text">
-                    <h1 class="event-hero-title">
-                        <?= $upcomingEvents['Next']['Name'] ?>
-                    </h1>
-                    <p class="description" id="bigEventDescription"><?= $upcomingEvents['Next']['shortDescription'] ?></p>
-                        <?php echo Html::a(Yii::t('app', 'events_showEvent'), ["#"], ['class' => "filled-btn",'aria-label' => "Show Event Details button"]); ?>
-                </div>
+        <?php  If(array_key_exists('Next', $upcomingEvents)) : ?>
+            <div class="event-hero-image"  aria-labelledby='<?= $upcomingEvents['Next']['previewImage']?>' aria-describedby='bigEventContainer bigEventDescription'>
+                <picture>
+                    <source media="(min-width: 1200px)"
+                            srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
+                            type="image/jpeg">
+                    <source media="(min-width: 768px)"
+                            srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_768/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
+                            type="image/jpeg">
+                    <source media="(min-width: 425px)"
+                            srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_425/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
+                            type="image/jpeg">
+                    <source media="(min-width: 375px)"
+                            srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_375/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
+                            type="image/jpeg">
+                    <source media="(min-width: 300px)"
+                            srcset=<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index_300/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>
+                            type="image/jpeg">
+                    <img src="<?php echo Yii::$app->HelperClass->checkImage('/images/events/Index/', $upcomingEvents['Next']['previewImage']) . '.webp' ?>"
+                         aria-label="Next Big Event Pictures" />
+                </picture>
             </div>
-
-            <?php if(array_key_exists("Preview",$upcomingEvents)) : ?>
-                <div class="event-hero-upcoming-events d-flex">
-                    <div class="d-none d-sm-inline-block upcoming-image" aria-labelledby='<?= $upcomingEvents['Preview']['previewImage']?>' aria-describedby='smallEventContainer smallEventName'>
-                        <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
-                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/Index_300/', $upcomingEvents['Preview']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'smallEventContainer smallEventName',  'aria-label' => $upcomingEvents['Preview']['Name'], 'id' => $upcomingEvents['Preview']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/Index_300/', $upcomingEvents['Preview']['previewImage']) . '.png\'']); ?>
+            <div class="inner-wrapper">
+                <div class="event-hero-container" id="bigEventContainer">
+                    <div class="event-text">
+                        <h1 class="event-hero-title">
+                            <?= $upcomingEvents['Next']['Name'] ?>
+                        </h1>
+                        <p class="description" id="bigEventDescription"><?= $upcomingEvents['Next']['shortDescription'] ?></p>
+                            <?php echo Html::a(Yii::t('app', 'events_showEvent'), ["#"], ['class' => "filled-btn",'aria-label' => "Show Event Details button"]); ?>
                     </div>
-                    <div class="d-inline-block upcoming-description" id="smallEventContainer">
-                        <div class="inner">
-                            <!-- Das angepriesene Event f�r die kleine Ecke -->
-                            <span><?= Yii::t('app', 'events_upcoming') ?></span>
-                            <h3 id="smallEventName"><?= $upcomingEvents['Preview']['Name'] ?></h3>
-                            <!--<p><?= $upcomingEvents['Preview']['shortDescription'] ?></p>-->
-                            <!-- ID für den Button, funktion baue ich wenn design da -->
-                            <a href="<?= $upcomingEvents['Preview']['ID'] ?>" class="more">
-                                <?php echo Html::img(Yii::$app->HelperClass->checkSVGIcons('arrow-right')); ?>
+                </div>
+                <?php if(array_key_exists("Preview",$upcomingEvents)) : ?>
+                    <div class="event-hero-upcoming-events d-flex">
+                        <div class="d-none d-sm-inline-block upcoming-image" aria-labelledby='<?= $upcomingEvents['Preview']['previewImage']?>' aria-describedby='smallEventContainer smallEventName'>
+                            <!--<?= $upcomingEvents['Next']['previewImage'] ?>-->
+                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/events/Index_300/', $upcomingEvents['Preview']['previewImage']) . '.webp', ['class' => 'img-fluid', 'aria-describedby' => 'smallEventContainer smallEventName',  'aria-label' => $upcomingEvents['Preview']['Name'], 'id' => $upcomingEvents['Preview']['previewImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/events/Index_300/', $upcomingEvents['Preview']['previewImage']) . '.png\'']); ?>
+                        </div>
+                        <div class="d-inline-block upcoming-description" id="smallEventContainer">
+                            <div class="inner">
+                                <!-- Das angepriesene Event f�r die kleine Ecke -->
+                                <span><?= Yii::t('app', 'events_upcoming') ?></span>
+                                <h3 id="smallEventName"><?= $upcomingEvents['Preview']['Name'] ?></h3>
+                                <!--<p><?= $upcomingEvents['Preview']['shortDescription'] ?></p>-->
+                                <!-- ID für den Button, funktion baue ich wenn design da -->
+                                <a href="<?= $upcomingEvents['Preview']['ID'] ?>" class="more">
+                                    <?php echo Html::img(Yii::$app->HelperClass->checkSVGIcons('arrow-right')); ?>
 
-                            </a>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endif; ?>
-        </div>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
     </section>
 
     <!-- *************** Tournaments Bereich image hover noch einbauen *************** -->

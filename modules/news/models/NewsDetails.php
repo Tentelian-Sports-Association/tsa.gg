@@ -2,7 +2,10 @@
 
 namespace app\modules\news\models;
 
+use app\modules\news\models\NewsDetailsi18n;
+
 use yii\db\ActiveRecord;
+use yii;
 
 
 /**
@@ -43,24 +46,39 @@ class NewsDetails  extends ActiveRecord
     /**
      * @return string
      */
-    public function getHeader()
+    public function getHeader($languageID)
     {
+        if(Yii::$app->language != 'en-EN')
+		{
+			return NewsDetailsi18n::getTranslatedHeader($this->id, $languageID);
+		}
+
         return $this->header;
     }
 
     /**
      * @return string
      */
-    public function getShortBody()
+    public function getShortBody($languageID)
     {
+        if(Yii::$app->language != 'en-EN')
+		{
+			return NewsDetailsi18n::getTranslatedShortBody($this->id, $languageID);
+		}
+
         return $this->short_body;
     }
 
     /**
      * @return string
      */
-    public function getLongBody()
+    public function getLongBody($languageID)
     {
+        if(Yii::$app->language != 'en-EN')
+		{
+			return NewsDetailsi18n::getTranslatedLongBody($this->id, $languageID);
+		}
+
         return $this->long_body;
     }
 

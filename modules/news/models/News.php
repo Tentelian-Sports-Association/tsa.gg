@@ -6,6 +6,7 @@ use app\modules\user\models\User;
 use app\modules\news\models\NewsDetails;
 
 use yii\db\ActiveRecord;
+use yii;
 use DateTime;
 
 /**
@@ -112,7 +113,7 @@ class News  extends ActiveRecord
             $latestNewsData[$nr]['ID'] = $news->getId();
             $latestNewsData[$nr]['CategorieID'] = $news->getCategorieId();
             $latestNewsData[$nr]['SubCategorieID'] = $news->getSubCategorieId();
-            $latestNewsData[$nr]['Headline'] = $newsDetails->getHeader();
+            $latestNewsData[$nr]['Headline'] = $newsDetails->getHeader($languageID);
             $latestNewsData[$nr]['AuthorID'] = $news->getAuthorId();
             $latestNewsData[$nr]['Author'] = $news->getAuthor()->getUsername();
             $latestNewsData[$nr]['previewImage'] =  $newsDetails->getImgTag();
@@ -135,7 +136,7 @@ class News  extends ActiveRecord
             $latestNewsData[$nr]['ID'] = $news->getId();
             $latestNewsData[$nr]['CategorieID'] = $news->getCategorieId();
             $latestNewsData[$nr]['SubCategorieID'] = $news->getSubCategorieId();
-            $latestNewsData[$nr]['Headline'] = $newsDetails->getHeader();
+            $latestNewsData[$nr]['Headline'] = $newsDetails->getHeader($languageID);
             $latestNewsData[$nr]['AuthorID'] = $news->getAuthorId();
             $latestNewsData[$nr]['Author'] = $news->getAuthor()->getUsername();
             $latestNewsData[$nr]['previewImage'] =  $newsDetails->getImgTag();
@@ -158,7 +159,7 @@ class News  extends ActiveRecord
             $NewsData[$nr]['ID'] = $news->getId();
             $NewsData[$nr]['CategorieID'] = $news->getCategorieId();
             $NewsData[$nr]['SubCategorieID'] = $news->getSubCategorieId();
-            $NewsData[$nr]['Headline'] = $newsDetails->getHeader();
+            $NewsData[$nr]['Headline'] = $newsDetails->getHeader($languageID);
             $NewsData[$nr]['AuthorID'] = $news->getAuthorId();
             $NewsData[$nr]['Author'] = $news->getAuthor()->getUsername();
             $NewsData[$nr]['previewImage'] =  $newsDetails->getImgTag();
@@ -182,9 +183,9 @@ class News  extends ActiveRecord
         $NewsData['AuthorID'] = $selectedNews->getAuthorId();
         $NewsData['Author'] = $selectedNews->getAuthor()->getUsername();
 
-        $NewsData['Headline'] = $newsDetails->getHeader();
-        $NewsData['ShortBody'] = $newsDetails->getShortBody();
-        $NewsData['LongBody'] = $newsDetails->getLongBody();
+        $NewsData['Headline'] = $newsDetails->getHeader($languageID);
+        $NewsData['ShortBody'] = $newsDetails->getShortBody($languageID);
+        $NewsData['LongBody'] = $newsDetails->getLongBody($languageID);
         
         $NewsData['previewImage'] =  $newsDetails->getImgTag();
         $NewsData['Date'] = (new DateTime($selectedNews->getDtCreated()))->format('d.m.Y');

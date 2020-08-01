@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use yii\db\Migration;
 
@@ -199,11 +199,11 @@ class m200514_120936_base_setup extends Migration
             'name' => 'Deutsch'
         ]);
 
-        $this->insert('language_i18n',  [
+        /*$this->insert('language_i18n',  [
             'id' => '3',
             'language_id' => '2',
             'name' => 'Französisch'
-        ]);
+        ]);*/
 	}
 
     /** Language i18n France */
@@ -229,7 +229,7 @@ class m200514_120936_base_setup extends Migration
 	}
 
     /** Gender */
-    private function insertStandardGenderGerman()
+    private function insertStandardGender()
     {
         // Base Gender as standart English
         $this->insert('gender',  [
@@ -591,7 +591,7 @@ class m200514_120936_base_setup extends Migration
 	}
 
     /** Nationality i18n France */
-    private function inserti18nNationalityGerman()
+    private function inserti18nNationalityFrance()
     {
         
 	}

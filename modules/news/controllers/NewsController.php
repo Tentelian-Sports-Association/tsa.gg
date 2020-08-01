@@ -60,7 +60,7 @@ class NewsController extends BaseController
         $latestNews = News::getLatestNews($languageID, 3);
 
         /** Categories */
-        $categories = NewsCategorie::find()->orderBy(['name' => SORT_DESC])->limit(5)->all();
+        $categories = NewsCategorie::GetCategories($languageID);
 
         //return $this->redirect(['news/categorie?categorieId=1']);
 
@@ -82,10 +82,10 @@ class NewsController extends BaseController
         $latestNews = News::getLatestCategorieNews($languageID, 3, 'categorie_id', $categorieId);
 
         /** Categories */
-        $subCategories = NewsSubCategorie::find()->where(['categorie_id' => $categorieId])->orderBy(['name' => SORT_DESC])->limit(5)->all();
+        $subCategories = NewsSubCategorie::GetCategories($languageID, $categorieId);
 
         /** Category name */
-        $categoryName = NewsCategorie::find()->where(['id' => $categorieId])->one()->getName();
+        $categoryName = NewsCategorie::find()->where(['id' => $categorieId])->one()->getName($languageID);
 
         return $this->render('category', [
             'latestNews' => $latestNews,
@@ -110,7 +110,7 @@ class NewsController extends BaseController
 
         /** Category name */
         $subCategorie = NewsSubCategorie::find()->where(['id' => $subCategorieId])->one();
-        $categoryName = NewsCategorie::find()->where(['id' => $subCategorie->getCategorieId()])->one()->getName();
+        $categoryName = NewsCategorie::find()->where(['id' => $subCategorie->getCategorieId()])->one()->getName($languageID);
 
         return $this->render('subCategorie', [
             'latestNews' => $latestNews,

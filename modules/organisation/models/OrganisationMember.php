@@ -163,9 +163,29 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
         return $detailledOrganisation;
 	}
 
+    public static function findManagementMember($orgID)
+    {
+        $members = static::find()->where(['organisation_id' => $orgID])->andWhere(['<', 'role_id', '5'])->all();
+
+        $orgMembers = array();
+
+        foreach($members as $nr =>  $member)
+        {
+            $user = User::findIdentity($member->getUserId());
+
+            $orgMembers[$nr]['UserID'] = $user->getId();
+            $orgMembers[$nr]['UserName'] = $user->getUsername();
+            $orgMembers[$nr]['RoleID'] = $member->getRoleId();
+            $orgMembers[$nr]['RoleName'] = OrganisationRoles::getRoleByID($member->getRoleId());
+		}
+
+        return $orgMembers;
+	}
+
     public static function findMember($orgID)
     {
-        $members = static::findAll(['organisation_id' => $orgID]);
+        $members = static::find()->where(['organisation_id' => $orgID])->andWhere(['>', 'role_id', '4'])->all();
+
         $orgMembers = array();
 
         foreach($members as $nr =>  $member)
