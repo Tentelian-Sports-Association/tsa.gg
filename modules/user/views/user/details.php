@@ -217,6 +217,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                         </h3>                                   
                         <?php foreach ($userGames as $platform) : ?>
                             <div class="games-block mb-4">
+                                <?php if($platform['game']) : ?>
                                 <div class="gameplatform mb-4">
                                     <div class="gameplatform-header d-flex align-items-center">
                                         <div class="col-1">
@@ -230,6 +231,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                         </div>
                                     </div>
                                 </div>
+                                <?php endif; ?>
                                 <?php foreach($platform['game'] as $game) : ?>
                                     <div class="px-5 row">
                                         <div class="col-12 col-lg-8">

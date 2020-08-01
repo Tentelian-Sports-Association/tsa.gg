@@ -145,8 +145,7 @@ class m200521_190007_user_and_games extends Migration
               `dt_created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
               `dt_updated` DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
               `editable` TINYINT NULL DEFAULT 0,
-              UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
-              PRIMARY KEY (`user_id`),
+              PRIMARY KEY (`user_id`, `game_platform_id`, `game_id`),
               INDEX `FK_USER_GAMES_GAME_PLATFORM_ID_GAME_PLATFORM_ID_id_idx` (`game_platform_id` ASC),
               INDEX `FK_USER_GAMES_GAME_ID_GAMES_ID_id_idx` (`game_id` ASC),
               CONSTRAINT `FK_USER_GAMES_USER_ID_USER_ID_id`

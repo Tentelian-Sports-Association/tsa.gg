@@ -38,7 +38,7 @@ class RegisterForm extends FormModel
             ['username',
                 'string',
                 'min' => 3,
-                'max' => 16,
+                'max' => 12,
             ],
         	[
             	['password', 'passwordRepeate'],
