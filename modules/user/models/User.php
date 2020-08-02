@@ -397,9 +397,13 @@ class User extends AbstractActiveRecord implements IdentityInterface
     /**
      * @return ActiveQuery
      */
-     public function GetOwnOrganisations($roleId)
+     public function GetOwnOrganisations($roleId = 0)
      {
         return OrganisationMember::FindOrganisationMember($this->id , $roleId);
 	 }
 
+     public function GetManagementOrganisations()
+     {
+        return OrganisationMember::findOrganisationManagementMember($this->id);
+	 }
 }
