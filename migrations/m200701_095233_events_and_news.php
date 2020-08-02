@@ -554,5 +554,33 @@ class m200701_095233_events_and_news extends Migration
                 . '<a href="https://www.sturmkind.com/">>> hier geht es zur Webseite <<</a>',
             'dt_created' => '2020-07-23 13:00:00'
         ]);
+
+        // News -> Website is Live
+        $this->insert('news',  [
+            'categorie_id' => '1',
+            'sub_categorie_id' => '1',
+            'author_id' => '1',
+            'dt_created' => '2020-08-02 20:00:00'
+        ]);
+
+        // News Details -> Website is Live
+        $this->insert('news_details',  [
+            'news_id' => '4',
+            'header' => 'The website goes online!',
+            'short_body' => 'It was a long time ago, but now it is done',
+            'long_body' => 'Hello world! Today we are happy to announce that our new TSA website launched successfully. We put a lot of planning and effort into this new milestone. From now on you will be able to track all coming, ongoing and past tournaments that were held using our custom tournament organization software. In addition to that you can get yourself a full overview of our work and projects as well as our community and partners. We are excited for future tournaments and expand the functionality of our software. Look around and check out your possibilities. See you around!',
+            'img' => 'technik_webiste',
+            'dt_created' => '2020-08-02 20:00:00'
+        ]);
+
+        // News Details i18n -> Website is Live
+        $this->insert('news_details_i18n',  [
+            'details_id' => '4',
+            'language_id' => '2',
+            'header' => 'Die Website geht online!',
+            'short_body' => 'Es war ein langer weg, aber nun ist er vollbracht',
+            'long_body' => 'Hallo Welt! Es freut uns euch verkünden zu können, dass unsere neue TSA Website erfolgreich gestartet ist. In letzter Zeit haben wir viel Planung und Schweiß in diesen Meilenstein gesteckt. Ab jetzt wird es dir möglich sein, alle anstehenden, laufenden und vergangenen Turniere, die mit Hilfe unserer eigenen Turnier Organisationssoftware abgehalten wurden, einzusehen und zu verfolgen. Zudem kannst du dir einen vollen Überblick über unsere Arbeit und Projekte sowie unsere Community und Partner verschaffen. Wir freuen uns auf viele tolle Turniere in der Zukunft und arbeiten stets daran, die Software auszubauen und zu verbessern. Schau dich um und entdecke deine Möglichkeiten. Bis dahin!',
+            'dt_created' => '2020-08-02 20:00:00'
+        ]);
 	}
 }
