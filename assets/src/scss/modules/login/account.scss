@@ -11,6 +11,9 @@
             height: 20px;
         }
     }
+    .change-pw {
+        margin-right: 5px;
+    }
     * {
         font-weight: normal;
     }
@@ -25,6 +28,11 @@
     }
     .content-profileDetails {
         padding: 20px 50px;
+    }
+    @media (max-width: 991px) {
+        .content-profileDetails {
+            padding: 20px 10px !important;
+        }
     }
     .game-accounts {
         .col-12 {
@@ -119,6 +127,7 @@
     .avatar-upload {
         position: relative;
         max-width: 205px;
+        width: 120px;
         .avatar-edit {
             position: absolute;
             left: 0;
