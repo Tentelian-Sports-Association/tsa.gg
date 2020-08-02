@@ -78,6 +78,7 @@ $config = [
                 'company/<action>' => 'company/company/<action>',
                 'support/<action>' => 'support/support/<action>',
                 'team/<action>' => 'team/team/<action>',
+                'tournament/<action>' => 'tournament/tournament/<action>',
             ],
         ],
         'i18n' => [
@@ -108,6 +109,7 @@ $config = [
         'company' => 'app\modules\company\Module',
         'support' => 'app\modules\support\Module',
         'team' => 'app\modules\team\Module',
+        'tournament' => 'app\modules\tournament\Module',
 	],
     'params' => $params,
 ];

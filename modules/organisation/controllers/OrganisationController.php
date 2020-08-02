@@ -113,6 +113,7 @@ class OrganisationController extends BaseController
 		}
 
         $OrganisationOwner = $organisation->getOwner();
+        $organisationManagement = $organisation->getManagementMember();
         $organisationMember = $organisation->getMember();
         $organisationSocial = $organisation->getSocialDetails();
 
@@ -136,6 +137,7 @@ class OrganisationController extends BaseController
             'isOwner' => $isOwner,
             'organisationSocial' => $organisationSocial,
             'organisationMember' => $organisationMember,
+            'organisationManagementMember' => $organisationManagement,
             'organisationPicModel' => $organisationPicModel,
         ]);
 	}

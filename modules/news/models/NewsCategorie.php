@@ -2,8 +2,10 @@
 
 namespace app\modules\news\models;
 
-use yii\db\ActiveRecord;
+use app\modules\news\models\NewsCategoriei18n;
 
+use yii\db\ActiveRecord;
+use Yii;
 
 /**
  * Class NewsCategorie
@@ -40,16 +42,26 @@ class NewsCategorie  extends ActiveRecord
     /**
      * @return string
      */
-    public function getName()
+    public function getName($languageID)
     {
+        if(Yii::$app->language != 'en-EN')
+		{
+			return NewsCategoriei18n::getTranslatedName($this->id, $languageID);
+		}
+
         return $this->name;
     }
 
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription($languageID)
     {
+        if(Yii::$app->language != 'en-EN')
+		{
+			return NewsCategoriei18n::getTranslatedDescription($this->id, $languageID);
+		}
+
         return $this->description;
     }
 
@@ -78,4 +90,20 @@ class NewsCategorie  extends ActiveRecord
     }
 
     /************************ Functions ****************************/
+
+    public static function GetCategories($languageID)
+    {
+        $categories = static::find()->orderBy(['name' => SORT_DESC])->limit(5)->all();
+
+        $sortedCategories = [];
+
+        foreach($categories as $nr => $categorie)
+        {
+            $sortedCategories[$nr]['ID'] = $categorie->getId();
+            $sortedCategories[$nr]['name'] = $categorie->getName($languageID);
+            $sortedCategories[$nr]['img'] = $categorie->getImgTag();
+		}
+
+        return $sortedCategories;
+	}
 }

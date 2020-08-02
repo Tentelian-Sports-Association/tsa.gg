@@ -103,7 +103,28 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
                 $organisation = Organisation::findOrganisationById($organisationMembership->getOrganisationId());
                 $myOrganisations[$nr]['ID'] = $organisation->getId();
                 $myOrganisations[$nr]['Name'] = $organisation->getName();
-                $myOrganisations[$nr]['OrganisationRole'] = OrganisationRoles::find(['id' => $roleID])->one()->getRoleName();
+                $myOrganisations[$nr]['OrganisationRole'] = OrganisationRoles::find()->where(['id' => $roleID])->one()->getRoleName();
+                $myOrganisations[$nr]['Teams'] = $organisation->getTeamsByUser($userId);
+			}
+		}
+
+        return $myOrganisations;
+	}
+
+    public static function findOrganisationManagementMember($userId)
+    {
+        $organisationMemberships = OrganisationMember::find()->where(['user_id' => $userId])->andWhere(['<', 'role_id', '5'])->all();
+
+        $myOrganisations = array();
+
+        if($organisationMemberships)
+        {
+            foreach($organisationMemberships as $nr => $organisationMembership)
+            {
+                $organisation = Organisation::findOrganisationById($organisationMembership->getOrganisationId());
+                $myOrganisations[$nr]['ID'] = $organisation->getId();
+                $myOrganisations[$nr]['Name'] = $organisation->getName();
+                $myOrganisations[$nr]['OrganisationRole'] = OrganisationRoles::find()->where(['id' => $organisationMembership->getRoleId()])->one()->getRoleName();
                 $myOrganisations[$nr]['Teams'] = $organisation->getTeamsByUser($userId);
 			}
 		}
@@ -163,9 +184,29 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
         return $detailledOrganisation;
 	}
 
+    public static function findManagementMember($orgID)
+    {
+        $members = static::find()->where(['organisation_id' => $orgID])->andWhere(['<', 'role_id', '5'])->all();
+
+        $orgMembers = array();
+
+        foreach($members as $nr =>  $member)
+        {
+            $user = User::findIdentity($member->getUserId());
+
+            $orgMembers[$nr]['UserID'] = $user->getId();
+            $orgMembers[$nr]['UserName'] = $user->getUsername();
+            $orgMembers[$nr]['RoleID'] = $member->getRoleId();
+            $orgMembers[$nr]['RoleName'] = OrganisationRoles::getRoleByID($member->getRoleId());
+		}
+
+        return $orgMembers;
+	}
+
     public static function findMember($orgID)
     {
-        $members = static::findAll(['organisation_id' => $orgID]);
+        $members = static::find()->where(['organisation_id' => $orgID])->andWhere(['>', 'role_id', '4'])->all();
+
         $orgMembers = array();
 
         foreach($members as $nr =>  $member)

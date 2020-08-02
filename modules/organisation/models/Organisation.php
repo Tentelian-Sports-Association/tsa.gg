@@ -93,7 +93,12 @@ class Organisation extends ActiveRecord
 
     public function getMember()
     {
-        return OrganisationMember::findMember($this->id);
+         return OrganisationMember::findMember($this->id);
+	}
+
+    public function getManagementMember()
+    {
+         return OrganisationMember::findManagementMember($this->id);
 	}
 
     /**

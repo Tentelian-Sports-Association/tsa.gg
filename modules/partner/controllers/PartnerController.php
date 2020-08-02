@@ -7,6 +7,8 @@ use yii\filters\AccessControl;
 
 use app\modules\partner\models\Partner;
 
+use Yii;
+
 /**
  * Class PartnerController
  *
@@ -21,8 +23,12 @@ class PartnerController extends BaseController
      */
     public function actionOverview()
     {
+         /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
         /** Our Partners */
-        $ourPartner = Partner::find()->all();
+        $ourPartner = Partner::GetPartner($languageID);
 
         return $this->render('partnerOverview',
         [

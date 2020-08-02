@@ -132,6 +132,7 @@ class UserController extends BaseController
 
         /** Organisations */
         $ownedOrganisation = $user->GetOwnOrganisations(1);
+        $managedOrganisations = $user->GetManagementOrganisations();
         $memberOrganisations = $user->GetOwnOrganisations(5);
 
         return $this->render('details', [
@@ -140,6 +141,7 @@ class UserController extends BaseController
             'userGames' => $userGames,
             'userBalance' => $userBalance,
             'ownedOrganisation' => $ownedOrganisation, 
+            'managedOrganisations' => $managedOrganisations, 
             'memberOrganisations' => $memberOrganisations,
             'openInvites' => $openInvites,
         ]);

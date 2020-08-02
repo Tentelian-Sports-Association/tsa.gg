@@ -17,7 +17,6 @@ return [
 	'choose_nationality' => 'Please select team nationality',
 	'choose_language' => 'Please select Team language',
 	'choose_mode' => 'Please select Team game Mode',
-	'create_title' => 'Choosed Game',
 
 	/** Buttons **/
 	'save' => 'Create Team',

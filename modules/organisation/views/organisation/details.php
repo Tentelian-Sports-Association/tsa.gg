@@ -7,6 +7,7 @@
  * @var $isOwner bool,
  * @var $organisationSocial array,
  * @var $organisationMember array,
+ * @var $organisationManagementMember array,
  */
 
 use yii\bootstrap4\ActiveForm;
@@ -134,7 +135,8 @@ use app\widgets\Alert;
                                         </svg>',
                                 [
                                     "/team/create-team",
-                                    //"userId" => $userInfo['user_id']
+                                    "orgID" => $organisation['ID'],
+                                    "gameID" => 1
                                 ],
                                 ['class' => "filled-btn btn btn-primary add-btn",
                                     'title' => \app\modules\organisation\Module::t('userDetails', 'userDetails_info_editAccountDetails')
@@ -144,41 +146,27 @@ use app\widgets\Alert;
                         <?php endif; ?>
                         </h3>
                         <div class="team-block">
-                            <div class="team mb-1">
-                                <div class="team-header d-flex align-items-center">
-                                    <div class="col-12">
-                                        <div class="col-12">
-                                            <h4 class="float-left"><?= $organisation['Name'] ?></h4>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="col-12">
-                                            <ul class="organisation-title-list list-inline float-left">
-                                                <li class="list-inline-item">
-                                                    <span class="organisation-title"></span>
-                                                </li>
-                                            </ul>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="px-5 row">
                                 <div class="col-12 col-lg-12">
-                                    <?php foreach($organisation['Teams'] as $team) : ?>
-                                    <div class="team mb-4 col-12 col-lg-6 float-left">
-                                        <div class="col-2 float-left">
-                                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                                        </div>
-                                        <div class="col-10 float-left">
-                                            <div class="col-12">
-                                                <h4 class="float-left"><?= $team['Name']; ?></h4>
-                                                <div class="clearfix"></div>
+                                    <?php if(array_key_exists('Teams', $organisation)) : ?>
+                                        <?php foreach($organisation['Teams'] as $team) : ?>
+                                        <div class="team mb-4 col-12 col-lg-6 float-left">
+                                            <div class="col-2 float-left">
+                                                <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
                                             </div>
+                                            <div class="col-10 float-left">
+                                                <div class="col-12">
+                                                    <h4 class="float-left">
+                                                        <?= Html::a($team['Name'], ['/team/details', 'teamID' => $team['Id']], ['class' => '']); ?>
+                                                    </h4>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
                                         </div>
                                         <div class="clearfix"></div>
-                                    </div>
-                                    <?php endforeach; ?>
-                                    <div class="clearfix"></div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -187,25 +175,29 @@ use app\widgets\Alert;
                         <h3 class="header">Management</h3>
                         <div class="team-block">
                             <div class="team mb-1">
-                                <div class="team-header d-flex align-items-center">
-                                    <div class="col-1">
-                                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $organisation['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.png\''] ); ?>
-                                    </div>
-                                    <div class="col-11">
-                                        <div class="col-12">
-                                            <h4 class="float-left"><?= $organisation['Name'] ?></h4>
-                                            <div class="clearfix"></div>
+                                <?php foreach($organisationManagementMember as $member) : ?>
+                                    <div class="team-header d-flex align-items-center">
+                                        <div class="col-1">
+                                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $member['UserID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $member['UserName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $member['UserID']) . '.png\''] ); ?>
                                         </div>
-                                        <div class="col-12">
-                                            <ul class="organisation-title-list list-inline float-left">
-                                                <li class="list-inline-item">
-                                                    <span class="organisation-title"></span>
-                                                </li>
-                                            </ul>
-                                            <div class="clearfix"></div>
+                                        <div class="col-11">
+                                            <div class="col-12">
+                                                <h4 class="float-left">
+                                                    <?= Html::a( $member['UserName'], ['/user/details', 'userId' => $member['UserID']], ['class' => '']); ?>
+                                                </h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="organisation-title"></span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -213,25 +205,29 @@ use app\widgets\Alert;
                         <h3 class="header">Mitglieder</h3>
                         <div class="team-block">
                             <div class="team mb-1">
-                                <div class="team-header d-flex align-items-center">
-                                    <div class="col-1">
-                                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $organisation['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.png\''] ); ?>
-                                    </div>
-                                    <div class="col-11">
-                                        <div class="col-12">
-                                            <h4 class="float-left"><?= $organisation['Name'] ?></h4>
-                                            <div class="clearfix"></div>
+                                <?php foreach($organisationMember as $member) : ?>
+                                    <div class="team-header d-flex align-items-center">
+                                        <div class="col-1">
+                                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $member['UserID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $member['UserName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $member['UserID']) . '.png\''] ); ?>
                                         </div>
-                                        <div class="col-12">
-                                            <ul class="organisation-title-list list-inline float-left">
-                                                <li class="list-inline-item">
-                                                    <span class="organisation-title"></span>
-                                                </li>
-                                            </ul>
-                                            <div class="clearfix"></div>
+                                        <div class="col-11">
+                                            <div class="col-12">
+                                                <h4 class="float-left">
+                                                    <?= Html::a( $member['UserName'], ['/user/details', 'userId' => $member['UserID']], ['class' => '']); ?>
+                                                </h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="organisation-title"></span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>

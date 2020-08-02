@@ -84,7 +84,8 @@ teamManager['Name']
                                     </div>
                                 <?php endif; ?>
                                 <div class="avatar-preview">
-                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/team/', $team['ID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $team['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/team/', $team['ID']) . '.png\''] ); ?>
+                                    <?= Html::img(Yii::$app->HelperClass->checkTeamImage($team['ID'], $team['Organisation']['ID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' , 'aria-label' => $team['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkTeamImage($team['ID'], $team['Organisation']['ID']) . '.png\'']) ?>		
+                                    
                                 </div>
                             </div>
 
@@ -107,38 +108,33 @@ teamManager['Name']
 
 
                     <!-- Teams -->
-                    <div class="section-row py-3">
-                        <div class="team mb-1">
-                            <div class="team-block">
-                                <h3 class="header">
-                                    Rocket League
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
                     <div class="section-row py-5">
                         <h3 class="header">Mitglieder</h3>
                         <div class="team-block">
                             <div class="team mb-1">
-                                <div class="team-header d-flex align-items-center">
-                                    <div class="col-1">
-                                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/team/', $team['ID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $team['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/team/', $team['ID']) . '.png\''] ); ?>
-                                    </div>
-                                    <div class="col-11">
-                                        <div class="col-12">
-                                            <h4 class="float-left"><?= $team['Name'] ?></h4>
-                                            <div class="clearfix"></div>
+                                <?php foreach($teamMember as $member) : ?>
+                                    <div class="team-header d-flex align-items-center">
+                                        <div class="col-1">
+                                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $member['UserID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $member['UserName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $member['UserID']) . '.png\''] ); ?>
                                         </div>
-                                        <div class="col-12">
-                                            <ul class="organisation-title-list list-inline float-left">
-                                                <li class="list-inline-item">
-                                                    <span class="organisation-title"></span>
-                                                </li>
-                                            </ul>
-                                            <div class="clearfix"></div>
+                                        <div class="col-11">
+                                            <div class="col-12">
+                                                <h4 class="float-left">
+                                                    <?= Html::a( $member['UserName'], ['/user/details', 'userId' => $member['UserID']], ['class' => '']); ?>
+                                                </h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="organisation-title"></span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
