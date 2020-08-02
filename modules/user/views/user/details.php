@@ -120,78 +120,23 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                         <h3 class="header">
                             Meine Teams & Organisationen
                             <?php if ($userInfo['isMySelfe']) : ?>
-                            <?php
-                            echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
-                                            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
-                                        </svg>',
-                                [
-                                    "/organisation/create-orgnisation",
-                                    //"userId" => $userInfo['user_id']
-                                ],
-                                ['class' => "filled-btn btn btn-primary add-btn",
-                                    'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
-                                ]
-                            )
-                            ?>
-                        <?php endif; ?>
+                                <?php if (!$ownedOrganisation) : ?>
+                                    <?php
+                                        echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                                                        <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                                                    </svg>',
+                                            [
+                                                "/organisation/create-orgnisation",
+                                            ],
+                                            ['class' => "filled-btn btn btn-primary add-btn",
+                                                'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
+                                            ]
+                                        )
+                                    ?>
+                                <?php endif; ?>
+                            <?php endif; ?>
                         </h3>
-                        <?php foreach($ownedOrganisation as $organisation) : ?>
-                            <div class="organisation-block">
-                                <div class="organisation mb-5">
-                                    <div class="organisation-header d-flex align-items-center">
-                                        <div class="col-1">
-                                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.webp',  ['class' => 'rounded-circle avatar-image', 'aria-label' => $organisation['ID']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.png\''] ); ?>
-                                        </div>
-                                        <div class="col-11">
-                                            <div class="col-12">
-                                                <h4 class="float-left">
-                                                    <?= Html::a($organisation['Name'], ['/organisation/details', 'organisationId' => $organisation['ID']], ['class' => '']); ?>
-                                                </h4>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="col-12">
-                                                <ul class="organisation-title-list list-inline float-left">
-                                                    <li class="list-inline-item">
-                                                        <span class="organisation-title"><?= $organisation['OrganisationRole'] ?></span>
-                                                    </li>
-                                                </ul>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-5 row">
-                                    <div class="col-12 col-lg-12">
-                                        <?php foreach($organisation['Teams'] as $team) : ?>
-                                        <div class="team mb-4 col-12 col-lg-6 float-left">
-                                            <div class="col-2 float-left">
-                                                <?= Html::img(Yii::$app->HelperClass->checkTeamImage($team['Id'], $organisation['ID']) . '.webp', ['class' => 'rounded-circle avatar-image', 'aria-label' => $team['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkTeamImage($team['Id'], $organisation['ID']) . '.png\'']) ?>		
-                                            </div>
-                                            <div class="col-10 float-left">
-                                                <div class="col-12">
-                                                    <h4 class="float-left">
-                                                        <?= Html::a($team['Name'], ['/team/details', 'teamID' => $team['Id']], ['class' => '']); ?>
-                                                    </h4>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <ul class="organisation-title-list list-inline float-left">
-                                                        <li class="list-inline-item">
-                                                            <span class="team-title"><?= $team['Position']['Name']; ?></span>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <?php endforeach; ?>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
                         <?php foreach($managedOrganisations as $organisation) : ?>
                             <div class="organisation-block">
                                 <div class="organisation mb-5">
