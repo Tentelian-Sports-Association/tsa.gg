@@ -27,18 +27,21 @@ class BaseController extends Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
-/*
-        if(Yii::$app->controller->action->id !== 'construction'
-        && Yii::$app->controller->id !== 'partner'
+
+        //if(Yii::$app->controller->action->id !== 'construction')
+            //return $this->redirect(['/construction']);
+
+        //if(Yii::$app->controller->action->id !== 'construction')
+        /*&& Yii::$app->controller->id !== 'partner'
         && Yii::$app->controller->id !== 'site'
         && Yii::$app->controller->id !== 'news'
         && Yii::$app->controller->id !== 'account'
-        && Yii::$app->controller->id !== 'support')
-        {
-            if(Yii::$app->controller->id !== 'community' || Yii::$app->controller->action->id == 'orga-overview' || Yii::$app->controller->action->id == 'team-overview' || Yii::$app->controller->action->id == 'user-overview')
-                return $this->redirect(['/construction']);
-		}
-*/
+        && Yii::$app->controller->id !== 'support')*/
+        //{
+            //if(Yii::$app->controller->id !== 'community' || Yii::$app->controller->action->id == 'orga-overview' || Yii::$app->controller->action->id == 'team-overview' || Yii::$app->controller->action->id == 'user-overview')
+                //return $this->redirect(['/construction']);
+		//}
+
         if(Yii::$app->user->identity != null)
             Yii::$app->language = User::findIdentity(Yii::$app->user->identity->getId())->getLanguage()->getLocale();
         

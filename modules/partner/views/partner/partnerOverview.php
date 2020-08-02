@@ -48,11 +48,11 @@ app\modules\partner\assets\PartnerOverviewAsset::register($this);
                     <div class="partner-item">
                         <div class="row align-items-center text-center">
                             <div class="col-12 col-md-6 order-2 order-md-1">
-                                <h3><?= $partner['name']?></h3>
-                                <p><?= $partner['description']?></p>
+                                <h3><?= $partner['Name']?></h3>
+                                <p><?= $partner['Description']?></p>
                             </div>
                             <div class="col-12 col-md-6 order-1 order-md-2" aria-labelledby='<?= $partner['Image']?>' aria-describedby='<?= $partner['Image']?>'>
-                                <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.webp', ['class' => 'img-fluid','description' => $partner['Name'],'aria-label' => $partner['Name'], 'id' => $partner['Image'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.png\'']), $partner['webadresse'], ['target'=>'_blank']); ?>
+                                <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.webp', ['class' => 'img-fluid','description' => $partner['Name'],'aria-label' => $partner['Name'], 'id' => $partner['Image'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/partner/index/', $partner['Image']) . '.png\'']), $partner['Webadresse'], ['target'=>'_blank']); ?>
                             </div>
                         </div>
                     </div>

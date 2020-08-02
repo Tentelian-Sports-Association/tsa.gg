@@ -119,6 +119,9 @@ class m200727_131348_teams_and_tournament_modes extends Migration
                 ON UPDATE CASCADE)
             ENGINE = InnoDB"
         );
+
+        $this->insertDefaultTeamRoles();
+        $this->insertDefaultTournamentMode();
     }
 
     /**
@@ -128,12 +131,63 @@ class m200727_131348_teams_and_tournament_modes extends Migration
     {
         // Team Member
         $this->dropTable('team_member');
-        // Tournament Mode
+
         // Team
         $this->dropTable('team');
+
         // Tournament Mode
         $this->dropTable('tournament_mode');
+
         // Team Role
         $this->dropTable('team_role');
     }
+
+    private function insertDefaultTeamRoles()
+    {
+        // Base Role Owner
+        $this->insert('team_role',  [
+            'name' => 'Captain',
+        ]);
+
+        // Base Role Manager
+        $this->insert('team_role',  [
+            'name' => 'Deputy',
+        ]);
+
+        // Base Role Manager
+        $this->insert('team_role',  [
+            'name' => 'Trainer',
+        ]);
+
+        // Base Role Trainer
+        $this->insert('team_role',  [
+            'name' => 'Player',
+        ]);
+
+        // Base Role Trainer
+        $this->insert('team_role',  [
+            'name' => 'Substitude',
+        ]);
+	}
+
+    private function insertDefaultTournamentMode()
+    {
+        // Base 1v1
+        $this->insert('tournament_mode',  [
+            'game_id' => '1',
+            'name' => 'Team 2v2',
+        ]);
+
+        // Base 1v1
+        $this->insert('tournament_mode',  [
+            'game_id' => '1',
+            'name' => 'Team 3v3',
+        ]);
+
+        // Base 1v1
+        $this->insert('tournament_mode',  [
+            'game_id' => '1',
+            'name' => 'Chaos 4v4',
+        ]);
+	}
 }

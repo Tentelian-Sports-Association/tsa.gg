@@ -147,10 +147,13 @@ class CommunityController extends BaseController
         $ownId = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getId() : 0;
 
         $canInvite = false;
+        $invitabelOrgaisationId = null;
 
         if($ownId != 0)
         {
-            $invitabelOrgaisationId = OrganisationMember::find()->where(['user_id' => $ownId])->andWhere(['<', 'role_id', '3'])->one()->getOrganisationId();
+            $invitabelOrgaisation = OrganisationMember::find()->where(['user_id' => $ownId])->andWhere(['<', 'role_id', '3'])->one();
+                if($invitabelOrgaisation != null) { $invitabelOrgaisationId = $invitabelOrgaisation->getOrganisationId(); }
+                
                 if($invitabelOrgaisationId != null)
                     $canInvite = true;
 		}

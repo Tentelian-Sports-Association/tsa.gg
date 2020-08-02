@@ -228,6 +228,9 @@ class m200723_190825_organisation extends Migration
                 ON UPDATE CASCADE)
             ENGINE = InnoDB"
         );
+
+        $this->insertDefaultOrganisationRoles();
+
     }
 
     /**
@@ -237,23 +240,60 @@ class m200723_190825_organisation extends Migration
     {
         // Organisation Billing
         $this->dropTable('organisation_billing');
+
         // Organisation Payment
         $this->dropTable('organisation_payment');
+
         // Organisation Social
         $this->dropTable('organisation_social');
+
         // Organisation Member
         $this->dropTable('organisation_member');
+
         // Organisation Role
         $this->dropTable('organisation_role');
+
         // Organisation Balance
         $this->dropTable('organisation_balance');
+
         // Organisation
         $this->dropTable('organisation');
+
         // User Balance
         $this->dropTable('user_billing');
+
         // User Balance
         $this->dropTable('user_balance');
+
         // User Balance
         $this->dropTable('billing_reason');
     }
+
+    private function insertDefaultOrganisationRoles()
+    {
+        // Base Role Owner
+        $this->insert('organisation_role',  [
+            'role' => 'Owner',
+        ]);
+
+        // Base Role Manager
+        $this->insert('organisation_role',  [
+            'role' => 'Deputy',
+        ]);
+
+        // Base Role Manager
+        $this->insert('organisation_role',  [
+            'role' => 'Manager',
+        ]);
+
+        // Base Role Trainer
+        $this->insert('organisation_role',  [
+            'role' => 'Trainer',
+        ]);
+
+        // Base Role Trainer
+        $this->insert('organisation_role',  [
+            'role' => 'Member',
+        ]);
+	}
 }

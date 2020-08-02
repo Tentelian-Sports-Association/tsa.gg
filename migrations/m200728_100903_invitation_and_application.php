@@ -71,8 +71,9 @@ class m200728_100903_invitation_and_application extends Migration
      */
     public function safeDown()
     {
-        // Organisation invitation
+        // Organisation application
         $this->dropTable('organisation_application');
+
         // Organisation invitation
         $this->dropTable('organisation_invitation');
     }
