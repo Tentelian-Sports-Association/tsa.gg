@@ -418,6 +418,8 @@ class AccountController extends BaseController
         else {
 	        Alert::addError('This Service is currently not availabel');  
         }
+
+        return $this->redirect("user/details?userId=" . $userId);
 	}
 
     public function actionDeclineInvitation($userId, $orgID)
@@ -446,5 +448,6 @@ class AccountController extends BaseController
 	        Alert::addError('This Service is currently not availabel');  
         }
 
+        return $this->redirect("user/details?userId=" . $userId);
 	}
 }
