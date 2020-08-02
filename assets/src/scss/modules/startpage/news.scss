@@ -54,12 +54,18 @@
             @media (min-width: $breakpoint-sm) {
                 margin-bottom: 40px;
             }
-            .news-date,
-            .news-header {
+            .news-date {
                 position: absolute;
                 right: 17px;
                 @media (min-width: $breakpoint-sm) {
                     right: 24px;
+                }
+            }
+            .news-header {
+                position: absolute;
+                left: 17px;
+                @media (min-width: $breakpoint-sm) {
+                    left: 24px;
                 }
             }
             .news-date {
@@ -95,12 +101,18 @@
             @media (min-width: $breakpoint-sm) {
                 margin-bottom: 40px;
             }
-            .categorie-date,
-            .categorie-header {
+            .categorie-date {
                 position: absolute;
                 right: 17px;
                 @media (min-width: $breakpoint-sm) {
                     right: 24px;
+                }
+            }
+            .categorie-header {
+                position: absolute;
+                left: 17px;
+                @media (min-width: $breakpoint-sm) {
+                    left: 24px;
                 }
             }
             .categorie-date {
@@ -123,7 +135,7 @@
                 content:"";
                 position:absolute;
                 top: 0;
-                right:0;
+                left:0;
                 width: 100%;
                 height: 100%;
                 background: linear-gradient(180deg, rgba(1, 10, 38, 0) 0%, #010A26 88.02%);
