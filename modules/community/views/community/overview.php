@@ -32,7 +32,7 @@ $this->title = \app\modules\community\Module::t('overview', 'overview_header');
                     Community
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <!-- Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien. -->
                 </p>
             </div>
         </div>
@@ -43,7 +43,7 @@ $this->title = \app\modules\community\Module::t('overview', 'overview_header');
                 <ul class="list-unstyled row">
                     <li class="community-item col-12 col-lg-6">
                         <!-- User Overview -->
-                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/community', 'players') . '.webp', ['aria-label' => 'User Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.png\''])		
+                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.webp', ['aria-label' => 'User Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.png\''])		
                                         . '<h3 class="community-header">User Overview</h3>'
                         , ['/community/user-overview'], ['class' => 'community-link']); ?>
                     </li>
