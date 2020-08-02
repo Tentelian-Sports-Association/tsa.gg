@@ -5,6 +5,7 @@
  * @var $userInfo array - siehe UserController
  * @var $userBalance string
  * @var $ownedOrganisation array
+ * @var $managedOrganisations array
  * @var $memberOrganisations array
  * @var $openInvites array
  */
@@ -136,6 +137,118 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                         <?php endif; ?>
                         </h3>
                         <?php foreach($ownedOrganisation as $organisation) : ?>
+                            <div class="organisation-block">
+                                <div class="organisation mb-5">
+                                    <div class="organisation-header d-flex align-items-center">
+                                        <div class="col-1">
+                                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.webp',  ['class' => 'rounded-circle avatar-image', 'aria-label' => $organisation['ID']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.png\''] ); ?>
+                                        </div>
+                                        <div class="col-11">
+                                            <div class="col-12">
+                                                <h4 class="float-left">
+                                                    <?= Html::a($organisation['Name'], ['/organisation/details', 'organisationId' => $organisation['ID']], ['class' => '']); ?>
+                                                </h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="organisation-title"><?= $organisation['OrganisationRole'] ?></span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-5 row">
+                                    <div class="col-12 col-lg-12">
+                                        <?php foreach($organisation['Teams'] as $team) : ?>
+                                        <div class="team mb-4 col-12 col-lg-6 float-left">
+                                            <div class="col-2 float-left">
+                                                <?= Html::img(Yii::$app->HelperClass->checkTeamImage($team['Id'], $organisation['ID']) . '.webp', ['class' => 'rounded-circle avatar-image', 'aria-label' => $team['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkTeamImage($team['Id'], $organisation['ID']) . '.png\'']) ?>		
+                                            </div>
+                                            <div class="col-10 float-left">
+                                                <div class="col-12">
+                                                    <h4 class="float-left">
+                                                        <?= Html::a($team['Name'], ['/team/details', 'teamID' => $team['Id']], ['class' => '']); ?>
+                                                    </h4>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <ul class="organisation-title-list list-inline float-left">
+                                                        <li class="list-inline-item">
+                                                            <span class="team-title"><?= $team['Position']['Name']; ?></span>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <?php endforeach; ?>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <?php foreach($managedOrganisations as $organisation) : ?>
+                            <div class="organisation-block">
+                                <div class="organisation mb-5">
+                                    <div class="organisation-header d-flex align-items-center">
+                                        <div class="col-1">
+                                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.webp',  ['class' => 'rounded-circle avatar-image', 'aria-label' => $organisation['ID']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $organisation['ID']) . '.png\''] ); ?>
+                                        </div>
+                                        <div class="col-11">
+                                            <div class="col-12">
+                                                <h4 class="float-left">
+                                                    <?= Html::a($organisation['Name'], ['/organisation/details', 'organisationId' => $organisation['ID']], ['class' => '']); ?>
+                                                </h4>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="organisation-title-list list-inline float-left">
+                                                    <li class="list-inline-item">
+                                                        <span class="organisation-title"><?= $organisation['OrganisationRole'] ?></span>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-5 row">
+                                    <div class="col-12 col-lg-12">
+                                        <?php foreach($organisation['Teams'] as $team) : ?>
+                                        <div class="team mb-4 col-12 col-lg-6 float-left">
+                                            <div class="col-2 float-left">
+                                                <?= Html::img(Yii::$app->HelperClass->checkTeamImage($team['Id'], $organisation['ID']) . '.webp', ['class' => 'rounded-circle avatar-image', 'aria-label' => $team['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkTeamImage($team['Id'], $organisation['ID']) . '.png\'']) ?>		
+                                            </div>
+                                            <div class="col-10 float-left">
+                                                <div class="col-12">
+                                                    <h4 class="float-left">
+                                                        <?= Html::a($team['Name'], ['/team/details', 'teamID' => $team['Id']], ['class' => '']); ?>
+                                                    </h4>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <ul class="organisation-title-list list-inline float-left">
+                                                        <li class="list-inline-item">
+                                                            <span class="team-title"><?= $team['Position']['Name']; ?></span>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <?php endforeach; ?>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <?php foreach($memberOrganisations as $organisation) : ?>
                             <div class="organisation-block">
                                 <div class="organisation mb-5">
                                     <div class="organisation-header d-flex align-items-center">

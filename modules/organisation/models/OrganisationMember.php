@@ -103,7 +103,28 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
                 $organisation = Organisation::findOrganisationById($organisationMembership->getOrganisationId());
                 $myOrganisations[$nr]['ID'] = $organisation->getId();
                 $myOrganisations[$nr]['Name'] = $organisation->getName();
-                $myOrganisations[$nr]['OrganisationRole'] = OrganisationRoles::find(['id' => $roleID])->one()->getRoleName();
+                $myOrganisations[$nr]['OrganisationRole'] = OrganisationRoles::find()->where(['id' => $roleID])->one()->getRoleName();
+                $myOrganisations[$nr]['Teams'] = $organisation->getTeamsByUser($userId);
+			}
+		}
+
+        return $myOrganisations;
+	}
+
+    public static function findOrganisationManagementMember($userId)
+    {
+        $organisationMemberships = OrganisationMember::find()->where(['user_id' => $userId])->andWhere(['<', 'role_id', '5'])->all();
+
+        $myOrganisations = array();
+
+        if($organisationMemberships)
+        {
+            foreach($organisationMemberships as $nr => $organisationMembership)
+            {
+                $organisation = Organisation::findOrganisationById($organisationMembership->getOrganisationId());
+                $myOrganisations[$nr]['ID'] = $organisation->getId();
+                $myOrganisations[$nr]['Name'] = $organisation->getName();
+                $myOrganisations[$nr]['OrganisationRole'] = OrganisationRoles::find()->where(['id' => $organisationMembership->getRoleId()])->one()->getRoleName();
                 $myOrganisations[$nr]['Teams'] = $organisation->getTeamsByUser($userId);
 			}
 		}
