@@ -496,7 +496,7 @@ class m200701_095233_events_and_news extends Migration
         // News -> Cuby Systems
         $this->insert('news',  [
             'categorie_id' => '2',
-            'sub_categorie_id' => '3',
+            'sub_categorie_id' => '2',
             'author_id' => '1',
             'dt_created' => '2020-07-01 12:00:00'
         ]);

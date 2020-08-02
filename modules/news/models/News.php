@@ -102,7 +102,7 @@ class News  extends ActiveRecord
     public static function getLatestNews($languageID, $count)
     {
         //News::find()->orderBy(['dt_created' => SORT_DESC])->limit(5)->all();
-        $latestNews = static::find()->orderBy(['dt_created' => SORT_ASC])->limit($count)->all();
+        $latestNews = static::find()->orderBy(['dt_created' => SORT_DESC])->limit($count)->all();
 
         $latestNewsData = array();
 
@@ -125,7 +125,7 @@ class News  extends ActiveRecord
 
     public static function getLatestCategorieNews($languageID, $count, $categorieType, $categorieId)
     {
-        $latestNews = static::find()->Where([$categorieType => $categorieId])->orderBy(['dt_created' => SORT_ASC])->limit($count)->all();
+        $latestNews = static::find()->Where([$categorieType => $categorieId])->orderBy(['dt_created' => SORT_DESC])->limit($count)->all();
 
         $latestNewsData = array();
 
@@ -148,7 +148,7 @@ class News  extends ActiveRecord
 
     public static function getNews($languageID, $categorieType, $categorieId)
     {
-        $allNews = static::find()->Where([$categorieType => $categorieId])->orderBy(['dt_created' => SORT_ASC])->all();
+        $allNews = static::find()->Where([$categorieType => $categorieId])->orderBy(['dt_created' => SORT_DESC])->all();
 
         $NewsData = array();
 
