@@ -15,4 +15,8 @@ class DetailsAssets extends AssetBundle
     public $cssOptions = [
         'async' => 'true'
 	];
+
+    public $js = [
+      'js/user/account-edit.min.js',
+    ];
 }

@@ -121,6 +121,9 @@ class OrganisationController extends BaseController
         $organisationPicModel = new ProfilePicForm(ProfilePicForm::SCENARIO_ORGANISATION);
         $organisationPicModel->id = $organisationId;
 
+        //print_r(Yii::$app->request->post());
+        //die();
+
         if ($organisationPicModel->load(Yii::$app->request->post())) {
             $organisationPicModel->file = UploadedFile::getInstance($organisationPicModel, 'file');
             if ($organisationPicModel->validate()) {
