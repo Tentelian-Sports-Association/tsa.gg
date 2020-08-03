@@ -32,7 +32,7 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
         <div class="row ">
             <div class="col-12 col-lg-8 ">
                 <div class="content-profileDetails bg-darkblue-2">
-                    <div class="section-row avatar py-5">
+                    <div class="col-lg-12">
                         <?php if ($userInfo['isMySelfe']) : ?>
                             <?php
                             echo Html::a('Edit <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -54,14 +54,17 @@ $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('us
                                         "account/change-password"                       
 									],
                                     [
-                                        'class' => "filled-btn btn btn-primary upload float-right",
+                                        'class' => "outline-btn btn btn-primary upload float-right change-pw",
                                         'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
 									]
                                 )
                             ?>
+                            <div class="clearfix"></div>
                         <?php endif; ?>
-                        <div class="avatarPanel d-md-flex align-items-center ">
-
+                        
+                    </div>
+                    <div class="section-row avatar py-5">
+                        <div class="avatarPanel d-md-flex align-items-center col-12 col-md-9">
                             <div class="avatar-upload avatarSmall mr-md-2 ">
                                 <?php if ($userInfo['isMySelfe']) : ?>
                                     <div class="avatar-edit">
