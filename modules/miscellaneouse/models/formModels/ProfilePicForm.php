@@ -62,8 +62,8 @@ class ProfilePicForm extends FormModel
         $this->file->saveAs($filePathPng);
 
         //Buggy mit 7.0.33, sollte ab 7.1.x aufwärts laufen, wenn "WebP Support === true"
-        //$im = imagecreatefrompng($filePathPng);
-        //imagewebp($im, $filePathWebp);
+        $im = imagecreatefrompng($filePathPng);
+        imagewebp($im, $filePathWebp);
 
         // Workaround
         //$cmd = escapeshellcmd('cwebp ' . $filePathPng . ' -o ' . $filePathWebp);
