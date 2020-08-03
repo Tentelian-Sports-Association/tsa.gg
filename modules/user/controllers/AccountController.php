@@ -392,7 +392,7 @@ class AccountController extends BaseController
         /** If not Owner, Admin or is Guest */
         if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $userId) {
             //Alert::addError('You are not Allowed to change this settings'); 
-            return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
+            return $this->redirect(['/user/details?userId='. Yii::$app->user->identity->getId()]);
         }
 
         $invitationModel = Invitation::find()->where(['invited_user_id' => $userId, 'organisation_id' => $orgID])->one();
@@ -419,7 +419,7 @@ class AccountController extends BaseController
 	        //Alert::addError('This Service is currently not availabel');  
         }
 
-        return $this->redirect("user/details?userId=" . $userId);
+        return $this->redirect("/user/details?userId=" . $userId);
 	}
 
     public function actionDeclineInvitation($userId, $orgID)
