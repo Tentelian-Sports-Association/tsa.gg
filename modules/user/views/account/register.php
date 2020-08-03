@@ -92,7 +92,19 @@ $this->title = \app\modules\user\Module::t('register', 'register_header');
 
     	<?php ActiveForm::end(); ?>
 	</div>
-    <div class="ad-container container px-0">
-        <img src="https://via.placeholder.com/1170x264.png" class="img-fluid" alt="">
+    <div class="ad-block-container row">
+        <div class="ad-block-item col-12">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- tsa.gg Register Footer -->
+            <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-8480651532892152"
+                    data-ad-slot="3604082440"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+            <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
     </div>
 </div>

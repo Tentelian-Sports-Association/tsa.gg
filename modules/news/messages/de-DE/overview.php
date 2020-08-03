@@ -5,10 +5,12 @@ return [
 	'news_description_overview' => 'Alles über Gaming, eSport und unsere Partner und Sponsoren',
 	'currentNews_header' => 'Letzte News',
 	'news_overview_kategorie_header' => 'Kategorien',
-	'news_description_category' => 'Alle News über unser/e ',
+	'news_description_category' => 'Alle News über unsere ',
 	'news_categorie_sub_categorie_header' => 'Unterkategorien',
 	'allNews_header' => 'News',
 	
+	'overview_categorie_header' => '-Übersicht',
+
 	'news_page_description_overview' => 'Tentelian Sports Association - News-Bereich - Alles über Gaming, eSport und unsere TSA Partner und Sponsoren',
 	'news_page_description_categorie' => 'Alle News über unser/e ',
 	'news_page_description_sub_categorie' => 'Alle News über unser/e ',

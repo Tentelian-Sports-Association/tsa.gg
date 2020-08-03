@@ -1,7 +1,7 @@
 <?php
 return [
 	/** Header */
-	'editOrganisation_header' => 'Edit Details',
+	'editOrganisation_header' => 'Details Bearbeiten',
 	'editOrganisation' => 'Organization\'s Details',
 	'editOrgaSocials' => 'Social media',
 	'editOrgaBillingInformations' => 'Payment Information',
@@ -13,21 +13,21 @@ return [
 	'headquaterId' => 'Seat of the organization',	
 
 	/** Social */
-	'businessMail' => 'Business e-mailÂ¹',
-	'twitterName' => 'Twitter nameÂ¹',
+	'businessMail' => 'Business e-mail¹',
+	'twitterName' => 'Twitter name¹',
 	'twitterChannel' => 'Twitter channels',
-	'discordServer' => 'Discord ServerÂ¹',
-	'teamspeakServer' => 'Teamspeak Server IPÂ¹',
+	'discordServer' => 'Discord Server¹',
+	'teamspeakServer' => 'Teamspeak Server IP¹',
 
 	/** Payment */
-	'ownerName' => 'Organization OwnerÂ²',
-	'zipCode' => 'Zip codeÂ¹',
-	'city' => 'CityÂ¹',
-	'street' => 'StreetÂ¹',
-	'paypalAdress' => 'Paypal addressÂ¹',
-	'iban' => 'IBANÂ¹',
-	'bic' => 'BICÂ¹',
-	'accountOwner' => 'Account holderÂ¹',
+	'ownerName' => 'Organization Owner²',
+	'zipCode' => 'Zip code¹',
+	'city' => 'City¹',
+	'street' => 'Street¹',
+	'paypalAdress' => 'Paypal address¹',
+	'iban' => 'IBAN¹',
+	'bic' => 'BIC¹',
+	'accountOwner' => 'Account holder¹',
 
 	/** Placeholder Social */
 	'businessMailPlaceholder' => 'business@clanname.com',
@@ -40,7 +40,7 @@ return [
 	'ownerNamePlaceholder' =>'Is retrieved from the private information of the owner',
 	'zipCodePlaceholder' => '84433',
 	'cityPlaceholder' => 'Bettyhausen',
-	'streetPlaceholder' => 'Birnchen StraÃŸe 1b',
+	'streetPlaceholder' => 'Birnchen Straße 1b',
 
 	'accountOwnerPlaceholder' =>'Betty Birnchen',
 	'ibanPlaceholder' => 'DE123456789',

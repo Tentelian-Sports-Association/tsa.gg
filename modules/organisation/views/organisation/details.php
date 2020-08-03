@@ -17,7 +17,7 @@ use app\widgets\Alert;
 
 \app\modules\organisation\assets\organisationDetails\DetailsAssets::register($this);
 
-//$this->title = $userInfo['user_name'] . '\'s Player profile';
+$this->title = $organisation['Name'] . \app\modules\organisation\Module::t('organisationDetails', 'details_header');
 
 /** Usabel Variables **/
 /*
