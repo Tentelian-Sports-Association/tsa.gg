@@ -25,7 +25,7 @@ return [
 	'events_showEvent' => 'Read More',
 
 	/** Active Tournaments */
-	'tournaments_header' => 'Active Tournaments',
+	'tournaments_header' => 'Active tournaments',
 	'tournaments_moreTournaments' => 'Show More',
 
 	/** Current News */
