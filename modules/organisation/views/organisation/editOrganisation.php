@@ -15,7 +15,7 @@ use app\widgets\Alert;
 
 \app\modules\organisation\assets\createEditOrganisation\EditOrganisationAsset::register($this);
 
-$this->title = 'Edit Details';
+$this->title = \app\modules\organisation\Module::t('editDetails', 'editOrganisation_header');
 
 ?>
 

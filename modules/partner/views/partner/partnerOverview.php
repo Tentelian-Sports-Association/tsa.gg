@@ -6,7 +6,7 @@ use yii\helpers\Html;
  * @var $ourPartner array
  */
 
-$this->title = 'Our Partners';
+$this->title = \app\modules\partner\Module::t('partner', 'our_partners_header');
 
 /************* Meta Index ****************/
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);

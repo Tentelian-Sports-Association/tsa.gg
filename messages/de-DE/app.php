@@ -25,7 +25,7 @@ return [
 	'events_showEvent' => 'Zum Event',
 
 	/** Active Tournaments */
-	'tournaments_header' => 'Aktive turniere',
+	'tournaments_header' => 'Aktive Turniere',
 	'tournaments_moreTournaments' => 'Alle Turniere',
 
 	/** Current News */
