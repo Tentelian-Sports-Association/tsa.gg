@@ -63,6 +63,13 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
         gtag('set', {'user_id': '<?php echo (!$user)? null : $user->getId(); ?>'}); // Legen Sie die User ID mithilfe des Parameters "user_id" des angemeldeten Nutzers fest.
     </script>
     <!-- End Global site tag (gtag.js) - Google Analytics -->
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-P9VSMDX');</script>
+	<!-- End Google Tag Manager -->
 
     <!-- Write Metatags und diverses andere -->
     <?php $this->registerCsrfMetaTags() ?>
@@ -71,6 +78,10 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9VSMDX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <?php $this->beginBody() ?>
 <header class="d-flex align-items-center">
     <div class="navbar  navbar-expand-xl w-100  d-sm-flex align-items-center justify-content-between">
