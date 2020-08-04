@@ -7,6 +7,10 @@ $this->title = 'Contact Us';
 
 \app\modules\support\assets\contact\ContactAsset::register($this);
 
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Need help? Contact us!', '@BettyBirnchen');
+/************* End Meta Index ****************/
 
 ?>
 

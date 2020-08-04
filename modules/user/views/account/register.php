@@ -13,12 +13,14 @@ use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Modal;
 use yii\jui\DatePicker;
 
-//print_r(Yii::$app->params['bsVersion']);
-//die();
-
 \app\modules\user\assets\account\register\RegisterAsset::register($this);
 
 $this->title = \app\modules\user\Module::t('register', 'register_header');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Register your Account', '@BettyBirnchen');
+/************* End Meta Index ****************/
 
 ?>
 

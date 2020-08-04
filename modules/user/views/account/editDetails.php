@@ -16,6 +16,11 @@ use yii\helpers\Html;
 
 $this->title = \app\modules\user\Module::t('editDetails', 'editDetails_Title');
 
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Edit Details for user ' . $model->username, '@BettyBirnchen');
+/************* End Meta Index ****************/
+
 ?>
 
 <div class="site-edit-details">

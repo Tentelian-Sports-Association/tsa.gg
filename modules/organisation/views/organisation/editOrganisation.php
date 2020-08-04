@@ -13,9 +13,14 @@ use yii\helpers\Html;
 
 use app\widgets\Alert;
 
-\app\modules\organisation\assets\createEditOrganisation\EditOrganisationAsset::register($this);
-
 $this->title = \app\modules\organisation\Module::t('editDetails', 'editOrganisation_header');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Edit details for Organisation ' . $model->name, '@BettyBirnchen');
+/************* End Meta Index ****************/
+
+\app\modules\organisation\assets\createEditOrganisation\EditOrganisationAsset::register($this);
 
 ?>
 

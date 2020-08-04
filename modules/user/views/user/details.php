@@ -23,8 +23,14 @@ use yii\helpers\Html;
 
 use app\widgets\Alert;
 
-\app\modules\user\assets\profile\profileDetails\DetailsAsset::register($this);
 $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('userDetails', 'userDetails_title');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for user ' . $userInfo['user_name'], '@BettyBirnchen');
+/************* End Meta Index ****************/
+
+\app\modules\user\assets\profile\profileDetails\DetailsAsset::register($this);
 ?>
 
 <div class="site-profileDetails p-3 p-md-5">

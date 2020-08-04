@@ -6,9 +6,15 @@
 
 use yii\helpers\Html;
 
-\app\modules\events\assets\OverviewAsset::register($this);
 
-//$this->title = \app\modules\community\Module::t('overview', 'overview_header');
+$this->title = \app\modules\events\Module::t('events', 'event_overview_header');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, \app\modules\events\Module::t('events', 'event_overview_description'), '@BettyBirnchen');
+/************* End Meta Index ****************/
+
+\app\modules\events\assets\OverviewAsset::register($this);
 
 ?>
 

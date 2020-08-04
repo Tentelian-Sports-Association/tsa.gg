@@ -12,9 +12,14 @@
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
-\app\modules\team\assets\createEditTeam\CreateTeamAssets::register($this);
-
 $this->title = \app\modules\team\Module::t('createTeam', 'create_title');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Create your own Team', '@BettyBirnchen');
+/************* End Meta Index ****************/
+
+\app\modules\team\assets\createEditTeam\CreateTeamAssets::register($this);
 
 ?>
 

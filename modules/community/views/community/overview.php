@@ -6,9 +6,15 @@
 
 use yii\helpers\Html;
 
-\app\modules\community\assets\communityOverview\CommunityOverviewAsset::register($this);
 
 $this->title = \app\modules\community\Module::t('overview', 'overview_header');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title,'Our community and where they come from', '@BettyBirnchen');
+/************* End Meta Index ****************/
+
+\app\modules\community\assets\communityOverview\CommunityOverviewAsset::register($this);
 
 ?>
 

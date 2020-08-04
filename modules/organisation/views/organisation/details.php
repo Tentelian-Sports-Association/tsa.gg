@@ -15,9 +15,14 @@ use yii\helpers\Html;
 
 use app\widgets\Alert;
 
-\app\modules\organisation\assets\organisationDetails\DetailsAssets::register($this);
-
 $this->title = $organisation['Name'] . \app\modules\organisation\Module::t('organisationDetails', 'details_header');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Details for Organisation ' . $organisation['Name'], '@BettyBirnchen');
+/************* End Meta Index ****************/
+
+\app\modules\organisation\assets\organisationDetails\DetailsAssets::register($this);
 
 /** Usabel Variables **/
 /*

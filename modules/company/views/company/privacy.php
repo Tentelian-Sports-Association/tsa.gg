@@ -3,6 +3,13 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+$this->title = \app\modules\company\Module::t('company', 'privacy_header');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, \app\modules\company\Module::t('company', 'privacy_description'), '@BettyBirnchen');
+/************* End Meta Index ****************/
+
 \app\modules\company\assets\PrivacyAsset::register($this);
 
 ?>

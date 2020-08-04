@@ -10,10 +10,14 @@
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
-\app\modules\organisation\assets\createEditOrganisation\CreateOrganisationAsset::register($this);
-
 $this->title = \app\modules\organisation\Module::t('createOrganisation', 'header');
 
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Create your own Organisation', '@BettyBirnchen');
+/************* End Meta Index ****************/
+
+\app\modules\organisation\assets\createEditOrganisation\CreateOrganisationAsset::register($this);
 
 ?>
 

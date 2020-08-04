@@ -27,6 +27,7 @@ use Yii;
  			'basePath' => '@app/modules/events/messages',
  			'fileMap' => [
                 'modules/events/events' => 'events.php',
+                'modules/events/details' => 'details.php',
  			],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
  		];
