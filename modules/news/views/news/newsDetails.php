@@ -50,7 +50,7 @@ Yii::$app->MetaClass->writeMetaNews($this);
     <!-- *************** Detailed News Bereich *************** -->
     <section class="news-block">
         <div class="inner-wrapper">
-            <div class="news-entry">
+            <div class="news-entry col-12 col-lg-8">
                 <div class="col-12 news-info">
                     <div class="col-6 float-left">
                         <div class="news-info-block">
@@ -90,45 +90,47 @@ Yii::$app->MetaClass->writeMetaNews($this);
                     <p><?= $selectedNews['LongBody']?></p>
                 </div>
             </div>
-        </div>
+            <div class="col-12 col-lg-4">
+                <!-- Left Long Banner -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- TSA-News-Details-Left-Top -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-8480651532892152"
+                    data-ad-slot="3504193873"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
 
-        <!-- Left Long Banner -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- TSA-News-Details-Left-Top -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-8480651532892152"
-             data-ad-slot="3504193873"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
-        <!-- Left short Banner -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- TSA-News-Details-Left-Mid -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-8480651532892152"
-             data-ad-slot="7251867190"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
-        <!-- Footer Ad -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- TSA-News-Details-Footer -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-8480651532892152"
-             data-ad-slot="6063565140"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+                <!-- Left short Banner -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- TSA-News-Details-Left-Mid -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-8480651532892152"
+                    data-ad-slot="7251867190"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="col-12">
+                <!-- Footer Ad -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- TSA-News-Details-Footer -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-8480651532892152"
+                    data-ad-slot="6063565140"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>        
     </section>
 </div>
