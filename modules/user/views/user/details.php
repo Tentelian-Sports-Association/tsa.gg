@@ -515,6 +515,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
 						            ?>
                                 <?php endif; ?>
                             </div>
+                            <div class="clearfix"></div>
                         </div>
                     <?php endforeach; ?>
                 </div>
