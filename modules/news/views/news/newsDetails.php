@@ -50,7 +50,7 @@ Yii::$app->MetaClass->writeMetaNews($this);
     <!-- *************** Detailed News Bereich *************** -->
     <section class="news-block">
         <div class="inner-wrapper">
-            <div class="news-entry col-12 col-lg-8">
+            <div class="news-entry col-12 col-lg-8 float-left">
                 <div class="col-12 news-info">
                     <div class="col-6 float-left news-info-block">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +87,7 @@ Yii::$app->MetaClass->writeMetaNews($this);
                     <p><?= $selectedNews['LongBody']?></p>
                 </div>
             </div>
-            <div class="col-12 col-lg-4">
+            <div class="col-12 col-lg-4 float-left">
                 <!-- Left Long Banner -->
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- TSA-News-Details-Left-Top -->
@@ -114,6 +114,7 @@ Yii::$app->MetaClass->writeMetaNews($this);
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
+            <div class="clearfix"></div>
             <div class="col-12">
                 <!-- Footer Ad -->
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
