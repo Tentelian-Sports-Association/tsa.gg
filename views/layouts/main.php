@@ -114,7 +114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/register']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
                 <?php else : ?>
                     <div class="mobile">
-                        <?php echo Html::a(Yii::t('app', 'navbar_account'), ["/user/details"], ['class' => "nav-link", 'aria-label' => "Profile Button"]); ?>
+                        <?php echo Html::a(Yii::t('app', 'navbar_account'), ["/user/details", 'userId' => $user->getId()], ['class' => "nav-link", 'aria-label' => "Profile Button"]); ?>
                         <?php echo Html::a(Yii::t('app', 'navbar_logout'), ["/account/logout"], ['aria-label' => "Logout Button"]); ?>
                     </div>
                     <div class="logged-in dropdown">
