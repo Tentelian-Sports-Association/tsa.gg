@@ -125,3 +125,11 @@ header {
     }
     
 }
+.mobile {
+    display: block; 
+}
+@media (min-width: 1200px) {
+    .mobile {
+        display: none !important; 
+    }
+}

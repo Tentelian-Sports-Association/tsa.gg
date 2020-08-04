@@ -107,11 +107,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => ($controllerID == 'partner' ? "nav-link active" : "nav-link" ),'aria-label' => "Partners Button"]); ?>
             <!--?php echo Html::a(Yii::t('app', 'navbar_events'), ["/events/overview"], ['class' => ($controllerID == 'events' ? "nav-link active" : "nav-link" ),'aria-label' => "Events Button"]); ?-->
             <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["/support/contact"], ['class' => ($controllerID == 'support' ? "nav-link active" : "nav-link" ),'aria-label' => "Contact Button"]); ?>
+
             <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
                 <?php if(!$user) : ?>
                     <?= Html::button(Yii::t('app', 'navbar_login'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/login']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
                     <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/register']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
                 <?php else : ?>
+                    <div class="mobile">
+                        <?php echo Html::a(Yii::t('app', 'navbar_account'), ["/user/details"], ['class' => "nav-link", 'aria-label' => "Profile Button"]); ?>
+                        <?php echo Html::a(Yii::t('app', 'navbar_logout'), ["/account/logout"], ['aria-label' => "Logout Button"]); ?>
+                    </div>
                     <div class="logged-in dropdown">
                         <div class="user-image d-inline-block float-left">
 							<?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $user->getId(). '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.png\'']); ?>
