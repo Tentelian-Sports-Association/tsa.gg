@@ -61,7 +61,7 @@
 *************************************************************/
 
     // Set the output file name.
-    define ("OUTPUT_FILE", "sitemap.xml");
+    define ("OUTPUT_FILE", "httpdoc/web/sitemaps/sitemap.xml");
     
 
     // Set the start URL. Example: define ("SITE", "https://www.example.com");
@@ -71,7 +71,7 @@
     // Set true or false to define how the script is used.
     // true:  As CLI script.
     // false: As Website script.
-    define ("CLI", false);
+    define ("CLI", true);
 
 
     // Define here the URLs to skip. All URLs that start with the defined URL 
@@ -85,13 +85,13 @@
     
 
     // General information for search engines how often they should crawl the page.
-    define ("FREQUENCY", "daylie");
+    define ("FREQUENCY", "daily");
     
 
     // General information for search engines. You have to modify the code to set
     // various priority values for different pages. Currently, the default behavior
     // is that all pages have the same priority.
-    define ("PRIORITY", "0.5");
+    define ("PRIORITY", "0.7");
 
 
     // When your web server does not send the Content-Type header, then set
