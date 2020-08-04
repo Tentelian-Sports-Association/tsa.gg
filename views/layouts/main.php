@@ -85,8 +85,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <?php $this->beginBody() ?>
 <header class="d-flex align-items-center">
     <div class="navbar  navbar-expand-xl w-100  d-sm-flex align-items-center justify-content-between">
-        <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/icons/', 'TSA_Logo_Schrift_right_238x70'). '.webp'), ["/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?>
-        </a>
+        <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkSVGIcons('TSA_Logo_Schrift_Nebeneinander')), ["/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('burgermenu'),['aria-label' => 'burgermenu']); ?>
         </button>
