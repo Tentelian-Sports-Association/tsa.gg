@@ -14,7 +14,10 @@ $this->title = $categoryName . \app\modules\news\Module::t('overview', 'overview
 
 /************* Meta Index ****************/
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
-Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Module::t('overview', 'news_page_description_categorie') . $categoryName);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, \app\modules\news\Module::t('overview', 'news_page_description_categorie'), '@BettyBirnchen');
+
+Yii::$app->MetaClass->writeMetaNews($this);
+/************* End Meta Index ****************/
 
 \app\modules\news\assets\CategoryAsset::register($this);
 

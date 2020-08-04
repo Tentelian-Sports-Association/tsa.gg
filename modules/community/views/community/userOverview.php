@@ -14,11 +14,16 @@ use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 
-\app\modules\community\assets\searchOverview\SearchOverviewAsset::register($this);
-
 $this->title = \app\modules\community\Module::t('overview', 'overview_header_users');
 
-$searchString = '';
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title,'All our Users', '@BettyBirnchen');
+/************* End Meta Index ****************/
+
+\app\modules\community\assets\searchOverview\SearchOverviewAsset::register($this);
+
+$searchModel->searchString = '';
 
 ?>
 

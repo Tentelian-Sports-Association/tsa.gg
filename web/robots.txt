@@ -1,2 +1,4 @@
+Sitemap: https://tsa.gg/sitemaps/sitemap.xml
+
 User-agent: *
 Disallow:

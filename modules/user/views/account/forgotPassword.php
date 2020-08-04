@@ -11,6 +11,11 @@ use yii\bootstrap4\ActiveForm;
 
 $this->title = \app\modules\user\Module::t('forgotPassword', 'forgotPassword_header');
 
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Request a new Password', '@BettyBirnchen');
+/************* End Meta Index ****************/
+
 ?>
 
 <div class="login-container site-passwordForgotten">

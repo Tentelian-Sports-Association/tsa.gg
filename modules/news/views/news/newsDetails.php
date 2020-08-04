@@ -12,10 +12,12 @@ $this->title = \app\modules\news\Module::t('overview', 'news_details_header');
 
 /************* Meta Index ****************/
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
-Yii::$app->MetaClass->writeMetaNews($this, $selectedNews['Headline'], $selectedNews['ShortBody']);
+Yii::$app->MetaClass->writeDefaultMeta($this, $selectedNews['Headline'], $selectedNews['ShortBody'], '@BettyBirnchen');
+
+Yii::$app->MetaClass->writeMetaNews($this);
+/************* End Meta Index ****************/
 
 \app\modules\news\assets\NewsDetailsAsset::register($this);
-
 
 ?>
 

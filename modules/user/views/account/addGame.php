@@ -13,6 +13,11 @@ use yii\bootstrap4\ActiveForm;
 
 $this->title = \app\modules\user\Module::t('addGameAccount', 'addGameAccount_header');
 
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Add a game account to your profile', '@BettyBirnchen');
+/************* End Meta Index ****************/
+
 ?>
 
 <div class="site-add-gameid">

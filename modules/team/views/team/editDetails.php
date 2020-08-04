@@ -13,10 +13,15 @@ use yii\helpers\Html;
 
 use app\widgets\Alert;
 
+$this->title = \app\modules\team\Module::t('editTeam', 'edit_title');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Edit details for team ' . $model->name, '@BettyBirnchen');
+/************* End Meta Index ****************/
+
 \app\modules\team\assets\createEditTeam\EditTeamAssets::register($this);
 
-
-$this->title = 'Edit Details';
 
 ?>
 <div class="site-edit-teams">

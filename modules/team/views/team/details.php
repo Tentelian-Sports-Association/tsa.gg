@@ -13,9 +13,14 @@ use yii\helpers\Html;
 
 use app\widgets\Alert;
 
-\app\modules\team\assets\teamDetails\DetailsAssets::register($this);
+$this->title = $team['Name'] . \app\modules\team\Module::t('teamDetails', 'details_title') . '\'s Team profile';
 
-//$this->title = $userInfo['user_name'] . '\'s Player profile';
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Details for team ' . $team['Name'], '@BettyBirnchen');
+/************* End Meta Index ****************/
+
+\app\modules\team\assets\teamDetails\DetailsAssets::register($this);
 
 /** Usabel Variables **/
 /*

@@ -11,13 +11,17 @@ use yii\helpers\ArrayHelper;
  * @var $subCategoryName string
  */
 
-\app\modules\news\assets\SubCategoryAsset::register($this);
 
 $this->title = $categoryName . ' - ' . $subCategoryName .  \app\modules\news\Module::t('overview', 'overview_categorie_header');;
 
 /************* Meta Index ****************/
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
-Yii::$app->MetaClass->writeMetaNews($this, $this->title, \app\modules\news\Module::t('overview', 'news_page_description_sub_categorie') . $subCategoryName);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, \app\modules\news\Module::t('overview', 'news_page_description_sub_categorie'), '@BettyBirnchen');
+
+Yii::$app->MetaClass->writeMetaNews($this);
+/************* End Meta Index ****************/
+
+\app\modules\news\assets\SubCategoryAsset::register($this);
 
 ?>
 

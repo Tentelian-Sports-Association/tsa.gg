@@ -73,3 +73,4 @@ nodevars.bat
 
 #node_modules ignoring
 /node_modules
+/web/images/avatars/user

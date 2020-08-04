@@ -15,8 +15,10 @@ $this->title = 'Tentelian Sports Association';
 
 /************* Meta Index ****************/
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
-Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Tentelian Sports Association - Professional Gaming for everyone - Is a Tournament Site for Players from all Countries and all Skill Levels.', '@BettyBirnchen');
 
+Yii::$app->MetaClass->writeMetaIndex($this);
+/************* End Meta Index ****************/
 
 \app\assets\IndexAsset::register($this);
 

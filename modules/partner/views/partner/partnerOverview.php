@@ -10,7 +10,10 @@ $this->title = \app\modules\partner\Module::t('partner', 'our_partners_header');
 
 /************* Meta Index ****************/
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
-Yii::$app->MetaClass->writeMetaPartner($this, $this->title, 'We present our partners and sponsors: Tentelian, Steelseries, Commotron GmbH, Gamers Finest Salzburg, Pace Media Development GmbH');
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'We present our partners and sponsors: Tentelian, Steelseries, Commotron GmbH, Gamers Finest Salzburg, Pace Media Development GmbH', '@BettyBirnchen');
+
+Yii::$app->MetaClass->writeMetaPartner($this);
+/************* End Meta Index ****************/
 
 app\modules\partner\assets\PartnerOverviewAsset::register($this);
 

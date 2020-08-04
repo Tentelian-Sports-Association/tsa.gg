@@ -3,6 +3,13 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+$this->title = \app\modules\company\Module::t('company', 'gtc_header');
+
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, \app\modules\company\Module::t('company', 'gtc_description'), '@BettyBirnchen');
+/************* End Meta Index ****************/
+
 \app\modules\company\assets\GtcAsset::register($this);
 
 ?>

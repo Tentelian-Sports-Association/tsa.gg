@@ -10,6 +10,11 @@ use yii\bootstrap4\ActiveForm;
 
 $this->title = \app\modules\user\Module::t('changePassword', 'changePassword_header');
 
+/************* Meta Index ****************/
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);
+Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Change your password', '@BettyBirnchen');
+/************* End Meta Index ****************/
+
 ?>
 
 <div class="site-passwordChange">
