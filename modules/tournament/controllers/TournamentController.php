@@ -1,11 +1,9 @@
 <?php
 
-namespace app\modules\partner\controllers;
+namespace app\modules\tournament\controllers;
 
 use app\components\BaseController;
 use yii\filters\AccessControl;
-
-use app\modules\partner\models\Partner;
 
 use Yii;
 
@@ -14,7 +12,7 @@ use Yii;
  *
  * @package app\modules\partner\controllers
  */
-class PartnerController extends BaseController
+class TournamentController extends BaseController
 {
     /**
      * @inheritdoc
@@ -61,12 +59,12 @@ class PartnerController extends BaseController
         $user = Yii::$app->HelperClass->getUser();
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
 
-        /** Our Partners */
-        $ourPartner = Partner::GetPartner($languageID);
 
-        return $this->render('partnerOverview',
+
+        
+        return $this->render('overview',
         [
-            'ourPartner' => $ourPartner,
+            //'ourPartner' => $ourPartner,
         ]);
     }
 }
