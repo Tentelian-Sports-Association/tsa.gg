@@ -89,6 +89,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title,'Our community and wh
                     </div>
                 </div>
             </div>
+            <div class="clearfix"></div>
             <div class="col-12 col-lg-12">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- TSA-Community-SideBanner -->
