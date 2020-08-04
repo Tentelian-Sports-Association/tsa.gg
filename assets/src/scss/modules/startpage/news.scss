@@ -15,22 +15,12 @@
             padding: 0;
         }
         .news-info-block {
-            margin-right: 40px;
             position: relative;
             min-width: 150px;
         }
         .news-info-block:last-of-type {
             margin-right: 15px;
             min-width: 50px;
-        }
-        svg {
-            font-size: 20px;
-            position: absolute;
-        }
-        .text {
-            right: 35px;
-            position: absolute;
-            top: -2px;
         }
         .float-left {
             padding: 0;
@@ -79,6 +69,7 @@
                 }
             }
             .news-header {
+                max-width: 525px;
                 text-align: left;
                 padding: 8px;
                 bottom: 29px;
