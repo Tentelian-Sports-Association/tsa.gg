@@ -114,9 +114,9 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
                                     </li>
                                 </ul>
                                 <div class="avatarjob-list">
-                                    <span class="avatar-job-title">Leader</span>
+                                    <!--span class="avatar-job-title">Leader</span>
                                     <span class="avatar-job-title">Admin</span>
-                                    <span class="avatar-job-title">Platzhalter</span>
+                                    <span class="avatar-job-title">Platzhalter</span-->
                                 </div>
 
                             </div>
@@ -457,8 +457,8 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
                     </h3>
                     <div class="coin-wallet">
                         <div class="d-flex align-items-center mb-5">
-                            <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
-                            <span class="ml-3 d-inline-block"><?= ($userBalance)? $userBalance->getBalance() : 'No Coins Availabel'  ?></span>
+                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/icons/','Birnchen_Coin') . '.webp',  ['class' => 'rounded-circle avatar-image', 'aria-label' => 'Birnchen Coins'. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/icons/','Birnchen_Coin') . '.png\''] ); ?>
+                            <span class="ml-3 d-inline-block"><?= ($userBalance)? $userBalance->getBalance() : 'No coins available'  ?></span>
                         </div>
 
                         <!-- button class="filled-btn">Abrechnung</button -->

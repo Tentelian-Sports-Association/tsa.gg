@@ -100,7 +100,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Edit Details for us
 					<div class="col-12">
 						<?= Html::submitButton(\app\modules\user\Module::t('editDetails', 'editDetails_save'), ['class' => 'filled-btn float-right', 'name' => 'save-credentials-button']) ?>
 						<div class="placeholder"></div>
-						<?= Html::a(\app\modules\user\Module::t('addGameID', 'backToProfile'), ['user/details', 'userId' => $currentUserID], ['class' => 'outline-btn btn btn-primary delete float-left', 'name' => 'backToProfile-button']); ?>
+						<?= Html::a(\app\modules\user\Module::t('editDetails', 'backToProfile'), ['user/details', 'userId' => $currentUserID], ['class' => 'outline-btn btn btn-primary delete float-left', 'name' => 'backToProfile-button']); ?>
 						<div class="clearfix"></div>
 					</div>
 				</div>

@@ -57,6 +57,7 @@ return [
 
     /** Le Button **/
     'editDetails_save' => 'Save',
+    'backToProfile' => 'Back to profile',
 
     /** notes **/
     'editDetails_note1' => 'Personal data can be removed or changed via the ticket system.',
