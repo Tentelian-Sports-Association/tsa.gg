@@ -8,7 +8,7 @@ class OverviewAsset extends AssetBundle
     public $sourcePath = '@app/assets/dist';
  
     public $css = [
-		'css/tournament/overview.css'
+		'css/tournament.css'
     ];
 
     public $cssOptions = [
