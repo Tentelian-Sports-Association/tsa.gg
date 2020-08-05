@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
  * @var $selectedNews array
  */
 
-$this->title = \app\modules\news\Module::t('overview', 'news_details_header');
+$this->title = $selectedNews['Headline'];
 
 /************* Meta Index ****************/
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->request->url]);

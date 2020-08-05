@@ -103,7 +103,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <?php echo Html::a(Yii::t('app', 'navbar_home'), ["/index"], ['class' => ($controllerID == 'site' ? "nav-link active" : "nav-link" ),'aria-label' => "Home Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_news'), ["/news/overview"], ['class' => ($controllerID == 'news' ? "nav-link active" : "nav-link" ),'aria-label' => "News Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_community'), ["/community/overview"], ['class' => ($controllerID == 'community' ? "nav-link active" : "nav-link" ),'aria-label' => "Community Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["/index"], ['class' => ($controllerID == 'tournaments' ? "nav-link active" : "nav-link" ),'aria-label' => "Tournaments Button"]); ?>
+            <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["/tournament/overview"], ['class' => ($controllerID == 'tournaments' ? "nav-link active" : "nav-link" ),'aria-label' => "Tournaments Button"]); ?>
             <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => ($controllerID == 'partner' ? "nav-link active" : "nav-link" ),'aria-label' => "Partners Button"]); ?>
             <!--?php echo Html::a(Yii::t('app', 'navbar_events'), ["/events/overview"], ['class' => ($controllerID == 'events' ? "nav-link active" : "nav-link" ),'aria-label' => "Events Button"]); ?-->
             <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["/support/contact"], ['class' => ($controllerID == 'support' ? "nav-link active" : "nav-link" ),'aria-label' => "Contact Button"]); ?>
@@ -114,7 +114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/register']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
                 <?php else : ?>
                     <div class="mobile">
-                        <?php echo Html::a(Yii::t('app', 'navbar_account'), ["/user/details"], ['class' => "nav-link", 'aria-label' => "Profile Button"]); ?>
+                        <?php echo Html::a(Yii::t('app', 'navbar_account'), ["/user/details", 'userId' => $user->getId()], ['class' => "nav-link", 'aria-label' => "Profile Button"]); ?>
                         <?php echo Html::a(Yii::t('app', 'navbar_logout'), ["/account/logout"], ['aria-label' => "Logout Button"]); ?>
                     </div>
                     <div class="logged-in dropdown">

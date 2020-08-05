@@ -1,7 +1,6 @@
 <?php
 
-namespace app\modules\tournament
-rnament;
+namespace app\modules\tournament;
 
 use Yii;
 
@@ -27,7 +26,7 @@ use Yii;
  			'class' => 'yii\i18n\PhpMessageSource',
  			'basePath' => '@app/modules/tournament/messages',
  			'fileMap' => [
- 				//'modules/tournament/createTeam' => 'create.php',
+ 				'modules/tournament/overview' => 'overview.php',
  				//'modules/tournament/editTeam' => 'edit.php',
  				//'modules/tournament/teamDetails' => 'details.php',
  			],
