@@ -33,11 +33,11 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Change your passwor
 				]); 
 			?>
 
-			<?= $form->field($model, 'oldPassword')->passwordInput(['class' => 'form-control form-control-color']) ?>
+			<?= $form->field($model, 'oldPassword')->passwordInput(['class' => 'form-control form-control-color input-default']) ?>
 
-			<?= $form->field($model, 'newPassword')->passwordInput(['class' => 'form-control form-control-color']) ?>
+			<?= $form->field($model, 'newPassword')->passwordInput(['class' => 'form-control form-control-color input-default']) ?>
 
-			<?= $form->field($model, 'newPasswordRepeat')->passwordInput(['class' => 'form-control form-control-color']) ?>
+			<?= $form->field($model, 'newPasswordRepeat')->passwordInput(['class' => 'form-control form-control-color input-default']) ?>
 
 			<?= Html::submitButton(\app\modules\user\Module::t('changePassword', 'changePassword_changePasswordButton'), ['class' => 'filled-btn float-right', 'name' => 'changePassword-button']) ?>
 
