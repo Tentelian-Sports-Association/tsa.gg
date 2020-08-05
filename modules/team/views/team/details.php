@@ -40,7 +40,7 @@ teamManager['Name']
 ?>
 
 
-<div class="site-profileDetails">
+<div class="site-profileDetails p-3 p-md-5">
 	<div class="inner-wrapper">
         <div class="row ">
             <div class="col-12 col-lg-8 ">
