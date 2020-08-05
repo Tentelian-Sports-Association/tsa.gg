@@ -1,7 +1,6 @@
 <?php
 
-namespace app\modules\tournament
-rnament;
+namespace app\modules\tournament;
 
 use Yii;
 
