@@ -52,4 +52,56 @@ foreach($gamesList as $game)
         </div>
     </div>
     <!-- *************** Spiele mit offenen Turnieren *************** -->
+    <div class="inner-wrapper p-3 p-md-5">
+        <div class="col-12 col-lg-8 float-left">
+            <div class="game-overview">
+                <ul class="list-unstyled row">
+                <?php
+                foreach($gamesList as $game) {
+                ?>
+                    <li class="game-item col-12 col-lg-6">
+                        <!-- User Overview -->
+                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.webp', ['aria-label' => $game['Name'].' Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.png\''])		
+                                        . '<h3 class="game-header">'.$game['Name'].'</h3>'
+                        , ['/community/user-overview'], ['class' => 'game-link']); ?>
+                    </li>
+                    <li class="game-info col-12 col-lg-6">
+                       
+                    </li>
+                <?php } ?>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 float-left">
+            <div class="ad-block-container row">
+                <div class="ad-block-item col-12">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- TSA-Community-Footer -->
+                    <ins class="adsbygoogle"
+                            style="display:block"
+                            data-ad-client="ca-pub-8480651532892152"
+                            data-ad-slot="6889561650"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"></ins>
+                    <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-12 col-lg-12">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- TSA-Community-SideBanner -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-8480651532892152"
+                data-ad-slot="2187242773"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
 </div>
