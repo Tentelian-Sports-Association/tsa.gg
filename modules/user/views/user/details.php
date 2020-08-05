@@ -8,6 +8,7 @@
  * @var $managedOrganisations array
  * @var $memberOrganisations array
  * @var $openInvites array
+ * @var $openApplications array
  */
 
  /*
@@ -38,13 +39,14 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
         <div class="row ">
             <div class="col-12 col-lg-8 ">
                 <div class="content-profileDetails bg-darkblue-2">
+                    <!-- Edit Section -->
                     <div class="col-lg-12">
                         <?php if ($userInfo['isMySelfe']) : ?>
-                            <?php
-                            echo Html::a('Edit <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
-                          </svg>',
+                            <!-- Edit Details -->
+                            <?=  Html::a('Edit <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                                <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                                </svg>',
                                 [
                                     "account/edit-details",
                                     "userId" => $userInfo['user_id']
@@ -52,23 +54,22 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
                                 ['class' => "filled-btn btn btn-primary upload float-right",
                                     'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
                                 ]
-                            )
-                            ?>
-                            <?php
-                                echo Html::a(Yii::t('app', 'navbar_change_Password'),
-                                    [
-                                        "account/change-password"                       
-									],
-                                    [
-                                        'class' => "outline-btn btn btn-primary upload float-right change-pw",
-                                        'title' => \app\modules\user\Module::t('userDetails', 'userDetails_info_editAccountDetails')
-									]
-                                )
-                            ?>
+                            ); ?>
+                            <!-- Change Password -->
+                            <?= Html::a(Yii::t('app', 'navbar_change_Password'),
+                                [
+                                    "account/change-password"                       
+							    ],
+                                [
+                                    'class' => "outline-btn btn btn-primary upload float-right change-pw",
+                                    'title' => \app\modules\user\Module::t('userDetails', 'navbar_change_Password')
+							    ]
+                            ); ?>
                             <div class="clearfix"></div>
                         <?php endif; ?>
-                        
                     </div>
+
+                    <!-- User Header -->
                     <div class="section-row avatar py-5">
                         <div class="avatarPanel d-md-flex align-items-center col-12 col-md-9">
                             <div class="avatar-upload avatarSmall mr-md-2 ">
@@ -122,7 +123,6 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
                             </div>
                         </div>
                     </div>
-
 
                     <!-- Orgas and Teams -->
                     <div class="section-row py-5">
@@ -261,7 +261,6 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
                     </div>
 
                     <!-- Game Accounts -->
-
                     <div class="section-row game-accounts py-5">
                         <h3 class="header">
                             <?= \app\modules\user\Module::t('userDetails', 'userDetails_gameAccountHeader') ?>
@@ -362,7 +361,6 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
                                 <?php endforeach; ?>
                             </div>
                         <?php endforeach; ?>
-                                
                     </div>
 
                     <!-- Social Media -->
@@ -446,7 +444,6 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
                     </div>
                     -->
                 </div>
-
             </div>
 
             <div class="col-12 col-lg-4">
@@ -466,66 +463,71 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
                 </div>
 
                 <!-- Open Invites -->
-                <div class="new-invites-block py-5 bg-darkblue-2 ">
-                    <div class="header">
-                        <h3><?= \app\modules\user\Module::t('userDetails', 'userDetails_invitesHeader') ?></h3>
-                    </div>
-                    <?php foreach($openInvites as $invite) : ?>
-                        <!-- �berschrift -->
-                        <div class="col-12">
-                            <div class="col-2 float-left">
-                                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $invite['Organisation']['ID']) . '.webp',  ['class' => 'rounded-circle avatar-image', 'aria-label' => $invite['Organisation']['ID']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $invite['Organisation']['ID']) . '.png\''] ); ?>
-                            </div>
-                            <div class="col-7 text float-left">
-                                <?= Html::a($invite['Organisation']['Name'], ['/organisation/details', 'organisationId' => $invite['Organisation']['ID']], ['class' => '']); ?>
-                            </div>
-                            <div class="col-3 text float-left">
-                                <!-- Buttons zum annehmenudn ablehnen -->
-                                <?php if($userInfo['isMySelfe']) : ?>
-                                    <?php
-							            echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
-                                        </svg>',
-								            [
-									            "/account/accept-invitation",
-									            "userId" => $userInfo['user_id'],
-									            "orgID" => $invite['Organisation']['ID'],
-								            ],
-								            ['class' => "",
-									            'title' => 'accept'
-								            ]
-							            )
-						            ?>
-                                <?php endif; ?>
-                                <?php if($userInfo['isMySelfe']) : ?>
-                                    <?php
-							            echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
-                                            <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
-                                        </svg>',
-								            [
-									            "/account/decline-invitation",
-									            "userId" => $userInfo['user_id'],
-									            "orgID" => $invite['Organisation']['ID'],
-								            ],
-								            ['class' => "",
-									            'title' => 'decline'
-								            ]
-							            )
-						            ?>
-                                <?php endif; ?>
-                            </div>
-                            <div class="clearfix"></div>
+                <?php if($openInvites) : ?>
+                    <div class="new-invites-block py-5 bg-darkblue-2 ">
+                        <div class="header">
+                            <h3><?= \app\modules\user\Module::t('userDetails', 'userDetails_invitesHeader') ?></h3>
                         </div>
-                    <?php endforeach; ?>
-                </div>
+                        <?php foreach($openInvites as $invite) : ?>
+                            <!-- �berschrift -->
+                            <div class="col-12">
+                                <div class="col-2 float-left">
+                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $invite['Organisation']['ID']) . '.webp',  ['class' => 'rounded-circle avatar-image', 'aria-label' => $invite['Organisation']['ID']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/organisation/', $invite['Organisation']['ID']) . '.png\''] ); ?>
+                                </div>
+                                <div class="col-7 text float-left">
+                                    <?= Html::a($invite['Organisation']['Name'], ['/organisation/details', 'organisationId' => $invite['Organisation']['ID']], ['class' => '']); ?>
+                                </div>
+                                <div class="col-3 text float-left">
+                                    <!-- Buttons zum annehmenudn ablehnen -->
+                                    <?php if($userInfo['isMySelfe']) : ?>
+                                        <?php
+							                echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+                                            </svg>',
+								                [
+									                "/account/accept-invitation",
+									                "userId" => $userInfo['user_id'],
+									                "orgID" => $invite['Organisation']['ID'],
+								                ],
+								                ['class' => "",
+									                'title' => 'accept'
+								                ]
+							                )
+						                ?>
+                                    <?php endif; ?>
+                                    <?php if($userInfo['isMySelfe']) : ?>
+                                        <?php
+							                echo Html::a('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                                                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                                            </svg>',
+								                [
+									                "/account/decline-invitation",
+									                "userId" => $userInfo['user_id'],
+									                "orgID" => $invite['Organisation']['ID'],
+								                ],
+								                ['class' => "",
+									                'title' => 'decline'
+								                ]
+							                )
+						                ?>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
                 <!-- Open Applications
+                <!--?php if($openApplications) : ?>
                 <div class="open-applications py-5 bg-darkblue-2 ">
                     <div class="header">
                         <?= \app\modules\user\Module::t('userDetails', 'userDetails_applicationsHeader') ?>
                     </div>
                 </div>
-                -->
+                <!--?php endif ?-->
+
                 <!-- Statistics -->
             </div>
         </div>
