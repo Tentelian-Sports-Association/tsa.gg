@@ -43,7 +43,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Edit Details for us
 				<?= $form->field($model, 'birthday', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(["class" => 'form-control form-control-color input-default','readonly'=> true]) ?>
 				<?= $form->field($model, 'genderId', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->dropDownList($genderList, ["class" => 'form-control form-control-color input-default']) ?>
 				<?= $form->field($model, 'languageId', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->dropDownList($languageList, ["class" => 'form-control form-control-color input-default']) ?>
-				<?= $form->field($model, 'nationalityId', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->dropDownList($nationalityList, ["class" => 'form-control form-control-color input-default'], array("disabled" => "disabled")) ?>
+				<?= $form->field($model, 'nationalityId', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->dropDownList($nationalityList, [ 'class'=>'form-control form-control-color input-default','disabled' => true]) ?>
 				<div class="clearfix"></div>
 			</div>
 
@@ -51,47 +51,22 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Edit Details for us
 				<h2><?= \app\modules\user\Module::t('editDetails', 'editDetails_editPrivateDetailsHeader') ?></h2>
 
 				<!-- Use Details -->
-				<?= $form->field($model, 'pre_name', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], (empty($model->pre_name)?
-					['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_preNamePlaceholder')] :
-					['class' => 'form-control form-control-color input-default', 'readonly'=> true]))
-				?>
-
-				<?= $form->field($model, 'last_name', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], (empty($model->last_name)?
-					['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_lastNamePlaceholder')] :
-					["class" => 'form-control form-control-color input-default', 'readonly'=> true]))
-				?>
-				<?= $form->field($model, 'zip_code', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], (empty($model->zip_code)?
-					['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_zipCodePlaceholder')] :
-					["class" => 'form-control form-control-color input-default', 'readonly'=> true]))
-				?>
-				<?= $form->field($model, 'city', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], (empty($model->city)?
-					['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_cityPlaceholder')] :
-					["class" => 'form-control form-control-color input-default', 'readonly'=> true]))
-				?>
-				<?= $form->field($model, 'street', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], (empty($model->street)?
-					['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_streetPlaceholder')] :
-					["class" => 'form-control form-control-color input-default', 'readonly'=> true]))
-				?>
-				<?= $form->field($model, 'phone', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], (empty($model->phone)?
-					['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_phonePlaceholder')] :
-					["class" => 'form-control form-control-color input-default', 'readonly'=> true]))
-				?>
+				<?= $form->field($model, 'pre_name', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_preNamePlaceholder'),'class' => 'form-control form-control-color input-default', 'readonly'=> empty($model->pre_name)? false : true]); ?>
+				<?= $form->field($model, 'last_name', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_lastNamePlaceholder'), 'class' => 'form-control form-control-color input-default', 'readonly'=> empty($model->last_name)? false : true]); ?>
+				<?= $form->field($model, 'zip_code', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_zipCodePlaceholder'), 'class' => 'form-control form-control-color input-default', 'readonly'=> empty($model->zip_code)? false : true]); ?>
+				<?= $form->field($model, 'city', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_cityPlaceholder'), 'class' => 'form-control form-control-color input-default', 'readonly'=> empty($model->city)? false : true]); ?>
+				<?= $form->field($model, 'street', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_streetPlaceholder'), 'class' => 'form-control form-control-color input-default', 'readonly'=> empty($model->street)? false : true]); ?>
+				<?= $form->field($model, 'phone', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_phonePlaceholder'), 'class' => 'form-control form-control-color input-default', 'readonly'=> empty($model->phone)? false : true]); ?>
 				<div class="clearfix"></div>
 			</div>
 
 			<div class="edit-user-social">
 				<h2><?= \app\modules\user\Module::t('editDetails', 'editDetails_editSocialsDetailsHeader') ?></h2>
-
-				<?= $form->field($model, 'twitter_name', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], ['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_twitterNamePlaceholder')],["class" => 'form-control form-control-color input-default']) ?>
-
-				<?= $form->field($model, 'twitter_channel', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], ['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_twitterChannelPlaceholder')],["class" => 'form-control form-control-color input-default']) ?>
-
-				<?= $form->field($model, 'discord_name', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], ['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_discordNamePlaceholder')],["class" => 'form-control form-control-color input-default','readonly'=> false]) ?>
-
-				<?= $form->field($model, 'discord_server', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], ['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_discordServerPlaceholder')],["class" => 'form-control form-control-color input-default','readonly'=> false]) ?>
-
-				<?= $form->field($model, 'teamspeak_server', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['class' => 'form-control form-control-color input-default'], ["placeholder" => \app\modules\user\Module::t('editDetails', 'editDetails_teamspeakServerPlaceholder'), "class" => 'form-control form-control-color input-default','readonly'=> true]) ?>
-				
+					<?= $form->field($model, 'twitter_name', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_twitterNamePlaceholder'), 'class' => 'form-control form-control-color input-default']); ?>
+					<?= $form->field($model, 'twitter_channel', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_twitterChannelPlaceholder'), 'class' => 'form-control form-control-color input-default']); ?>
+					<?= $form->field($model, 'discord_name', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_discordNamePlaceholder'), 'class' => 'form-control form-control-color input-default']); ?>
+					<?= $form->field($model, 'discord_server', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_discordServerPlaceholder'), 'class' => 'form-control form-control-color input-default']); ?>
+					<?= $form->field($model, 'teamspeak_server', ['options' => ['class' => 'col-12 col-lg-6 float-left']])->textInput(['placeholder' => \app\modules\user\Module::t('editDetails', 'editDetails_teamspeakServerPlaceholder'), 'class' => 'form-control form-control-color input-default', 'readonly'=> true]); ?>
 				<div class="clearfix"></div>
 			</div>
 
