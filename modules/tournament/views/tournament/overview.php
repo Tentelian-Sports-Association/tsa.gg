@@ -56,19 +56,21 @@ foreach($gamesList as $game)
         <div class="col-12 col-lg-8 float-left">
             <div class="game-overview">
                 <ul class="list-unstyled row">
-                <?php
-                foreach($gamesList as $game) {
-                ?>
-                    <li class="game-item col-12 col-lg-6">
-                        <!-- User Overview -->
-                        <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.webp', ['aria-label' => $game['Name'].' Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.png\''])		
-                                        . '<h3 class="game-header">'.$game['Name'].'</h3>'
-                        , ['/community/user-overview'], ['class' => 'game-link']); ?>
-                    </li>
-                    <li class="game-info col-12 col-lg-6">
-                       
-                    </li>
-                <?php } ?>
+                <?php foreach($gamesList as $game) : ?>
+                    <?php if($game['OpenTournaments'] > 0) : ?>
+                        <li class="game-item col-12 col-lg-6">
+                            <!-- User Overview -->
+                            <?= Html::a(Html::img(Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.webp', ['aria-label' => $game['Name'].' Overview', 'class' => 'img-fluid','onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/community/', 'players') . '.png\''])		
+                                            . '<h3 class="game-header">'.$game['Name'].'</h3>'
+                            , ['/tournament/overview', 'gameID' => $game['Id']], ['class' => 'game-link']); ?>
+                        </li>
+                        <li class="game-info col-12 col-lg-6">
+                            <div>Aktive Turniere: <?= $game['OpenTournaments'] ?></div>
+                            <div>Teilnehmende Teams: <?= $game['ParticipatingTeams'] ?></div>
+                            <div>Teilnehmende Spieler: <?= $game['ParticipatingPlayer'] ?></div>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
                 </ul>
             </div>
         </div>

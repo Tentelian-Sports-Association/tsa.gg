@@ -122,7 +122,7 @@ sortedPaginatedTeam[$nr]['Language']['name']
                                 </div>
                             </div>
                             <div class="col-3 captain float-left">
-                                <?= Html::a($team['Captain']['Name'], ['/team/details', 'teamId' => $team['Captain']['ID']], ['class' => '']); ?>
+                                <?= Html::a($team['Captain']['Name'], ['/user/details', 'userId' => $team['Captain']['ID']], ['class' => '']); ?>
                             </div>
                             <div class="col-2 natImg float-left">
                                 <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($team['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $team['Nationality']['name'],'class' => 'IMG']) ?>
@@ -147,10 +147,10 @@ sortedPaginatedTeam[$nr]['Language']['name']
                             </div>
                             <div class="col-8 float-left">
                                 <div class="col-12">
-                                    <?= Html::a($team['Name'], ['/team/details', 'teamId' => $team['ID']], ['class' => '']); ?>
+                                    <?= Html::a($team['Name'], ['/team/details', 'teamID' => $team['ID']], ['class' => '']); ?>
                                 </div>
                                 <div class="col-12">
-                                    <?= Html::a($team['Captain']['Name'], ['/team/details', 'teamId' => $team['Captain']['ID']], ['class' => '']); ?>
+                                    <?= Html::a($team['Captain']['Name'], ['/user/details', 'userId' => $team['Captain']['ID']], ['class' => '']); ?>
                                 </div>
                                 <div class="col-12">
                                     <div class="col-6 natImg float-left">
