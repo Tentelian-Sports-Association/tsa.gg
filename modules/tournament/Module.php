@@ -27,7 +27,7 @@ use Yii;
  			'basePath' => '@app/modules/tournament/messages',
  			'fileMap' => [
  				'modules/tournament/overview' => 'overview.php',
- 				//'modules/tournament/editTeam' => 'edit.php',
+ 				'modules/tournament/active' => 'active.php',
  				//'modules/tournament/teamDetails' => 'details.php',
  			],
             'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']

@@ -72,10 +72,13 @@ class TournamentController extends BaseController
             ]);
 		}
 
+        $choosedGame = Games::Find()->where(['id' => $gameID])->one();
+
         /** If game was Choosen */
         $openTournamentList = [];
 
         $testTournaentList[0]['Name'] = 'TSA Royale de Clash Cup';
+        $testTournaentList[0]['ID'] = 1;
         $testTournaentList[0]['DtStart'] = '01.09.2020 | 16:30';
         $testTournaentList[0]['DtRedEnd'] = '01.09.2020 | 15:30';
         $testTournaentList[0]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
@@ -83,6 +86,7 @@ class TournamentController extends BaseController
         $testTournaentList[0]['CheckInOpen'] = false;
 
         $testTournaentList[1]['Name'] = 'Bayrische Drift Meisterschaft';
+        $testTournaentList[0]['ID'] = 2;
         $testTournaentList[1]['DtStart'] = '01.09.2020 | 16:30';
         $testTournaentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
         $testTournaentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
@@ -90,6 +94,7 @@ class TournamentController extends BaseController
         $testTournaentList[1]['CheckInOpen'] = true;
 
         $testTournaentList[1]['Name'] = 'German North Cup';
+        $testTournaentList[0]['ID'] = 3;
         $testTournaentList[1]['DtStart'] = '01.09.2020 | 16:30';
         $testTournaentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
         $testTournaentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
@@ -98,50 +103,8 @@ class TournamentController extends BaseController
 
         return $this->render('aktiveTournaments',
         [
-            'tournament' => $openTournamentList,
-        ]);
-    }
-
-    /**
-     * Overview of all Partners
-     *
-     * @return string
-     */
-    public function action($gameID)
-    {
-         /** Base Informations **/
-        $user = Yii::$app->HelperClass->getUser();
-        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
-
-        $gamesList = Games::getGameWithTournaments($languageID);
-
-        $openTournamentList = [];
-
-        /*$testTournaentList[0]['Name'] = 'TSA Royale de Clash Cup';
-        $testTournaentList[0]['DtStart'] = '01.09.2020 | 16:30';
-        $testTournaentList[0]['DtRedEnd'] = '01.09.2020 | 15:30';
-        $testTournaentList[0]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
-        $testTournaentList[0]['RegisterOpen'] = true;
-        $testTournaentList[0]['CheckInOpen'] = false;
-
-        $testTournaentList[1]['Name'] = 'Bayrische Drift Meisterschaft';
-        $testTournaentList[1]['DtStart'] = '01.09.2020 | 16:30';
-        $testTournaentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
-        $testTournaentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
-        $testTournaentList[1]['RegisterOpen'] = false;
-        $testTournaentList[1]['CheckInOpen'] = true;
-
-        $testTournaentList[1]['Name'] = 'German North Cup';
-        $testTournaentList[1]['DtStart'] = '01.09.2020 | 16:30';
-        $testTournaentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
-        $testTournaentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
-        $testTournaentList[1]['RegisterOpen'] = false;
-        $testTournaentList[1]['CheckInOpen'] = false;*/
-
-        
-        return $this->render('overview',
-        [
-            'tournament' => $testTournamentList,
+            'choosedGame' => $choosedGame,
+            'openTournamentList' => $openTournamentList,
         ]);
     }
 }
