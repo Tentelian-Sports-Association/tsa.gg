@@ -38,7 +38,7 @@ class ProfilePicForm extends FormModel
                 'file',
                 'image',
                 'extensions' => 'png',
-                'maxSize' => 285 * 147 * 6
+                'maxSize' => 1024 * 1024 * 5
             ]
         ];
     }

@@ -18,12 +18,22 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $sourcePath = '@app/assets/dist';
+
     public $css = [
         'https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,700;1,400',
 		'../../../vendor/bower-asset/jquery-ui/themes/dot-luv/jquery-ui.css',
-        'css/main.css'
+        'css/main.css',
+        'css/iziToast.min.css',
     ];
+
     public $js = [
-        'js/main.min.js',
+        //'js/main.min.js',
+        'js/site.js',
+        'js/iziToast.min.js'
+    ];
+
+    public $depends = [
+        'yii\web\YiiAsset',
+        'yii\bootstrap4\BootstrapPluginAsset',
     ];
 }

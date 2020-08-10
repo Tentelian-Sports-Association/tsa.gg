@@ -26,6 +26,7 @@ use app\modules\user\models\UserSocials;
 
 use app\modules\organisation\models\OrganisationMember;
 
+use app\widgets\Alert;
 use DateTime;
 use Yii;
 
@@ -305,7 +306,7 @@ class AccountController extends BaseController
     public function actionToggleGameAccount($gameId, $platformId, $userId)
     {
         if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $userId) {
-            //Alert::addError('You are not Allowed to change this settings'); 
+            Alert::addError('You are not Allowed to change this settings'); 
             return $this->redirect(['user/details?userId='. Yii::$app->user->identity->getId()]);
         }
 
@@ -316,10 +317,10 @@ class AccountController extends BaseController
             $model->visible = !$model->visible;
             $model->save();
             $gameName = Games::find()->where(['id' => $gameId])->one()->getName($languageID);
-            //Alert::addInfo('Changed Visibility for ' . $gameName . ' from ' . (($model->visible)? 'invisible' : 'visible') . ' to ' . (($model->visible)? 'visible' : 'invisible')); 
+            Alert::addInfo('Changed Visibility for ' . $gameName . ' from ' . (($model->visible)? 'invisible' : 'visible') . ' to ' . (($model->visible)? 'visible' : 'invisible')); 
 		}
         else {
-	        //Alert::addError('This Service is currently not availabel'); 
+	        Alert::addError('This Service is currently not availabel'); 
         }
 
         

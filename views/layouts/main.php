@@ -3,8 +3,6 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
-
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
@@ -77,185 +75,185 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
     <!-- End Metatags und diverses andere -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= Url::base('https') . '/apple-touch-icon.png' ?>">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= Url::base('https') . '/favicon-32x32.png' ?>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= Url::base('https') . '/favicon-16x16.png' ?>">
-    <link rel="manifest" href="<?= Url::base('https') . '/site.webmanifest' ?>">
-    <link rel="mask-icon" href="<?= Url::base('https') . '/safari-pinned-tab.svg' ?>" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9VSMDX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 <?php $this->beginBody() ?>
-<header class="d-flex align-items-center">
-    <div class="navbar  navbar-expand-xl w-100  d-sm-flex align-items-center justify-content-between">
-        <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkSVGIcons('TSA_Logo_Schrift_Nebeneinander')), ["/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('burgermenu'),['aria-label' => 'burgermenu']); ?>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <?php echo Html::a(Yii::t('app', 'navbar_home'), ["/index"], ['class' => ($controllerID == 'site' ? "nav-link active" : "nav-link" ),'aria-label' => "Home Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_news'), ["/news/overview"], ['class' => ($controllerID == 'news' ? "nav-link active" : "nav-link" ),'aria-label' => "News Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_community'), ["/community/overview"], ['class' => ($controllerID == 'community' ? "nav-link active" : "nav-link" ),'aria-label' => "Community Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["/tournament/overview"], ['class' => ($controllerID == 'tournaments' ? "nav-link active" : "nav-link" ),'aria-label' => "Tournaments Button"]); ?>
-            <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => ($controllerID == 'partner' ? "nav-link active" : "nav-link" ),'aria-label' => "Partners Button"]); ?>
-            <!--?php echo Html::a(Yii::t('app', 'navbar_events'), ["/events/overview"], ['class' => ($controllerID == 'events' ? "nav-link active" : "nav-link" ),'aria-label' => "Events Button"]); ?-->
-            <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["/support/contact"], ['class' => ($controllerID == 'support' ? "nav-link active" : "nav-link" ),'aria-label' => "Contact Button"]); ?>
 
-            <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
-                <?php if(!$user) : ?>
-                    <?= Html::button(Yii::t('app', 'navbar_login'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/login']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
-                    <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/register']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
-                <?php else : ?>
-                    <div class="mobile">
-                        <?php echo Html::a(Yii::t('app', 'navbar_account'), ["/user/details", 'userId' => $user->getId()], ['class' => "nav-link", 'aria-label' => "Profile Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'navbar_logout'), ["/account/logout"], ['aria-label' => "Logout Button"]); ?>
-                    </div>
-                    <div class="logged-in dropdown">
-                        <div class="user-image d-inline-block float-left">
-							<?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $user->getId(). '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.png\'']); ?>
-                        </div>
-                        <button class="btn dropdown-toggle" type="button" id="usermenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							<?= $user->getUsername() ?>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu text-center w-100" aria-labelledby="usermenu">
-							<li>
-								<?= Html::button(Yii::t('app', 'navbar_account'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/user/details', 'userId' => $user->getId()]). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
-                            </li>
-                            <li>
-								<?= Html::button(Yii::t('app', 'navbar_logout'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/logout']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
-                            </li>
-                        </ul>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-</header>
 
-<!-- *************** Wir sind live Bereich (anpassen das nur gezeigt wird wenn wir live sind *************** -->
-<?php if(Yii::$app->HelperClass->getTwitchOnlineStat()) : ?>
-    <div class="promo-banner dropdown position-relative d-block d-lg-flex align-items-center justify-content-between">
-        <div class="inner-wrapper">
-            <h3 class="promo-text d-inline-flex align-items-center">
-                <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('redcircle'), ['class' => 'img-fluid', 'aria-label' => 'we are live']); ?><?= Yii::t('app', 'promotion_nowLive1') ?><span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline"><?= Yii::t('app', 'promotion_nowLive2') ?></span></h3>
-            <button type="button" class="d-inline d-lg-none float-right float-lg-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('smallarrow-down'), ['class' => 'img-fluid', 'aria-label' => 'show where we are']); ?>
+    <header class="d-flex align-items-center">
+        <div class="navbar  navbar-expand-xl w-100  d-sm-flex align-items-center justify-content-between">
+            <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkSVGIcons('TSA_Logo_Schrift_Nebeneinander')), ["/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('burgermenu'),['aria-label' => 'burgermenu']); ?>
             </button>
-            <div class="col float-right align-items-center text-lg-right promo-links dropdown-menu" aria-labelledby="promo-banner">
-                <div class="dropdown-divider d-lg-none"></div>
-                <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'twitch dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
-                <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'mixer dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
-                <!--?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'youtube dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Youtube Button"]); ?-->
-            </div>
-        </div>
-    </div>
-<?php endif; ?>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <?php echo Html::a(Yii::t('app', 'navbar_home'), ["/index"], ['class' => ($controllerID == 'site' ? "nav-link active" : "nav-link" ),'aria-label' => "Home Button"]); ?>
+                <?php echo Html::a(Yii::t('app', 'navbar_news'), ["/news/overview"], ['class' => ($controllerID == 'news' ? "nav-link active" : "nav-link" ),'aria-label' => "News Button"]); ?>
+                <?php echo Html::a(Yii::t('app', 'navbar_community'), ["/community/overview"], ['class' => ($controllerID == 'community' ? "nav-link active" : "nav-link" ),'aria-label' => "Community Button"]); ?>
+                <?php echo Html::a(Yii::t('app', 'navbar_tournaments'), ["/tournament/overview"], ['class' => ($controllerID == 'tournaments' ? "nav-link active" : "nav-link" ),'aria-label' => "Tournaments Button"]); ?>
+                <?php echo Html::a(Yii::t('app', 'navbar_partners'), ["/partner/overview"], ['class' => ($controllerID == 'partner' ? "nav-link active" : "nav-link" ),'aria-label' => "Partners Button"]); ?>
+                <!--?php echo Html::a(Yii::t('app', 'navbar_events'), ["/events/overview"], ['class' => ($controllerID == 'events' ? "nav-link active" : "nav-link" ),'aria-label' => "Events Button"]); ?-->
+                <?php echo Html::a(Yii::t('app', 'navbar_contact'), ["/support/contact"], ['class' => ($controllerID == 'support' ? "nav-link active" : "nav-link" ),'aria-label' => "Contact Button"]); ?>
 
-<!-- Hier später wieder die sachen für den Alert einfügen -->
+                <div class="account-bar d-flex justify-content-between d-xl-inline float-md-right">
+                    <?php if(!$user) : ?>
+                        <?= Html::button(Yii::t('app', 'navbar_login'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/login']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                        <?= Html::button(Yii::t('app', 'navbar_register'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/register']). "';"], ['class' => "outline-btn",'aria-label' => "Register Button"])); ?>
+                    <?php else : ?>
+                        <div class="mobile">
+                            <?php echo Html::a(Yii::t('app', 'navbar_account'), ["/user/details", 'userId' => $user->getId()], ['class' => "nav-link", 'aria-label' => "Profile Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'navbar_logout'), ["/account/logout"], ['aria-label' => "Logout Button"]); ?>
+                        </div>
+                        <div class="logged-in dropdown">
+                            <div class="user-image d-inline-block float-left">
+							    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.webp', ['aria-labelledby' => 'PeSp Image', 'alt' => $user->getId(). '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $user->getId()) . '.png\'']); ?>
+                            </div>
+                            <button class="btn dropdown-toggle" type="button" id="usermenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							    <?= $user->getUsername() ?>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu text-center w-100" aria-labelledby="usermenu">
+							    <li>
+								    <?= Html::button(Yii::t('app', 'navbar_account'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/user/details', 'userId' => $user->getId()]). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                                </li>
+                                <li>
+								    <?= Html::button(Yii::t('app', 'navbar_logout'), ArrayHelper::merge(['onclick'=> "window.location.href = '" . Url::to(['/account/logout']). "';"], ['class' => "outline-btn-white",'aria-label' => "Login Button"])); ?>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<?= $content ?>
 
-<footer class="footer">
-    <div class="footer-content row">
-        <div class="col-xl-4 col-md-12 first-col">
-            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/icons/', 'TSA_Logo_Schrift_right_238x70'). '.webp',['class' => 'img-fluid logo', 'aria-label' => 'Tentelian Sports Association']); ?>
-            <p><?= Yii::t('app', 'footer_copyright') ?><?= date('Y') ?></p>
-            <?php echo Html::a(Yii::t('app', 'footer_contact'), ["/support/contact"], ['class' => "filled-btn",'aria-label' => "Body Contact Button"]); ?>
-        </div>
-        <div class="col-xl-2 col-md-6 second-col">
-            <nav class="footer_menu">
-                <nav class="drop-down-menu">
-                    <input type="checkbox" class="activate" id="accordion-1" name="accordion-1">
-                    <label for="accordion-1" class="menu-title"><?= Yii::t('app', 'footer_areasHeader'); ?></label>
-                    
-                    <i class="ion-arrow-down-b"></i>
-                    
-                    <div class="drop-down">
-                        <?php echo Html::a(Yii::t('app', 'footer_areasHome'), ["/site/index"], ['class' => "footer-link d-block",'aria-label' => "Home Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'footer_areasNews'), ["/news/overview"], ['class' => "footer-link d-block",'aria-label' => "News Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'footer_areasPlayer'), ["/community/user-overview"], ['class' => "footer-link d-block",'aria-label' => "Player Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'footer_areasTeams'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Teams Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'footer_areasOrganisations'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Organisations Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'footer_areasTournaments'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Tournaments Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'footer_areasPartner'), ["/partner/overview"], ['class' => "footer-link d-block",'aria-label' => "Partners Button"]); ?>
-                    </div>
-                </nav>
-            </nav>
-            <div class="desktop-menu">
-                <h3 class="footer-header"><?= Yii::t('app', 'footer_areasHeader'); ?></h3>
-                <?php echo Html::a(Yii::t('app', 'footer_areasHome'), ["/site/index"], ['class' => "footer-link d-block",'aria-label' => "Home Button"]); ?>
-                <?php echo Html::a(Yii::t('app', 'footer_areasNews'), ["/news/overview"], ['class' => "footer-link d-block",'aria-label' => "News Button"]); ?>
-                <?php echo Html::a(Yii::t('app', 'footer_areasPlayer'), ["/community/user-overview"], ['class' => "footer-link d-block",'aria-label' => "Player Button"]); ?>
-                <?php echo Html::a(Yii::t('app', 'footer_areasTeams'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Teams Button"]); ?>
-                <?php echo Html::a(Yii::t('app', 'footer_areasOrganisations'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Organisations Button"]); ?>
-                <?php echo Html::a(Yii::t('app', 'footer_areasTournaments'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Tournaments Button"]); ?>
-                <?php echo Html::a(Yii::t('app', 'footer_areasPartner'), ["/partner/overview"], ['class' => "footer-link d-block",'aria-label' => "Partners Button"]); ?>
+    <!-- *************** Wir sind live Bereich (anpassen das nur gezeigt wird wenn wir live sind *************** -->
+    <?php if(Yii::$app->HelperClass->getTwitchOnlineStat()) : ?>
+        <div class="promo-banner dropdown position-relative d-block d-lg-flex align-items-center justify-content-between">
+            <div class="inner-wrapper">
+                <h3 class="promo-text d-inline-flex align-items-center">
+                    <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('redcircle'), ['class' => 'img-fluid', 'aria-label' => 'we are live']); ?><?= Yii::t('app', 'promotion_nowLive1') ?><span class="d-inline d-lg-none">!</span><span class="d-none d-md-inline"><?= Yii::t('app', 'promotion_nowLive2') ?></span></h3>
+                <button type="button" class="d-inline d-lg-none float-right float-lg-none mobile-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <?= Html::img(Yii::$app->HelperClass->checkSVGIcons('smallarrow-down'), ['class' => 'img-fluid', 'aria-label' => 'show where we are']); ?>
+                </button>
+                <div class="col float-right align-items-center text-lg-right promo-links dropdown-menu" aria-labelledby="promo-banner">
+                    <div class="dropdown-divider d-lg-none"></div>
+                    <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'twitch dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
+                    <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'mixer dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
+                    <!--?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'youtube dropdown-item d-inline-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Youtube Button"]); ?-->
+                </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 third-col">
-            <nav class="footer_menu">
-                <nav class="drop-down-menu">
-                    <input type="checkbox" class="activate" id="accordion-2" name="accordion-2">
-                    <label for="accordion-2" class="menu-title"><?= Yii::t('app', 'footer_legalHeader') ?></label>
+    <?php endif; ?>
+    
+    <!-- Hier später wieder die sachen für den Alert einfügen -->
+    <?php $this->render('@app/views/layouts/_alerts'); ?>
+
+    <?= $content ?>
+
+
+    <footer class="footer">
+        <div class="footer-content row">
+            <div class="col-xl-4 col-md-12 first-col">
+                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/icons/', 'TSA_Logo_Schrift_right_238x70'). '.webp',['class' => 'img-fluid logo', 'aria-label' => 'Tentelian Sports Association']); ?>
+                <p><?= Yii::t('app', 'footer_copyright') ?><?= date('Y') ?></p>
+                <?php echo Html::a(Yii::t('app', 'footer_contact'), ["/support/contact"], ['class' => "filled-btn",'aria-label' => "Body Contact Button"]); ?>
+            </div>
+            <div class="col-xl-2 col-md-6 second-col">
+                <nav class="footer_menu">
+                    <nav class="drop-down-menu">
+                        <input type="checkbox" class="activate" id="accordion-1" name="accordion-1">
+                        <label for="accordion-1" class="menu-title"><?= Yii::t('app', 'footer_areasHeader'); ?></label>
                     
-                    <i class="ion-arrow-down-b"></i>
+                        <i class="ion-arrow-down-b"></i>
                     
-                    <div class="drop-down">
-                        <?php echo Html::a(Yii::t('app', 'footer_legalImprint'), ["/company/imprint"], ['class' => "footer-link d-block",'aria-label' => "Imprint Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'footer_legalPrivacy'), ["/company/privacy"], ['class' => "footer-link d-block",'aria-label' => "Privacy Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'footer_legalGTC'), ["/company/gtc"], ['class' => "footer-link d-block",'aria-label' => "GTC Button"]); ?>
-                        <?php echo Html::a(Yii::t('app', 'footer_legalJobs'), ["/company/jobs"], ['class' => "footer-link d-block",'aria-label' => "Jobs Button"]); ?>
-                    </div>
+                        <div class="drop-down">
+                            <?php echo Html::a(Yii::t('app', 'footer_areasHome'), ["/site/index"], ['class' => "footer-link d-block",'aria-label' => "Home Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'footer_areasNews'), ["/news/overview"], ['class' => "footer-link d-block",'aria-label' => "News Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'footer_areasPlayer'), ["/community/user-overview"], ['class' => "footer-link d-block",'aria-label' => "Player Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'footer_areasTeams'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Teams Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'footer_areasOrganisations'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Organisations Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'footer_areasTournaments'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Tournaments Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'footer_areasPartner'), ["/partner/overview"], ['class' => "footer-link d-block",'aria-label' => "Partners Button"]); ?>
+                        </div>
+                    </nav>
                 </nav>
-            </nav>
-            <div class="desktop-menu">
-                <h3 class="footer-header"><?= Yii::t('app', 'footer_legalHeader') ?></h3>
-                <?php echo Html::a(Yii::t('app', 'footer_legalImprint'), ["/company/imprint"], ['class' => "footer-link d-block",'aria-label' => "Imprint Button"]); ?>
-                <?php echo Html::a(Yii::t('app', 'footer_legalPrivacy'), ["/company/privacy"], ['class' => "footer-link d-block",'aria-label' => "Privacy Button"]); ?>
-                <?php echo Html::a(Yii::t('app', 'footer_legalGTC'), ["/company/gtc"], ['class' => "footer-link d-block",'aria-label' => "GTC Button"]); ?>
-                <?php echo Html::a(Yii::t('app', 'footer_legalJobs'), ["/company/jobs"], ['class' => "footer-link d-block",'aria-label' => "Jobs Button"]); ?>
+                <div class="desktop-menu">
+                    <h3 class="footer-header"><?= Yii::t('app', 'footer_areasHeader'); ?></h3>
+                    <?php echo Html::a(Yii::t('app', 'footer_areasHome'), ["/site/index"], ['class' => "footer-link d-block",'aria-label' => "Home Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'footer_areasNews'), ["/news/overview"], ['class' => "footer-link d-block",'aria-label' => "News Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'footer_areasPlayer'), ["/community/user-overview"], ['class' => "footer-link d-block",'aria-label' => "Player Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'footer_areasTeams'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Teams Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'footer_areasOrganisations'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Organisations Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'footer_areasTournaments'), ["#"], ['class' => "footer-link d-block",'aria-label' => "Tournaments Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'footer_areasPartner'), ["/partner/overview"], ['class' => "footer-link d-block",'aria-label' => "Partners Button"]); ?>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 third-col">
+                <nav class="footer_menu">
+                    <nav class="drop-down-menu">
+                        <input type="checkbox" class="activate" id="accordion-2" name="accordion-2">
+                        <label for="accordion-2" class="menu-title"><?= Yii::t('app', 'footer_legalHeader') ?></label>
+                    
+                        <i class="ion-arrow-down-b"></i>
+                    
+                        <div class="drop-down">
+                            <?php echo Html::a(Yii::t('app', 'footer_legalImprint'), ["/company/imprint"], ['class' => "footer-link d-block",'aria-label' => "Imprint Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'footer_legalPrivacy'), ["/company/privacy"], ['class' => "footer-link d-block",'aria-label' => "Privacy Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'footer_legalGTC'), ["/company/gtc"], ['class' => "footer-link d-block",'aria-label' => "GTC Button"]); ?>
+                            <?php echo Html::a(Yii::t('app', 'footer_legalJobs'), ["/company/jobs"], ['class' => "footer-link d-block",'aria-label' => "Jobs Button"]); ?>
+                        </div>
+                    </nav>
+                </nav>
+                <div class="desktop-menu">
+                    <h3 class="footer-header"><?= Yii::t('app', 'footer_legalHeader') ?></h3>
+                    <?php echo Html::a(Yii::t('app', 'footer_legalImprint'), ["/company/imprint"], ['class' => "footer-link d-block",'aria-label' => "Imprint Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'footer_legalPrivacy'), ["/company/privacy"], ['class' => "footer-link d-block",'aria-label' => "Privacy Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'footer_legalGTC'), ["/company/gtc"], ['class' => "footer-link d-block",'aria-label' => "GTC Button"]); ?>
+                    <?php echo Html::a(Yii::t('app', 'footer_legalJobs'), ["/company/jobs"], ['class' => "footer-link d-block",'aria-label' => "Jobs Button"]); ?>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 fourth-col">
+                <nav class="footer_menu">
+                    <nav class="drop-down-menu">
+                        <input type="checkbox" class="activate" id="accordion-3" name="accordion-3">
+                        <label for="accordion-3" class="menu-title"><?= Yii::t('app', 'footer_socialMediaHeader') ?></label>
+                    
+                        <i class="ion-arrow-down-b"></i>
+                    
+                        <div class="drop-down">
+                            <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
+                            <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
+                            <?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "youtube Button"]); ?>
+                            <?= Html::a($weAreLive['Twitter']['svg'] . 'Twitter', $weAreLive['Twitter']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "Twitter Button"]); ?>
+                            <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Tournaments', $weAreLive['Discord']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Tournaments Discord Button"]); ?>
+                            <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Community', $weAreLive['Discord']['channellinkCommunity'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Community Discord Button"]); ?>
+                            <!--?= Html::a($weAreLive['Liquipedia']['svg'] . 'Liquipedia', $weAreLive['Liquipedia']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Liquipedia Button"]); ?-->
+                        </div>
+                    </nav>
+                </nav>
+                <div class="desktop-menu">
+                    <h3 class="footer-header"><?= Yii::t('app', 'footer_socialMediaHeader') ?></h3>
+                    <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
+                    <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
+                    <?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "youtube Button"]); ?>
+                    <?= Html::a($weAreLive['Twitter']['svg'] . 'Twitter', $weAreLive['Twitter']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "Twitter Button"]); ?>
+                    <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Tournaments', $weAreLive['Discord']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Tournaments Discord Button"]); ?>
+                    <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Community', $weAreLive['Discord']['channellinkCommunity'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Community Discord Button"]); ?>
+                    <!--?= Html::a($weAreLive['Liquipedia']['svg'] . 'Liquipedia', $weAreLive['Liquipedia']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Liquipedia Button"]); ?-->
+                </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 fourth-col">
-            <nav class="footer_menu">
-                <nav class="drop-down-menu">
-                    <input type="checkbox" class="activate" id="accordion-3" name="accordion-3">
-                    <label for="accordion-3" class="menu-title"><?= Yii::t('app', 'footer_socialMediaHeader') ?></label>
-                    
-                    <i class="ion-arrow-down-b"></i>
-                    
-                    <div class="drop-down">
-                        <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
-                        <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
-                        <?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "youtube Button"]); ?>
-                        <?= Html::a($weAreLive['Twitter']['svg'] . 'Twitter', $weAreLive['Twitter']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "Twitter Button"]); ?>
-                        <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Tournaments', $weAreLive['Discord']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Tournaments Discord Button"]); ?>
-                        <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Community', $weAreLive['Discord']['channellinkCommunity'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Community Discord Button"]); ?>
-                        <!--?= Html::a($weAreLive['Liquipedia']['svg'] . 'Liquipedia', $weAreLive['Liquipedia']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Liquipedia Button"]); ?-->
-                    </div>
-                </nav>
-            </nav>
-            <div class="desktop-menu">
-                <h3 class="footer-header"><?= Yii::t('app', 'footer_socialMediaHeader') ?></h3>
-                <?= Html::a($weAreLive['twitch']['svg'] . 'Twitch', $weAreLive['twitch']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Twitch Button"]); ?>
-                <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
-                <?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "youtube Button"]); ?>
-                <?= Html::a($weAreLive['Twitter']['svg'] . 'Twitter', $weAreLive['Twitter']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "Twitter Button"]); ?>
-                <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Tournaments', $weAreLive['Discord']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Tournaments Discord Button"]); ?>
-                <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Community', $weAreLive['Discord']['channellinkCommunity'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Community Discord Button"]); ?>
-                <!--?= Html::a($weAreLive['Liquipedia']['svg'] . 'Liquipedia', $weAreLive['Liquipedia']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Liquipedia Button"]); ?-->
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
 <?php $this->endBody() ?>
 </body>

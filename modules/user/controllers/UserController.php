@@ -16,6 +16,8 @@ use app\modules\user\models\UserBalance;
 
 
 use DateTime;
+use app\widgets\Alert;
+
 use Yii;
 use yii\web\UploadedFile;
 
@@ -64,7 +66,7 @@ class UserController extends BaseController
     {
         if($userId == 0)
         {
-            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
             return $this->goHome();
 		}
 
@@ -74,7 +76,7 @@ class UserController extends BaseController
 
         if(!$user)
         {
-            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
             return $this->goHome();
 		}
 
@@ -97,6 +99,7 @@ class UserController extends BaseController
         if ($profilePicModel->load(Yii::$app->request->post())) {
             $profilePicModel->file = UploadedFile::getInstance($profilePicModel, 'file');
             if ($profilePicModel->validate()) {
+                Alert::addSuccess('Profile Pic Uploaded, Plesae refresh your Browser Cache');
                 $profilePicModel->save();
             }
         }
