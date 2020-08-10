@@ -25,7 +25,6 @@ if (!empty($flashes)) {
             }
         } else {
             foreach ($messages as $message) {
-                $this->registerJs('$("document").ready(function(){ alert("hi"); });');
                 $this->registerJs("showInfoMessage('$message')");
             }
         }

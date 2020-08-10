@@ -23,7 +23,6 @@ function showErrorMessage(title, message) {
 }
 
 function showInfoMessage(title, message) {
-    alert(message);
     message = message || "";
     iziToast.show({
         title: title,
