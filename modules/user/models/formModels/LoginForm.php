@@ -7,6 +7,7 @@ use app\modules\user\Module;
 
 use Yii;
 use yii\base\Model;
+use app\widgets\Alert;
 
 /**
  * LoginForm is the model behind the login form.
@@ -63,6 +64,7 @@ class LoginForm extends Model
 
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError('username', \app\modules\user\Module::t('login', 'login_wrongData'));
+                Alert::addError(Yii::t('app', 'login_wrongData'));
             }
         }
     }

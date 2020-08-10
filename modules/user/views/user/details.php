@@ -22,8 +22,6 @@
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
-use app\widgets\Alert;
-
 $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('userDetails', 'userDetails_title');
 
 /************* Meta Index ****************/

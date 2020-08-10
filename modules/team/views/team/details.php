@@ -101,10 +101,10 @@ teamManager['Name']
                                         <span class="avatar-job-title">Captain: </span><span class="ml-3 avatarID">ID: <?= $team['ID'] ?></span>
                                     </li>
                                     <li class="list-inline-item">
-                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($team['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $team['Language']['name'],'class' => 'IMG']) ?> <?= $team['Language']['icon'] ?></span>
+                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($team['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $team['Language']['name'],'class' => 'IMG']) ?> <?= $team['Language']['name'] ?></span>
                                     </li>
                                     <li class="list-inline-item">
-                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($team['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $team['Nationality']['name'],'class' => 'IMG']) ?> <?= $team['Nationality']['icon'] ?></span>
+                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($team['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $team['Nationality']['name'],'class' => 'IMG']) ?> <?= $team['Nationality']['name'] ?></span>
                                     </li>
                                 </ul>
                             </div>

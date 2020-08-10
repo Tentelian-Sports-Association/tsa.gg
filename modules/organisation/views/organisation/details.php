@@ -105,10 +105,10 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Details for Organis
                                         <span class="avatar-job-title"> <?= \app\modules\organisation\Module::t('organisationDetails', 'details_owner'); ?> <?= Html::a( $OrganisationOwner['Name'], ['/user/details', 'userId' => $OrganisationOwner['id']], ['class' => '']); ?></span>
                                     </li>
                                     <li class="list-inline-item">
-                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($organisation['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $organisation['Language']['name'],'class' => 'IMG']) ?> <?= $organisation['Language']['icon'] ?></span>
+                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($organisation['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $organisation['Language']['name'],'class' => 'IMG']) ?> <?= $organisation['Language']['name'] ?></span>
                                     </li>
                                     <li class="list-inline-item">
-                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($organisation['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $organisation['Nationality']['name'],'class' => 'IMG']) ?> <?= $organisation['Nationality']['icon'] ?></span>
+                                        <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($organisation['Nationality']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $organisation['Nationality']['name'],'class' => 'IMG']) ?> <?= $organisation['Nationality']['name'] ?></span>
                                     </li>
                                 </ul>
                             </div>

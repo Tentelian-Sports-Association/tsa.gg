@@ -3,8 +3,6 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
-
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
@@ -77,22 +75,20 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
     <!-- End Metatags und diverses andere -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= Url::base('https') . '/apple-touch-icon.png' ?>">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= Url::base('https') . '/favicon-32x32.png' ?>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= Url::base('https') . '/favicon-16x16.png' ?>">
-    <link rel="manifest" href="<?= Url::base('https') . '/site.webmanifest' ?>">
-    <link rel="mask-icon" href="<?= Url::base('https') . '/safari-pinned-tab.svg' ?>" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9VSMDX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 <?php $this->beginBody() ?>
+
+<div class="wrap">
+
 <header class="d-flex align-items-center">
     <div class="navbar  navbar-expand-xl w-100  d-sm-flex align-items-center justify-content-between">
         <?php echo Html::a(Html::img(Yii::$app->HelperClass->checkSVGIcons('TSA_Logo_Schrift_Nebeneinander')), ["/index"], ['class' => 'logo', 'aria-label' => "Tentelian Sports Asscoiation"]); ?></a>
@@ -140,6 +136,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </header>
 
+
 <!-- *************** Wir sind live Bereich (anpassen das nur gezeigt wird wenn wir live sind *************** -->
 <?php if(Yii::$app->HelperClass->getTwitchOnlineStat()) : ?>
     <div class="promo-banner dropdown position-relative d-block d-lg-flex align-items-center justify-content-between">
@@ -158,10 +155,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 <?php endif; ?>
-
+    
 <!-- Hier später wieder die sachen für den Alert einfügen -->
+<?php $this->render('@app/views/layouts/_alerts'); ?>
 
 <?= $content ?>
+
+</div>
 
 <footer class="footer">
     <div class="footer-content row">
