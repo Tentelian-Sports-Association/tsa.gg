@@ -22,6 +22,6 @@ class IndexAsset extends AssetBundle
         'css/startpage.css'
     ];
     public $js = [
-        'js/main.min.js'
+        //'js/main.min.js'
     ];
 }
