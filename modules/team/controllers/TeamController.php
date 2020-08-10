@@ -19,6 +19,8 @@ use app\modules\team\models\formModels\CreateTeamForm;
 use app\modules\team\models\formModels\DetailsForm;
 
 use DateTime;
+use app\widgets\Alert;
+
 use Yii;
 use yii\web\UploadedFile;
 
@@ -87,6 +89,7 @@ class TeamController extends BaseController
         if ($teamPicModel->load(Yii::$app->request->post())) {
             $teamPicModel->file = UploadedFile::getInstance($teamPicModel, 'file');
             if ($teamPicModel->validate()) {
+                Alert::addSuccess('Profile Pic Uploaded, Plesae refresh your Browser Cache');
                 $teamPicModel->save();
             }
         }

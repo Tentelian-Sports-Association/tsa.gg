@@ -20,6 +20,8 @@ use app\modules\organisation\models\formModels\CreateOrganisationForm;
 use app\modules\organisation\models\formModels\DetailsForm;
 
 use DateTime;
+use app\widgets\Alert;
+
 use Yii;
 use yii\web\UploadedFile;
 
@@ -127,6 +129,7 @@ class OrganisationController extends BaseController
         if ($organisationPicModel->load(Yii::$app->request->post())) {
             $organisationPicModel->file = UploadedFile::getInstance($organisationPicModel, 'file');
             if ($organisationPicModel->validate()) {
+                Alert::addSuccess('Profile Pic Uploaded, Plesae refresh your Browser Cache');
                 $organisationPicModel->save();
             }
         }

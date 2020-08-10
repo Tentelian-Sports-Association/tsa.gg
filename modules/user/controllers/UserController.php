@@ -99,7 +99,7 @@ class UserController extends BaseController
         if ($profilePicModel->load(Yii::$app->request->post())) {
             $profilePicModel->file = UploadedFile::getInstance($profilePicModel, 'file');
             if ($profilePicModel->validate()) {
-                Alert::addSuccess('Profile Pic Uploaded');
+                Alert::addSuccess('Profile Pic Uploaded, Plesae refresh your Browser Cache');
                 $profilePicModel->save();
             }
         }
