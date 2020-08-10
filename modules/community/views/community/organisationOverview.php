@@ -145,7 +145,7 @@ sortedPaginatedOrganisation[$nr]['Language']['name']
                             </div>
                             <div class="col-8 float-left">
                                 <div class="col-12">
-                                    <?= Html::a($orga['Name'], ['/organisation/details', 'userId' => $orga['ID']], ['class' => '']); ?>
+                                    <?= Html::a($orga['Name'], ['/organisation/details', 'organisationId' => $orga['ID']], ['class' => '']); ?>
                                 </div>
                                 <div class="col-12">
                                     <?= Html::a($orga['Owner']['Name'], ['/user/details', 'userId' => $orga['Owner']['ID']], ['class' => '']); ?>

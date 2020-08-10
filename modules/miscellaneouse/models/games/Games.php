@@ -4,6 +4,8 @@ namespace app\modules\miscellaneouse\models\games;
 
 use yii\db\ActiveRecord;
 
+use app\modules\tournament\models\Tournament;
+
 /**
  * Class Games
  * @package app\modules\miscellaneouse\models\games
@@ -142,5 +144,29 @@ class Games extends ActiveRecord
 		//}
 
         return $detailledGames;
+	}
+
+    public static function getGameWithTournaments($languageID)
+    {
+        $games = static::find()->all();
+
+        $gamesWithTournaments = [];
+
+        foreach($games as $nr => $game)
+        {
+            $gamesWithTournaments[$nr]['Name'] = $game->getName($languageID);
+            $gamesWithTournaments[$nr]['Id'] = $game->getId();
+            $gamesWithTournaments[$nr]['image'] = $game->getIcon();
+
+            $gamesWithTournaments[$nr]['OpenTournaments'] = Tournament::find()->where(['game_id' => $game->getId()])->andWhere(['finished' => '0'])->count();
+
+            if($gamesWithTournaments[$nr]['OpenTournaments'] > 0)
+            {
+                $gamesWithTournaments[$nr]['ParticipatingPlayer'] = 72;
+                $gamesWithTournaments[$nr]['ParticipatingTeams'] = 16;
+			}
+		}
+
+        return $gamesWithTournaments;
 	}
 }

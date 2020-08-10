@@ -159,7 +159,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 <?php endif; ?>
 
-<!-- Hier sp�ter wieder die sachen f�r den Alert einf�gen -->
+<!-- Hier später wieder die sachen für den Alert einfügen -->
 
 <?= $content ?>
 

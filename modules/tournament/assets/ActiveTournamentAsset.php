@@ -3,7 +3,7 @@ namespace app\modules\tournament\assets;
 
 use yii\web\AssetBundle;
 
-class OverviewAsset extends AssetBundle
+class ActiveTournamentAsset extends AssetBundle
 {
     public $sourcePath = '@app/assets/dist';
  

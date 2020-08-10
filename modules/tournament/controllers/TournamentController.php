@@ -5,6 +5,8 @@ namespace app\modules\tournament\controllers;
 use app\components\BaseController;
 use yii\filters\AccessControl;
 
+use app\modules\miscellaneouse\models\games\Games;
+
 use Yii;
 
 /**
@@ -49,41 +51,34 @@ class TournamentController extends BaseController
     }
 
     /**
-     * Overview of all Partners
+     * Overview of Games with Tournaments
      *
      * @return string
      */
-    public function actionOverview()
+    public function actionOverview($gameID = 0)
     {
          /** Base Informations **/
         $user = Yii::$app->HelperClass->getUser();
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
 
-        $gameslist = [];
-        $gamesList[0]['Name'] = 'Rocket Legaue';
-        $gamesList[0]['Id'] = 1;
-        $gamesList[0]['image'] = 'rl';
-        $gamesList[0]['OpenTournaments'] = 5;
-        $gamesList[0]['ParticipatingPlayer'] = 72;
-        $gamesList[0]['ParticipatingTeams'] = 16;
+        /** If no Games was Choosen (normal Overview) */
+        if($gameID == 0)
+        {
+            $gamesList = Games::getGameWithTournaments($languageID);
 
-        $gamesList[1]['Name'] = 'Clash Royale';
-        $gamesList[1]['Id'] = 2;
-        $gamesList[1]['image'] = 'clash';
-        $gamesList[1]['OpenTournaments'] = 2;
-        $gamesList[1]['ParticipatingPlayer'] = 500;
-        $gamesList[1]['ParticipatingTeams'] = 128;
+            return $this->render('overview',
+            [
+                'gamesList' => $gamesList,
+            ]);
+		}
 
-        $gamesList[2]['Name'] = 'Farming Simulator';
-        $gamesList[2]['Id'] = 3;
-        $gamesList[2]['image'] = 'farmSim';
-        $gamesList[2]['OpenTournaments'] = 1;
-        $gamesList[2]['ParticipatingPlayer'] = 170;
-        $gamesList[2]['ParticipatingTeams'] = 32;
+        $choosedGame = Games::Find()->where(['id' => $gameID])->one();
 
-        /*$testTournaentList = [];
+        /** If game was Choosen */
+        $openTournamentList = [];
 
         $testTournaentList[0]['Name'] = 'TSA Royale de Clash Cup';
+        $testTournaentList[0]['ID'] = 1;
         $testTournaentList[0]['DtStart'] = '01.09.2020 | 16:30';
         $testTournaentList[0]['DtRedEnd'] = '01.09.2020 | 15:30';
         $testTournaentList[0]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
@@ -91,6 +86,7 @@ class TournamentController extends BaseController
         $testTournaentList[0]['CheckInOpen'] = false;
 
         $testTournaentList[1]['Name'] = 'Bayrische Drift Meisterschaft';
+        $testTournaentList[0]['ID'] = 2;
         $testTournaentList[1]['DtStart'] = '01.09.2020 | 16:30';
         $testTournaentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
         $testTournaentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
@@ -98,16 +94,17 @@ class TournamentController extends BaseController
         $testTournaentList[1]['CheckInOpen'] = true;
 
         $testTournaentList[1]['Name'] = 'German North Cup';
+        $testTournaentList[0]['ID'] = 3;
         $testTournaentList[1]['DtStart'] = '01.09.2020 | 16:30';
         $testTournaentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
         $testTournaentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
         $testTournaentList[1]['RegisterOpen'] = false;
-        $testTournaentList[1]['CheckInOpen'] = false;*/
+        $testTournaentList[1]['CheckInOpen'] = false;
 
-        
-        return $this->render('overview',
+        return $this->render('aktiveTournaments',
         [
-            'gamesList' => $gamesList,
+            'choosedGame' => $choosedGame,
+            'openTournamentList' => $openTournamentList,
         ]);
     }
 }

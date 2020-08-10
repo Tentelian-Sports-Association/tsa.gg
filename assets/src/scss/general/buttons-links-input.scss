@@ -149,8 +149,9 @@ input[type=time] {
 
 .field-imageUpload {
     .invalid-feedback {
+        width: 500px;
         display: block;
         position: absolute;
-        top: -85px;
+        top: -35px;
     }
 }
