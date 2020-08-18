@@ -44,6 +44,21 @@ function styles() {
         .pipe($.notify({ message: 'Styles task complete' }));
 };
 
+// secondary Styles
+function secondary_styles() {
+    return gulp.src(config.PATHS.src + '/scss/*.css')
+        .pipe($.sourcemaps.init())
+        //.pipe($.sass(sassOptions).on('error', $.sass.logError))
+        .pipe($.autoprefixer(autoprefixerOptions))
+        //.pipe($.rename({ suffix: '.min' })
+        //    .pipe($.cssnano()))
+        .pipe($.sourcemaps.write('.', { sourceRoot: '../../assets/src/scss/' }))
+        .pipe(gulp.dest(config.PATHS.dist + '/css'))
+        .pipe(touch())
+        .pipe(browsersync.stream())
+        .pipe($.notify({ message: 'Secondary Styles task complete' }));
+};
+
 
 // Scripts
 function scripts() {
@@ -69,6 +84,19 @@ function scripts_individual() {
         .pipe(gulp.dest(config.PATHS.dist + '/js'))
         .pipe(touch())
         .pipe($.notify({ message: 'Secondary Scripts task complete' }));
+};
+
+// third scripts
+function scripts_individuals() {
+    return gulp.src(config.PATHS.src + '/js/*.js')
+        .pipe($.sourcemaps.init())
+        //.pipe($.concat('main.js'))
+        .pipe($.rename({ suffix: '.min' }))
+        .pipe($.uglify())
+        .pipe($.sourcemaps.write('.', { sourceRoot: '../../assets/src/js/' }))
+        .pipe(gulp.dest(config.PATHS.dist + '/js'))
+        .pipe(touch())
+        .pipe($.notify({ message: 'Third Scripts task complete' }));
 };
 
 // sprites
@@ -97,7 +125,7 @@ function clean(done) {
 gulp.task('build', gulp.series(
     clean,
     sprites,
-    gulp.parallel(styles, scripts, scripts_individual)
+    gulp.parallel(styles, secondary_styles, scripts, scripts_individual, scripts_individuals)
 ));
 
 // Watch

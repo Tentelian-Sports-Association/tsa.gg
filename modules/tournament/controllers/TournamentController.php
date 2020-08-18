@@ -57,7 +57,7 @@ class TournamentController extends BaseController
      */
     public function actionOverview($gameID = 0)
     {
-         /** Base Informations **/
+        /** Base Informations **/
         $user = Yii::$app->HelperClass->getUser();
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
 
@@ -107,4 +107,15 @@ class TournamentController extends BaseController
             'openTournamentList' => $openTournamentList,
         ]);
     }
+
+    public function actionTest()
+    {
+        
+
+        return $this->render('test',
+        [
+            //'choosedGame' => $choosedGame,
+            //'openTournamentList' => $openTournamentList,
+        ]);
+	}
 }

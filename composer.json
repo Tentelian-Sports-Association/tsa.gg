@@ -26,7 +26,8 @@
     "bower-asset/bootstrap-sass": "3.3.6",
     "bower-asset/sass-rem": "^1.2",
     "twbs/bootstrap": "4.0.0",
-    "yiisoft/yii2-jui": "^2.0"
+    "yiisoft/yii2-jui": "^2.0",
+    "bower-asset/jquery-bracket": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

@@ -27,7 +27,7 @@ class AppAsset extends AssetBundle
     ];
 
     public $js = [
-        //'js/main.min.js',
+        'js/main.min.js',
         'js/site.js',
         'js/iziToast.min.js'
     ];

@@ -27,3 +27,5 @@ foreach(openTournamentList as $openTournament)
 }
 */
 ?>
+
+<?= Html::a('test llink', ["test"], ['class' => "footer-link d-block",'aria-label' => "Home Button"]); ?>
