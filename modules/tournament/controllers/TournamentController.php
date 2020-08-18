@@ -77,29 +77,29 @@ class TournamentController extends BaseController
         /** If game was Choosen */
         $openTournamentList = [];
 
-        $testTournaentList[0]['Name'] = 'TSA Royale de Clash Cup';
-        $testTournaentList[0]['ID'] = 1;
-        $testTournaentList[0]['DtStart'] = '01.09.2020 | 16:30';
-        $testTournaentList[0]['DtRedEnd'] = '01.09.2020 | 15:30';
-        $testTournaentList[0]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
-        $testTournaentList[0]['RegisterOpen'] = true;
-        $testTournaentList[0]['CheckInOpen'] = false;
+        $openTournamentList[0]['Name'] = 'TSA Royale de Clash Cup';
+        $openTournamentList[0]['ID'] = 1;
+        $openTournamentList[0]['DtStart'] = '01.09.2020 | 16:30';
+        $openTournamentList[0]['DtRedEnd'] = '01.09.2020 | 15:30';
+        $openTournamentList[0]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
+        $openTournamentList[0]['RegisterOpen'] = true;
+        $openTournamentList[0]['CheckInOpen'] = false;
 
-        $testTournaentList[1]['Name'] = 'Bayrische Drift Meisterschaft';
-        $testTournaentList[0]['ID'] = 2;
-        $testTournaentList[1]['DtStart'] = '01.09.2020 | 16:30';
-        $testTournaentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
-        $testTournaentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
-        $testTournaentList[1]['RegisterOpen'] = false;
-        $testTournaentList[1]['CheckInOpen'] = true;
+        $openTournamentList[1]['Name'] = 'Bayrische Drift Meisterschaft';
+        $openTournamentList[1]['ID'] = 2;
+        $openTournamentList[1]['DtStart'] = '01.09.2020 | 16:30';
+        $openTournamentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
+        $openTournamentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
+        $openTournamentList[1]['RegisterOpen'] = false;
+        $openTournamentList[1]['CheckInOpen'] = true;
 
-        $testTournaentList[1]['Name'] = 'German North Cup';
-        $testTournaentList[0]['ID'] = 3;
-        $testTournaentList[1]['DtStart'] = '01.09.2020 | 16:30';
-        $testTournaentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
-        $testTournaentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
-        $testTournaentList[1]['RegisterOpen'] = false;
-        $testTournaentList[1]['CheckInOpen'] = false;
+        $openTournamentList[2]['Name'] = 'German North Cup';
+        $openTournamentList[2]['ID'] = 3;
+        $openTournamentList[2]['DtStart'] = '01.09.2020 | 16:30';
+        $openTournamentList[2]['DtRedEnd'] = '01.09.2020 | 15:30';
+        $openTournamentList[2]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
+        $openTournamentList[2]['RegisterOpen'] = false;
+        $openTournamentList[2]['CheckInOpen'] = false;
 
         return $this->render('aktiveTournaments',
         [

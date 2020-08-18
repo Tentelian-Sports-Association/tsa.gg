@@ -6,34 +6,41 @@
 
 ?>
 
-<div id="big">
+<div id="doubleElimination">
   <script type="text/javascript">
   
-  var bigData = {
+  
+var doubleEliminationData = {
     teams : [
-      ["Team 1",  "Team 2" ],
-      ["Team 3",  "Team 4" ],
-      ["Team 5",  "Team 6" ],
-      ["Team 7",  "Team 8" ],
-      ["Team 9",  "Team 10"],
-      ["Team 11", "Team 12"],
-      ["Team 13", "Team 14"],
-      ["Team 15", "Team 16"]
+      ["Team 1", "Team 2"],
+      ["Team 3", "Team 4"],
+      ["Team 5", "Team 6"],
+      ["Team 7", null]
+
     ],
     results : [
-        [/* WINNER BRACKET */
-        [[1,3]]],
-        [/* LOSER BRACKET */],
-        [/* FINALS */]
-    ]
+    [/* WINNER BRACKET */
+      [[4,3]],           /* first and second matches of the first round */
+      []            /* second round */
+    ],
+    [/* LOSER BRACKET */
+      [],           /* first round */
+      []            /* second round */
+    ],
+    [/* FINALS */
+      [],           /* First Round */
+      []            /* LB winner won first round so need a rematch */
+    ]]
   }
-
-
-  $(function() {
-      $('div#big .demo').bracket({
+ 
+$(function() {
+    $('div#doubleElimination .demo').bracket({
+        centerConnectors: true,
         skipConsolationRound: true,
-        init: bigData})
-    })
+        init: doubleEliminationData})
+  })
+
+
   
 </script>
 

@@ -13,8 +13,6 @@ function showSuccessMessage(title, message) {
 }
 
 function showErrorMessage(title, message) {
-    Window.alert('Test Nachricht Error');
-
     message = message || "";
     iziToast.show({
         title: title,
@@ -25,7 +23,6 @@ function showErrorMessage(title, message) {
 }
 
 function showInfoMessage(title, message) {
-    Window.alert('Test Nachricht Info');
     message = message || "";
     iziToast.show({
         title: title,
