@@ -9,6 +9,7 @@ use app\modules\tournament\models\Tournament;
 use app\modules\team\models\TeamMember;
 
 use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParticipating;
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentPlayerParticipating;
 
 /**
  * Class Games
@@ -173,14 +174,22 @@ class Games extends ActiveRecord
 
                 foreach($openTournaments as $openTournament)
                 {
-                    $tournamentTeams = TournamentTeamParticipating::find()->where(['tournament_id' => $openTournament->getId()])->all();
-
-                    $gamesWithTournaments[$nr]['ParticipatingTeams'] += count($tournamentTeams);
-
-                    foreach($tournamentTeams as $tournamentTeam)
+                    if($openTournament->getIsTeamTournament())
                     {
-                        $gamesWithTournaments[$nr]['ParticipatingPlayer'] += TeamMember::find()->where(['team_id' => $tournamentTeam->getTeamId()])->count();
+                        $tournamentTeams = TournamentTeamParticipating::find()->where(['tournament_id' => $openTournament->getId()])->all();
+
+                        $gamesWithTournaments[$nr]['ParticipatingTeams'] += count($tournamentTeams);
+
+                        foreach($tournamentTeams as $tournamentTeam)
+                        {
+                            $gamesWithTournaments[$nr]['ParticipatingPlayer'] += TeamMember::find()->where(['team_id' => $tournamentTeam->getTeamId()])->andWhere(['>', 'role_id', '3'])->count();
+					    }
 					}
+                    else
+                    {
+                        $gamesWithTournaments[$nr]['ParticipatingPlayer'] += TournamentPlayerParticipating::find()->where(['tournament_id' => $openTournament->getId()])->count();
+                    }
+
 				}
 			}
 		}
