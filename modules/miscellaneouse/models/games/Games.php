@@ -6,6 +6,10 @@ use yii\db\ActiveRecord;
 
 use app\modules\tournament\models\Tournament;
 
+use app\modules\team\models\TeamMember;
+
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParticipating;
+
 /**
  * Class Games
  * @package app\modules\miscellaneouse\models\games
@@ -162,8 +166,22 @@ class Games extends ActiveRecord
 
             if($gamesWithTournaments[$nr]['OpenTournaments'] > 0)
             {
-                $gamesWithTournaments[$nr]['ParticipatingPlayer'] = 72;
-                $gamesWithTournaments[$nr]['ParticipatingTeams'] = 16;
+                $gamesWithTournaments[$nr]['ParticipatingPlayer'] = 0;
+                $gamesWithTournaments[$nr]['ParticipatingTeams'] = 0;
+                
+                $openTournaments = Tournament::find()->where(['game_id' => $game->getId()])->andWhere(['finished' => '0'])->all();
+
+                foreach($openTournaments as $openTournament)
+                {
+                    $tournamentTeams = TournamentTeamParticipating::find()->where(['tournament_id' => $openTournament->getId()])->all();
+
+                    $gamesWithTournaments[$nr]['ParticipatingTeams'] += count($tournamentTeams);
+
+                    foreach($tournamentTeams as $tournamentTeam)
+                    {
+                        $gamesWithTournaments[$nr]['ParticipatingPlayer'] += TeamMember::find()->where(['team_id' => $tournamentTeam->getTeamId()])->count();
+					}
+				}
 			}
 		}
 

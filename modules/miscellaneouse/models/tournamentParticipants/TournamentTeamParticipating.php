@@ -1,28 +1,28 @@
 <?php
 
-namespace app\modules\miscellaneouse\models\tournamentMode;
+namespace app\modules\miscellaneouse\models\tournamentParticipants;
 
 use yii\db\ActiveRecord;
 
 
 /**
- * Class Tournament Mode
- * @package app\modules\miscellaneouse\models\tournamentMode
+ * Class TournamentTeamParticipating
+ * @package app\modules\miscellaneouse\models\tournamentParticipants
  *
- * @property int $id
- * @property int $game_id
- * @property string $name
+ * @property int $tournament_id
+ * @property int $team_id
+ * @property bool $checked_in
  * @property string $dt_created
  * @property string $dt_updated
  */
-class TournamentMode extends ActiveRecord
+class TournamentTeamParticipating extends ActiveRecord
 {
     /**
      * @return string
      */
     public static function tableName()
     {
-        return 'tournament_mode';
+        return 'tournament_team_participating';
     }
 
     /*********** Base Getter ***********/
@@ -30,25 +30,25 @@ class TournamentMode extends ActiveRecord
     /**
      * @return int
      */
-    public function getId()
+    public function getTournamentId()
     {
-        return $this->id;
+        return $this->tournament_id;
     }
 
     /**
      * @return int
      */
-    public function getGameId()
+    public function getTeamId()
     {
-        return $this->game_id;
+        return $this->team_id;
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getName()
+    public function getIsCheckedIn()
     {
-        return $this->name;
+        return $this->checked_in;
     }
 
     /**

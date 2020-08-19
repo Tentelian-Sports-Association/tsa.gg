@@ -22,6 +22,9 @@ use DateTime;
  * @property string $dt_checkin_end
  * @property string $dt_starting_time
  * @property bool $finished
+ * @property bool $running
+ * @property bool $isTeam
+ * @property int $bracket_set_id
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -123,6 +126,30 @@ class Tournament extends ActiveRecord
     public function getIsFinished()
     {
         return $this->finished;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsRunning()
+    {
+        return $this->running;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsTeamTournament()
+    {
+        return $this->isTeam;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBracketSetID()
+    {
+        return $this->bracket_set_id;
     }
     
     /**
