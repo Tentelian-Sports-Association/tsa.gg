@@ -118,7 +118,4 @@ foreach(openTournamentList as $openTournament)
             </div>
         </div>
     </div>
-    
 </div>
-
-<?= Html::a('test llink', ["test"], ['class' => "footer-link d-block",'aria-label' => "Home Button"]); ?>

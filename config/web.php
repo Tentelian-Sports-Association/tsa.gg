@@ -98,6 +98,9 @@ $config = [
         'HelperClass' => [
             'class' => 'app\modules\miscellaneouse\helperClass'
         ],
+        'TournamentBracketClass' => [
+            'class' => 'app\modules\miscellaneouse\tournamentBracketClass'
+        ],
     ],
     'modules' => [
         'user' => 'app\modules\user\Module',
