@@ -251,4 +251,6 @@ class Tournament extends ActiveRecord
 		}
         return $sortedTournament;
     }
+
+
 }

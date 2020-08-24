@@ -6,6 +6,8 @@ use app\components\BaseController;
 use yii\filters\AccessControl;
 
 use app\modules\miscellaneouse\models\games\Games;
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentPlayerParticipating;
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParticipating;
 
 use app\modules\tournament\models\Tournament;
 
@@ -88,12 +90,32 @@ class TournamentController extends BaseController
 
     public function actionDetails($gameId, $tournamentId)
     {
-        
+         /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::find()->where(['id' => $tournamentId])->one();
+        $rules = [];
+        $participants = null;
+
+        if($tournament->getIsTeamTournament())
+        {
+            
+		}
+        else
+        {
+            $participants = TournamentPlayerParticipating::getPlayerParticipating($tournamentId, $languageID);
+        }
+
+
+        //print_r($tournament);
+        //die();
 
         return $this->render('tournamentDetails',
         [
-            //'choosedGame' => $choosedGame,
-            //'openTournamentList' => $openTournamentList,
+            'tournament' => $tournament,
+            'rules' => $rules,
+            'participants' => $participants,
         ]);
 	}
 }
