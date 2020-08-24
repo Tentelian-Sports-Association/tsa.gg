@@ -2,6 +2,9 @@
 
 namespace app\modules\tournament\models;
 
+use app\modules\miscellaneouse\models\tournamentMode\TournamentMode;
+use app\modules\miscellaneouse\models\games\Games;
+
 use yii\db\ActiveRecord;
 
 use DateTime;
@@ -71,6 +74,11 @@ class Tournament extends ActiveRecord
     {
         return $this->mode_id;
     }
+
+    public function getModeName()
+    {
+        return TournamentMode::find()->where(['id' => $this->mode_id])->one()->getName();
+	}
 
     /**
      * @return int
@@ -211,4 +219,36 @@ class Tournament extends ActiveRecord
 
         return $sortedTournament;
 	}
+
+    public static function GetUpcomingTournaments()
+    {
+        $tournaments = static::find()->where(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_DESC])->limit(5)->all();
+        $sortedTournament = [];
+
+        $currentDate = new DateTime();
+
+        foreach($tournaments as $nr => $tournament)
+        {
+            $sortedTournament[$nr]['ID'] = $tournament->getId();
+            $sortedTournament[$nr]['GameID'] = $tournament->getGameId();
+            $sortedTournament[$nr]['Name'] = $tournament->getName();
+            $sortedTournament[$nr]['Mode'] = $tournament->getModeName();
+            $sortedTournament[$nr]['GameTag'] = Games::find()->where(['id' => $tournament->getGameId()])->one()->getGameTag();
+            $sortedTournament[$nr]['HoverImage'] = $tournament->getId();
+
+            /** Check if Tournament is Live */
+            $Begin = new DateTime($tournament->getStartingTime());
+
+            if(($currentDate->getTimestamp() >= $Begin->getTimestamp())) {
+                $sortedTournament[$nr]['IsLive'] = 1;
+			}
+            else {
+                $sortedTournament[$nr]['IsLive'] = 0;
+            }
+
+            $sortedTournament[$nr]['StartingDate'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->getStartingTime())->format('d.m.Y');
+            $sortedTournament[$nr]['StartingTime'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->getStartingTime())->format('H:i');
+		}
+        return $sortedTournament;
+    }
 }

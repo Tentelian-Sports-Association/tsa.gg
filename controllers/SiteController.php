@@ -12,6 +12,8 @@ use app\modules\news\models\News;
 
 use app\modules\user\models\User;
 
+use app\modules\tournament\models\Tournament;
+
 use app\models\LoginForm;
 use app\models\ContactForm;
 
@@ -85,52 +87,7 @@ class SiteController extends BaseController
         $upcomingEvents = Event::getLatestEvents($languageID);        
 
         /** Upcoming Tournaments */
-        $tournaments = array();
-        /** 5 Turniere die als n�chstes Stattfinden oder gerade Live sind */
-        /*$tournaments[0]['ID'] = 1;
-        $tournaments[0]['Name'] = "GERTA Cup Sason 6 Day 1";
-        $tournaments[0]['Mode'] = "3 VS 3";
-        $tournaments[0]['GameTag'] = "RL";
-        $tournaments[0]['HoverImage'] = "ELGerta";
-        $tournaments[0]['IsLive'] = true;
-        $tournaments[0]['StartingDate'] = (new DateTime())->format('d.m.Y');
-        $tournaments[0]['StartingTime'] = (new DateTime())->format('H:i');
-
-        $tournaments[1]['ID'] = 5;
-        $tournaments[1]['Name'] = "Tentelian Royale Clash Championship Series Qualifier 1";
-        $tournaments[1]['Mode'] = "Team Ladder";
-        $tournaments[1]['GameTag'] = "CL";
-        $tournaments[1]['HoverImage'] = "TRCCS";
-        $tournaments[1]['IsLive'] = true;
-        $tournaments[1]['StartingDate'] = (new DateTime())->format('d.m.Y');
-        $tournaments[1]['StartingTime'] = (new DateTime())->format('H:i');
-
-        $tournaments[2]['ID'] = 3;
-        $tournaments[2]['Name'] = "GERTA Cup Sason 6 Day 2";
-        $tournaments[2]['Mode'] = "3 VS 3";
-        $tournaments[2]['GameTag'] = "RL";
-        $tournaments[2]['HoverImage'] = "RLGerta";
-        $tournaments[2]['IsLive'] = false;
-        $tournaments[2]['StartingDate'] = (new DateTime())->format('d.m.Y');
-        $tournaments[2]['StartingTime'] = (new DateTime())->format('H:i');
-
-        $tournaments[3]['ID'] = 2;
-        $tournaments[3]['Name'] = "Tentelian Royale Clash Championship Series Qualifier 2";
-        $tournaments[3]['Mode'] = "Team Ladder";
-        $tournaments[3]['GameTag'] = "CL";
-        $tournaments[3]['HoverImage'] = "TRCCS";
-        $tournaments[3]['IsLive'] = false;
-        $tournaments[3]['StartingDate'] = (new DateTime())->format('d.m.Y');
-        $tournaments[3]['StartingTime'] = (new DateTime())->format('H:i');
-
-        $tournaments[4]['ID'] = 4;
-        $tournaments[4]['Name'] = "Bavarian Drift Masters Day 1";
-        $tournaments[4]['Mode'] = "Ladder";
-        $tournaments[4]['GameTag'] = "DR!FT";
-        $tournaments[4]['HoverImage'] = "DriftMasters";
-        $tournaments[4]['IsLive'] = false;
-        $tournaments[4]['StartingDate'] = (new DateTime())->format('d.m.Y');
-        $tournaments[4]['StartingTime'] = (new DateTime())->format('H:i');*/
+        $tournaments = Tournament::GetUpcomingTournaments();
 
         /** Latest News */
         $latestNews =  News::getLatestNews($languageID, 3);

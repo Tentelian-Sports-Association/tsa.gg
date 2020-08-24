@@ -20,6 +20,13 @@ class m200819_120045_statistics_basic_informations extends Migration
             'statisticsClassName',
             $this->string(255)->notNull()->defaultValue('-none-')->after('verification_phrase')
       	);
+
+        // add gameTag to games
+        $this->addColumn(
+            'games',
+            'gameTag',
+            $this->string(255)->notNull()->defaultValue('-none-')->after('statisticsClassName')
+      	);
     }
 
     /**
@@ -27,7 +34,11 @@ class m200819_120045_statistics_basic_informations extends Migration
      */
     public function safeDown()
     {
-        
+        // delete pssword
+        $this->dropColumn(
+            'games',
+            'gameTag'
+      	);
         
         // delete pssword
         $this->dropColumn(

@@ -649,7 +649,7 @@ var __extends =
                         function () {
                             u.onMatchHover(f, !0);
                         },
-                        function () {
+                        function () {onMatchHover
                             u.onMatchHover(f, !1);
                         }
                     ),

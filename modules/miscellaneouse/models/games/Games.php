@@ -24,6 +24,7 @@ use app\modules\miscellaneouse\models\tournamentParticipants\TournamentPlayerPar
  * @property string $icon
  * @propertx string $verification_phrase
  * @property string $statisticsClassName
+ * @property string $gameTag
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -118,6 +119,14 @@ class Games extends ActiveRecord
     public function getStatisticsClass()
     {
         return $this->statisticsClassName;
+	}
+
+    /**
+     * @return string
+     */
+    public function getGameTag()
+    {
+        return $this->gameTag;
 	}
 
     /**

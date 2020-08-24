@@ -86,11 +86,11 @@ class TournamentController extends BaseController
         ]);
     }
 
-    public function actionTest()
+    public function actionDetails($gameId, $tournamentId)
     {
         
 
-        return $this->render('test',
+        return $this->render('tournamentDetails',
         [
             //'choosedGame' => $choosedGame,
             //'openTournamentList' => $openTournamentList,
