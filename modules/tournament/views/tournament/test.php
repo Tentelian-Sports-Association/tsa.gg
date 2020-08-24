@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 
 
-\app\modules\tournament\assets\ActiveTournamentAsset::register($this);
+\app\modules\tournament\assets\TournamentDetailsAsset::register($this);
 
 ?>
 
@@ -15,12 +15,16 @@ var doubleEliminationData = {
       ["Team 1", "Team 2"],
       ["Team 3", "Team 4"],
       ["Team 5", "Team 6"],
-      ["Team 7", null]
+      ["Team 5", "Team 6"],
+      ["Team 5", "Team 6"],
+      ["Team 5", "Team 6"],
+      ["Team 7", null],
+      [null, null]
 
     ],
     results : [
     [/* WINNER BRACKET */
-      [[4,3]],           /* first and second matches of the first round */
+      [[4,3], [5,3]],           /* first and second matches of the first round */
       []            /* second round */
     ],
     [/* LOSER BRACKET */
@@ -36,11 +40,9 @@ var doubleEliminationData = {
 $(function() {
     $('div#doubleElimination .demo').bracket({
         centerConnectors: true,
-        skipConsolationRound: true,
+        skipConsolationRound: false,
         init: doubleEliminationData})
   })
-
-
   
 </script>
 

@@ -9,14 +9,9 @@ class ActiveTournamentAsset extends AssetBundle
  
     public $css = [
 		'css/activetournament.css',
-        '../../../vendor\bower-asset\jquery-bracket\jquery.bracket.css'
     ];
 
     public $cssOptions = [
         'async' => 'true'
 	];
-
-    public $js = [
-        '../../../vendor\bower-asset\jquery-bracket\jquery.bracket.js'
-    ];
 }
