@@ -7,6 +7,8 @@ use yii\filters\AccessControl;
 
 use app\modules\miscellaneouse\models\games\Games;
 
+use app\modules\tournament\models\Tournament;
+
 use Yii;
 
 /**
@@ -75,31 +77,7 @@ class TournamentController extends BaseController
         $choosedGame = Games::Find()->where(['id' => $gameID])->one();
 
         /** If game was Choosen */
-        $openTournamentList = [];
-
-        $openTournamentList[0]['Name'] = 'TSA Royale de Clash Cup';
-        $openTournamentList[0]['ID'] = 1;
-        $openTournamentList[0]['DtStart'] = '01.09.2020 | 16:30';
-        $openTournamentList[0]['DtRedEnd'] = '01.09.2020 | 15:30';
-        $openTournamentList[0]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
-        $openTournamentList[0]['RegisterOpen'] = true;
-        $openTournamentList[0]['CheckInOpen'] = false;
-
-        $openTournamentList[1]['Name'] = 'Bayrische Drift Meisterschaft';
-        $openTournamentList[1]['ID'] = 2;
-        $openTournamentList[1]['DtStart'] = '01.09.2020 | 16:30';
-        $openTournamentList[1]['DtRedEnd'] = '01.09.2020 | 15:30';
-        $openTournamentList[1]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
-        $openTournamentList[1]['RegisterOpen'] = false;
-        $openTournamentList[1]['CheckInOpen'] = true;
-
-        $openTournamentList[2]['Name'] = 'German North Cup';
-        $openTournamentList[2]['ID'] = 3;
-        $openTournamentList[2]['DtStart'] = '01.09.2020 | 16:30';
-        $openTournamentList[2]['DtRedEnd'] = '01.09.2020 | 15:30';
-        $openTournamentList[2]['DtCheckIn'] = '01.09.2020 | 15:30 - 16:30';
-        $openTournamentList[2]['RegisterOpen'] = false;
-        $openTournamentList[2]['CheckInOpen'] = false;
+        $openTournamentList = Tournament::GetTournaments($gameID);
 
         return $this->render('aktiveTournaments',
         [

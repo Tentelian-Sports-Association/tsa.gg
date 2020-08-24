@@ -139,7 +139,7 @@ class HelperClass
 
 
         $headers = array();
-        $headers = array('Client-Id: 6z39okvs7otsfg01zgni68uwunal3d', 'Authorization: Bearer x3wftl2uhekncv3qwc8ed3dz7v7fvb');
+        $headers = array('Client-Id: 6z39okvs7otsfg01zgni68uwunal3d', 'Authorization: Bearer 3g6ztqe2v5nkv7ou1g29s0y2bxttjn');
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
@@ -149,10 +149,10 @@ class HelperClass
         //curl_close($ch);
 
         $json_result = json_decode($result, true);
-        //print_r($json_result['data'][0]['type']);
+        //print_r($json_result['data']);
         //die();
 
-        if($json_result['data'] != null)
+        if(array_key_exists('data', $json_result) && $json_result['data'] != null)
             return true;
         else
 	        return false;

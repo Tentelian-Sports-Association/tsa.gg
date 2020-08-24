@@ -133,6 +133,8 @@ class UserController extends BaseController
         /** @var Games $games */
         $userGames = $user->getGames($languageID);
 
+        $this->getBasicStats($user, $userGames);
+
         /** Organisations */
         $ownedOrganisation = $user->GetOwnOrganisations(1);
         $managedOrganisations = $user->GetManagementOrganisations();
@@ -149,6 +151,22 @@ class UserController extends BaseController
             'openInvites' => $openInvites,
         ]);
     }
+
+    // ausgliedern, wohin auch immer
+    private function getBasicStats($user, $gameAccounts)
+    {
+        foreach($gameAccounts as $gameAccount)
+        {
+            foreach($gameAccount['game'] as $game)
+            {
+                //print_r($game);
+                //print_r('app\modules\miscellaneouse\models\statistics\\' . $game['statistics'] . '\\');
+                //die();
+			}
+		}
+
+        //app\modules\miscellaneouse\models\\Language;
+	}
 
     
 }

@@ -167,4 +167,48 @@ class Tournament extends ActiveRecord
     {
         return $this->dt_updated;
     }
+
+    /** Get Active Tournaments */
+    public static function GetTournaments($gameId)
+    {
+        $tournaments = static::find()->where(['game_id' => $gameId])->andWhere(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_DESC])->all();
+        $sortedTournament = [];
+
+        $currentDate = new DateTime();
+
+        foreach($tournaments as $nr => $tournament)
+        {
+            $sortedTournament[$nr]['Name'] = $tournament['name'];
+            $sortedTournament[$nr]['ID'] = $tournament['id'];
+            $sortedTournament[$nr]['DtStart'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_starting_time'])->format('d.m.Y | H:i');
+            $sortedTournament[$nr]['DtRegEnd'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_register_end'])->format('d.m.Y | H:i');
+            $sortedTournament[$nr]['DtCheckIn'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_checkin_begin'])->format('d.m.Y | H:i') . ' - ' . DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_checkin_end'])->format('H:i');
+
+            /** Check registration time*/
+            $registerBegin = new DateTime($tournament['dt_register_begin']);
+            $registerEnd = new DateTime($tournament['dt_register_end']);
+
+
+            if(($currentDate->getTimestamp() >= $registerBegin->getTimestamp()) && ($currentDate->getTimestamp() <= $registerEnd->getTimestamp())) {
+                $sortedTournament[$nr]['RegisterOpen'] = 1;
+			}
+            else {
+                $sortedTournament[$nr]['RegisterOpen'] = 0;
+            }
+
+            /** Check Checkin time */
+            $checkInBegin = new DateTime($tournament['dt_checkin_begin']);
+            $checkInEnd = new DateTime($tournament['dt_checkin_end']);
+
+            if(($currentDate->getTimestamp() >= $checkInBegin->getTimestamp()) && ($currentDate->getTimestamp() <= $checkInEnd->getTimestamp())) {
+                $sortedTournament[$nr]['CheckInOpen'] = 1;
+			}
+            else {
+                $sortedTournament[$nr]['CheckInOpen'] = 0;
+            }
+
+		} 
+
+        return $sortedTournament;
+	}
 }

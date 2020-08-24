@@ -384,6 +384,7 @@ class User extends AbstractActiveRecord implements IdentityInterface
                 $userGamesSorted[$nr]['game'][$gnr]['id'] = $game['game_id'];
                 $userGamesSorted[$nr]['game'][$gnr]['gameName'] = $gameDetails->getName($languageID);
                 $userGamesSorted[$nr]['game'][$gnr]['icon'] = $gameDetails->getIcon();
+                $userGamesSorted[$nr]['game'][$gnr]['statistics'] = $gameDetails->getStatisticsClass();
                 $userGamesSorted[$nr]['game'][$gnr]['accountId'] = $game['player_id'];
                 $userGamesSorted[$nr]['game'][$gnr]['visible'] = $game['visible'];
                 $userGamesSorted[$nr]['game'][$gnr]['editable'] = $game['editable'];

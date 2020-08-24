@@ -23,6 +23,7 @@ use app\modules\miscellaneouse\models\tournamentParticipants\TournamentPlayerPar
  * @property string $twitter_channel
  * @property string $icon
  * @propertx string $verification_phrase
+ * @property string $statisticsClassName
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -109,6 +110,14 @@ class Games extends ActiveRecord
     public function getVerificationPhrase()
     {
         return $this->verification_phrase;
+	}
+
+    /**
+     * @return string
+     */
+    public function getStatisticsClass()
+    {
+        return $this->statisticsClassName;
 	}
 
     /**

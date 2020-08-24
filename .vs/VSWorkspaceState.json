@@ -2,10 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\modules",
-    "\\modules\\organisation",
-    "\\modules\\organisation\\models",
-    "\\modules\\team"
+    "\\modules\\miscellaneouse",
+    "\\modules\\miscellaneouse\\models",
+    "\\modules\\miscellaneouse\\models\\statistics\\rocketLeague",
+    "\\modules\\user",
+    "\\modules\\user\\views",
+    "\\modules\\user\\views\\user",
+    "\\views\\layouts"
   ],
-  "SelectedNode": "\\modules\\organisation",
+  "SelectedNode": "\\modules\\miscellaneouse\\helperClass.php",
   "PreviewInSolutionExplorer": false
 }
