@@ -8,7 +8,7 @@ class TournamentDetailsAsset extends AssetBundle
     public $sourcePath = '@app/assets/dist';
  
     public $css = [
-		'css/tournamentdetails.css',
+		'css/tournamentDetails.css',
         'css/jquery.bracket.css'
     ];
 

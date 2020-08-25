@@ -6,6 +6,10 @@ use app\components\BaseController;
 use yii\filters\AccessControl;
 
 use app\modules\miscellaneouse\models\games\Games;
+
+use app\modules\miscellaneouse\models\rules\Rules;
+
+
 use app\modules\miscellaneouse\models\tournamentParticipants\TournamentPlayerParticipating;
 use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParticipating;
 
@@ -70,7 +74,7 @@ class TournamentController extends BaseController
         {
             $gamesList = Games::getGameWithTournaments($languageID);
 
-            return $this->render('overview',
+            return $this->render('tournamentOverview',
             [
                 'gamesList' => $gamesList,
             ]);
@@ -90,12 +94,11 @@ class TournamentController extends BaseController
 
     public function actionDetails($gameId, $tournamentId)
     {
-         /** Base Informations **/
+        /** Base Informations **/
         $user = Yii::$app->HelperClass->getUser();
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
 
         $tournament = Tournament::find()->where(['id' => $tournamentId])->one();
-        $rules = [];
         $participants = null;
 
         if($tournament->getIsTeamTournament())
@@ -118,5 +121,31 @@ class TournamentController extends BaseController
             'participants' => $participants,
             'doubleEliminationData' => $doubleEliminationData,
         ]);
+	}
+
+    public function actionRegister($gameId, $tournamentId)
+    {
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::find()->where(['id' => $tournamentId])->one();
+        $rules = Rules::GetRules($tournament->getRulesId(), $languageID);
+
+        return $this->render('tournamentRegister',
+        [
+            'tournament' => $tournament,
+            'rules' => $rules,
+        ]);
+	}
+
+    public function actionCheckin($gameId, $tournamentId)
+    {
+        
 	}
 }
