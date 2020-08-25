@@ -40,9 +40,6 @@ class TournamentBracketClass
 
             for($i = 0; $i < $firstRoundBrackets; $i++)
             {
-                print_r($participants);
-                die();
-
                 $brackets['teams'][$i][0] = $participants[$i]['name'];
                 $brackets['teams'][$i][1] = $participants[count($participants)+1-($i+2)]['name'];
 
