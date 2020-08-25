@@ -120,4 +120,42 @@ use app\modules\team\models\TeamRoles;
 
         return $teamManager;
 	}
+
+    public static function FindPlayer($teamId)
+    {
+        $players = static::find()->where(['team_id' => $teamId])->andWhere(['role_id' => 4])->all();
+
+        $teamPlayer = array();
+
+        foreach($players as $nr =>  $player)
+        {
+            $user = User::findIdentity($member->getUserId());
+
+            $teamPlayer[$nr]['UserID'] = $user->getId();
+            $teamPlayer[$nr]['UserName'] = $user->getUsername();
+            $teamPlayer[$nr]['RoleID'] = $player->getRoleId();
+            $teamPlayer[$nr]['RoleName'] = TeamRoles::getRoleByID($player->getRoleId());
+		}
+
+        return $teamPlayer;
+	}
+
+    public static function FindSubstitude($teamId)
+    {
+        $substitudes = static::find()->where(['team_id' => $teamId])->andWhere(['role_id' => 5])->all();
+
+        $teamSubstitudes = array();
+
+        foreach($substitudes as $nr =>  $substitude)
+        {
+            $user = User::findIdentity($member->getUserId());
+
+            $teamSubstitudes[$nr]['UserID'] = $user->getId();
+            $teamSubstitudes[$nr]['UserName'] = $user->getUsername();
+            $teamSubstitudes[$nr]['RoleID'] = $substitude->getRoleId();
+            $teamSubstitudes[$nr]['RoleName'] = TeamRoles::getRoleByID($substitude->getRoleId());
+		}
+
+        return $teamSubstitudes;
+	}
 }

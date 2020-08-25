@@ -62,5 +62,19 @@ use yii\helpers\Html;
     </div>
 
     <div class="brackets">
+        <div id="doubleElimination">
+            <script type="text/javascript">
+                var doubleEliminationData = <?= json_encode($doubleEliminationData) ?>;
+
+                $(function() {
+                    $('div#doubleElimination .tournament').bracket({
+                        skipConsolationRound: true,
+                        init: doubleEliminationData })
+                    });
+            </script>
+
+            <div class="tournament">
+	        </div>
+        </div>
     </div>
 </div>

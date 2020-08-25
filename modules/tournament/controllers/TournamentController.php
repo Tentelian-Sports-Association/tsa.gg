@@ -100,7 +100,7 @@ class TournamentController extends BaseController
 
         if($tournament->getIsTeamTournament())
         {
-            
+            $participants = TournamentTeamParticipating::getTeamParticipating($tournamentId, $languageID);
 		}
         else
         {
@@ -110,11 +110,8 @@ class TournamentController extends BaseController
 
         $doubleEliminationData = Yii::$app->TournamentBracketClass->createBracketData($participants);
 
-        //print_r($tournament);
-        //die();
-
-        //return $this->render('tournamentDetails',
-        return $this->render('test',
+        return $this->render('tournamentDetails',
+        //return $this->render('test',
         [
             'tournament' => $tournament,
             'rules' => $rules,

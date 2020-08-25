@@ -24,7 +24,6 @@ class TournamentBracketClass
 
         if($participants)
         {
-
             /** Check if Power of Two and exend if necessary */
             if(!$this->IsPowerOfTwo(count($participants)))
             {

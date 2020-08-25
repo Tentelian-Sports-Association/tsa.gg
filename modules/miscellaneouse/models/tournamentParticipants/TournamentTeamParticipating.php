@@ -2,8 +2,13 @@
 
 namespace app\modules\miscellaneouse\models\tournamentParticipants;
 
-use yii\db\ActiveRecord;
+use app\modules\team\models\Team;
+use app\modules\team\models\TeamMember;
 
+use app\modules\user\models\User;
+
+use yii\db\ActiveRecord;
+use DateTime;
 
 /**
  * Class TournamentTeamParticipating
@@ -66,4 +71,57 @@ class TournamentTeamParticipating extends ActiveRecord
     {
         return $this->dt_updated;
     }
+
+    /** Get Player Penalties */
+    public function getPenalties()
+    {
+        $penaltie = [];
+        $penaltie[0]['id'] = 1;
+        $penaltie[0]['name'] = 'dq';
+        $penaltie[0]['weight'] = '10';
+        $penaltie[0]['date'] = DateTime::createFromFormat('Y-m-d H:i:s', '2020-03-15 22:30:15')->format('d.m.Y');
+
+        $penaltie[1]['id'] = 2;
+        $penaltie[1]['name'] = 'unsportsmanlike';
+        $penaltie[1]['weight'] = '7';
+        $penaltie[1]['date'] = DateTime::createFromFormat('Y-m-d H:i:s', '2020-03-15 22:30:15')->format('d.m.Y');;
+
+     return $penaltie;
+	}
+
+    /** Get Teams Partcipating with all detailes */
+    public static function getTeamParticipating($tournamentId, $languageId)
+    {
+        $participants = static::find()->where(['tournament_id' => $tournamentId])->all();
+        $detailedParticipants = [];
+
+        foreach($participants as $nr => $participant)
+        {
+            $tournamentTeam = Team::find()->where(['id' => $participant->getTeamId()])->one();
+
+            $detailedParticipants[$nr]['id'] = $participant->getTeamId();
+            $detailedParticipants[$nr]['name'] = $tournamentTeam->getName();
+
+            $detailedParticipants[$nr]['language']['id'] = $tournamentTeam->getLanguageId();
+            $detailedParticipants[$nr]['language']['name'] = $tournamentTeam->getLanguage()->getName($languageId);
+            $detailedParticipants[$nr]['language']['icon'] = $tournamentTeam->getLanguage()->getIconLocale();
+
+            $detailedParticipants[$nr]['checkInState'] = $participant->getIsCheckedIn();
+            $detailedParticipants[$nr]['penalties'] = [];
+
+            $penalties = $participant->getPenalties();
+            foreach($penalties as $p_nr => $penaltie)
+            {
+                $detailedParticipants[$nr]['penalties'][$p_nr]['id'] = $penaltie['id'];
+                $detailedParticipants[$nr]['penalties'][$p_nr]['name'] = $penaltie['name'];
+                $detailedParticipants[$nr]['penalties'][$p_nr]['weight'] = $penaltie['weight'];
+                $detailedParticipants[$nr]['penalties'][$p_nr]['date'] = $penaltie['date'];
+			}
+
+            $detailedParticipants[$nr]['players'] = TeamMember::FindPlayer($participant->getTeamId());
+            $detailedParticipants[$nr]['substitudes'] = TeamMember::FindSubstitude($participant->getTeamId());
+        }
+
+        return $detailedParticipants;
+	}
 }
