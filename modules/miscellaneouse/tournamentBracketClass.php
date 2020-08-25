@@ -30,7 +30,9 @@ class TournamentBracketClass
                 $powerOfTwoCount = $this->nextPowerOf2(count($participants)) - count($participants);
                 for($i = 0; $i < $powerOfTwoCount; $i++)
                 {
-                    array_push($participants, null);
+                    $tmpEntry['name'] = 'Freilos';
+
+                    array_push($participants, $tmpEntry);
 			    }
 		    }
 
@@ -38,6 +40,9 @@ class TournamentBracketClass
 
             for($i = 0; $i < $firstRoundBrackets; $i++)
             {
+                print_r($participants);
+                die();
+
                 $brackets['teams'][$i][0] = $participants[$i]['name'];
                 $brackets['teams'][$i][1] = $participants[count($participants)+1-($i+2)]['name'];
 
