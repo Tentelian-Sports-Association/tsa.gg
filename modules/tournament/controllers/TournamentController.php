@@ -117,7 +117,6 @@ class TournamentController extends BaseController
         //return $this->render('test',
         [
             'tournament' => $tournament,
-            'rules' => $rules,
             'participants' => $participants,
             'doubleEliminationData' => $doubleEliminationData,
         ]);
