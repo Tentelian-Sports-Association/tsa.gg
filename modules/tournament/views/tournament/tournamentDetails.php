@@ -62,7 +62,14 @@ use yii\helpers\Html;
                             <?= Html::img(Yii::$app->HelperClass->checkNationalityImage($participant['language']['icon'], '4x3'), ['aria-label' => $participant['language']['name'] . 'nationality Image', 'alt' => $participant['language']['icon'],'class' => 'IMG']) ?>
                             </div>
                             <div class="col-1 checkinState float-left">
-                                <?= $participant['checkInState'] ?>
+                                <?php if($participant['checkInState']) : ?>
+                                    <!-- Hier haken anziegen für ist eingecheckt -->
+                                    checked in
+                                <?php else : ?>
+                                    <!-- Hier haken anziegen für ist eingecheckt -->
+                                    not checked in
+                                <?php endif; ?>
+                                
                             </div>
                             <!-- Nur Spieler selbst und Administratoren -->
                             <div class="col-6 penalties float-left">
