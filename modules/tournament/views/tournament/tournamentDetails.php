@@ -43,7 +43,7 @@ use yii\helpers\Html;
             ?>
         </div>
 
-        <div class="participants">
+        <div class="participants mt-4">
             <ul class="list-unstyled row">
                 <?php if($tournament['isTeam']) : ?>
                     <?php foreach($participants as $participant) : ?>
