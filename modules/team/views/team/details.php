@@ -98,7 +98,9 @@ teamManager['Name']
                                 <h3 class="mb-1"><?= $team['Name'] ?></h3>
                                 <ul class="personal-datalist list-inline">
                                     <li class="list-inline-item">
-                                        <span class="avatar-job-title">Captain: </span><span class="ml-3 avatarID">ID: <?= $team['ID'] ?></span>
+                                        <span class="avatar-job-title">Captain: 
+                                            <?= Html::a( $teamManager['Name'], ['/user/details', 'userId' => $teamManager['id']], ['class' => '']); ?>
+                                        </span><span class="ml-3 avatarID">ID: <?= $team['ID'] ?></span>
                                     </li>
                                     <li class="list-inline-item">
                                         <span><?= Html::img(Yii::$app->HelperClass->checkNationalityImage($team['Language']['icon'], '4x3'), ['aria-label' => 'nationality Image', 'alt' => $team['Language']['name'],'class' => 'IMG']) ?> <?= $team['Language']['name'] ?></span>
@@ -132,7 +134,9 @@ teamManager['Name']
                                             <div class="col-12">
                                                 <ul class="organisation-title-list list-inline float-left">
                                                     <li class="list-inline-item">
-                                                        <span class="organisation-title"></span>
+                                                        <?php foreach($member['Roles'] as $role) : ?>
+                                                            <span class="organisation-title"><?= $role['RoleName'] ?></span>
+                                                        <?php endforeach; ?>
                                                     </li>
                                                 </ul>
                                                 <div class="clearfix"></div>
