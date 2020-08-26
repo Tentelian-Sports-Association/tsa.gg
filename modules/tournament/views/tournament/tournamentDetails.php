@@ -28,7 +28,7 @@ use yii\helpers\Html;
     </div>
     <div class="inner-wrapper">
 
-        <!-- Den Button mittig zentrieren und schön machen :D -->
+        <!-- Den Button mittig zentrieren und schï¿½n machen :D -->
         <div class="rules">
             <?php
                 echo Html::a('Rules',
@@ -67,9 +67,9 @@ use yii\helpers\Html;
                             <!-- Nur Spieler selbst und Administratoren -->
                             <div class="col-6 penalties float-left">
                                 <?php foreach($participant['penalties'] as $penaltie) : ?>
-                                    <div class="penaltiename"><?= $penaltie['name'] ?></div>
-                                    <div class="penaltiename"><?= $penaltie['weight'] ?></div>
-                                    <div class="penaltiename"><?= $penaltie['date'] ?></div>
+                                    <div class="penaltiename float-left mr-3"><?= $penaltie['name'] ?></div>
+                                    <div class="penaltiename float-left mr-3"><?= $penaltie['weight'] ?></div>
+                                    <div class="penaltiename float-left mr-3"><?= $penaltie['date'] ?></div>
                                 <?php endforeach; ?>
                             </div>
                             <div class="clearfix"></div>
