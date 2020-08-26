@@ -110,7 +110,6 @@ class TournamentController extends BaseController
             $participants = TournamentPlayerParticipating::getPlayerParticipating($tournamentId, $languageID);
         }
 
-
         $doubleEliminationData = Yii::$app->TournamentBracketClass->createBracketData($participants);
 
         return $this->render('tournamentDetails',

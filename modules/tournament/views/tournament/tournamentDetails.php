@@ -84,11 +84,11 @@ use yii\helpers\Html;
                 <script type="text/javascript">
                     var doubleEliminationData = <?= json_encode($doubleEliminationData) ?>;
 
-                    $(function() {
+                    $(window).on('load', function() {
                         $('div#doubleElimination .tournament').bracket({
                             skipConsolationRound: true,
                             init: doubleEliminationData })
-                        });
+                    });
                 </script>
 
                 <div class="tournament">
