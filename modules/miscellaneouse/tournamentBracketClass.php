@@ -41,7 +41,16 @@ class TournamentBracketClass
             for($i = 0; $i < $firstRoundBrackets; $i++)
             {
                 $brackets['teams'][$i][0] = $participants[$i]['name'];
-                $brackets['teams'][$i][1] = $participants[count($participants)+1-($i+2)]['name'];
+                if($participants[count($participants)+1-($i+2)]['name'] == 'Freilos')
+                {
+                    $brackets['teams'][$i][1] = null;
+				}
+                else
+                {
+	                $brackets['teams'][$i][1] = $participants[count($participants)+1-($i+2)]['name'];
+                }
+
+                
 
                 /** Winner first Round */
                 $brackets['results'][0][0][$i][0] = null;

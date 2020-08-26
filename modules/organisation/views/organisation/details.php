@@ -157,7 +157,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Details for Organis
                                         <?php foreach($organisation['Teams'] as $team) : ?>
                                         <div class="team mb-4 col-12 col-lg-6 float-left">
                                             <div class="col-2 float-left">
-                                                <img src="https://via.placeholder.com/46x46.png" class="rounded-circle" >
+                                                <?= Html::img(Yii::$app->HelperClass->checkTeamImage($team['Id'], $organisation['ID']) . '.webp', ['class' => 'rounded-circle avatar-image', 'aria-label' => $team['Name']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkTeamImage($team['Id'], $organisation['ID']) . '.png\'']) ?>		
                                             </div>
                                             <div class="col-10 float-left">
                                                 <div class="col-12">

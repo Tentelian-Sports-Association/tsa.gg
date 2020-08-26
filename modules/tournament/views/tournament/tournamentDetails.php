@@ -28,8 +28,19 @@ use yii\helpers\Html;
     </div>
     <div class="inner-wrapper">
 
+        <!-- Den Button mittig zentrieren und schön machen :D -->
         <div class="rules">
-            
+            <?php
+                echo Html::a('Rules',
+                    [
+                        "rules",
+                        "rulesId" => $tournament['rules_id']
+                    ],
+                    ['class' => "filled-btn btn btn-primary",
+                        'title' => 'Show Rules'
+                    ]
+                )
+            ?>
         </div>
 
         <div class="participants">

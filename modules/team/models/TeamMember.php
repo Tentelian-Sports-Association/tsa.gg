@@ -92,7 +92,9 @@ use app\modules\team\models\TeamRoles;
 
     public static function findMember($teamID)
     {
-        $members = static::findAll(['team_id' => $teamID]);
+        //$captain = 
+
+        $members = static::find()->where(['team_id' => $teamID])->groupBy(['user_id'])->orderBy(['role_id' => SORT_ASC])->all();
         $teamMembers = array();
 
         foreach($members as $nr =>  $member)
@@ -101,8 +103,18 @@ use app\modules\team\models\TeamRoles;
 
             $teamMembers[$nr]['UserID'] = $user->getId();
             $teamMembers[$nr]['UserName'] = $user->getUsername();
-            $teamMembers[$nr]['RoleID'] = $member->getRoleId();
-            $teamMembers[$nr]['RoleName'] = TeamRoles::getRoleByID($member->getRoleId());
+
+            $memberRoles = static::find()->where(['team_id' => $teamID])->andWhere(['user_id' => $user->getId()])->all();
+
+            foreach($memberRoles as $rnr => $role)
+            {
+                $teamMembers[$nr]['Roles'][$rnr]['RoleID'] = $role->getRoleId();
+                $teamMembers[$nr]['Roles'][$rnr]['RoleName'] = TeamRoles::getRoleByID($role->getRoleId());
+			}
+
+            //print_r($teamMembers);
+            //die();
+
 		}
 
         return $teamMembers;

@@ -64,7 +64,7 @@ class TeamController extends BaseController
     {
         if($teamID == 0)
         {
-            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            Alert::addError('Team with ID: ' . $teamId . ' doesnt exists'); 
             return $this->goHome();
 		}
 
@@ -74,7 +74,7 @@ class TeamController extends BaseController
 
         if(!$team)
         {
-            //Alert::addError('User with ID: ' . $userId . ' doesnt exists'); 
+            Alert::addError('Team with ID: ' . $teamID . ' doesnt exists'); 
             return $this->goHome();
 		}
 
