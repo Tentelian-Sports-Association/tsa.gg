@@ -66,11 +66,15 @@ use yii\helpers\Html;
                             </div>
                             <!-- Nur Spieler selbst und Administratoren -->
                             <div class="col-6 penalties float-left">
+                                <div class="row">
                                 <?php foreach($participant['penalties'] as $penaltie) : ?>
-                                    <div class="penaltiename float-left mr-3"><?= $penaltie['name'] ?></div>
-                                    <div class="penaltiename float-left mr-3"><?= $penaltie['weight'] ?></div>
-                                    <div class="penaltiename float-left mr-3"><?= $penaltie['date'] ?></div>
+                                    <div class="col-12">
+                                        <div class="penaltiename float-left mr-3"><?= $penaltie['name'] ?></div>
+                                        <div class="penaltiename float-left mr-3"><?= $penaltie['weight'] ?></div>
+                                        <div class="penaltiename float-left mr-3"><?= $penaltie['date'] ?></div>
+                                    </div>
                                 <?php endforeach; ?>
+                                </div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
