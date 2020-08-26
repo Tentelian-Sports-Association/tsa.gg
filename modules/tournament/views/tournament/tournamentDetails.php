@@ -69,9 +69,9 @@ use yii\helpers\Html;
                                 <div class="row">
                                 <?php foreach($participant['penalties'] as $penaltie) : ?>
                                     <div class="col-12">
-                                        <div class="penaltiename float-left mr-3"><?= $penaltie['name'] ?></div>
-                                        <div class="penaltiename float-left mr-3"><?= $penaltie['weight'] ?></div>
-                                        <div class="penaltiename float-left mr-3"><?= $penaltie['date'] ?></div>
+                                        <div class="penaltiename float-left col-4"><?= $penaltie['name'] ?></div>
+                                        <div class="penaltiename float-left col-4"><?= $penaltie['weight'] ?></div>
+                                        <div class="penaltiename float-left col-4"><?= $penaltie['date'] ?></div>
                                     </div>
                                 <?php endforeach; ?>
                                 </div>
