@@ -101,6 +101,11 @@ class Organisation extends ActiveRecord
          return OrganisationMember::findManagementMember($this->id);
 	}
 
+    public function getInvitabelMember($orgId, $teamId, $gameId, $modeId)
+    {
+        return OrganisationMember::findInvitabelMember($orgId, $teamId, $gameId, $modeId);
+	}
+
     /**
      * @return string
      */

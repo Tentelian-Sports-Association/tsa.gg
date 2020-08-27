@@ -14,6 +14,7 @@ use app\modules\miscellaneouse\models\tournamentMode\TournamentMode;
 use app\modules\organisation\models\Organisation;
 
 use app\modules\team\models\Team;
+use app\modules\team\models\TeamMember;
 
 use app\modules\team\models\formModels\CreateTeamForm;
 use app\modules\team\models\formModels\DetailsForm;
@@ -81,6 +82,7 @@ class TeamController extends BaseController
         $teamDetails = Team::getTeamDetails($teamID, $languageID);
         $teamManager = $team->getManager();
         $teamMember = $team->getMember();
+        $invitabelMembers = $team->getInvitabelMember();
 
         /** @var ProfilePicForm $profilePicModel */
         $teamPicModel = new ProfilePicForm(ProfilePicForm::SCENARIO_TEAM);
@@ -102,6 +104,7 @@ class TeamController extends BaseController
            'teamManager' => $teamManager,
            'isOwner' => $isOwner,
            'teamMember' => $teamMember,
+           'invitabelMembers' => $invitabelMembers,
            'teamPicModel' => $teamPicModel,
         ]);
 	}
@@ -181,5 +184,115 @@ class TeamController extends BaseController
             'nationalityList' => $nationalityList,
             'currentTeamID' => $teamId,
         ]);
+	}
+
+    public function actionInviteToTeam($teamId, $userId)
+    {
+        $team = Team::findTeamById($teamId);
+        $teamManager = $team->getManager();
+
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $teamManager['id']) {
+            Alert::addError('You are not Allowed to invite Players'); 
+            return $this->goBack(Yii::$app->request->referrer);
+        }
+
+        if(TeamMember::find()->where(['team_id' => $teamId])->andWhere(['user_id' => $userId])->one())
+        {
+            Alert::addError('User already member of this team'); 
+            return $this->goBack(Yii::$app->request->referrer);
+		}
+
+
+        $model = new TeamMember();
+
+        $model->team_id = $teamId;
+        $model->user_id = $userId;
+        $model->role_id = 4;
+
+        /** Save Credentials **/
+        try {
+            $model->save();
+        
+            Alert::addSuccess('Player added');
+            return $this->goBack(Yii::$app->request->referrer);
+        } catch (Exception $e) {
+            print_r($e);
+        
+            Alert::addError('Cannot Invite Player');
+            return $this->goBack(Yii::$app->request->referrer);
+        }
+	}
+
+    public function actionRemoveFromTeam($teamId, $userId)
+    {
+        $team = Team::findTeamById($teamId);
+        $teamManager = $team->getManager();
+
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $teamManager['id']) {
+            Alert::addError('You are not Allowed to remove Players'); 
+            return $this->goBack(Yii::$app->request->referrer);
+        }
+
+        $removabelMember = TeamMember::find()->where(['team_id' => $teamId])->andWhere(['user_id' => $userId])->one();
+
+        if(!$removabelMember)
+        {
+            Alert::addError('User already removed from this team'); 
+            return $this->goBack(Yii::$app->request->referrer);
+		}
+
+        if($teamManager['id'] == $userId)
+        {
+            Alert::addError('You cannot remove the Team Captain'); 
+            return $this->goBack(Yii::$app->request->referrer);
+		}
+
+        try {
+            $removabelMember->delete();
+        
+            Alert::addSuccess('Player removed');
+            return $this->goBack(Yii::$app->request->referrer);
+        } catch (Exception $e) {
+            print_r($e);
+        
+            Alert::addError('Cannot Invite Player');
+            return $this->goBack(Yii::$app->request->referrer);
+        }
+	}
+
+    public function actionChangePlayerSubState($teamId, $userId)
+    {
+        $team = Team::findTeamById($teamId);
+        $teamManager = $team->getManager();
+
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $teamManager['id']) {
+            Alert::addError('You are not Allowed to remove Players'); 
+            return $this->goBack(Yii::$app->request->referrer);
+        }
+
+        $member = TeamMember::find()->where(['team_id' => $teamId])->andWhere(['user_id' => $userId])->andWhere(['>=', 'role_id', '4'])->one();
+
+        if(!$member)
+        {
+            Alert::addError('User does not exists in this team'); 
+            return $this->goBack(Yii::$app->request->referrer);
+		}
+
+        try {
+            if($member->role_id == 4)
+                $member->role_id = 5;
+            else if($member->role_id == 5)
+                $member->role_id = 4;
+
+                $member->save();
+        
+            Alert::addSuccess('Player changed');
+            return $this->goBack(Yii::$app->request->referrer);
+        } catch (Exception $e) {
+            print_r($e);
+        
+            Alert::addError('Cannot change Player');
+            return $this->goBack(Yii::$app->request->referrer);
+        }
 	}
 }

@@ -6,6 +6,7 @@
  * @var $teamManager
  * @var $isOwner bool,
  * @var $teamMember array,
+ * @var $invitabelMembers array,
  */
 
 use yii\bootstrap4\ActiveForm;
@@ -113,7 +114,6 @@ teamManager['Name']
                         </div>
                     </div>
 
-
                     <!-- Teams -->
                     <div class="section-row py-5">
                         <h3 class="header">Mitglieder</h3>
@@ -128,6 +128,21 @@ teamManager['Name']
                                             <div class="col-12">
                                                 <h4 class="float-left">
                                                     <?= Html::a( $member['UserName'], ['/user/details', 'userId' => $member['UserID']], ['class' => '']); ?>
+                                                    <?php if ($isOwner) : ?>
+                                                        <?php
+                                                            /** hieraus ein schönes x machen zum löschen */
+                                                            echo Html::a('X',
+                                                                [
+                                                                    "remove-from-team",
+                                                                    "teamId" => $team['ID'],
+                                                                    "userId" => $member['UserID']
+                                                                ],
+                                                                ['class' => "invite-btn",
+                                                                    'title' => 'invite'
+                                                                ]
+                                                            )
+                                                        ?>
+                                                    <?php endif; ?>
                                                 </h4>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -136,6 +151,23 @@ teamManager['Name']
                                                     <li class="list-inline-item">
                                                         <?php foreach($member['Roles'] as $role) : ?>
                                                             <span class="organisation-title"><?= $role['RoleName'] ?></span>
+                                                            <?php if($role['RoleID'] >= 3) : ?>
+                                                                <?php if ($isOwner) : ?>
+                                                                    <?php
+                                                                        /** hieraus ein schönes x machen zum löschen */
+                                                                        echo Html::a('change',
+                                                                            [
+                                                                                "change-player-sub-state",
+                                                                                "teamId" => $team['ID'],
+                                                                                "userId" => $member['UserID']
+                                                                            ],
+                                                                            ['class' => "invite-btn",
+                                                                                'title' => 'invite'
+                                                                            ]
+                                                                        )
+                                                                    ?>
+                                                                <?php endif; ?>
+                                                            <?php endif; ?>
                                                         <?php endforeach; ?>
                                                     </li>
                                                 </ul>
@@ -147,6 +179,54 @@ teamManager['Name']
                             </div>
                         </div>
                     </div>
+
+                    <!-- add Member to Team -->
+                    <?php if($isOwner) : ?>
+                        <div class="section-row py-5">
+                            <h3 class="header">Invitabel Members</h3>
+                                <div class="team-block">
+                                    <div class="team mb-1">
+                                        <?php foreach($invitabelMembers as $invitabelMember) : ?>
+                                            <div class="team-header d-flex align-items-center">
+                                                <div class="col-1">
+                                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $invitabelMember['UserID']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $invitabelMember['UserName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $invitabelMember['UserID']) . '.png\''] ); ?>
+                                                </div>
+                                                <div class="col-11">
+                                                    <div class="col-12">
+                                                        <h4 class="float-left">
+                                                            <?= Html::a( $invitabelMember['UserName'], ['/user/details', 'userId' => $invitabelMember['UserID']], ['class' => '']); ?>
+                                                        </h4>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <ul class="organisation-title-list list-inline float-left">
+                                                            <li class="list-inline-item">
+                                                                <?php if ($isOwner) : ?>
+                                                                    <?php
+                                                                        echo Html::a('add',
+                                                                            [
+                                                                                "invite-to-team",
+                                                                                "teamId" => $team['ID'],
+                                                                                "userId" => $invitabelMember['UserID']
+                                                                            ],
+                                                                            ['class' => "invite-btn",
+                                                                                'title' => 'invite'
+                                                                            ]
+                                                                        )
+                                                                    ?>
+                                                                <?php endif; ?>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
 

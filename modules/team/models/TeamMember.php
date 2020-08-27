@@ -111,10 +111,6 @@ use app\modules\team\models\TeamRoles;
                 $teamMembers[$nr]['Roles'][$rnr]['RoleID'] = $role->getRoleId();
                 $teamMembers[$nr]['Roles'][$rnr]['RoleName'] = TeamRoles::getRoleByID($role->getRoleId());
 			}
-
-            //print_r($teamMembers);
-            //die();
-
 		}
 
         return $teamMembers;

@@ -407,4 +407,10 @@ class User extends AbstractActiveRecord implements IdentityInterface
      {
         return OrganisationMember::findOrganisationManagementMember($this->id);
 	 }
+
+    public function getSubTeamsMembership()
+    {
+        return $this->hasMany(Team::className(), ['id' => 'sub_team_id'])
+            ->viaTable('team_member', ['user_id' => 'id']);
+    }
 }

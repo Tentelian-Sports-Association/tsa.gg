@@ -107,6 +107,11 @@ class Team extends ActiveRecord
         return TeamMember::findMember($this->id);
 	}
 
+    public function getInvitabelMember()
+    {
+        return Organisation::getInvitabelMember($this->organisation_id ,$this->id, $this->game_id, $this->mode_id);
+	}
+
     /**
      * @return string
      */
