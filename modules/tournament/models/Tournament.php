@@ -220,6 +220,11 @@ class Tournament extends ActiveRecord
         return $sortedTournament;
 	}
 
+    public static function GetRunningTournaments($gameId)
+    {
+        return static::find()->where(['game_id' => $gameId])->andWhere(['finished' => '0'])->andWhere(['running' => '1'])->all();
+	}
+
     public static function GetUpcomingTournaments()
     {
         $tournaments = static::find()->where(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_DESC])->limit(5)->all();
@@ -251,6 +256,4 @@ class Tournament extends ActiveRecord
 		}
         return $sortedTournament;
     }
-
-
 }

@@ -6,8 +6,11 @@ use yii\db\ActiveRecord;
 
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParticipating;
 
 use app\modules\organisation\models\Organisation;
+
+use app\modules\tournament\models\tournament;
 
 //use app\modules\team\models\Team;
 
@@ -153,6 +156,20 @@ class Team extends ActiveRecord
     {
         return $this->hasOne(Nationality::className(), ['id' => 'nationality_id'])->one();
     }
+
+    public function FindParticipateInRunningTournament()
+    {
+        $isParticipating = false;
+
+        $runningTournaments = Tournament::GetRunningTournaments($this->game_id);
+
+        foreach($runningTournaments as $runningTournament)
+        {
+            $isParticipating = TournamentTeamParticipating::find()->where(['tournament_id' => $runningTournament->getId()])->andWhere(['team_id' => $this->id]);
+		}
+
+        return $isParticipating;
+	}
 
     /* Get Teams for Community Overview */
     public static function GetDetails($PaginatedTeams, $languageID)

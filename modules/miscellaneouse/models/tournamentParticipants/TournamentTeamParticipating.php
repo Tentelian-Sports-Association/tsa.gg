@@ -86,7 +86,7 @@ class TournamentTeamParticipating extends ActiveRecord
         $penaltie[1]['weight'] = '7';
         $penaltie[1]['date'] = DateTime::createFromFormat('Y-m-d H:i:s', '2020-03-15 22:30:15')->format('d.m.Y');;
 
-     return $penaltie;
+        return $penaltie;
 	}
 
     /** Get Teams Partcipating with all detailes */

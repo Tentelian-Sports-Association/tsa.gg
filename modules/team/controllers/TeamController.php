@@ -11,6 +11,8 @@ use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\nationality\Nationality;
 use app\modules\miscellaneouse\models\tournamentMode\TournamentMode;
 
+use app\modules\tournament\models\Tournament;
+
 use app\modules\organisation\models\Organisation;
 
 use app\modules\team\models\Team;
@@ -232,6 +234,14 @@ class TeamController extends BaseController
             Alert::addError('You are not Allowed to remove Players'); 
             return $this->goBack(Yii::$app->request->referrer);
         }
+
+        $runningTournaments = $team->FindParticipateInRunningTournament();
+
+        if($runningTournaments)
+        {
+            Alert::addError('Team is participating in a running Tournament, changes cannot be done.'); 
+            return $this->goBack(Yii::$app->request->referrer);
+		}
 
         $removabelMember = TeamMember::find()->where(['team_id' => $teamId])->andWhere(['user_id' => $userId])->one();
 
