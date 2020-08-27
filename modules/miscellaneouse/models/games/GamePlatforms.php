@@ -14,6 +14,7 @@ use yii\db\ActiveRecord;
  * @property string $twitter_developer_tag
  * @property string $twitter_channel
  * @property string $icon
+ * @property int $game_platformscol
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -99,6 +100,14 @@ class GamePlatforms extends ActiveRecord
     public function getIcon()
     {
         return $this->icon;
+    }
+
+    /**
+     * @return blob screen
+     */
+    public function getPlatformAsGameId()
+    {
+        return $this->game_platformscol;
     }
 
     /**

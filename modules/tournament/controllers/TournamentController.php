@@ -113,7 +113,6 @@ class TournamentController extends BaseController
         $doubleEliminationData = Yii::$app->TournamentBracketClass->createBracketData($participants);
 
         return $this->render('tournamentDetails',
-        //return $this->render('test',
         [
             'tournament' => $tournament,
             'participants' => $participants,
@@ -135,10 +134,16 @@ class TournamentController extends BaseController
         $tournament = Tournament::find()->where(['id' => $tournamentId])->one();
         $rules = Rules::GetRules($tournament->getRulesId(), $languageID);
 
+        $gameClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CheckTeamEligible';
+        $tournamentGameClass = new $gameClass();
+
+        $authorizedTeams = $tournamentGameClass->checkTeamAuthorization($tournament, $user, $languageID);
+
         return $this->render('tournamentRegister',
         [
             'tournament' => $tournament,
             'rules' => $rules,
+            'authorizedTeams' => $authorizedTeams,
         ]);
 	}
 

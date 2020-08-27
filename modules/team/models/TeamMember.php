@@ -137,7 +137,7 @@ use app\modules\team\models\TeamRoles;
 
         foreach($players as $nr =>  $player)
         {
-            $user = User::findIdentity($member->getUserId());
+            $user = User::findIdentity($player->getUserId());
 
             $teamPlayer[$nr]['UserID'] = $user->getId();
             $teamPlayer[$nr]['UserName'] = $user->getUsername();
@@ -156,7 +156,7 @@ use app\modules\team\models\TeamRoles;
 
         foreach($substitudes as $nr =>  $substitude)
         {
-            $user = User::findIdentity($member->getUserId());
+            $user = User::findIdentity($substitude->getUserId());
 
             $teamSubstitudes[$nr]['UserID'] = $user->getId();
             $teamSubstitudes[$nr]['UserName'] = $user->getUsername();

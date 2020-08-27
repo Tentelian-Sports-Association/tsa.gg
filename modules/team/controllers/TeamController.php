@@ -198,7 +198,7 @@ class TeamController extends BaseController
             return $this->goBack(Yii::$app->request->referrer);
         }
 
-        if(TeamMember::find()->where(['team_id' => $teamId])->andWhere(['user_id' => $userId])->one())
+        if(TeamMember::find()->where(['team_id' => $teamId])->andWhere(['user_id' => $userId])->andWhere(['>=', 'role_id', '4'])->one())
         {
             Alert::addError('User already member of this team'); 
             return $this->goBack(Yii::$app->request->referrer);
@@ -243,7 +243,7 @@ class TeamController extends BaseController
             return $this->goBack(Yii::$app->request->referrer);
 		}
 
-        $removabelMember = TeamMember::find()->where(['team_id' => $teamId])->andWhere(['user_id' => $userId])->one();
+        $removabelMember = TeamMember::find()->where(['team_id' => $teamId])->andWhere(['user_id' => $userId])->andWhere(['>=', 'role_id', '4'])->one();
 
         if(!$removabelMember)
         {
@@ -253,7 +253,19 @@ class TeamController extends BaseController
 
         if($teamManager['id'] == $userId)
         {
-            Alert::addError('You cannot remove the Team Captain'); 
+            try {
+                $removabelMember->delete();
+        
+                Alert::addSuccess('You cannot remove the Team Captain, but he is no longer a Player or Substitude');
+                return $this->goBack(Yii::$app->request->referrer);
+            } catch (Exception $e) {
+                print_r($e);
+        
+                Alert::addError('Cannot remove Captain as Player');
+                return $this->goBack(Yii::$app->request->referrer);
+            }
+
+            Alert::addError('You cannot remove the Team Captain');
             return $this->goBack(Yii::$app->request->referrer);
 		}
 
@@ -265,7 +277,7 @@ class TeamController extends BaseController
         } catch (Exception $e) {
             print_r($e);
         
-            Alert::addError('Cannot Invite Player');
+            Alert::addError('Cannot remove Player');
             return $this->goBack(Yii::$app->request->referrer);
         }
 	}

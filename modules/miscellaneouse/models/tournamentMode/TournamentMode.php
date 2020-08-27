@@ -12,6 +12,7 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property int $game_id
  * @property string $name
+ * @property int $minPlayer
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -49,6 +50,14 @@ class TournamentMode extends ActiveRecord
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTeamSize()
+    {
+        return $this->minPlayer;
     }
 
     /**

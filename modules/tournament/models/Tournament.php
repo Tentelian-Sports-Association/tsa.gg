@@ -28,6 +28,7 @@ use DateTime;
  * @property bool $running
  * @property bool $isTeam
  * @property int $bracket_set_id
+ * @property int $maxPlayer
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -158,6 +159,14 @@ class Tournament extends ActiveRecord
     public function getBracketSetID()
     {
         return $this->bracket_set_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMaxPlayer()
+    {
+        return $this->maxPlayer;
     }
     
     /**
