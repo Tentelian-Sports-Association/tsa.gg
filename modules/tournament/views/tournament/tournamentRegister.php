@@ -51,82 +51,106 @@ use yii\helpers\Html;
     <div class="teams">
         <div class="col-12 col-md-12">
             <div class="col-12 userBodyHead">
-                <div class="col-lg-2 teamName float-left"><?= 'Team name' ?></div>
-                <div class="col-4 col-lg-4 playerName float-left"><?= 'Player name' ?></div>
-                <div class="col-6 col-lg-6 substitudes float-left"><?= 'Registered Platform' ?></div>      
-                <div class="clearfix"></div>
+                <div class="col-lg-2 teamName float-left">Team Name</div>
+                <div class="col-lg-3 player float-left">
+                    <div class="col-lg-3 playerName float-left">Player</div>
+                    <div class="col-lg-9 gameData float-left">
+                        <div class="col-lg-7 platforms float-left">Platforms</div>
+                        <div class="col-lg-4 platforms float-left">State</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 substitudes float-left">
+                    <div class="col-lg-3 substitudeName float-left">Substitudes</div>
+                    <div class="col-lg-9 gameData float-left">
+                        <div class="col-lg-7 platforms float-left">Platforms</div>
+                        <div class="col-lg-4 platforms float-left">State</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 registration float-left">Registration</div>
             </div>
             <div class="clearfix"></div>
             <?php foreach($authorizedTeams as $authorizedTeam) : ?>
                 <div class="col-12 userBody">
-                    <div class="col-lg-2 id float-left">
+                    <!-- Team Name -->
+                    <div class="col-lg-2 teamname float-left">
                         <?= $authorizedTeam['teamName']; ?>
                     </div>
-                    <div class="col-8 col-lg-8 float-left">
+
+                    <!-- Player Data -->
+                    <div class="col-lg-3 player float-left">
                         <?php if(array_key_exists('player', $authorizedTeam)) : ?>
                             <?php foreach($authorizedTeam['player'] as $player) : ?>
-                                <div class="col-4 float-left"> <?= $player['playerName'] ?>
+                                <!-- Player Name -->
+                                <div class="col-lg-3 playerName float-left">
+                                    <?= $player['playerName'] ?>
                                 </div>
-                                <div class="col-8 float-left">
+
+                                <!-- Player Game Id's and Platforms -->
+                                <div class="col-lg-9 gameData float-left">
                                     <?php if(array_key_exists('gameIds', $player)) : ?>
                                         <?php foreach($player['gameIds'] as $gameID) : ?>
-                                            <div class="col-12 float-left">
-                                                <div class="col-5 float-left">
-                                                    <?= $gameID['platformName'] ?>
-                                                </div>
-                                                <div class="col-7 float-left">
-                                                    <?php if($gameID['playerGameIdEligible']) : ?>
-                                                        <?= 'correct'; ?>
-                                                    <?php else : ?>
-                                                        <?= 'incorrect'; ?>
-                                                    <?php endif; ?>
-                                                </div>
+                                            <div class="col-7 float-left">
+                                                <?= $gameID['platformName'] ?>
+                                            </div>
+                                            <div class="col-4 gameId float-left">
+                                                <?php if($gameID['playerGameIdEligible']) : ?>
+                                                    <?= 'correct'; ?>
+                                                <?php else : ?>
+                                                    <?= 'incorrect'; ?>
+                                                <?php endif; ?>
                                             </div>
                                         <?php endforeach; ?>
-                                    <?php else : ?>
-                                        <div class="col-6 col-lg-6 substitudes float-left">
-                                            <div class="col-12 float-left">
-                                                No game id set
-                                            </div>
-                                        </div>
                                     <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
+                    </div>
+
+                    <!-- Substitude Data -->
+                    <div class="col-lg-3 substitudes float-left">
                         <?php if(array_key_exists('substitude', $authorizedTeam)) : ?>
-                            <?php foreach($authorizedTeam['substitude'] as $player) : ?>
-                                <div class="col-4 float-left"> <?= $player['playerName'] ?>
+                            <?php foreach($authorizedTeam['substitude'] as $substitude) : ?>
+                                <!-- Substitude Name -->
+                                <div class="col-lg-3 playerName float-left">
+                                    <?= $substitude['playerName'] ?>
                                 </div>
-                                <div class="col-8 float-left">
-                                    <?php if(array_key_exists('gameIds', $player)) : ?>
-                                        <?php foreach($player['gameIds'] as $gameID) : ?>
-                                            <div class="col-12 float-left">
-                                                <div class="col-5 float-left">
-                                                    <?= $gameID['platformName'] ?>
-                                                </div>
-                                                <div class="col-7 float-left">
-                                                    <?php if($gameID['playerGameIdEligible']) : ?>
-                                                        <?= 'correct'; ?>
-                                                    <?php else : ?>
-                                                        <?= 'incorrect'; ?>
-                                                    <?php endif; ?>
-                                                </div>
+
+                                <!-- Substitude Game Id's and Platforms -->
+                                <div class="col-lg-9 gameData float-left">
+                                    <?php if(array_key_exists('gameIds', $substitude)) : ?>
+                                        <?php foreach($substitude['gameIds'] as $gameID) : ?>
+                                            <div class="col-7 float-left">
+                                                <?= $gameID['platformName'] ?>
+                                            </div>
+                                            <div class="col-4 gameId float-left">
+                                                <?php if($gameID['playerGameIdEligible']) : ?>
+                                                    <?= 'correct'; ?>
+                                                <?php else : ?>
+                                                    <?= 'incorrect'; ?>
+                                                <?php endif; ?>
                                             </div>
                                         <?php endforeach; ?>
-                                    <?php else : ?>
-                                        <div class="col-6 col-lg-6 substitudes float-left">
-                                            <div class="col-12 float-left">
-                                                No game id set
-                                            </div>
-                                        </div>
                                     <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <!-- Team is Eligible -->
+                    <div class="col-lg-4 float-left">
+                        <?php if($authorizedTeam['teamEligible']) : ?>
+                            <div class="col-lg-12 registration float-left">
+                                button zur registration
+                            </div>
+                        <?php else : ?>
+                            <div class="col-lg-12 registration float-left">
+                                geht nicht
+                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
+                <div class="clearfix"></div>
             <?php endforeach; ?>
         </div>
-    </div>
-
+    <div>
 </div>
