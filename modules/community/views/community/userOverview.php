@@ -13,6 +13,7 @@
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use app\widgets\Alert;
 
 $this->title = \app\modules\community\Module::t('overview', 'overview_header_users');
 

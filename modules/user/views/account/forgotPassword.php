@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
+use app\widgets\Alert;
 
 \app\modules\user\assets\account\forgotPassword\ForgotPasswordAsset::register($this);
 

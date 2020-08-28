@@ -16,6 +16,7 @@ use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParti
 use app\modules\tournament\models\Tournament;
 
 use Yii;
+use app\widgets\Alert;
 
 /**
  * Class PartnerController

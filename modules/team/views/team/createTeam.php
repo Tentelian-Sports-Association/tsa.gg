@@ -11,6 +11,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
+use app\widgets\Alert;
 
 $this->title = \app\modules\team\Module::t('createTeam', 'create_title');
 

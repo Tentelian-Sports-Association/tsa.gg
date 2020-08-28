@@ -2,6 +2,7 @@
 
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use app\widgets\Alert;
 
 $this->title = \app\modules\company\Module::t('company', 'jobs_header');
 

@@ -11,6 +11,7 @@ use app\modules\news\models\NewsSubCategorie;
 use DateTime;
 use Yii;
 use yii\data\Pagination;
+use app\widgets\Alert;
 
 class NewsController extends BaseController
 {

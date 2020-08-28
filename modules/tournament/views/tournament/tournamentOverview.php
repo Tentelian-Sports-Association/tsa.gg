@@ -3,7 +3,7 @@
 /* @var $gamesList array */
 
 use yii\helpers\Html;
-
+use app\widgets\Alert;
 
 $this->title = \app\modules\tournament\Module::t('overview', 'overview_header');
 

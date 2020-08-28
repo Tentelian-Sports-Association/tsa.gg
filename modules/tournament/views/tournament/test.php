@@ -8,6 +8,8 @@
 
 \app\modules\tournament\assets\TournamentDetailsAsset::register($this);
 
+use app\widgets\Alert;
+
 ?>
 <div class="site-tournamentDetails">
     <div class="hero">

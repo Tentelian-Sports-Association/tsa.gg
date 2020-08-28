@@ -8,6 +8,7 @@ use yii\filters\AccessControl;
 use app\modules\partner\models\Partner;
 
 use Yii;
+use app\widgets\Alert;
 
 /**
  * Class PartnerController
