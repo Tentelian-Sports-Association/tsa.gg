@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use app\widgets\Alert;
 
 /* @var $this yii\web\View
  * @var $ourPartner array

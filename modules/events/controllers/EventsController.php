@@ -6,6 +6,7 @@ use app\components\BaseController;
 
 use DateTime;
 use Yii;
+use app\widgets\Alert;
 
 class EventsController extends BaseController
 {

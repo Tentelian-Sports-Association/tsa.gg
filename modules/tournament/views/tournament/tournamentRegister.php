@@ -10,6 +10,8 @@
 
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
+use app\widgets\Alert;
+
 ?>
 
 <div class="site-tournamentRegistration">

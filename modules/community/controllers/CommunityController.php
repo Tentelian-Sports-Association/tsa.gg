@@ -20,6 +20,7 @@ use app\modules\user\models\User;
 use DateTime;
 use Yii;
 use yii\data\Pagination;
+use app\widgets\Alert;
 
 class CommunityController extends BaseController
 {

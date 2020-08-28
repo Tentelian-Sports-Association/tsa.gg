@@ -5,7 +5,7 @@
 /* @var $users array */
 
 use yii\helpers\Html;
-
+use app\widgets\Alert;
 
 $this->title = \app\modules\events\Module::t('details', 'event_details_header');
 

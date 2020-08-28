@@ -5,7 +5,7 @@
 /* @var $users array */
 
 use yii\helpers\Html;
-
+use app\widgets\Alert;
 
 $this->title = \app\modules\community\Module::t('overview', 'overview_header');
 

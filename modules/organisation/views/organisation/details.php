@@ -12,7 +12,6 @@
 
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
-
 use app\widgets\Alert;
 
 $this->title = $organisation['Name'] . \app\modules\organisation\Module::t('organisationDetails', 'details_header');

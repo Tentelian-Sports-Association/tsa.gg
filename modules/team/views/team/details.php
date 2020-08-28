@@ -11,7 +11,6 @@
 
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
-
 use app\widgets\Alert;
 
 $this->title = $team['Name'] . \app\modules\team\Module::t('teamDetails', 'details_title') . '\'s Team profile';

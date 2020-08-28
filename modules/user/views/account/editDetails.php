@@ -11,6 +11,7 @@
 
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
+use app\widgets\Alert;
 
 \app\modules\user\assets\account\profileDetails\EditDetailsAsset::register($this);
 

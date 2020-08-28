@@ -4,6 +4,7 @@
 /* @var $choosedGame array */
 
 use yii\helpers\Html;
+use app\widgets\Alert;
 
 $this->title = $choosedGame['name'] . \app\modules\tournament\Module::t('active', 'activeTournament_header');
 

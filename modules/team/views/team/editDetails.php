@@ -10,7 +10,6 @@
 
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
-
 use app\widgets\Alert;
 
 $this->title = \app\modules\team\Module::t('editTeam', 'edit_title');
