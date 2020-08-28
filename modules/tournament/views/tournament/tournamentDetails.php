@@ -43,7 +43,7 @@ use yii\helpers\Html;
             ?>
         </div>
 
-        <div class="participants mt-4">
+        <div class="participants mt-4 mb-4">
             <ul class="list-unstyled row">
                 <?php if($tournament['isTeam']) : ?>
                     <?php foreach($participants as $participant) : ?>
@@ -87,22 +87,68 @@ use yii\helpers\Html;
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-            </div>
-        </div>
-
-        <div class="brackets">
-            <div id="doubleElimination">
-                <script type="text/javascript">
-                    var doubleEliminationData = <?= json_encode($doubleEliminationData) ?>;
-
-                    $(window).on('load', function() {
-                        $('div#doubleElimination .tournament').bracket({
-                            skipConsolationRound: true,
-                            init: doubleEliminationData })
-                    });
-                </script>
-
-                <div class="tournament">
+            </ul>
+        </div>                     
+        <div class="brackets mt-4 mb-4" style="width: 100%; overflow-x: auto;">
+            <div class="item">
+                <div class="item-parent">
+                    <p>Gewinner</p>
+                </div>
+                <div class="item-childrens">
+                    <div class="item-child">
+                        <div class="item">
+                            <div class="item-parent">
+                                <p>Parent X</p>
+                            </div>
+                            <div class="item-childrens">
+                                <div class="item-child">
+                                    <div class="item">
+                                        <div class="item-parent">
+                                            <p>Parent</p>
+                                        </div>
+                                        <div class="item-childrens">
+                                            <div class="item-child">
+                                                <p>Player 1</p>
+                                            </div>
+                                            <div class="item-child">
+                                                <p>Player 2</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-child">
+                                    <p>Player 3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-child">
+                        <div class="item">
+                            <div class="item-parent">
+                                <p>Parent</p>
+                            </div>
+                            <div class="item-childrens">
+                                <div class="item-child">
+                                    <div class="item">
+                                        <div class="item-parent">
+                                            <p>Parent</p>
+                                        </div>
+                                        <div class="item-childrens">
+                                            <div class="item-child">
+                                                <p>Player 4</p>
+                                            </div>
+                                            <div class="item-child">
+                                                <p>Player 5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-child">
+                                    <p>Player 6</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
