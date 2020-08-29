@@ -1,8 +1,8 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $tournament array */
-/* @var $rules array */
 /* @var $participants array */
+/* @var $bracketData array */
 
 
 \app\modules\tournament\assets\TournamentDetailsAsset::register($this);

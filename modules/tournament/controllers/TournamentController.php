@@ -105,19 +105,21 @@ class TournamentController extends BaseController
         if($tournament->getIsTeamTournament())
         {
             $participants = TournamentTeamParticipating::getTeamParticipating($tournamentId, $languageID);
+            $checkedInParticipants = TournamentTeamParticipating::getCheckedInTeamParticipating($tournamentId, $languageID);
 		}
         else
         {
             $participants = TournamentPlayerParticipating::getPlayerParticipating($tournamentId, $languageID);
+            $checkedInParticipants = TournamentPlayerParticipating::getCheckedInPlayerParticipating($tournamentId, $languageID);
         }
 
-        $doubleEliminationData = Yii::$app->TournamentBracketClass->createBracketData($participants);
+        $bracketData = Yii::$app->TournamentBracketClass->createBracketData($checkedInParticipants, Games::find('id', $tournament->getGameId())->one()->getStatisticsClass());
 
         return $this->render('tournamentDetails',
         [
             'tournament' => $tournament,
             'participants' => $participants,
-            'doubleEliminationData' => $doubleEliminationData,
+            'bracketData' => $bracketData,
         ]);
 	}
 

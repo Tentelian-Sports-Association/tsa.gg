@@ -17,9 +17,9 @@ class TournamentBracketClass
      */
     public function __construct() { }
 
-    public function createBracketData($participants)
+    public function createBracketData($participants, $gameClass)
     {
-
+        $gameClass = 'app\modules\tournament\modules\\' .$gameClass . '\CreateBrackets';
         $brackets = [];
 
         if($participants)
@@ -40,30 +40,22 @@ class TournamentBracketClass
 
             for($i = 0; $i < $firstRoundBrackets; $i++)
             {
-                $brackets['teams'][$i][0] = $participants[$i]['name'];
+                $brackets['teams'][$i][0]['name'] = $participants[$i]['name'];
+                $brackets['teams'][$i][0]['id'] = $participants[$i]['id'];
+
                 if($participants[count($participants)+1-($i+2)]['name'] == 'Freilos')
                 {
                     $brackets['teams'][$i][1] = null;
 				}
                 else
                 {
-	                $brackets['teams'][$i][1] = $participants[count($participants)+1-($i+2)]['name'];
+	                $brackets['teams'][$i][1]['name'] = $participants[count($participants)+1-($i+2)]['name'];
+                    $brackets['teams'][$i][1]['id'] = $participants[count($participants)+1-($i+2)]['id'];
                 }
-
-                
-
-                /** Winner first Round */
-                $brackets['results'][0][0][$i][0] = null;
-                $brackets['results'][0][0][$i][1] = null;
-
-                /** Looser first Round */
-                if ($i < $firstRoundBrackets/2)
-                {
-                    $brackets['results'][1][0][$i][0] = null;
-                    $brackets['results'][1][0][$i][1] = null;
-				}
 		    }
         }
+
+        //$tournamentBrackets = $gameClass->
 
         /** Return the Brackets */
         return $brackets;

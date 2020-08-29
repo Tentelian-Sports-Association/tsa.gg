@@ -447,7 +447,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
 
             <div class="col-12 col-lg-4">
                 <!-- Coins -->
-                <div class="coins-block py-5 bg-darkblue-2 ">
+                <div class="coins-block py-5 bg-darkblue-2">
                     <h3 class="header">
                         <?= \app\modules\user\Module::t('userDetails', 'userDetails_coinsHeader') ?>
                     </h3>

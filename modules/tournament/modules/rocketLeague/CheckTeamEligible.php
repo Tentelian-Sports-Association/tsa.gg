@@ -22,7 +22,7 @@ use Yii;
 class CheckTeamEligible
 {
     /**
-     * HelperClass constructor.
+     * constructor.
      */
     public function __construct()
     {

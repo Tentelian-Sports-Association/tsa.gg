@@ -121,4 +121,21 @@ class TournamentPlayerParticipating extends ActiveRecord
 
         return $detailedParticipants;
 	}
+
+    /** Get Player Partcipating with all detailes */
+    public static function getCheckedInPlayerParticipating($tournamentId, $languageId)
+    {
+        $participants = static::find()->where(['tournament_id' => $tournamentId])->andWhere(['checked_in' => 1])->all();
+        $detailedCheckedInParticipants = [];
+
+        foreach($participants as $nr => $participant)
+        {
+            $tournamentPlayer = User::find()->where(['id' => $participant->getPlayerId()])->one();
+
+            $detailedCheckedInParticipants[$nr]['id'] = $tournamentPlayer->getId();
+            $detailedCheckedInParticipants[$nr]['name'] = $tournamentPlayer->getUsername();
+		}
+
+        return $detailedCheckedInParticipants;
+	}
 }
