@@ -17,9 +17,10 @@ class TournamentBracketClass
      */
     public function __construct() { }
 
-    public function createBracketData($participants, $gameClass)
+    public function createBracketData($participants, $gameClassName, $tournament_id)
     {
-        $gameClass = 'app\modules\tournament\modules\\' .$gameClass . '\CreateBrackets';
+        $game = 'app\modules\tournament\modules\\' .$gameClassName . '\CreateBrackets';
+        $gameClass = new $game();
         $brackets = [];
 
         if($participants)
@@ -55,10 +56,10 @@ class TournamentBracketClass
 		    }
         }
 
-        //$tournamentBrackets = $gameClass->
+        $tournamentBrackets = $gameClass->CreateBrackets($participants, $tournament_id);
 
         /** Return the Brackets */
-        return $brackets;
+        return $tournamentBrackets;
     }
 
     public function IsPowerOfTwo($x)

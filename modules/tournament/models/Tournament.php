@@ -2,17 +2,20 @@
 
 namespace app\modules\tournament\models;
 
+use yii\db\ActiveRecord;
+use DateTime;
+
 use app\modules\miscellaneouse\models\tournamentMode\TournamentMode;
 use app\modules\miscellaneouse\models\games\Games;
 
-use yii\db\ActiveRecord;
+use app\modules\tournament\models\BracketSet;
 
-use DateTime;
+use app\modules\user\models\User;
 
 
 /**
  * Class Tournament
- * @package app\modules\organisation\models
+ * @package app\modules\tournament\models
  *
  * @property int $id
  * @property string $name
@@ -162,6 +165,14 @@ class Tournament extends ActiveRecord
     }
 
     /**
+     * @return int
+     */
+    public function getBracketSet()
+    {
+        return $this->hasOne(BracketSet::className(), ['id' => 'bracket_set_id'])->one();
+    }
+
+    /**
      * @return string
      */
     public function getMaxPlayer()
@@ -264,5 +275,15 @@ class Tournament extends ActiveRecord
             $sortedTournament[$nr]['StartingTime'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->getStartingTime())->format('H:i');
 		}
         return $sortedTournament;
+    }
+
+    public static function getTournamentById($tournament_id)
+    {
+        return static::find()->where(['id' => $tournament_id])->one();
+	}
+
+    public function getPlayerParticipants()
+    {
+        return $this->hasMany(User::className(), ['id' => 'player_id'])->viaTable('tournament_player_participating', ['tournament_id' => 'id'])->all();
     }
 }

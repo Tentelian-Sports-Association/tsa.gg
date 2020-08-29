@@ -9,18 +9,10 @@ class TournamentDetailsAsset extends AssetBundle
  
     public $css = [
 		'css/tournamentDetails.css',
-        'css/jquery.bracket.css'
+        'css/bracket.css'
     ];
 
     public $cssOptions = [
-        'async' => 'true'
-	];
-
-    public $js = [
-        'js/tournament/jquery.bracket.min.js'
-    ];
-
-    public $jsOptions = [
         'async' => 'true'
 	];
 }

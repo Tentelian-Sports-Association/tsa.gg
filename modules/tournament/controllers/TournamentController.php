@@ -15,6 +15,9 @@ use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParti
 
 use app\modules\tournament\models\Tournament;
 
+use app\modules\tournament\modules\rocketLeague\models\TeamBrackets;
+use app\modules\tournament\modules\rocketLeague\models\PlayerBrackets;
+
 use Yii;
 use app\widgets\Alert;
 
@@ -105,22 +108,37 @@ class TournamentController extends BaseController
         if($tournament->getIsTeamTournament())
         {
             $participants = TournamentTeamParticipating::getTeamParticipating($tournamentId, $languageID);
-            $checkedInParticipants = TournamentTeamParticipating::getCheckedInTeamParticipating($tournamentId, $languageID);
+            $bracketData = TeamBrackets::getAllByTournamentFormatted($tournamentId);
 		}
         else
         {
             $participants = TournamentPlayerParticipating::getPlayerParticipating($tournamentId, $languageID);
-            $checkedInParticipants = TournamentPlayerParticipating::getCheckedInPlayerParticipating($tournamentId, $languageID);
-        }
-
-        $bracketData = Yii::$app->TournamentBracketClass->createBracketData($checkedInParticipants, Games::find('id', $tournament->getGameId())->one()->getStatisticsClass());
-
+            $bracketData = PlayerBrackets::getAllByTournamentFormatted($tournamentId);
+		}
+        
         return $this->render('tournamentDetails',
         [
             'tournament' => $tournament,
             'participants' => $participants,
             'bracketData' => $bracketData,
         ]);
+	}
+
+    public function actionCreateBrackets()
+    {
+        $game = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CreateBrackets';
+        $gameClass = new $game();
+
+        if($tournament->getIsTeamTournament())
+        {
+            $checkedInParticipants = TournamentTeamParticipating::getCheckedInTeamParticipating($tournamentId, $languageID);
+		}
+        else
+        {
+            $checkedInParticipants = TournamentPlayerParticipating::getCheckedInPlayerParticipating($tournamentId, $languageID);
+        }
+
+        $bracketData = $gameClass->CreateBrackets($checkedInParticipants, $tournament->getId());
 	}
 
     public function actionRegister($gameId, $tournamentId)
