@@ -9,7 +9,7 @@ class CreateTeamAssets extends AssetBundle
     public $sourcePath = '@app/assets/dist';
  
     public $css = [
-		'css/team/create.css'
+		'css/createTeam.css'
     ];
 
     public $cssOptions = [
