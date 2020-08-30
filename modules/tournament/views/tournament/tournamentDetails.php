@@ -156,12 +156,12 @@ use app\widgets\Alert;
         <!-- Tournament Brackets -->
         <div class="brackets mt-4 mb-4" style="width: 100%; overflow-x: auto;">
             <h3>Winner Bracket</h3>
-            <div class="winnerBracket">
+            <div class="winnerBracket row">
                 <?php foreach ($bracketData['winner'] as $round => $roundBrackets): ?>
                     <?php $firstBracket = reset($roundBrackets['brackets']); ?>
-                    <div class="bracketRound">
+                    <div class="bracketRound col">
                         <div class="roundTitle">
-                            <?= 'Round ' . $round; ?>
+                            <?=  'Round ' . $round; ?>
                         </div>
                         <div class="roundTitle">
                             <?= 'Best of ' . $firstBracket->getBestOf(); ?>
@@ -208,8 +208,8 @@ use app\widgets\Alert;
 
                                 $goals= $bracket->getGoals($tournament);
                             ?>
-                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: <?= $rundenInfo; ?></span>
-                            <div class="bracket">
+                            
+                            <div class="bracket mb-4">
                                 <div class="bracketParticipant <?= $class1; ?>">
                                     <?= $participant1['name']; ?>
                                     <div class="takeWinner" style="float:right;">
@@ -289,8 +289,7 @@ use app\widgets\Alert;
 
                                 $goals= $bracket->getGoals($tournament);
                             ?>
-                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: R<?= $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT); ?></span>
-                            <div class="bracket">
+                            <div class="bracket mb-4">
                                 <div class="bracketParticipant <?= $class1; ?>">
                                     <?= $participant1['name']; ?>
                                     <div class="takeWinner" style="float:right;">
