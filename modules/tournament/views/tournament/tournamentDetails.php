@@ -138,6 +138,21 @@ use app\widgets\Alert;
             </ul>
         </div>
 
+        <!-- Test Button -->
+        <div class="rules">
+            <?php
+                echo Html::a('Create Brackets',
+                    [
+                        "create-brackets",
+                        "tournamentId" => $tournament['id']
+                    ],
+                    ['class' => "filled-btn btn btn-primary",
+                        'title' => 'Show Rules'
+                    ]
+                )
+            ?>
+        </div>
+
         <!-- Tournament Brackets -->
         <div class="brackets mt-4 mb-4" style="width: 100%; overflow-x: auto;">
             <h3>Winner Bracket</h3>

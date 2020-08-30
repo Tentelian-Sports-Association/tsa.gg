@@ -150,7 +150,7 @@ class Games extends ActiveRecord
      */
     public static function findByID($gameID)
     {
-        return static::findOne(['id' => $gameID]);
+        return static::find()->where(['id' => $gameID])->one();
     }
 
     public static function GetCurrentGames($languageID)

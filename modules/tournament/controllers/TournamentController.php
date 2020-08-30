@@ -102,7 +102,7 @@ class TournamentController extends BaseController
         $user = Yii::$app->HelperClass->getUser();
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
 
-        $tournament = Tournament::find()->where(['id' => $tournamentId])->one();
+        $tournament = Tournament::getTournamentById($tournamentId);
         $participants = null;
 
         if($tournament->getIsTeamTournament())
@@ -130,7 +130,7 @@ class TournamentController extends BaseController
     {
         $tournament = Tournament::getTournamentById($tournamentId);
         
-        $game = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CreateBrackets';
+        $game = 'app\modules\tournament\modules\\' . Games::findByID($tournament->getGameId())->getStatisticsClass() . '\CreateBrackets';
         $gameClass = new $game();
 
         if($tournament->getIsTeamTournament())
