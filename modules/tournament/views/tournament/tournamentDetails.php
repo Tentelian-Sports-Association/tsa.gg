@@ -183,17 +183,22 @@ use app\widgets\Alert;
                                 }
 
                                 $bracketEncounter = $bracket->getEncounterId();
+
+                                $freewin['id'] = NULL;
+                                $freewin['name'] = 'FREILOS';
+
                                 $bracketParticipants = $bracket->getParticipants();
-                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
-                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? 'FREILOS' : $bracketParticipants[1];
+                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? $freewin : $bracketParticipants[0];
+                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? $freewin : $bracketParticipants[1];
 
                                 $participant1 = $bracketParticipants[0];
                                 $participant2 = $bracketParticipants[1];
+                                
 
-                                if ($participant1 === 'FREILOS' || $participant2 === 'FREILOS')  {
-                                    $noWinnerBrackets[] = $bracket->getEncounterId();
-                                    continue;
-                                }
+                                //if ($participant1 === 'FREILOS' || $participant2 === 'FREILOS')  {
+                                    //$noWinnerBrackets[] = $bracket->getEncounterId();
+                                    //continue;
+                                //}
 
                                 if (strpos($round, 'Finale') !== false) {
                                     $rundenInfo = 'Finale';
@@ -214,7 +219,7 @@ use app\widgets\Alert;
                                     </div>
                                 </div>
                                 <div class="bracketParticipant <?= $class2; ?>">
-                                    <?= $participant2['name']; ?>
+                                    <?= $participant2['name'] ?>
                                     <div class="takeWinner" style="float:right;">
                                         <?php foreach ($goals['right'] as $key => $goal): ?>
                                             <div class="goals" style="float:left;"><?= $goal; ?></div>
@@ -253,16 +258,20 @@ use app\widgets\Alert;
                                     $class2 = 'winner';
                                 }
 
+                                $freewin['id'] = NULL;
+                                $freewin['name'] = 'FREILOS';
+
                                 $bracketEncounter = $bracket->getEncounterId();
                                 $bracketParticipants = $bracket->getParticipants();
-                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
-                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? 'FREILOS' : $bracketParticipants[1];
+                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? $freewin : $bracketParticipants[0];
+                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? $freewin : $bracketParticipants[1];
 
                                 $participant1 = $bracketParticipants[0];
                                 $participant2 = $bracketParticipants[1];
 
-                                $participant1Bracket = explode(' ', $participant1);
+                                /*$participant1Bracket = explode(' ', $participant1);
                                 $search = array_pop($participant1Bracket);
+
                                 if (in_array($search, $noWinnerBrackets)) {
                                     $participant1 = 'FREILOS';
                                 }
@@ -276,7 +285,7 @@ use app\widgets\Alert;
                                 if ($participant1 === 'FREILOS' && $participant2 === 'FREILOS') {
                                     $noWinnerBrackets[] = $bracket->getEncounterId();
                                     continue;
-                                }
+                                }*/
 
                                 $goals= $bracket->getGoals($tournament);
                             ?>

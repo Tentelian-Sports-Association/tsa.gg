@@ -15,6 +15,8 @@ use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParti
 
 use app\modules\tournament\models\Tournament;
 
+use app\modules\team\models\Team;
+
 use app\modules\tournament\modules\rocketLeague\models\TeamBrackets;
 use app\modules\tournament\modules\rocketLeague\models\PlayerBrackets;
 
@@ -176,6 +178,42 @@ class TournamentController extends BaseController
         ]);
 	}
 
+    public function actionRegisterTeam($tournamentId, $teamId)
+    {
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+        $team = Team::findTeamById($teamId);
+
+        if(TournamentTeamParticipating::getById($tournament->getId(), $team->getId()))
+        {
+            Alert::addError('Team ' . $team->getName() . ' already registered for the ' . $tournament->getName() . ' tournament');
+            return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
+		}
+
+        $model = new TournamentTeamParticipating();
+        $model->tournament_id = $tournament->getId();
+        $model->team_id = $team->getId();
+        $model->checked_in = false;
+
+        if($model != null) {
+            $model->save();
+            Alert::addInfo('Team ' . $team->getName() . ' registered for  the ' . $tournament->getName() . ' tournament'); 
+		}
+        else {
+	        Alert::addError('This Service is currently not availabel'); 
+        }
+
+        return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
+	}
+
     public function actionUnsubscribeTeam($tournamentId, $teamId)
     {
         if (Yii::$app->user->isGuest) {
@@ -188,17 +226,19 @@ class TournamentController extends BaseController
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
 
         $tournament = Tournament::getTournamentById($tournamentId);
+        $team = Team::findTeamById($teamId);
 
-        $model = TournamentPlayerParticipating::getById($tournament->getId(), $user->getId());
+        $model = TournamentTeamParticipating::getById($tournament->getId(), $team->getId());
+
         if(!$model)
         {
-            Alert::addError('You are not registered for the ' . $tournament->getName() . ' tournament');
+            Alert::addError('Team ' . $team->getName() . ' not registered for the ' . $tournament->getName() . ' tournament');
             return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
 		}
 
         if($model != null) {
             $model->delete();
-            Alert::addInfo('You are unsubscribed for  the ' . $tournament->getName() . ' tournament'); 
+            Alert::addInfo('Team ' . $team->getName() . ' unsubscribed for  the ' . $tournament->getName() . ' tournament'); 
 		}
         else {
 	        Alert::addError('This Service is currently not availabel'); 

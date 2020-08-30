@@ -56,39 +56,40 @@ class CreateBrackets
             }
         }
 
-        $bracketSet = $tournament->getBracketSet();
+        /** Check if Power of Two and exend if necessary */
+        if(!$this->IsPowerOfTwo(count($participants)))
+        {
+            $powerOfTwoCount = $this->nextPowerOf2(count($participants)) - count($participants);
+            for($i = 0; $i < $powerOfTwoCount; $i++)
+            {
+                $tmpEntry['name'] = 'Freilos';
+
+                array_push($participants, $tmpEntry);
+			}
+		}
         
-        if (NULL !== $bracketSet) {
-            //$doubleElimination = $bracketSet->getIsDoubleElimination();
+        $participantBrackets = NULL;
 
-            /** Check if Power of Two and exend if necessary */
-            if(!$this->IsPowerOfTwo(count($participants)))
+        $firstRoundBrackets = count($participants)/2;
+        for($i = 0; $i < $firstRoundBrackets; $i++)
+        {
+            $participantBrackets[$i][0]['name'] = $participants[$i]['name'];
+            $participantBrackets[$i][0]['id'] = $participants[$i]['id'];
+
+            if($participants[count($participants)+1-($i+2)]['name'] == 'Freilos')
             {
-                $powerOfTwoCount = $this->nextPowerOf2(count($participants)) - count($participants);
-                for($i = 0; $i < $powerOfTwoCount; $i++)
-                {
-                    $tmpEntry['name'] = 'Freilos';
-
-                    array_push($participants, $tmpEntry);
-			    }
-		    }
-
-            $firstRoundBrackets = count($participants)/2;
-            for($i = 0; $i < $firstRoundBrackets; $i++)
+                $participantBrackets[$i][1] = null;
+			}
+            else
             {
-                $participantBrackets[$i][0]['name'] = $participants[$i]['name'];
-                $participantBrackets[$i][0]['id'] = $participants[$i]['id'];
+	            $participantBrackets[$i][1]['name'] = $participants[count($participants)+1-($i+2)]['name'];
+                $participantBrackets[$i][1]['id'] = $participants[count($participants)+1-($i+2)]['id'];
+            }
+		}
 
-                if($participants[count($participants)+1-($i+2)]['name'] == 'Freilos')
-                {
-                    $participantBrackets[$i][1] = null;
-				}
-                else
-                {
-	                $participantBrackets[$i][1]['name'] = $participants[count($participants)+1-($i+2)]['name'];
-                    $participantBrackets[$i][1]['id'] = $participants[count($participants)+1-($i+2)]['id'];
-                }
-		    }
+        $bracketSet = $tournament->getBracketSet();
+
+        if (NULL !== $bracketSet && $participantBrackets) {
 
             $bracketArr = [];
             $looserPlayers = count($participants) - 1;
@@ -116,9 +117,13 @@ class CreateBrackets
                 $this->stretchWinnerBracket($bracketArr, $tournament_id);
                 $this->changeLooserBracketsRotation($bracketArr, $tournament_id);
             }
-        }
 
-        Alert::addSuccess('Brackets erfolgreich angelegt.');
+            Alert::addSuccess('Brackets erfolgreich angelegt.');
+        }
+        else
+        {
+            Alert::addError('An error occured');
+		}
 	}
 
     private function IsPowerOfTwo($x) {
