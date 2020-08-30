@@ -286,4 +286,86 @@ class Tournament extends ActiveRecord
     {
         return $this->hasMany(User::className(), ['id' => 'player_id'])->viaTable('tournament_player_participating', ['tournament_id' => 'id'])->all();
     }
+
+    /** Get Brackets */
+    public function getTournamentTreeData()
+    {
+        $game = 'app\modules\tournament\modules\\' . Games::find('id', $this->id)->one()->getStatisticsClass() . '\models\\' . (($this->isTeam) ? 'TeamBrackets' : 'PlayerBrackets');
+        $gameClass = new $game();
+
+        $brackets = $gameClass->getByTournament($this->id);
+
+        $tournamentTreeData = [
+			'winner' => [],
+			'looser' => [],
+		];
+
+        $startTime = NULL;
+		$firstBracket = reset($brackets);
+
+        if ($firstBracket) {
+			$startTime = new \DateTime($this->dt_starting_time);
+		}
+
+        foreach ($brackets as $key => $bracket) {
+
+			$firstLevel = ($bracket->getIsWinnerBracket()) ? 'winner' : 'looser';
+			$secondLevel = $bracket->getRound();
+			$secondLevel = ($secondLevel === 998) ? 'Finale' : $secondLevel;
+			$secondLevel = ($secondLevel === 999) ? 'Finale (optional)' : $secondLevel;
+
+			if (!array_key_exists($secondLevel, $tournamentTreeData[$firstLevel])) {
+				$tournamentTreeData[$firstLevel][$secondLevel] = ['startTime' => '', 'brackets' => []];
+			}
+
+			$tournamentTreeData[$firstLevel][$secondLevel]['brackets'][] = $bracket;
+		}
+
+        if (count($tournamentTreeData['winner']) == 0) {
+			return $tournamentTreeData;
+		}
+
+        $bracketSet = $this->getBracketSet();
+
+		$winnerKeys = array_keys($tournamentTreeData['winner']);
+		$looserKeys = array_keys($tournamentTreeData['looser']);
+
+		$maxLooserRound = ($bracketSet->getIsDoubleElimination()) ? $looserKeys : $winnerKeys;
+
+		$allKeys = array_merge($winnerKeys, $looserKeys);
+
+        foreach ($allKeys as $key => $keyVal)
+        {
+			if ($keyVal == 'Finale') {
+				$keyRound = $maxLooserRound[0] + 1;
+			} else if ($keyVal == 'Finale (optional)') {
+				$keyRound = $maxLooserRound[0] + 2;
+			} else {
+				$keyRound = $keyVal;
+			}
+
+			$keyRound--;
+
+			$min = $keyRound * 30;
+
+			if ($keyVal == 'Finale') {
+				$min += 15;
+			}
+			if ($keyVal == 'Finale (optional)') {
+				$min += 30;
+			}
+
+			$interval = new \DateInterval('PT' . $min . 'M');
+			$startTime->add($interval);
+			if (array_key_exists($keyVal, $tournamentTreeData['winner'])) {
+				$tournamentTreeData['winner'][$keyVal]['startTime'] = $startTime->format('H:i');
+			}
+			if (array_key_exists($keyVal, $tournamentTreeData['looser'])) {
+				$tournamentTreeData['looser'][$keyVal]['startTime'] = $startTime->format('H:i');
+			}
+			$startTime->sub($interval);
+		}
+
+        return $tournamentTreeData;
+	}
 }

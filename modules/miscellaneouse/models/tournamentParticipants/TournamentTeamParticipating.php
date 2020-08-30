@@ -99,7 +99,8 @@ class TournamentTeamParticipating extends ActiveRecord
         {
             $tournamentTeam = Team::find()->where(['id' => $participant->getTeamId()])->one();
 
-            $detailedParticipants[$nr]['id'] = $participant->getTeamId();
+            $detailedParticipants[$nr]['id'] = $tournamentTeam->getId();
+            $detailedParticipants[$nr]['orgId'] = $tournamentTeam->getOrganisationId();
             $detailedParticipants[$nr]['name'] = $tournamentTeam->getName();
 
             $detailedParticipants[$nr]['language']['id'] = $tournamentTeam->getLanguageId();
@@ -126,7 +127,7 @@ class TournamentTeamParticipating extends ActiveRecord
 	}
 
     /** Get Teams Partcipating with all detailes */
-    public static function getCheckedInTeamParticipating($tournamentId, $languageId)
+    public static function getCheckedInTeamParticipating($tournamentId)
     {
         $participants = static::find()->where(['tournament_id' => $tournamentId])->andWhere(['checked_in' => 1])->all();
         $detailedCheckedInParticipants = [];
@@ -136,6 +137,7 @@ class TournamentTeamParticipating extends ActiveRecord
             $tournamentTeam = Team::find()->where(['id' => $participant->getTeamId()])->one();
 
             $detailedCheckedInParticipants[$nr]['id'] = $tournamentTeam->getId();
+            $detailedCheckedInParticipants[$nr]['orgId'] = $tournamentTeam->getOrganisationId();
             $detailedCheckedInParticipants[$nr]['name'] = $tournamentTeam->getName();
         }
 

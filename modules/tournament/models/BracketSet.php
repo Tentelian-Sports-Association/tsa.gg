@@ -57,6 +57,14 @@ class BracketSet extends ActiveRecord
         return true;//$this->hasBracketReset;
     }
 
+    /**
+     * @return int
+     */
+    public function getbaseRoundTime()
+    {
+        return 30;
+    }
+
     /** Winner Brackets */
 
     /**
@@ -72,7 +80,7 @@ class BracketSet extends ActiveRecord
      */
     public function getWinnerQuaterFinaleBO()
     {
-        return 5;
+        return 3;
     }
 
     /**
@@ -80,7 +88,7 @@ class BracketSet extends ActiveRecord
      */
     public function getWinnerHalfFinaleBO()
     {
-        return 5;
+        return 3;
     }
 
     /**
@@ -88,7 +96,7 @@ class BracketSet extends ActiveRecord
      */
     public function getWinnerFinaleBO()
     {
-        return 7;
+        return 5;
     }
 
     /** Looser Brackets */
@@ -114,7 +122,7 @@ class BracketSet extends ActiveRecord
      */
     public function getLooserHalfFinaleBO()
     {
-        return 5;
+        return 3;
     }
 
     /**
@@ -122,6 +130,6 @@ class BracketSet extends ActiveRecord
      */
     public function getLooserFinaleBO()
     {
-        return 7;
+        return 3;
     }
 }

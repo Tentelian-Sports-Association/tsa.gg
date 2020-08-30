@@ -83,7 +83,7 @@ class TournamentPlayerParticipating extends ActiveRecord
         $penaltie[1]['weight'] = '7';
         $penaltie[1]['date'] = DateTime::createFromFormat('Y-m-d H:i:s', '2020-03-15 22:30:15')->format('d.m.Y');;
 
-     return $penaltie;
+        return $penaltie;
 	}
 
     /** Get Player Partcipating with all detailes */
@@ -123,7 +123,7 @@ class TournamentPlayerParticipating extends ActiveRecord
 	}
 
     /** Get Player Partcipating with all detailes */
-    public static function getCheckedInPlayerParticipating($tournamentId, $languageId)
+    public static function getCheckedInPlayerParticipating($tournamentId)
     {
         $participants = static::find()->where(['tournament_id' => $tournamentId])->andWhere(['checked_in' => 1])->all();
         $detailedCheckedInParticipants = [];

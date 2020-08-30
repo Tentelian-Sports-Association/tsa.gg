@@ -5,13 +5,14 @@ namespace app\modules\tournament\modules\rocketLeague\models;
 use yii\db\ActiveRecord;
 use DateTime;
 
-use app\modules\user\models\User;
+use app\modules\team\models\Team;
+use app\modules\team\models\TeamMember;
 
 use app\modules\tournament\models\Tournament;
-use app\modules\tournament\modules\rocketLeague\models\PlayerBracketEncounter;
+use app\modules\tournament\modules\rocketLeague\models\TeamBracketEncounter;
 
 /**
- * Class PlayerBrackets
+ * Class TeamBrackets
  * @package app\modules\tournament\modules\rocketLeague\models
  *
  * @property int $id
@@ -28,14 +29,14 @@ use app\modules\tournament\modules\rocketLeague\models\PlayerBracketEncounter;
  * @property string $dt_created
  * @property string $dt_updated
  */
-class PlayerBrackets extends ActiveRecord
+class TeamBrackets extends ActiveRecord
 {
     /**
      * @return string
      */
     public static function tableName()
     {
-        return 'rocketLeague_player_brackets';
+        return 'rocketLeague_team_brackets';
     }
 
     /**
@@ -97,7 +98,7 @@ class PlayerBrackets extends ActiveRecord
     /**
      * @return int
      */
-    public function getPlayerParticipant1Id()
+    public function getTeamParticipant1Id()
     {
         return $this->participant_1;
     }
@@ -105,15 +106,23 @@ class PlayerBrackets extends ActiveRecord
     /**
      * @return ActiveQuery
      */
-    public function getPlayerParticipant1()
+    public function getTeamParticipant1()
     {
-        return $this->hasOne(User::className(), ['id' => 'participant_1'])->one();
+        return $this->hasOne(Team::className(), ['id' => 'participant_1'])->one();
     }
+
+    public function getTeamParticipant1Player()
+    {
+        $player = TeamMember::FindPlayer($this->getTeamParticipant1Id());
+        $substitudes = TeamMember::FindSubstitude($this->getTeamParticipant1Id());
+
+        return array_merge($player, $substitudes);
+	}
 
     /**
      * @return int
      */
-    public function getPlayerParticipant2Id()
+    public function getTeamParticipant2Id()
     {
         return $this->participant_2;
     }
@@ -121,10 +130,18 @@ class PlayerBrackets extends ActiveRecord
     /**
      * @return ActiveQuery
      */
-    public function getPlayerParticipant2()
+    public function getTeamParticipant2()
     {
-        return $this->hasOne(User::className(), ['id' => 'participant_2'])->one();
+        return $this->hasOne(Team::className(), ['id' => 'participant_2'])->one();
     }
+
+    public function getTeamParticipant2Player()
+    {
+        $player = TeamMember::FindPlayer($this->getTeamParticipant2Id());
+        $substitudes = TeamMember::FindSubstitude($this->getTeamParticipant2Id());
+
+        return array_merge($player, $substitudes);
+	}
 
     /**
      * @return int
@@ -139,7 +156,7 @@ class PlayerBrackets extends ActiveRecord
      */
     public function getWinnerBracket()
     {
-        return $this->hasOne(PlayerBrackets::className(), ['id' => 'winner_bracket'])->one();
+        return $this->hasOne(TeamBracketEncounter::className(), ['id' => 'winner_bracket'])->one();
     }
 
     /**
@@ -155,7 +172,7 @@ class PlayerBrackets extends ActiveRecord
      */
     public function getLooserBracket()
     {
-        return $this->hasOne(PlayerBrackets::className(), ['id' => 'looser_bracket'])->one();
+        return $this->hasOne(TeamBrackets::className(), ['id' => 'looser_bracket'])->one();
     }
 
     /**
@@ -171,7 +188,7 @@ class PlayerBrackets extends ActiveRecord
      */
     public function getWinnerParticipant()
     {
-        return $this->hasOne(User::className(), ['id' => 'winner_participant'])->one();
+        return $this->hasOne(Team::className(), ['id' => 'winner_participant'])->one();
     }
 
     /**
@@ -289,10 +306,7 @@ class PlayerBrackets extends ActiveRecord
 		return $out;
 	}
 
-    /**
-	 * @param int
-	 */
-	public static function clearForTournament($tournament_id)
+    public static function clearForTournament($tournament_id)
     {
 		$brackets = self::getAllByTournament($tournament_id);
 		foreach ($brackets as $key => $bracket) {
@@ -300,7 +314,8 @@ class PlayerBrackets extends ActiveRecord
 		}
 	}
 
-    public function setParticipant($participant) {
+    public function setParticipant($participant)
+    {
         if($participant[0])
             $this->participant_1 = $participant[0]['id'];
 
@@ -311,11 +326,11 @@ class PlayerBrackets extends ActiveRecord
     public function getPlayers($bracket_id, $left_right)
 	{
         if ('left' === $left_right) {
-	        $player  = $this->getPlayerParticipant1();
-	        $player_arr = [$player];
+	        $player  =  $this->getTeamParticipant1Player();
+	        $player_arr = $player;
 	    } else if ('right' === $left_right) {
-    	    $player = $this->getPlayerParticipant2();
-            $player_arr = [$player];
+    	    $player = $this->getTeamParticipant2Player();
+            $player_arr = $player;
 	    }
 
         return $player_arr;
@@ -326,8 +341,8 @@ class PlayerBrackets extends ActiveRecord
 	 */
 	public function getBracketRefs()
 	{
-		$winner = $this->hasMany(PlayerBrackets::className(), ['winner_bracket' => 'id'])->all();
-		$looser = $this->hasMany(PlayerBrackets::className(), ['looser_bracket' => 'id'])->all();
+		$winner = $this->hasMany(TeamBrackets::className(), ['winner_bracket' => 'id'])->all();
+		$looser = $this->hasMany(TeamBrackets::className(), ['looser_bracket' => 'id'])->all();
 
 		$brackets = [];
 		while ($tmp = array_shift($looser)) {
@@ -340,10 +355,10 @@ class PlayerBrackets extends ActiveRecord
 		return $brackets;
 	}
 
-	public function getParticipants()
+    public function getParticipants()
 	{
-        $participant1 = $this->getPlayerParticipant1();
-        $participant2 = $this->getPlayerParticipant2();
+        $participant1 = $this->getTeamParticipant1();
+        $participant2 = $this->getTeamParticipant2();
 
         $participants[0] = NULL;
         $participants[1] = NULL;
@@ -351,77 +366,20 @@ class PlayerBrackets extends ActiveRecord
         if($participant1)
         {
             $participants[0]['id'] = $participant1->getId();
-		    $participants[0]['name'] = $participant1->getUsername();
+		    $participants[0]['name'] = $participant1->getName();
 		}
 
         if($participant2)
         {
             $participants[1]['id'] = $participant2->getId();
-		    $participants[1]['name'] = $participant2->getUsername();
+		    $participants[1]['name'] = $participant2->getName();
 		}
 
 		return $participants;
 	}
 
-    /**
-	 * @param int 
-	 */
-	public function movePlayersNextRound($winnerNumber) {
-
-		$this->winner_participant = ($winnerNumber == 1)? $this->participant_1 : $this->participant_2;
-		$this->update();
-		
-        if ($this->round === 999)
-			return;
-
-		if ($this->round === 998 && $winnerNumber == 1)
-			return;
-
-		$winnerBracket = $this->getWinnerBracket();
-		$looserBracket = $this->getLooserBracket();
-
-		$winnerBracket->setSpielerByBackRef($this->participant_1, $this->getId());
-		if ($looserBracket) {
-			$looserBracket->setSpielerByBackRef($this->participant_2, $this->getId());
-		}
-	}
-
-    /**
-	 * @param int
-	 * @param int
-	 */
-	public function setSpielerByBackRef($id, $preBracketId) {
-		
-		$refs = $this->getBracketRefs();
-
-		$bracket1 = reset($refs);
-		if (false === $bracket1) {
-			return;
-		}
-
-		$bracket2 = next($refs);
-
-		$set1 = true;
-		$set2 = true;
-
-		if ($bracket1['bracket']->getId() === $bracket2['bracket']->getId()) {
-			if ($this->participant_1 !== NULL)
-                $set1 = false;
-
-			if ($this->participant_2 !== NULL)
-				$set2 = false;
-		}
-
-		if ($bracket1['bracket']->getId() === $preBracketId && true === $set1) {
-				$this->participant_1 = $id;
-		}
-
-		if ($bracket2['bracket']->getId() === $preBracketId && true === $set2) {
-				$this->participant_2 = $id;
-		}
-		
-		$this->update();
-	}
+    //public function movePlayersNextRound($winnerNumber)
+    //public function setSpielerByBackRef($id, $preBracketId)
 
     /**
 	 * @return boolean|int
@@ -454,7 +412,7 @@ class PlayerBrackets extends ActiveRecord
     public function getGoals($tournament)
     {
         //$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
-        $encounters = PlayerBracketEncounter::find()->where(['id' => $this->encounter_id])->andWhere(['tournament_id' => $this->tournament_id])->all();
+        $encounters = TeamBracketEncounter::find()->where(['id' => $this->encounter_id])->andWhere(['tournament_id' => $this->tournament_id])->all();
 
 		if (count($encounters) == 0) {
 			return ['left' => [], 'right' => []];
@@ -466,10 +424,11 @@ class PlayerBrackets extends ActiveRecord
 		$leftGoals = [];
 		$rightGoals = [];
 
-		foreach ($encounters as $key => $encounter) {
-
-			foreach ($players_left as $key => $player) {
-				if ($player->getId() == $encounter->getPlayerId()) {
+		foreach ($encounters as $key => $encounter)
+        {
+			foreach ($players_left as $key => $player)
+            {
+				if ($player['UserID'] == $encounter->getPlayerId()) {
 					if (!isset($leftGoals[$encounter->game_round])) {
 						$leftGoals[$encounter->game_round] = 0;
 					}
@@ -478,7 +437,7 @@ class PlayerBrackets extends ActiveRecord
 			}
 
 			foreach ($players_right as $key => $player) {
-				if ($player->getId() == $encounter->getPlayerId()) {
+				if ($player['UserID'] == $encounter->getPlayerId()) {
 					if (!isset($rightGoals[$encounter->game_round])) {
 						$rightGoals[$encounter->game_round] = 0;
 					}

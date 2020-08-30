@@ -115,6 +115,8 @@ class TournamentController extends BaseController
             $participants = TournamentPlayerParticipating::getPlayerParticipating($tournamentId, $languageID);
             $bracketData = PlayerBrackets::getAllByTournamentFormatted($tournamentId);
 		}
+
+        $temp = $tournament->getTournamentTreeData();
         
         return $this->render('tournamentDetails',
         [
@@ -124,18 +126,20 @@ class TournamentController extends BaseController
         ]);
 	}
 
-    public function actionCreateBrackets()
+    public function actionCreateBrackets($tournamentId)
     {
+        $tournament = Tournament::find()->where(['id' => $tournamentId])->one();
+        
         $game = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CreateBrackets';
         $gameClass = new $game();
 
         if($tournament->getIsTeamTournament())
         {
-            $checkedInParticipants = TournamentTeamParticipating::getCheckedInTeamParticipating($tournamentId, $languageID);
+            $checkedInParticipants = TournamentTeamParticipating::getCheckedInTeamParticipating($tournamentId);
 		}
         else
         {
-            $checkedInParticipants = TournamentPlayerParticipating::getCheckedInPlayerParticipating($tournamentId, $languageID);
+            $checkedInParticipants = TournamentPlayerParticipating::getCheckedInPlayerParticipating($tournamentId);
         }
 
         $bracketData = $gameClass->CreateBrackets($checkedInParticipants, $tournament->getId());

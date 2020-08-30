@@ -203,35 +203,15 @@ class CreateBrackets
 
         /** Calculation Algorithm */
 
-        /*for ($l = 0; $l < $initialLimbs; $l++)
-        {
-            if(!$participants[$l][1])
-            {
-                $bracket->round = 1;
-                $bracket->setPlayer($participants[$l]);
-                $bracket->update();
-			}
-            else
-            {
-                $bracket->encounter_id = $l+1;
-                $bracket->round = 1;
-
-                $bracket->setPlayer($participants[$l]);
-                $bracket->update();
-			}
-
-            $bracket = next($bracketArr);
-        }*/
-
         for ($l=0; $l < $initialLimbs; $l++) { 
             
             $bracket->encounter_id = $l+1;
             $bracket->round = 1;
 
-            $bracket->setPlayer(array_shift($participants));
+            $bracket->setParticipant(array_shift($participants));
 
             if (0 === $countSingle) {
-                $bracket->setPlayer(array_shift($participants));
+                $bracket->setParticipant(array_shift($participants));
             } else {
                 $countSingle--;
             }
