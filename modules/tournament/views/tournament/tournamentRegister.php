@@ -264,6 +264,7 @@ use app\widgets\Alert;
                                         </div>
                                     <?php endif; ?>
                                 </div>
+                                <div class="clearfix"></div>
                             </div>
                             
                             <!-- Player is Eligible -->
@@ -303,9 +304,13 @@ use app\widgets\Alert;
                                         - registration not Possible -
                                     </div>
                                 <?php endif; ?>
+                                <div class="clearfix"></div>
                             </div>
+                            <div class="clearfix"></div>
                         </div>
+                        <div class="clearfix"></div>
                     <?php endif; ?>
+                    <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
