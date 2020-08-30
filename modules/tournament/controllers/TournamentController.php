@@ -128,7 +128,7 @@ class TournamentController extends BaseController
 
     public function actionCreateBrackets($tournamentId)
     {
-        $tournament = Tournament::find()->where(['id' => $tournamentId])->one();
+        $tournament = Tournament::getTournamentById($tournamentId);
         
         $game = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CreateBrackets';
         $gameClass = new $game();
@@ -143,6 +143,8 @@ class TournamentController extends BaseController
         }
 
         $bracketData = $gameClass->CreateBrackets($checkedInParticipants, $tournament->getId());
+
+        return $this->redirect(['details?gameId='. $tournament->getGameId() . '&tournamentId=' . $tournament->getId()]);
 	}
 
     public function actionRegister($gameId, $tournamentId)
