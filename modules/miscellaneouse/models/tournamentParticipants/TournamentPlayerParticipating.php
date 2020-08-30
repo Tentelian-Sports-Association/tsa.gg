@@ -69,6 +69,11 @@ class TournamentPlayerParticipating extends ActiveRecord
         return $this->dt_updated;
     }
 
+    public static function getById($tournament_id, $player_id)
+    {
+        return static::find()->where(['tournament_id' => $tournament_id])->andWhere(['player_id' => $player_id])->one();
+	}
+
     /** Get Player Penalties */
     public function getPenalties()
     {

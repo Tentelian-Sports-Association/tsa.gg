@@ -3,6 +3,7 @@
 /* @var $tournament array */
 /* @var $rules array */
 /* @var $authorizedTeams array */
+/* @var $authorizedPlayer array */
 
 
 \app\modules\tournament\assets\TournamentRegistrationAsset::register($this);
@@ -55,6 +56,7 @@ use app\widgets\Alert;
             <div class="col-12 col-lg-12">
                 <div class="row openTournament desktop">
                     <div class="col-12 col-md-12">
+                    <?php if($tournament->getIsTeamTournament()) : ?>
                         <div class="col-12 tournamentRegistrationBodyHead">
                             <div class="col-lg-2 teamName float-left">Team Name</div>
                             <div class="col-lg-4 player float-left">
@@ -153,7 +155,7 @@ use app\widgets\Alert;
                                                                 <?php if($gameID['playerGameIdEligible']) : ?>
                                                                     <?= 'correct'; ?>
                                                                 <?php else : ?>
-                                                                    <?= 'incorrect'; ?>
+                                                                    <?= $gameID['platformPlayerIdError']; ?>
                                                                 <?php endif; ?>
                                                             </div>
                                                         </div>
@@ -175,12 +177,38 @@ use app\widgets\Alert;
                                 <!-- Team is Eligible -->
                                 <div class="col-lg-2 float-left">
                                     <?php if($authorizedTeam['teamEligible']) : ?>
-                                        <div class="col-lg-12 registration float-left">
-                                            button zur registration
-                                        </div>
+                                        <?php if(!$authorizedTeam['alreadyRegistered']) : ?>
+                                            <div class="col-lg-12 registration float-left">
+                                                <?php
+                                                echo Html::a('Register',
+                                                    [
+                                                        "register-team",
+                                                        "tournamentId" => $tournament->getId(),
+                                                        "teamId" => $authorizedTeam['teamId'],
+                                                    ],
+                                                    ['class' => "filled-btn btn btn-primary",
+                                                        'title' => 'Register for Tournament'
+                                                    ]
+                                                )
+                                            ?>
+                                            </div>
+                                        <?php else : ?>
+                                            <?php
+                                                echo Html::a('Unsubscribe',
+                                                    [
+                                                        "unsubscribe-team",
+                                                        "tournamentId" => $tournament->getId(),
+                                                        "teamId" => $authorizedTeam['teamId'],
+                                                    ],
+                                                    ['class' => "filled-btn btn btn-primary",
+                                                        'title' => 'Register for Tournament'
+                                                    ]
+                                                )
+                                            ?>
+                                        <?php endif; ?>
                                     <?php else : ?>
                                         <div class="col-lg-12 registration float-left">
-                                            geht nicht
+                                            - registration not Possible -
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -188,6 +216,96 @@ use app\widgets\Alert;
                             </div>
                             <div class="clearfix"></div>
                         <?php endforeach; ?>
+                    <?php else : ?>
+                        <div class="col-12 tournamentRegistrationBodyHead">
+                            <div class="col-lg-4 player float-left">
+                                <div class="col-lg-2 playerName float-left">Player</div>
+                                <div class="col-lg-10 gameData float-left">
+                                    <div class="col-lg-12 platform float-left">
+                                        <div class="col-lg-5 platformName float-left">Platforms</div>
+                                        <div class="col-lg-7 platforms float-left">State</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 registration float-left">Registration</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-12 tournamentRegistrationBody">
+                            <!-- Player Data -->
+                            <div class="col-lg-4 player float-left">
+                                <!-- Player Name -->
+                                <div class="col-lg-2 playerName float-left">
+                                    <div class="avatar float-left">
+                                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $authorizedPlayer['playerId']) . '.webp', ['aria-label' => $authorizedPlayer['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $authorizedPlayer['playerId']) . '.png\'']) ?>
+                                    </div>
+                                    <?= Html::a($authorizedPlayer['playerName'], ['/user/details', 'userId' => $authorizedPlayer['playerId']], ['class' => '']); ?>
+                                </div>
+
+                                <!-- Player Game Id's and Platforms -->
+                                <div class="col-lg-10 gameData float-left">
+                                    <?php if(array_key_exists('gameIds', $authorizedPlayer)) : ?>
+                                        <?php foreach($authorizedPlayer['gameIds'] as $gameID) : ?>
+                                            <div class="col-lg-12 platform <?= ($gameID['playerGameIdEligible'])? '':'bg-red' ?> float-left">
+                                                <div class="col-5 platformName float-left">
+                                                    <?= $gameID['platformName'] ?>
+                                                </div>
+                                                <div class="col-7 gameId float-left">
+                                                    <?php if($gameID['playerGameIdEligible']) : ?>
+                                                        <?= 'correct'; ?>
+                                                    <?php else : ?>
+                                                        <?= $gameID['platformPlayerIdError']; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <div class="col-lg-12 platform float-left">
+                                            <?= 'no Rocket League Id\'s found' ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            
+                            <!-- Player is Eligible -->
+                            <div class="col-lg-2 float-left">
+                                <?php if($authorizedPlayer['playerEligible']) : ?>
+                                    <?php if(!$authorizedPlayer['playerAlreadyRegistered']) : ?>
+                                        <div class="col-lg-12 registration float-left">
+                                            <?php
+                                                echo Html::a('Register',
+                                                    [
+                                                        "register-player",
+                                                        "tournamentId" => $tournament->getId()
+                                                    ],
+                                                    ['class' => "filled-btn btn btn-primary",
+                                                        'title' => 'Register for Tournament'
+                                                    ]
+                                                )
+                                            ?>
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="col-lg-12 registration float-left">
+                                            <?php
+                                                echo Html::a('Unsubscribe',
+                                                    [
+                                                        "unsubscribe-player",
+                                                        "tournamentId" => $tournament->getId()
+                                                    ],
+                                                    ['class' => "filled-btn btn btn-primary",
+                                                        'title' => 'Register for Tournament'
+                                                    ]
+                                                )
+                                            ?>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php else : ?>
+                                    <div class="col-lg-12 registration float-left">
+                                        - registration not Possible -
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     </div>
                 </div>
             </div>

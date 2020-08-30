@@ -6,6 +6,10 @@ use yii\db\ActiveRecord;
 use DateTime;
 
 use app\modules\miscellaneouse\models\tournamentMode\TournamentMode;
+
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentPlayerParticipating;
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParticipating;
+
 use app\modules\miscellaneouse\models\games\Games;
 
 use app\modules\tournament\models\BracketSet;
@@ -197,7 +201,7 @@ class Tournament extends ActiveRecord
     }
 
     /** Get Active Tournaments */
-    public static function GetTournaments($gameId)
+    public static function GetTournaments($gameId, $userId)
     {
         $tournaments = static::find()->where(['game_id' => $gameId])->andWhere(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_DESC])->all();
         $sortedTournament = [];
@@ -206,11 +210,14 @@ class Tournament extends ActiveRecord
 
         foreach($tournaments as $nr => $tournament)
         {
-            $sortedTournament[$nr]['Name'] = $tournament['name'];
-            $sortedTournament[$nr]['ID'] = $tournament['id'];
+            $sortedTournament[$nr]['Name'] = $tournament->getName();
+            $sortedTournament[$nr]['ID'] = $tournament->getId();
             $sortedTournament[$nr]['DtStart'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_starting_time'])->format('d.m.Y | H:i');
             $sortedTournament[$nr]['DtRegEnd'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_register_end'])->format('d.m.Y | H:i');
             $sortedTournament[$nr]['DtCheckIn'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_checkin_begin'])->format('d.m.Y | H:i') . ' - ' . DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_checkin_end'])->format('H:i');
+            $sortedTournament[$nr]['IsRunning'] = $tournament->getIsRunning();
+            $sortedTournament[$nr]['IsTeam'] = $tournament->getIsTeamTournament();
+            $sortedTournament[$nr]['CanCheckIn'] = NULL;
 
             /** Check registration time*/
             $registerBegin = new DateTime($tournament['dt_register_begin']);
@@ -234,7 +241,6 @@ class Tournament extends ActiveRecord
             else {
                 $sortedTournament[$nr]['CheckInOpen'] = 0;
             }
-
 		} 
 
         return $sortedTournament;

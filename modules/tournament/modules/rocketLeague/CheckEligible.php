@@ -10,6 +10,9 @@ use app\modules\miscellaneouse\models\games\GamePlatforms;
 use app\modules\miscellaneouse\models\language\Language;
 use app\modules\miscellaneouse\models\tournamentMode\TournamentMode;
 
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentPlayerParticipating;
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParticipating;
+
 use app\modules\team\models\Team;
 use app\modules\team\models\TeamMember;
 
@@ -19,7 +22,7 @@ use Yii;
  * Class CheckTeamEligible
  * @package app\modules\core\miscellaneouse
  */
-class CheckTeamEligible
+class CheckEligible
 {
     /**
      * constructor.
@@ -90,7 +93,7 @@ class CheckTeamEligible
                 
                 foreach(UserGames::find()->where(['user_id' => $player['UserID']])->andWhere(['game_id' => $tournament->getGameId()])->all() as $rnr => $rocketId)
                 {
-                    $teams[$nr]['player'][$pnr]['gameIds'][$rnr]['gameId'] = $tournament->getGameId();
+                    $teams[$nr]['player'][$pnr]['gameIds'][$rnr]['gameId'] = $rocketId->getGameId();
                     $teams[$nr]['player'][$pnr]['gameIds'][$rnr]['gameName'] = $rocketId->getGameName($languageID);
                     $teams[$nr]['player'][$pnr]['gameIds'][$rnr]['gamePlayerId'] = $rocketId->getPlayerId();
                     $teams[$nr]['player'][$pnr]['gameIds'][$rnr]['platformId'] = $rocketId->getGamePlatformId();
@@ -129,12 +132,13 @@ class CheckTeamEligible
 
                 foreach(UserGames::find()->where(['user_id' => $substitude['UserID']])->andWhere(['game_id' => $tournament->getGameId()])->all() as $rnr => $rocketId)
                 {
-                    $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['gameId'] = $tournament->getGameId();
+                    $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['gameId'] = $rocketId->getGameId();
                     $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['gameName'] = $rocketId->getGameName($languageID);
                     $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['gamePlayerId'] = $rocketId->getPlayerId();
                     $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['platformId'] = $rocketId->getGamePlatformId();
                     $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['platformName'] = $rocketId->getGamePlatformName($languageID);
                     $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['platformPlayerId'] = null;
+                    $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['platformPlayerIdError'] = null;
 
                     if(UserGames::find()->where(['user_id' => $substitude['UserID']])->andWhere(['game_id' => GamePlatforms::find()->where(['id' => $rocketId->getGamePlatformId()])->one()->getPlatformAsGameId()])->one())
                     {           
@@ -144,6 +148,11 @@ class CheckTeamEligible
                     if(!$playerEligible)
                     {
                         $playerEligible = ($teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['gamePlayerId'] && $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['platformPlayerId'])? 1 : 0;
+					}
+
+                    if(!$teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['platformPlayerId'])
+                    {
+                        $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['platformPlayerIdError'] = 'No ' . $rocketId->getGamePlatformName($languageID) . ' id found';
 					}
 
                     $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['playerGameIdEligible'] = ($teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['gamePlayerId'] && $teams[$nr]['substitude'][$snr]['gameIds'][$rnr]['platformPlayerId'])? 1 : 0;
@@ -157,8 +166,63 @@ class CheckTeamEligible
             {
                 $teams[$nr]['teamEligible'] = $teams[$nr]['teamEligible'] = ($teams[$nr]['playerCountEligible'] && $teams[$nr]['substitudeCountEligible'])? 1 : 0;     
 			}
+
+            $teams[$nr]['alreadyRegistered'] = false;
+
+            if(TournamentTeamParticipating::getById($tournament->getId(), $user->getId()))
+            {
+                $teams[$nr]['alreadyRegistered'] = true;
+		    }
 		}
 
         return $teams;
 	}
+
+    public static function checkPlayerAuthorization($tournamentId, $tournamentGameId, $user, $languageID)
+    {
+        $player = [];
+
+        $player['playerId'] = $user->getId();
+        $player['playerName'] = $user->getUsername();
+
+        $playerEligible = 0;
+
+        foreach(UserGames::find()->where(['user_id' => $user->getId()])->andWhere(['game_id' => $tournamentGameId])->all() as $nr => $rocketId)
+        {
+            $player['gameIds'][$nr]['gameId'] = $rocketId->getGameId();
+            $player['gameIds'][$nr]['gameName'] = $rocketId->getGameName($languageID);
+            $player['gameIds'][$nr]['gamePlayerId'] = $rocketId->getPlayerId();
+            $player['gameIds'][$nr]['platformId'] = $rocketId->getGamePlatformId();
+            $player['gameIds'][$nr]['platformName'] = $rocketId->getGamePlatformName($languageID);
+            $player['gameIds'][$nr]['platformPlayerId'] = null;
+            $player['gameIds'][$nr]['platformPlayerIdError'] = null;
+
+            if(UserGames::find()->where(['user_id' => $user->getId()])->andWhere(['game_id' => GamePlatforms::find()->where(['id' => $rocketId->getGamePlatformId()])->one()->getPlatformAsGameId()])->one())
+            {           
+                $player['gameIds'][$nr]['platformPlayerId'] = UserGames::find()->where(['user_id' => $user->getId()])->andWhere(['game_id' => GamePlatforms::find()->where(['id' => $rocketId->getGamePlatformId()])->one()->getPlatformAsGameId()])->one()->getPlayerId();
+			}
+
+            if(!$playerEligible)
+            {
+                $playerEligible = ($player['gameIds'][$nr]['gamePlayerId'] && $player['gameIds'][$nr]['platformPlayerId'])? 1 : 0;
+			}
+
+            if(!$player['gameIds'][$nr]['platformPlayerId'])
+            {
+                $player['gameIds'][$nr]['platformPlayerIdError'] = 'No ' . $rocketId->getGamePlatformName($languageID) . ' id found';
+			}
+
+            $player['gameIds'][$nr]['playerGameIdEligible'] = ($player['gameIds'][$nr]['gamePlayerId'] && $player['gameIds'][$nr]['platformPlayerId'])? 1 : 0;
+		}
+
+        $player['playerEligible'] = $playerEligible;
+        $player['playerAlreadyRegistered'] = false;
+
+        if(TournamentPlayerParticipating::getById($tournamentId, $user->getId()))
+        {
+            $player['playerAlreadyRegistered'] = true;
+		}
+
+        return $player;
+    }
 }

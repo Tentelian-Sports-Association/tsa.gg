@@ -110,7 +110,7 @@ class CreateBrackets
                 $this->connectWinnerBracketsInLooser($bracketArr);
             }
 
-            $this->moveFirstRoundTickets($bracketArr);
+            $this->moveFirstRoundTickets($bracketArr, $tournament);
 
             if ($bracketSet->getIsDoubleElimination()) {
                 $this->stretchWinnerBracket($bracketArr, $tournament_id);
@@ -486,7 +486,7 @@ class CreateBrackets
         }
     }
 
-    private function moveFirstRoundTickets(&$bracketArr) {
+    private function moveFirstRoundTickets(&$bracketArr, $tournament) {
         
         foreach ($bracketArr as $key => $bracket) {
             
@@ -494,9 +494,19 @@ class CreateBrackets
                 continue;
             }
 
-            if ($bracket->getPlayerParticipant2Id()) {
-                continue;
-            }
+            if($tournament->getIsTeamTournament())
+            {
+                if ($bracket->getTeamParticipant2Id()) {
+                    continue;
+                }
+			}
+            else
+            {
+                if ($bracket->getPlayerParticipant2Id()) {
+                    continue;
+                }
+			}
+            
 
             $bracket->movePlayersNextRound(1);
         }

@@ -86,32 +86,32 @@ foreach(openTournamentList as $openTournament)
                                     <?= $openTournament['DtCheckIn'] ?>
                                 </div>
                                 <div class="col-1 col-lg-2 langImg float-left">
-                                    <?php if($openTournament['RegisterOpen']) : ?>
-                                        <?php
-                                            echo Html::a('Register',
-                                                [
-                                                    "register",
-                                                    "gameId" => $choosedGame['id'],
-                                                    "tournamentId" => $openTournament['ID']
-                                                ],
-                                                ['class' => "filled-btn btn btn-primary",
-                                                    'title' => 'Register for Tournament'
-                                                ]
-                                            )
-                                        ?>
-                                    <?php elseif($openTournament['CheckInOpen']) : ?>
-                                    <?php
-                                            echo Html::a('Check-In',
-                                                [
-                                                    "checkin",
-                                                    "gameId" => $choosedGame['id'],
-                                                    "tournamentId" => $openTournament['ID']
-                                                ],
-                                                ['class' => "filled-btn btn btn-primary",
-                                                    'title' => 'Check-In for Tournament'
-                                                ]
-                                            )
-                                        ?>
+                                    <?php if(!$openTournament['IsRunning']) : ?>
+                                        <?php if($openTournament['RegisterOpen']) : ?>
+                                            <?php
+                                                echo Html::a('Register',
+                                                    [
+                                                        "register",
+                                                        "tournamentId" => $openTournament['ID']
+                                                    ],
+                                                    ['class' => "filled-btn btn btn-primary",
+                                                        'title' => 'Register for Tournament'
+                                                    ]
+                                                )
+                                            ?>
+                                        <?php elseif($openTournament['CheckInOpen']) : ?>
+                                            <?php
+                                                echo Html::a('Check-In',
+                                                    [
+                                                        "checkin",
+                                                        "tournamentId" => $openTournament['ID']
+                                                    ],
+                                                    ['class' => "filled-btn btn btn-primary",
+                                                        'title' => 'Check-In for Tournament'
+                                                    ]
+                                                )
+                                            ?>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
                                 <div class="clearfix"></div>

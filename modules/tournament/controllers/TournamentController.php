@@ -84,10 +84,10 @@ class TournamentController extends BaseController
             ]);
 		}
 
-        $choosedGame = Games::Find()->where(['id' => $gameID])->one();
+        $choosedGame = Games::findByID($gameID);
 
         /** If game was Choosen */
-        $openTournamentList = Tournament::GetTournaments($gameID);
+        $openTournamentList = Tournament::GetTournaments($gameID, $user->getId());
 
         return $this->render('aktiveTournaments',
         [
@@ -147,7 +147,7 @@ class TournamentController extends BaseController
         return $this->redirect(['details?gameId='. $tournament->getGameId() . '&tournamentId=' . $tournament->getId()]);
 	}
 
-    public function actionRegister($gameId, $tournamentId)
+    public function actionRegister($tournamentId)
     {
         if (Yii::$app->user->isGuest) {
             Alert::addError('You are not allowed to Register to an Tournament, Please Login');
@@ -158,24 +158,143 @@ class TournamentController extends BaseController
         $user = Yii::$app->HelperClass->getUser();
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
 
-        $tournament = Tournament::find()->where(['id' => $tournamentId])->one();
+        $tournament = Tournament::getTournamentById($tournamentId);
         $rules = Rules::GetRules($tournament->getRulesId(), $languageID);
 
-        $gameClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CheckTeamEligible';
+        $gameClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CheckEligible';
         $tournamentGameClass = new $gameClass();
 
         $authorizedTeams = $tournamentGameClass->checkTeamAuthorization($tournament, $user, $languageID);
+        $authorizedPlayer = $tournamentGameClass->checkPlayerAuthorization($tournament->getId(), $tournament->getGameId(), $user, $languageID);
 
         return $this->render('tournamentRegister',
         [
             'tournament' => $tournament,
             'rules' => $rules,
             'authorizedTeams' => $authorizedTeams,
+            'authorizedPlayer' => $authorizedPlayer,
         ]);
 	}
 
-    public function actionCheckin($gameId, $tournamentId)
+    public function actionUnsubscribeTeam($tournamentId, $teamId)
     {
-        
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+
+        $model = TournamentPlayerParticipating::getById($tournament->getId(), $user->getId());
+        if(!$model)
+        {
+            Alert::addError('You are not registered for the ' . $tournament->getName() . ' tournament');
+            return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
+		}
+
+        if($model != null) {
+            $model->delete();
+            Alert::addInfo('You are unsubscribed for  the ' . $tournament->getName() . ' tournament'); 
+		}
+        else {
+	        Alert::addError('This Service is currently not availabel'); 
+        }
+
+        return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
+    }
+
+    public function actionRegisterPlayer($tournamentId)
+    {
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+
+        if(TournamentPlayerParticipating::getById($tournament->getId(), $user->getId()))
+        {
+            Alert::addError('You are already registered for the ' . $tournament->getName() . ' tournament');
+            return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
+		}
+
+        $model = new TournamentPlayerParticipating();
+        $model->tournament_id = $tournament->getId();
+        $model->player_id = $user->getId();
+        $model->checked_in = false;
+
+        if($model != null) {
+            $model->save();
+            Alert::addInfo('You are registered for  the ' . $tournament->getName() . ' tournament'); 
+		}
+        else {
+	        Alert::addError('This Service is currently not availabel'); 
+        }
+
+        return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
+    }
+
+    public function actionUnsubscribePlayer($tournamentId)
+    {
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+
+        $model = TournamentPlayerParticipating::getById($tournament->getId(), $user->getId());
+        if(!$model)
+        {
+            Alert::addError('You are not registered for the ' . $tournament->getName() . ' tournament');
+            return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
+		}
+
+        if($model != null) {
+            $model->delete();
+            Alert::addInfo('You are unsubscribed for  the ' . $tournament->getName() . ' tournament'); 
+		}
+        else {
+	        Alert::addError('This Service is currently not availabel'); 
+        }
+
+        return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
+    }
+
+    public function actionCheckin($gameId, $tournamentId)
+    {   
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+
+        $gameClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CheckTeamEligible';
+        $tournamentGameClass = new $gameClass();
+
+        $authorizedTeams = $tournamentGameClass->checkTeamAuthorization($tournament, $user, $languageID);
+
+        return $this->render('tournamentCheckIn',
+        [
+            'tournament' => $tournament,
+            'authorizedTeams' => $authorizedTeams,
+        ]);
 	}
 }
