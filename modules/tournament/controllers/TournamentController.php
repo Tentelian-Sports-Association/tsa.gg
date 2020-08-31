@@ -19,6 +19,8 @@ use app\modules\team\models\Team;
 
 use app\modules\tournament\modules\rocketLeague\models\TeamBrackets;
 use app\modules\tournament\modules\rocketLeague\models\PlayerBrackets;
+use app\modules\tournament\modules\rocketLeague\models\PlayerBracketEncounter;
+
 
 use Yii;
 use app\widgets\Alert;
@@ -98,7 +100,7 @@ class TournamentController extends BaseController
         ]);
     }
 
-    public function actionDetails($gameId, $tournamentId)
+    public function actionDetails($tournamentId)
     {
         /** Base Informations **/
         $user = Yii::$app->HelperClass->getUser();
@@ -148,6 +150,8 @@ class TournamentController extends BaseController
 
         return $this->redirect(['details?gameId='. $tournament->getGameId() . '&tournamentId=' . $tournament->getId()]);
 	}
+
+    /** Register */
 
     public function actionRegister($tournamentId)
     {
@@ -202,6 +206,7 @@ class TournamentController extends BaseController
         $model->tournament_id = $tournament->getId();
         $model->team_id = $team->getId();
         $model->checked_in = false;
+        $model->readRules = true;
 
         if($model != null) {
             $model->save();
@@ -270,6 +275,7 @@ class TournamentController extends BaseController
         $model->tournament_id = $tournament->getId();
         $model->player_id = $user->getId();
         $model->checked_in = false;
+        $model->readRules = true;
 
         if($model != null) {
             $model->save();
@@ -313,6 +319,8 @@ class TournamentController extends BaseController
         return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
     }
 
+    /** CheckIn */
+
     public function actionCheckin($gameId, $tournamentId)
     {   
         if (Yii::$app->user->isGuest) {
@@ -336,5 +344,98 @@ class TournamentController extends BaseController
             'tournament' => $tournament,
             'authorizedTeams' => $authorizedTeams,
         ]);
+	}
+
+    /** Brackets */
+
+    public function actionBracketDetails($tournamentId = null, $bracketId = null)
+    {
+        if(!$tournamentId || !$bracketId)
+        {
+              Alert::addError('No Tournament and Bracket Selected');
+              return $this->redirect(['overview']);
+		}
+
+        if(Yii::$app->request->post())
+        {
+              $this->saveBracketData(Yii::$app->request->post());
+		}
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+        
+        $bracketData = [];
+
+        if($tournament->getIsTeamTournament())
+            $bracketData = TeamBrackets::getBracketData($bracketId);
+        else 
+            $bracketData = PlayerBrackets::getBracketData($bracketId);
+
+        $encounterScreen = [];
+        $editable = true;
+
+        //print_r($bracketData);
+        //die();
+
+        return $this->render('tournamentBracketDetails',
+        [
+            'tournament' => $tournament,
+            'bracketData' => $bracketData,
+            'encounterScreen' => $encounterScreen,
+            'editable' => $editable,
+        ]);
+	}
+
+    /** In Rocket League Class ausgliedern */
+    private function saveBracketData($bracketData)
+    {
+        $tournament = Tournament::getTournamentById($bracketData['tournamentId']);
+        $gameBracketClass = '';
+        $gameEncounterClass = '';
+
+        if($bracketData['isTeam'])
+        {
+            
+		}
+        else
+        {
+            $gameBracketClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\models\PlayerBrackets';
+            $gameEncounterClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\models\PlayerBracketEncounter';
+        }
+
+        $tournamentBracketClass = new $gameBracketClass();
+        $bracket = $tournamentBracketClass::getById($bracketData['bracketId']);
+
+        $tournamentEncounterClass = new $gameEncounterClass();
+
+        foreach ($bracketData['points'] as $gameRound => $playerArr)
+        {
+            foreach ($playerArr as $playerId => $points)
+            {
+                if($bracketData['isTeam'])
+                {
+                            
+				}
+                else
+                {
+                    $encounterBracket = $bracket->getEncounter($playerId, $gameRound);
+                    
+                    $encounterBracket->setData($points);
+                    $encounterBracket->save();
+                }
+            }
+		}
+
+        $winner = $tournamentEncounterClass->getWinner($bracket);
+
+        if($winner)
+            $bracket->movePlayersNextRound($winner);
+
+
+        Alert::addSuccess('Bracket Data Saved');
+        return $this->redirect(['details?tournamentId=' . $tournament->getId()]);
 	}
 }
