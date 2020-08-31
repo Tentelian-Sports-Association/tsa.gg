@@ -418,7 +418,7 @@ class PlayerBrackets extends ActiveRecord
 
 		$winnerBracket->setSpielerByBackRef(($winnerNumber == 1)? $this->getPlayerParticipant1Id() : $this->getPlayerParticipant2Id(), $this->getId());
 		if ($looserBracket) {
-			$looserBracket->setSpielerByBackRef(($winnerNumber == 1)? $this->getPlayerParticipant1Id() : $this->getPlayerParticipant2Id(), $this->getId());
+			$looserBracket->setSpielerByBackRef(($winnerNumber == 1)? $this->getPlayerParticipant2Id() : $this->getPlayerParticipant1Id(), $this->getId());
 		}
 	}
 

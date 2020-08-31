@@ -350,6 +350,8 @@ class TournamentController extends BaseController
 
     public function actionBracketDetails($tournamentId = null, $bracketId = null)
     {
+        
+        
         if(!$tournamentId || !$bracketId)
         {
               Alert::addError('No Tournament and Bracket Selected');
@@ -375,7 +377,7 @@ class TournamentController extends BaseController
             $bracketData = PlayerBrackets::getBracketData($bracketId);
 
         $encounterScreen = [];
-        $editable = false;
+        $editable = true;
 
         //print_r($bracketData);
         //die();

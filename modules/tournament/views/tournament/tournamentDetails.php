@@ -239,7 +239,7 @@ use app\widgets\Alert;
                                 $goals= $bracket->getGoals($tournament);
                             ?>
                             
-<<<<<<< HEAD
+
                             <div class="bracket mb-4 round-<?= $round; ?>">
                                 <div class="bracket-box">
                                     <div class="bracketParticipant <?= $class1; ?>">
