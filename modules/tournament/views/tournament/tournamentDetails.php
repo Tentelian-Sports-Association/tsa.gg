@@ -157,9 +157,39 @@ use app\widgets\Alert;
         <div class="brackets mt-4 mb-4" style="width: 100%; overflow-x: auto;">
             <h3>Winner Bracket</h3>
             <div class="winnerBracket row">
-                <?php foreach ($bracketData['winner'] as $round => $roundBrackets): ?>
-                    <?php $firstBracket = reset($roundBrackets['brackets']); ?>
-                    <div class="bracketRound col">
+                <?php 
+                    $last_round = 1;
+                    foreach ($bracketData['winner'] as $round => $roundBrackets): 
+                ?>
+                    <?php 
+                        $firstBracket = reset($roundBrackets['brackets']);
+                        if(((int)$last_round - (int)$round) <= 0 && (int)$last_round != 1 ) {
+                    ?>
+                        <div class="bracketRound">
+                        <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
+                            <div class="round-empty">
+                                <div class="bracket-empty-box">
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        </div>
+                    <?php
+                        }
+                        $last_round = $round;
+                        if (strpos($round, 'Finale') !== false) { 
+                    ?>
+                        <div class="bracketRound">
+                        <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
+                            <div class="round-empty">
+                                <div class="bracket-empty-box">
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        </div>
+                    <?php
+                        }            
+                    ?>
+                    <div class="bracketRound">
                         <div class="roundTitle">
                             <?=  'Round ' . $round; ?>
                         </div>
@@ -209,21 +239,23 @@ use app\widgets\Alert;
                                 $goals= $bracket->getGoals($tournament);
                             ?>
                             
-                            <div class="bracket mb-4">
-                                <div class="bracketParticipant <?= $class1; ?>">
-                                    <?= $participant1['name']; ?>
-                                    <div class="takeWinner" style="float:right;">
-                                        <?php foreach ($goals['left'] as $key => $goal): ?>
-                                            <div class="goals" style="float:left;"><?= $goal; ?></div>
-                                        <?php endforeach; ?>
+                            <div class="bracket mb-4 round-<?= $round; ?>">
+                                <div class="bracket-box">
+                                    <div class="bracketParticipant <?= $class1; ?>">
+                                        <?= $participant1['name']; ?>
+                                        <div class="takeWinner" style="float:right;">
+                                            <?php foreach ($goals['left'] as $key => $goal): ?>
+                                                <div class="goals" style="float:left;"><?= $goal; ?></div>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="bracketParticipant <?= $class2; ?>">
-                                    <?= $participant2['name'] ?>
-                                    <div class="takeWinner" style="float:right;">
-                                        <?php foreach ($goals['right'] as $key => $goal): ?>
-                                            <div class="goals" style="float:left;"><?= $goal; ?></div>
-                                        <?php endforeach; ?>
+                                    <div class="bracketParticipant <?= $class2; ?>">
+                                        <?= $participant2['name'] ?>
+                                        <div class="takeWinner" style="float:right;">
+                                            <?php foreach ($goals['right'] as $key => $goal): ?>
+                                                <div class="goals" style="float:left;"><?= $goal; ?></div>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -232,7 +264,8 @@ use app\widgets\Alert;
                 <?php endforeach; ?>
             </div>
 
-            <div class="looserBracket">
+            <div class="looserBracket row">
+                <div class="bracketRound"></div>
                 <?php foreach ($bracketData['looser'] as $round => $roundBrackets): ?>
                     <?php $firstBracket = reset($roundBrackets['brackets']); ?>
                     <div class="bracketRound">
