@@ -5,6 +5,7 @@
  * @var $bracketData array
  * @var $encounterScreen array
  * @var $editable bool
+ * @var $myId int
  */
 
 use yii\helpers\Html;
@@ -61,24 +62,24 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Create your own Tea
                             <div class="col-lg-12 encounterScreenshot">Screenshot: <input type="file" name="screen_<?= $b; ?>"></div>
                         <?php endif; ?>
 
-                        <!-- Encounter Data by Blue Team/Player -->
-                        <div class="col-lg-6 encounterGameBody">
-                            <table class="table table-striped table-hover table-bordered">
+                        <!-- Encounter Data by blue Team/Player -->
+                        <div class="col-lg-6 encounterGameBodyBlue">
+                            <table class="tableBlue">
                                 <thead>
                                     <tr>
-                                        <th>Player</th>
-                                        <th>Points</th>
-                                        <th>Goals</th>
-                                        <th>Assists</th>
-                                        <th>Saves</th>
-                                        <th>Shots</th>
+                                        <th class="player">Player</th>
+                                        <th class="points">Points</th>
+                                        <th class="goals">Goals</th>
+                                        <th class="assists">Assists</th>
+                                        <th class="saves">Saves</th>
+                                        <th class="shots">Shots</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($bracketData['blue']['participantData'] as $player): ?>
                                         <tr>
-                                            <td>
-                                                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
+                                            <td class="playerName">
+                                                <?= ''//Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
                                                 <?= $player['playerName']; ?>
                                             </td>
                                             <td class="encounterField">
@@ -122,24 +123,24 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Create your own Tea
                             </table>
                         </div>
 
-                        <!-- Encounter Data by Blue Team/Player -->
-                        <div class="col-lg-6 encounterGameBody">
-                            <table class="table table-striped table-hover table-bordered">
+                        <!-- Encounter Data by orange Team/Player -->
+                        <div class="col-lg-6 encounterGameBodyOrange">
+                            <table class="tableOrange">
                                 <thead>
                                     <tr>
-                                        <th>Player</th>
-                                        <th>Points</th>
-                                        <th>Goals</th>
-                                        <th>Assists</th>
-                                        <th>Saves</th>
-                                        <th>Shots</th>
+                                        <th class="player">Player</th>
+                                        <th class="points">Points</th>
+                                        <th class="goals">Goals</th>
+                                        <th class="assists">Assists</th>
+                                        <th class="saves">Saves</th>
+                                        <th class="shots">Shots</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($bracketData['orange']['participantData'] as $player): ?>
                                         <tr>
-                                            <td>
-                                                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
+                                            <td class="playerName">
+                                                <?= ''//Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
                                                 <?= $player['playerName']; ?>
                                             </td>
                                             <td class="encounterField">

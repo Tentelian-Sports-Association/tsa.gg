@@ -210,22 +210,32 @@ use app\widgets\Alert;
                             ?>
                             
                             <div class="bracket mb-4">
-                                <div class="bracketParticipant <?= $class1; ?>">
-                                    <?= $participant1['name']; ?>
-                                    <div class="takeWinner" style="float:right;">
-                                        <?php foreach ($goals['left'] as $key => $goal): ?>
-                                            <div class="goals" style="float:left;"><?= $goal; ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                                <div class="bracketParticipant <?= $class2; ?>">
-                                    <?= $participant2['name'] ?>
-                                    <div class="takeWinner" style="float:right;">
-                                        <?php foreach ($goals['right'] as $key => $goal): ?>
-                                            <div class="goals" style="float:left;"><?= $goal; ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
+                                <?php
+                                    $goalsDisplayLeft = '';
+                                    foreach ($goals['left'] as $key => $goal){
+                                            $goalsDisplayLeft = $goalsDisplayLeft . '<div class="goals" style="float:left;">' . $goal . '</div>';
+								    }
+
+                                    $goalsDisplayRight = '';
+                                    foreach ($goals['right'] as $key => $goal){
+                                            $goalsDisplayRight = $goalsDisplayRight . '<div class="goals" style="float:left;">' . $goal . '</div>';
+								    }
+                                ?>
+
+                                <?= Html::a(
+                                        '<div class="bracketParticipant ' . $class1 . '">'
+                                            . $participant1['name']
+                                            . '<div class="takeWinner" style="float:right;">'
+                                                . $goalsDisplayLeft
+                                            . ' </div>'
+                                        . ' </div>'
+                                        . ' <div class="bracketParticipant' . $class2 . '">'
+                                            . $participant2['name']
+                                            . '<div class="takeWinner" style="float:right;">'
+                                                . $goalsDisplayRight
+                                            . ' </div>'
+                                        . ' </div>'
+                                , ['bracket-details', 'tournamentId' => $tournament['id'], 'bracketId' => $bracket['id'] ], ['class' => 'news-link']); ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
