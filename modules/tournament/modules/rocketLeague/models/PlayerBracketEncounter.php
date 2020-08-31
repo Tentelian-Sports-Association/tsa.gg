@@ -96,6 +96,14 @@ class PlayerBracketEncounter extends ActiveRecord
         return $this->points;
     }
 
+    /**
+     * @return int
+     */
+    public function getGoals()
+    {
+        return $this->goals;
+    }
+
 
     /**
      * @return string
@@ -112,4 +120,77 @@ class PlayerBracketEncounter extends ActiveRecord
     {
         return $this->dt_updated;
     }
+
+    /** Set Function */
+
+    /**
+	 * @param int
+	 * @param array
+	 */
+	public function setData($pointsArr)
+	{
+		// im Array müssen die gleichen Felder sein, wie hier beschrieben:
+		// points, goals, assists, saves, shots
+		foreach ($pointsArr as $key => $value) {
+			$this->$key = $value;
+		}
+	}
+
+    public function getWinner($bracket)
+	{
+		$encounters = self::findAll(['tournament_id' => $bracket->getTournamentId(), 'id' => $bracket->getEncounterId()]);
+
+		if (count($encounters) == 0) {
+			return false;
+		}
+        
+		$players_left = $bracket->getPlayerParticipant1();
+		$players_right = $bracket->getPlayerParticipant2();
+
+		$leftGoals = [];
+		$rightGoals = [];
+
+		foreach ($encounters as $key => $encounter)
+        {
+			if ($players_left->getId() == $encounter->player_id)
+            {
+				$leftGoals[$encounter->getGameRound()] = $encounter->getGoals();
+			}
+
+			if ($players_right->getId() == $encounter->player_id) {
+				$rightGoals[$encounter->getGameRound()] = $encounter->getGoals();
+			}
+		}
+
+		$minGames = ceil($bracket->getBestOf() / 2);
+
+		if (count($leftGoals) != count($rightGoals)) {
+			return false;
+		}
+
+		if (count($leftGoals) < $minGames) {
+			return false;
+		}
+
+		$leftWins = 0;
+		$rightWins = 0;
+
+		foreach ($leftGoals as $round => $value) {
+			if ($leftGoals[$round] > $rightGoals[$round]) {
+				$leftWins++;
+			} else if ($leftGoals[$round] < $rightGoals[$round]) {
+				$rightWins++;
+			}
+		}
+
+		if ($leftWins == $minGames) {
+			return 1;
+		}
+
+		if ($rightWins == $minGames) {
+			return 2;
+		}
+
+		return false;
+	}
 }

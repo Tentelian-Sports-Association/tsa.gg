@@ -207,14 +207,20 @@ class TeamBrackets extends ActiveRecord
         return $this->dt_updated;
     }
 
-    /** static functions */
+    
     
     public function getByTournament($tournament_id)
 	{
 		return $this->find()->where(['tournament_id' => $tournament_id])->all();
 	}
-
+    
+    /** static functions */
     /** Brackets and Other Stuff */
+
+    public static function getById($bracket_id)
+    {
+        return static::find()->where(['id' => $bracket_id])->one();
+	}
 
     /**
 	 * @param int

@@ -17,6 +17,7 @@ use DateTime;
  * @property int $tournament_id
  * @property int $team_id
  * @property bool $checked_in
+ * @property bool $readRules
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -54,6 +55,14 @@ class TournamentTeamParticipating extends ActiveRecord
     public function getIsCheckedIn()
     {
         return $this->checked_in;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getReadRules()
+    {
+        return $this->readRules;
     }
 
     /**

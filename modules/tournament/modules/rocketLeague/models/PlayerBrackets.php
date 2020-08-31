@@ -70,6 +70,11 @@ class PlayerBrackets extends ActiveRecord
         return $this->encounter_id;
     }
 
+    public function getEncounter($participant, $round)
+    {
+        return PlayerBracketEncounter::find()->where(['id' => $this->encounter_id])->andWhere(['tournament_id' => $this->tournament_id])->andWhere(['game_round' => $round])->andWhere(['player_id' => $participant])->one();
+	}
+
     /**
      * @return int
      */
@@ -189,15 +194,46 @@ class PlayerBrackets extends ActiveRecord
     {
         return $this->dt_updated;
     }
-
-    /** static functions */
     
     public function getByTournament($tournament_id)
 	{
 		return $this->find()->where(['tournament_id' => $tournament_id])->all();
 	}
 
+    /** static functions */
     /** Brackets and Other Stuff */
+
+    public static function getById($bracket_id)
+    {
+        return static::find()->where(['id' => $bracket_id])->one();
+	}
+
+    public static function getBracketData($bracket_id)
+    {
+        $bracket = static::find()->where(['id' => $bracket_id])->one();
+        $bracketData = [];
+
+        $participant1 = $bracket->getPlayerParticipant1();
+        $participant2 = $bracket->getPlayerParticipant2();
+
+        $bracketData['base']['id'] = $bracket->getId();
+        $bracketData['base']['bo'] = $bracket->getBestOf();
+        $bracketData['base']['round'] = $bracket->getRound();
+
+        $bracketData['blue']['participantId'] = $participant1->getId();
+        $bracketData['blue']['participantName'] = $participant1->getUsername();
+        $bracketData['blue']['participantData'][0]['playerId'] = $participant1->getId();
+        $bracketData['blue']['participantData'][0]['playerName'] = $participant1->getUsername();
+        $bracketData['blue']['participantData'][0]['encounterData'] = PlayerBracketEncounter::find()->where(['id' => $bracket->getEncounterId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['player_id' => $participant1->getId()])->orderBy(['game_round' => SORT_ASC])->all();
+
+        $bracketData['orange']['participantId'] = $participant2->getId();
+        $bracketData['orange']['participantName'] = $participant2->getUsername();
+        $bracketData['orange']['participantData'][0]['playerId'] = $participant2->getId();
+        $bracketData['orange']['participantData'][0]['playerName'] = $participant2->getUsername();
+        $bracketData['orange']['participantData'][0]['encounterData'] = PlayerBracketEncounter::find()->where(['id' => $bracket->getEncounterId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['player_id' => $participant2->getId()])->orderBy(['game_round' => SORT_ASC])->all();
+
+        return $bracketData;
+	}
 
     /**
 	 * @param int
@@ -368,7 +404,7 @@ class PlayerBrackets extends ActiveRecord
 	 */
 	public function movePlayersNextRound($winnerNumber) {
 
-		$this->winner_participant = ($winnerNumber == 1)? $this->participant_1 : $this->participant_2;
+		$this->winner_participant = ($winnerNumber == 1)? $this->getPlayerParticipant1Id() : $this->getPlayerParticipant2Id();
 		$this->update();
 		
         if ($this->round === 999)
@@ -380,9 +416,9 @@ class PlayerBrackets extends ActiveRecord
 		$winnerBracket = $this->getWinnerBracket();
 		$looserBracket = $this->getLooserBracket();
 
-		$winnerBracket->setSpielerByBackRef($this->participant_1, $this->getId());
+		$winnerBracket->setSpielerByBackRef(($winnerNumber == 1)? $this->getPlayerParticipant1Id() : $this->getPlayerParticipant2Id(), $this->getId());
 		if ($looserBracket) {
-			$looserBracket->setSpielerByBackRef($this->participant_2, $this->getId());
+			$looserBracket->setSpielerByBackRef(($winnerNumber == 1)? $this->getPlayerParticipant1Id() : $this->getPlayerParticipant2Id(), $this->getId());
 		}
 	}
 
@@ -419,6 +455,39 @@ class PlayerBrackets extends ActiveRecord
 		if ($bracket2['bracket']->getId() === $preBracketId && true === $set2) {
 				$this->participant_2 = $id;
 		}
+        
+        for($i = 0; $i < $this->getBestOf(); $i++)
+        {
+            if($this->getPlayerParticipant1Id())
+            {
+                $encounterParticipant1 = $this->getEncounter($this->getPlayerParticipant1Id(), $i+1);
+                
+                if(!$encounterParticipant1)
+                {
+                    $encounterParticipant1 = new PlayerBracketEncounter();
+                    $encounterParticipant1->id = $this->getEncounterId();
+                    $encounterParticipant1->tournament_id = $this->getTournamentId();
+                    $encounterParticipant1->game_round = $i+1;
+                    $encounterParticipant1->player_id = $id;
+                    $encounterParticipant1->save();
+				}
+			}
+            
+            if ($this->getPlayerParticipant2Id())
+            {
+                $encounterParticipant2 = $this->getEncounter($this->getPlayerParticipant2Id(), $i+1);
+                
+                if(!$encounterParticipant2)
+                {
+                    $encounterParticipant2 = new PlayerBracketEncounter();
+                    $encounterParticipant2->id = $this->getEncounterId();
+                    $encounterParticipant2->tournament_id = $this->getTournamentId();
+                    $encounterParticipant2->game_round = $i+1;
+                    $encounterParticipant2->player_id = $id;
+                    $encounterParticipant2->save();
+				}
+			}
+		}
 		
 		$this->update();
 	}
@@ -433,20 +502,16 @@ class PlayerBrackets extends ActiveRecord
 			return $winner;
 		}
 
-		$type = 'user';
 		$winnerBracket = $this->getWinnerBracket();
 		if (false === $winnerBracket || NULL === $winnerBracket) {
 			return false;
 		}
 
-		if ($type === 'user') {
-
-			if ($winnerBracket->participant_1 != NULL && $this->participant_1 == $winnerBracket->participant_1 || $winnerBracket->participant_2 != NULL && $this->participant_1 == $winnerBracket->participant_2) {
-				return 1;
-			} else if ($winnerBracket->participant_1 != NULL && $this->participant_2 == $winnerBracket->participant_1 || $winnerBracket->participant_2 != NULL && $this->participant_2 == $winnerBracket->participant_2) {
-				return 2;
-			} 
-        }
+		if ($winnerBracket->participant_1 != NULL && $this->participant_1 == $winnerBracket->participant_1 || $winnerBracket->participant_2 != NULL && $this->participant_1 == $winnerBracket->participant_2) {
+			return 1;
+		} else if ($winnerBracket->participant_1 != NULL && $this->participant_2 == $winnerBracket->participant_1 || $winnerBracket->participant_2 != NULL && $this->participant_2 == $winnerBracket->participant_2) {
+			return 2;
+		}
 
 		return false;
 	}

@@ -5,6 +5,7 @@ namespace app\modules\tournament\modules\rocketLeague;
 use app\modules\tournament\modules\rocketLeague\models\PlayerBrackets;
 use app\modules\tournament\modules\rocketLeague\models\TeamBrackets;
 use app\modules\tournament\modules\rocketLeague\models\PlayerBracketEncounter;
+use app\modules\tournament\modules\rocketLeague\models\TeamBracketEncounter;
 
 use app\modules\tournament\models\Tournament;
 
@@ -222,6 +223,8 @@ class CreateBrackets
             }
 
             $bracket->update();
+
+
 
             $bracket = next($bracketArr);
 
@@ -507,11 +510,28 @@ class CreateBrackets
 			}
             else
             {
-                if ($bracket->getPlayerParticipant2Id()) {
+                if ($bracket->getPlayerParticipant2Id())
+                {
+                    for($i = 0; $i < $bracket->getBestOf(); $i++)
+                    {
+                        $encounterParticipant1 = new PlayerBracketEncounter();
+                        $encounterParticipant1->id = $bracket->getEncounterId();
+                        $encounterParticipant1->tournament_id = $tournament->getId();
+                        $encounterParticipant1->game_round = $i+1;
+                        $encounterParticipant1->player_id = $bracket->getPlayerParticipant1Id();
+                        $encounterParticipant1->save();
+
+                        $encounterParticipant2 = new PlayerBracketEncounter();
+                        $encounterParticipant2->id = $bracket->getEncounterId();
+                        $encounterParticipant2->tournament_id = $tournament->getId();
+                        $encounterParticipant2->game_round = $i+1;
+                        $encounterParticipant2->player_id = $bracket->getPlayerParticipant2Id();
+                        $encounterParticipant2->save();
+				    }
+
                     continue;
                 }
-			}
-            
+			}      
 
             $bracket->movePlayersNextRound(1);
         }

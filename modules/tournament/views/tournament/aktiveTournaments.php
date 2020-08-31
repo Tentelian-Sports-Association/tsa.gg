@@ -73,7 +73,7 @@ foreach(openTournamentList as $openTournament)
                             <div class="col-12 openTournamentBody">
                                 <div class="col-5 col-lg-4 float-left">
                                     <div class="username float-left">
-                                        <?= Html::a($openTournament['Name'], ['details', 'gameId' => $choosedGame['id'], 'tournamentId' => $openTournament['ID']], ['class' => '']); ?>
+                                        <?= Html::a($openTournament['Name'], ['details', 'tournamentId' => $openTournament['ID']], ['class' => '']); ?>
                                     </div>
                                 </div>
                                 <div class="col-2 col-lg-2 invite float-left">
