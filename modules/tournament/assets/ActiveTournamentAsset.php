@@ -8,7 +8,7 @@ class ActiveTournamentAsset extends AssetBundle
     public $sourcePath = '@app/assets/dist';
  
     public $css = [
-		'css/tournament.css'
+		'css/activetournament.css',
     ];
 
     public $cssOptions = [

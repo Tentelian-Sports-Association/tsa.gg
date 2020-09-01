@@ -1,0 +1,29 @@
+.inner-wrapper {
+    padding: 40px 20px;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.dark-bg {
+    background-color: #00061b !important;
+}
+
+.tournamentRegistrationBodyHead {
+    background: $thirdColor;
+    padding: 20px;
+}
+
+.tournamentRegistrationBody {
+    padding: 20px;
+}
+
+.tournamentRegistrationBody:nth-child(even) {
+    background-color: #272f46;
+}
+.tournamentRegistrationBody:nth-child(odd) {
+    background-color: #1a223b;
+}
+
+.avatar img, .teamname img {
+    width: 50px;
+}

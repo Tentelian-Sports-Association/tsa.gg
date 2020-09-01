@@ -21,6 +21,7 @@
 
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
+use app\widgets\Alert;
 
 $this->title = $userInfo['user_name'] . '\'s ' . \app\modules\user\Module::t('userDetails', 'userDetails_title');
 
@@ -95,7 +96,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
                                     </div>
                                 <?php endif; ?>
                                 <div class="avatar-preview">
-                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'PeSp Image', 'alt' => $userInfo['user_id']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.png\''] ); ?>
+                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.webp',  ['width' => '120','height' => '120', 'id' => 'imagePreview', 'class' => 'rounded-circle' ,'aria-labelledby' => 'Avatar Image', 'alt' => $userInfo['user_id']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $userInfo['user_id']) . '.png\''] ); ?>
                                 </div>
                             </div>
 
@@ -446,7 +447,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Profile details for
 
             <div class="col-12 col-lg-4">
                 <!-- Coins -->
-                <div class="coins-block py-5 bg-darkblue-2 ">
+                <div class="coins-block py-5 bg-darkblue-2">
                     <h3 class="header">
                         <?= \app\modules\user\Module::t('userDetails', 'userDetails_coinsHeader') ?>
                     </h3>

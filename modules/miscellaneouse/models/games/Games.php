@@ -6,6 +6,11 @@ use yii\db\ActiveRecord;
 
 use app\modules\tournament\models\Tournament;
 
+use app\modules\team\models\TeamMember;
+
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParticipating;
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentPlayerParticipating;
+
 /**
  * Class Games
  * @package app\modules\miscellaneouse\models\games
@@ -18,6 +23,8 @@ use app\modules\tournament\models\Tournament;
  * @property string $twitter_channel
  * @property string $icon
  * @propertx string $verification_phrase
+ * @property string $statisticsClassName
+ * @property string $gameTag
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -109,6 +116,22 @@ class Games extends ActiveRecord
     /**
      * @return string
      */
+    public function getStatisticsClass()
+    {
+        return $this->statisticsClassName;
+	}
+
+    /**
+     * @return string
+     */
+    public function getGameTag()
+    {
+        return $this->gameTag;
+	}
+
+    /**
+     * @return string
+     */
     public function getDtCreated()
     {
         return $this->dt_created;
@@ -127,7 +150,7 @@ class Games extends ActiveRecord
      */
     public static function findByID($gameID)
     {
-        return static::findOne(['id' => $gameID]);
+        return static::find()->where(['id' => $gameID])->one();
     }
 
     public static function GetCurrentGames($languageID)
@@ -162,8 +185,30 @@ class Games extends ActiveRecord
 
             if($gamesWithTournaments[$nr]['OpenTournaments'] > 0)
             {
-                $gamesWithTournaments[$nr]['ParticipatingPlayer'] = 72;
-                $gamesWithTournaments[$nr]['ParticipatingTeams'] = 16;
+                $gamesWithTournaments[$nr]['ParticipatingPlayer'] = 0;
+                $gamesWithTournaments[$nr]['ParticipatingTeams'] = 0;
+                
+                $openTournaments = Tournament::find()->where(['game_id' => $game->getId()])->andWhere(['finished' => '0'])->all();
+
+                foreach($openTournaments as $openTournament)
+                {
+                    if($openTournament->getIsTeamTournament())
+                    {
+                        $tournamentTeams = TournamentTeamParticipating::find()->where(['tournament_id' => $openTournament->getId()])->all();
+
+                        $gamesWithTournaments[$nr]['ParticipatingTeams'] += count($tournamentTeams);
+
+                        foreach($tournamentTeams as $tournamentTeam)
+                        {
+                            $gamesWithTournaments[$nr]['ParticipatingPlayer'] += TeamMember::find()->where(['team_id' => $tournamentTeam->getTeamId()])->andWhere(['>', 'role_id', '3'])->count();
+					    }
+					}
+                    else
+                    {
+                        $gamesWithTournaments[$nr]['ParticipatingPlayer'] += TournamentPlayerParticipating::find()->where(['tournament_id' => $openTournament->getId()])->count();
+                    }
+
+				}
 			}
 		}
 

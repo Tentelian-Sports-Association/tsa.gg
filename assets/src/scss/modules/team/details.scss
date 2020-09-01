@@ -5,47 +5,58 @@
         background: $red;
         border: none;
         padding: 0 4px;
+
         svg {
             width: 20px;
             margin-top: 3px;
             height: 20px;
         }
     }
+
     * {
         font-weight: normal;
     }
+
     .header {
         font-weight: 500;
         margin-bottom: 20px;
     }
+
     .inner-wrapper {
         padding: 0 60px 0px 40px;
         max-width: 1920px;
         margin: 0 auto;
     }
+
     .content-profileDetails {
         padding: 20px 50px;
     }
+
     @media (max-width: $breakpoint-md) {
         .inner-wrapper {
             padding: 0;
         }
+
         .p-md-5 {
             padding: 1rem !important;
         }
     }
+
     .IMG {
         margin-top: 2px;
         float: left;
         width: 25px;
         margin-right: 10px;
     }
+
     .inner-container {
         padding: 20px 100px;
     }
+
     .section-row {
         padding: 20px 0;
         border-bottom: 1px solid white;
+
         .team-block {
             img {
                 width: 46px;
@@ -53,39 +64,48 @@
             }
         }
     }
+
     .section-row:last-child {
         border-bottom: none;
     }
+
     .avatar-image {
         width: 46px;
         height: 46px;
     }
+
     .add-btn {
         padding: 0px 4px;
+
         svg {
             width: 20px;
             margin-top: 3px;
             height: 20px;
         }
     }
+
     .team-block {
         .col-12 {
             padding: 0;
         }
+
         h4 {
             margin-bottom: 0;
         }
     }
+
     .avatarName {
         h3 {
             font-weight: 500;
             font-size: 32px;
             line-height: 37px;
+
             .avatarID {
                 font-size: 22px;
                 line-height: 25px;
             }
         }
+
         .personal-datalist {
             span {
                 font-size: 22px;
@@ -93,6 +113,7 @@
             }
         }
     }
+
     .organisation-title-list,
     .avatar-job-list,
     .personal-datalist,
@@ -103,17 +124,19 @@
                     border-right: 0;
                 }
             }
+
             span {
                 border-right: 1px solid white;
                 padding-right: 10px;
             }
         }
-
     }
+
     .avatar-upload {
         position: relative;
         max-width: 205px;
         width: 120px;
+
         .avatar-edit {
             position: absolute;
             left: 0;
@@ -121,6 +144,7 @@
             right: 0;
             bottom: 0;
             z-index: 1;
+
             .upload-icon {
                 align-items: center;
                 width: 120px;
@@ -129,13 +153,16 @@
                 display: inline-block;
                 text-align: center;
             }
+
             svg {
                 vertical-align: middle;
                 width: 30px;
                 height: 120px;
             }
+
             input {
                 display: none;
+
                 + label {
                     position: absolute;
                     left: 0;
@@ -148,18 +175,22 @@
                     cursor: pointer;
                     font-weight: normal;
                     transition: all .2s ease-in-out;
+
                     &:hover {
-                        background: rgba(0, 0, 0, 0.75);;
+                        background: rgba(0, 0, 0, 0.75);
+                        ;
                     }
                 }
             }
         }
+
         .avatar-preview {
             width: 120px;
             height: 120px;
             position: relative;
             border-radius: 100%;
             box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+
             > div {
                 width: 100%;
                 height: 100%;
@@ -170,8 +201,19 @@
             }
         }
     }
+
     .coins-block, .new-invites-block, .open-applications {
         padding-top: 60px !important;
         padding: 20px 50px;
+    }
+
+    .btn-add {
+        padding: 4px 10px !important;
+        font-size: 14px
+    }
+    .del-btn {
+        color: #dc3545 !important;
+        border: 2px solid #dc3545 !important;
+        padding: 2px 4px !important;
     }
 }

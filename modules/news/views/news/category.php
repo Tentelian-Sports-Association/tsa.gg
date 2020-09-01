@@ -3,6 +3,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use app\widgets\Alert;
 
 /* @var $this yii\web\View
  * @var $latestNews array

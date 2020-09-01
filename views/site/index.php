@@ -3,6 +3,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use app\widgets\Alert;
 
 /* @var $this yii\web\View
  * @var $upcomingEvents array
@@ -111,7 +112,8 @@ Yii::$app->MetaClass->writeMetaIndex($this);
                                         <!-- Check if Live or in the Future -->
                                         <?php if($tournament['IsLive']) : ?>
                                             <!-- ab hier dann die Button geschichte das man direkt auf den  Turnierbaum kommt -->
-                                            <a href="eventlink" class="filled-btn">Is Live</a>
+                                            <?=Html::a('Is Live', ["/tournament/details", 'gameId' => $tournament['GameID'], 'tournamentId' => $tournament['ID']], ['class' => "filled-btn",'aria-label' => "Is Live"]); ?>
+
                                             <span class="tournament-status d-none"><?= $tournament['ID'] ?></span>
                                         <?php else : ?>
                                             <!-- ab hier dann datum und uhrzeit wenn es nicht live ist -->
@@ -124,11 +126,11 @@ Yii::$app->MetaClass->writeMetaIndex($this);
                         </ul>
                     </div>
                     <div class="d-none col-sm-4 d-sm-block d-lg-flex">
-                        <!-- Image f�r Hover Image funktion zum laden baue ich wenn design da -->
+                        <!-- Image für Hover Image funktion zum laden baue ich wenn design da -->
                         <?= Html::img(Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.webp', ['class' => 'img-fluid',  'aria-label' => $tournament['HoverImage'], 'id' => $tournament['HoverImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.png\'']); ?>
                     </div>
                 </div>
-                <?php echo Html::a(Yii::t('app', 'tournaments_moreTournaments'), ["#"], ['class' => "filled-btn",'aria-label' => "show all tournaments Button"]); ?>
+                <?= Html::a(Yii::t('app', 'tournaments_moreTournaments'), ["/tournament/overview"], ['class' => "filled-btn",'aria-label' => "show all tournaments Button"]); ?>
             <!-- If no Tournaments Availabel show what ever -->
             <?php else : ?>
                 <?= Html::img(Yii::$app->HelperClass->checkImage('/images/placeholder/', 'running_tournaments') . '.webp', ['class' => 'img-fluid',  'aria-label' => 'placeholder', 'id' => 'placeholder', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/placeholder/', 'running_tournaments') . '.png\'']); ?>

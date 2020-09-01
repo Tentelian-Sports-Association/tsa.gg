@@ -10,7 +10,6 @@
 
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
-
 use app\widgets\Alert;
 
 $this->title = \app\modules\organisation\Module::t('editDetails', 'editOrganisation_header');

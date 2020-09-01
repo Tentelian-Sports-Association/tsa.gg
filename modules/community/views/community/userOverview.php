@@ -13,6 +13,7 @@
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use app\widgets\Alert;
 
 $this->title = \app\modules\community\Module::t('overview', 'overview_header_users');
 
@@ -101,7 +102,7 @@ $searchModel->searchString = '';
                         <?php foreach ($sortedPaginatedUsers as $index => $user) : ?>
                         <div class="col-12 userBody">
                             <div class="col-lg-2 id float-left">
-                                <?php echo $user['ID']; ?>
+                                <?= $user['ID']; ?>
                             </div>
                             <div class="col-3 col-lg-3 float-left">
                                 <div class="avatar float-left">

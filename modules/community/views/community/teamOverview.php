@@ -11,6 +11,7 @@
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use app\widgets\Alert;
 
 $this->title = \app\modules\community\Module::t('overview', 'overview_header_teams');
 
@@ -118,7 +119,6 @@ sortedPaginatedTeam[$nr]['Language']['name']
                                 </div>
                                 <div class="username float-left">
                                     <?= Html::a($team['Name'], ['/team/details', 'teamID' => $team['ID']], ['class' => '']); ?>
-
                                 </div>
                             </div>
                             <div class="col-3 captain float-left">

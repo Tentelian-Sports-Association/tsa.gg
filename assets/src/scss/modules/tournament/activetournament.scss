@@ -1,0 +1,21 @@
+.inner-wrapper {
+    padding: 40px 20px;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.openTournamentBodyHead {
+    background: $thirdColor;
+    padding: 20px;
+}
+
+.openTournamentBody {
+    padding: 20px;
+}
+
+.openTournamentBody:nth-child(even) {
+    background-color: #272f46;
+}
+.openTournamentBody:nth-child(odd) {
+    background-color: #1a223b;
+}

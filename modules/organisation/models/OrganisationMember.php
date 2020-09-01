@@ -6,12 +6,14 @@ use yii\db\ActiveRecord;
 
 use app\modules\user\models\User;
 
+use app\modules\organisation\models\Organisation;
 use app\modules\organisation\models\OrganisationRoles;
 
 use app\modules\team\models\Team;
 use app\modules\team\models\TeamMember;
 
 use app\modules\miscellaneouse\models\invitations\Invitations;
+use app\modules\miscellaneouse\models\tournamentParticipants\TournamentTeamParticipating;
 
 /**
  * Class OrganisationMembers
@@ -221,4 +223,66 @@ use app\modules\miscellaneouse\models\invitations\Invitations;
 
         return $orgMembers;
     }
+
+    public static function findInvitabelMember($orgId, $teamId, $gameId, $modeId, $sort = true)
+    {
+        $invitabelMembers = [];
+        $organisationMembers = static::find()->where(['organisation_id' => $orgId])->all();
+
+        foreach($organisationMembers as $nr => $organisationMember)
+        {
+            $memberOfTeams = TeamMember::find()->where(['user_id' => $organisationMember->getUserId()])->andWhere(['>=', 'role_id', '4'])->all(); //->andWhere(['>=', 'role_id', '4'])
+
+            if($memberOfTeams)
+            {
+                foreach($memberOfTeams as $memberOfTeam)
+                {
+                    if(Team::find()->where(['id' => $memberOfTeam->getTeamId()])->one()->getGameId() == $gameId && $memberOfTeam->getTeamId() != $teamId)
+                    {
+                        $inTournamentRegistered = TournamentTeamParticipating::find()->where(['team_id' => $memberOfTeam->getTeamId()])->all();
+
+                        //$invitabelMembers[$nr] = $organisationMember;
+				    }
+                    else
+                    {
+                        if($memberOfTeam->getTeamId() != $teamId)
+                        {
+                            $user = User::find()->where(['id' => $organisationMember->getUserId()])->one();
+
+	                        $invitabelMembers[$nr]['UserID'] = $user->getId();
+	                        $invitabelMembers[$nr]['UserName'] = $user->getUserName();
+						}
+                    }
+			    }
+            }
+            else
+            {
+                $user = User::find()->where(['id' => $organisationMember->getUserId()])->one();
+
+	            $invitabelMembers[$nr]['UserID'] = $user->getId();
+	            $invitabelMembers[$nr]['UserName'] = $user->getUserName();
+            }
+		}
+        
+        //print_r($invitabelMembers);
+        //die();
+        
+        /*$ownerInASubTeam = $this->hasOne(User::className(), ['id' => 'owner_id'])->one()->getSubTeamsMembership()->andWhere(['tournament_mode_id' => $mode, 'game_id' => $gameId])->count();
+
+        if ($ownerInASubTeam == 0 && $ownerInThisTeam == 0){
+                $members[] = $this->hasOne(User::className(), ['id' => 'owner_id'])->one();    
+            }
+
+        foreach ($this->getTeamMember()->all() as $teamMemberKey => $teamMember)
+        {
+            $alreadyInThisTeam = SubTeamMember::find()->where(['user_id' => $teamMember->getUserId(), 'sub_team_id' => $subTeamId])->count();
+            $alreadyInASubTeam = $teamMember->getUser()->one()->getSubTeamsMembership()->andWhere(['tournament_mode_id' => $mode, 'game_id' => $gameId])->count();
+
+            if ($alreadyInASubTeam == 0 && $alreadyInThisTeam == 0){
+                $members[] = $teamMember->getUser()->one();    
+            }
+        }*/
+
+        return $invitabelMembers;
+	}
 }

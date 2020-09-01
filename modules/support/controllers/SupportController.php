@@ -5,6 +5,7 @@ namespace app\modules\support\controllers;
 use app\components\BaseController;
 
 use Yii;
+use app\widgets\Alert;
 
 class SupportController extends BaseController
 {

@@ -4,6 +4,7 @@ namespace app\modules\company\controllers;
 
 use app\components\BaseController;
 use yii\filters\AccessControl;
+use app\widgets\Alert;
 
 /**
  * Class CompanyController

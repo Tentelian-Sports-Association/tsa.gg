@@ -92,7 +92,9 @@ use app\modules\team\models\TeamRoles;
 
     public static function findMember($teamID)
     {
-        $members = static::findAll(['team_id' => $teamID]);
+        //$captain = 
+
+        $members = static::find()->where(['team_id' => $teamID])->groupBy(['user_id'])->orderBy(['role_id' => SORT_ASC])->all();
         $teamMembers = array();
 
         foreach($members as $nr =>  $member)
@@ -101,8 +103,14 @@ use app\modules\team\models\TeamRoles;
 
             $teamMembers[$nr]['UserID'] = $user->getId();
             $teamMembers[$nr]['UserName'] = $user->getUsername();
-            $teamMembers[$nr]['RoleID'] = $member->getRoleId();
-            $teamMembers[$nr]['RoleName'] = TeamRoles::getRoleByID($member->getRoleId());
+
+            $memberRoles = static::find()->where(['team_id' => $teamID])->andWhere(['user_id' => $user->getId()])->all();
+
+            foreach($memberRoles as $rnr => $role)
+            {
+                $teamMembers[$nr]['Roles'][$rnr]['RoleID'] = $role->getRoleId();
+                $teamMembers[$nr]['Roles'][$rnr]['RoleName'] = TeamRoles::getRoleByID($role->getRoleId());
+			}
 		}
 
         return $teamMembers;
@@ -119,5 +127,43 @@ use app\modules\team\models\TeamRoles;
 
 
         return $teamManager;
+	}
+
+    public static function FindPlayer($teamId)
+    {
+        $players = static::find()->where(['team_id' => $teamId])->andWhere(['role_id' => 4])->all();
+
+        $teamPlayer = array();
+
+        foreach($players as $nr =>  $player)
+        {
+            $user = User::findIdentity($player->getUserId());
+
+            $teamPlayer[$nr]['UserID'] = $user->getId();
+            $teamPlayer[$nr]['UserName'] = $user->getUsername();
+            $teamPlayer[$nr]['RoleID'] = $player->getRoleId();
+            $teamPlayer[$nr]['RoleName'] = TeamRoles::getRoleByID($player->getRoleId());
+		}
+
+        return $teamPlayer;
+	}
+
+    public static function FindSubstitude($teamId)
+    {
+        $substitudes = static::find()->where(['team_id' => $teamId])->andWhere(['role_id' => 5])->all();
+
+        $teamSubstitudes = array();
+
+        foreach($substitudes as $nr =>  $substitude)
+        {
+            $user = User::findIdentity($substitude->getUserId());
+
+            $teamSubstitudes[$nr]['UserID'] = $user->getId();
+            $teamSubstitudes[$nr]['UserName'] = $user->getUsername();
+            $teamSubstitudes[$nr]['RoleID'] = $substitude->getRoleId();
+            $teamSubstitudes[$nr]['RoleName'] = TeamRoles::getRoleByID($substitude->getRoleId());
+		}
+
+        return $teamSubstitudes;
 	}
 }

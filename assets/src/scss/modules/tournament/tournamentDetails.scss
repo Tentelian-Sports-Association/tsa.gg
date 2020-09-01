@@ -1,0 +1,97 @@
+.inner-wrapper {
+    padding: 40px 20px;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.openTournamentBody {
+    padding: 20px;
+}
+
+.openTournamentBody:nth-child(even) {
+    background-color: #272f46;
+}
+.openTournamentBody:nth-child(odd) {
+    background-color: #1a223b;
+}
+
+#imagePreview {
+    width: 50px;
+    height: auto;
+}
+
+.IMG {
+    width: 50px;
+    height: auto;
+}
+
+$side-margin: 50px;
+$vertical-margin: 10px;
+
+
+.item{
+    display: flex;
+    flex-direction: row-reverse;
+    p{
+      padding: 20px;
+      margin: 0;
+      background-color: Beige;
+    }
+    
+    &-parent{
+      position: relative;
+      margin-left: $side-margin;
+      display: flex;
+      align-items: center;
+      &:after{
+          position: absolute;
+          content: '';
+          width: $side-margin/2;
+          height: 2px;
+          left: 0;
+          top: 50%;
+          background-color: #fff;
+          transform: translateX(-100%);
+      }
+    }
+    &-childrens{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    &-child{
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      margin-top: $vertical-margin;
+      margin-bottom: $vertical-margin;
+      position: relative;
+      &:before{
+        content: '';
+        position: absolute;
+        background-color: #fff;
+        right: 0;
+        top: 50%;
+        transform: translateX(100%);
+        width: 25px;
+        height: 2px;
+      }
+      &:after{
+        content: '';
+        position: absolute;
+        background-color: #fff;
+        right: -$side-margin / 2;
+        height: calc(50% + 22px) ;
+        width: 2px;
+        top: 50%;
+      }
+      &:last-child{
+        &:after{
+          transform: translateY(-100%);
+        }
+      }
+      &:only-child:after{          
+        display: none;          
+      }
+    }
+  }
