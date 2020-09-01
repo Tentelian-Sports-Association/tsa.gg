@@ -238,8 +238,6 @@ use app\widgets\Alert;
 
                                 $goals= $bracket->getGoals($tournament);
                             ?>
-                            
-<<<<<<< HEAD
                             <div class="bracket mb-4 round-<?= $round; ?>">
                                 <div class="bracket-box">
                                     <div class="bracketParticipant <?= $class1; ?>">
@@ -270,15 +268,6 @@ use app\widgets\Alert;
                 <?php foreach ($bracketData['looser'] as $round => $roundBrackets): ?>
                     <?php $firstBracket = reset($roundBrackets['brackets']); ?>
                     <div class="bracketRound">
-                        <div class="roundTitle">
-                            <?= 'Round ' . $round; ?>
-                        </div>
-                        <div class="roundTitle">
-                            <?= 'Best of ' . $firstBracket->getBestOf(); ?>
-                        </div>
-                        <div class="roundTitle">
-                            <?= 'Start: ' . $roundBrackets['startTime']; ?>
-                        </div>
                         <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
                             <?php
                                 $bracketFinished = $bracket->checkisFinished();
