@@ -34,22 +34,30 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Create your own Tea
                 <input type="hidden" name="bracketId" value="<?= $bracketData['base']['id']; ?>">
                 <input type="hidden" name="isTeam" value="<?= $tournament->getIsTeamTournament(); ?>">
 
-                <div class="col-lg-12 encounterHeader">
-                    <h1><?= $tournament->getName() . ' - Round ' . $bracketData['base']['round'] . ' - Best of ' . $bracketData['base']['bo'] ?></h1>
-                    <div class="col-lg-6">
-                        <div class="playerDetails">
-                            <div class="playerName"><?= $bracketData['blue']['participantName']; ?></div>
-                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['blue']['participantId']) . '.webp', ['aria-label' => $bracketData['blue']['participantName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['blue']['participantId']) . '.png\'']) ?>		
+                <h1 style="text-align:center;"}><?= $tournament->getName() . ' - Round ' . $bracketData['base']['round'] . ' - Best of ' . $bracketData['base']['bo'] ?></h1>
+                <div class="col-lg-12 encounterGameHeader">
+                    <div class="col-lg-5 float-left">
+                        <div class="col-lg-12 playerDetails">
+                            <div class="col-lg-6 avatar">
+                                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['blue']['participantId']) . '.webp', ['aria-label' => $bracketData['blue']['participantName']. '.webp', 'class' => 'encounterGameHeaderImageLeft', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['blue']['participantId']) . '.png\'']) ?>		
+                            </div>
+                            <div class="col-lg-6 playerNameLeft"><?= $bracketData['blue']['participantName']; ?></div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="playerDetails">
-                            <div class="playerName"><?= $bracketData['orange']['participantName']; ?></div>
-                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['orange']['participantId']) . '.webp', ['aria-label' => $bracketData['orange']['participantName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['orange']['participantId']) . '.png\'']) ?>		
+                    <div class="col-lg-2 float-left encounterVs">
+                        VS
+                    </div>
+                    <div class="col-lg-5 float-left">
+                        <div class="col-lg-12 playerDetails">
+                            <div class="col-lg-6 playerNameRight"><?= $bracketData['orange']['participantName']; ?></div>
+                            <div class="col-lg-6 avatar">
+                                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['orange']['participantId']) . '.webp', ['aria-label' => $bracketData['orange']['participantName']. '.webp', 'class' => 'encounterGameHeaderImageRight', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['orange']['participantId']) . '.png\'']) ?>		
+                            </div>
                         </div>
                     </div>
-                    <div class="encounterVs">VS.</div>
                 </div>
+
+                <div class="clearfix"></div>
 
                 <div class="col-lg-12 encounterBody">
                     <?php for ($b=1; $b <= $bracketData['base']['bo']; $b++): ?>
@@ -78,9 +86,13 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Create your own Tea
                                 <tbody>
                                     <?php foreach ($bracketData['blue']['participantData'] as $player): ?>
                                         <tr>
-                                            <td class="playerName">
-                                                <?= ''//Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
-                                                <?= $player['playerName']; ?>
+                                            <td class="playerData">
+                                                <div class="col-lg-2 avatar">
+                                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
+                                                </div>
+                                                <div class="col-lg-10 name">
+                                                    <?= $player['playerName']; ?>
+                                                </div>
                                             </td>
                                             <td class="encounterField">
                                                 <?php if ($editable): ?>
@@ -139,9 +151,13 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Create your own Tea
                                 <tbody>
                                     <?php foreach ($bracketData['orange']['participantData'] as $player): ?>
                                         <tr>
-                                            <td class="playerName">
-                                                <?= ''//Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
-                                                <?= $player['playerName']; ?>
+                                            <td class="playerData">
+                                                <div class="col-lg-2 avatar">
+                                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
+                                                </div>
+                                                <div class="col-lg-10 name">
+                                                    <?= $player['playerName']; ?>
+                                                </div>
                                             </td>
                                             <td class="encounterField">
                                                 <?php if ($editable): ?>

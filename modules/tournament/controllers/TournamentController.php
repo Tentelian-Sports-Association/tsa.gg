@@ -377,7 +377,7 @@ class TournamentController extends BaseController
             $bracketData = PlayerBrackets::getBracketData($bracketId);
 
         $encounterScreen = [];
-        $editable = true;
+        $editable = false;
 
         //print_r($bracketData);
         //die();

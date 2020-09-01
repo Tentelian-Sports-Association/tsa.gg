@@ -210,6 +210,8 @@ class PlayerBrackets extends ActiveRecord
 
     public static function getBracketData($bracket_id)
     {
+        /** Umändern, sodass der gewinner immer im oberren bracet steht und sich dadurch die Farbe auch ändert, wie in RL */
+
         $bracket = static::find()->where(['id' => $bracket_id])->one();
         $bracketData = [];
 
