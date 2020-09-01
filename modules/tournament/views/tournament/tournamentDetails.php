@@ -13,8 +13,6 @@ use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use app\widgets\Alert;
 
-$admin = false;
-
 ?>
 
 <div class="site-tournamentDetails">
@@ -38,14 +36,15 @@ $admin = false;
             <?php
                 echo Html::a('Rules',
                     [
-                        "register",
-                        "tournamentId" => $tournament['id']
+                        "rules",
+                        "rulesId" => $tournament['rules_id']
                     ],
                     ['class' => "filled-btn btn btn-primary",
                         'title' => 'Show Rules'
                     ]
                 )
             ?>
+        </div>
 
         <div class="participants mt-4 mb-4">
             <ul class="list-unstyled row">
@@ -85,7 +84,6 @@ $admin = false;
                                 <?php endif; ?>
                             </div>
                             <!-- Nur Spieler selbst und Administratoren -->
-                            <?php if($admin) : ?>
                             <div class="col-3 penalties float-left">
                                 <div class="row">
                                 <?php foreach($team['penalties'] as $penaltie) : ?>
@@ -97,7 +95,6 @@ $admin = false;
                                 <?php endforeach; ?>
                                 </div>
                             </div>
-                            <?php endif ?>
                             <div class="clearfix"></div>
                         </div>
                     <?php endforeach; ?>
@@ -141,10 +138,24 @@ $admin = false;
             </ul>
         </div>
 
-        
+        <!-- Test Button -->
+        <div class="rules">
+            <?php
+                echo Html::a('Create Brackets',
+                    [
+                        "create-brackets",
+                        "tournamentId" => $tournament['id']
+                    ],
+                    ['class' => "filled-btn btn btn-primary",
+                        'title' => 'Show Rules'
+                    ]
+                )
+            ?>
+        </div>
 
         <!-- Tournament Brackets -->
         <div class="brackets mt-4 mb-4" style="width: 100%; overflow-x: auto;">
+            <h3>Winner Bracket</h3>
             <div class="winnerBracket row">
                 <?php 
                     $last_round = 1;
@@ -228,6 +239,7 @@ $admin = false;
                                 $goals= $bracket->getGoals($tournament);
                             ?>
                             
+<<<<<<< HEAD
                             <div class="bracket mb-4 round-<?= $round; ?>">
                                 <div class="bracket-box">
                                     <div class="bracketParticipant <?= $class1; ?>">
@@ -332,6 +344,71 @@ $admin = false;
                         <?php endforeach; ?>
                     </div>
                 <?php endforeach; ?>
+            </div>
+        </div>
+
+
+        <div class="brackets mt-4 mb-4" style="width: 100%; overflow-x: auto;">
+            <div class="item">
+                <div class="item-parent">
+                    <p>Gewinner</p>
+                </div>
+                <div class="item-childrens">
+                    <div class="item-child">
+                        <div class="item">
+                            <div class="item-parent">
+                                <p>Parent X</p>
+                            </div>
+                            <div class="item-childrens">
+                                <div class="item-child">
+                                    <div class="item">
+                                        <div class="item-parent">
+                                            <p>Parent</p>
+                                        </div>
+                                        <div class="item-childrens">
+                                            <div class="item-child">
+                                                <p>Player 1</p>
+                                            </div>
+                                            <div class="item-child">
+                                                <p>Player 2</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-child">
+                                    <p>Player 3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-child">
+                        <div class="item">
+                            <div class="item-parent">
+                                <p>Parent</p>
+                            </div>
+                            <div class="item-childrens">
+                                <div class="item-child">
+                                    <div class="item">
+                                        <div class="item-parent">
+                                            <p>Parent</p>
+                                        </div>
+                                        <div class="item-childrens">
+                                            <div class="item-child">
+                                                <p>Player 4</p>
+                                            </div>
+                                            <div class="item-child">
+                                                <p>Player 5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-child">
+                                    <p>Player 6</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
