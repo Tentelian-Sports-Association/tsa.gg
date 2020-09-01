@@ -111,7 +111,131 @@
         transform: translateY(-100%);
         right: -25px !important;
     }
+
+    .round-4:after, .round-Finale:after {
+        width: 0px;
+    }
 }
+
+.looserBracket {
+    box-sizing: border-box;
+    width: 4000px !important;
+
+    .bracket {
+        background: #00061b;
+        padding: 10px 20px;
+        width: 300px;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .round-1 {
+        margin-top: 50px;
+    }
+
+    .round-2 {
+        margin-top: 108px;
+        .bracket-box:before {
+            position: absolute;
+            content: "";
+            width: 45px;
+            height: 2px;
+            left: 0;
+            top: 50%;
+            background-color: #fff;
+            transform: translateX(-100%);
+        }
+    }
+
+    .round-2 ~ .round-2 {
+        margin-top: 168px;
+    }
+
+    .round-empty {
+        position: relative;
+        margin-top: 331px;
+        height: 2px;
+        background: #FFF;
+    }
+
+    .round-empty:before {
+        position: absolute;
+        content: "";
+        width: 45px;
+        height: 2px;
+        left: 0;
+        background-color: #fff;
+        transform: translateX(-100%);
+    }
+
+    .round-4 {
+        margin-top: 225px;
+        .bracket-box:before {
+            position: absolute;
+            content: "";
+            width: 59px;
+            height: 2px;
+            left: 0;
+            top: 50%;
+            background-color: #fff;
+            transform: translateX(-100%);
+        }
+    }
+
+    .round-5 {
+        margin-top: 225px;
+    }
+
+    .round-Finale {
+        margin-top: 225px;
+    }
+
+
+    .bracket:after, .bracket:before {
+        content: "";
+        position: absolute;
+        background-color: #fff;
+        top: 50%;
+    }
+
+    .bracket:before {
+        right: 0;
+        transform: translateX(100%);
+        width: 25px;
+        height: 2px;
+    }
+
+    .bracket:after {
+        right: -25px;
+        height: calc(50% + 25px);
+        width: 2px;
+    }
+
+    .bracket:nth-child(even):after {
+        transform: translateY(-100%);
+    }
+
+    .round-2:after {
+        position: absolute;
+        content: "";
+        width: 2px;
+        height: calc(50% + 85px);
+        right: -27px;
+        top: 50%;
+        background-color: #fff;
+        transform: translateX(-100%);
+    }
+
+    .round-2:nth-child(even):after {
+        transform: translateY(-100%);
+        right: -25px !important;
+    }
+
+    .round-4:after, .round-Finale:after {
+        width: 0px;
+    }
+}
+
 .bracketRound {
     width: 368px;
     padding-left: 20px;
