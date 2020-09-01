@@ -91,7 +91,7 @@ class TournamentController extends BaseController
         $choosedGame = Games::findByID($gameID);
 
         /** If game was Choosen */
-        $openTournamentList = Tournament::GetTournaments($gameID, $user->getId());
+        $openTournamentList = Tournament::GetTournaments($gameID);
 
         return $this->render('aktiveTournaments',
         [
