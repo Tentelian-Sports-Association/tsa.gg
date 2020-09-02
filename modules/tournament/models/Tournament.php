@@ -203,7 +203,7 @@ class Tournament extends ActiveRecord
     /** Get Active Tournaments */
     public static function GetTournaments($gameId)
     {
-        $tournaments = static::find()->where(['game_id' => $gameId])->andWhere(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_DESC])->all();
+        $tournaments = static::find()->where(['game_id' => $gameId])->andWhere(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_ASC])->all();
         $sortedTournament = [];
 
         $currentDate = new DateTime();
