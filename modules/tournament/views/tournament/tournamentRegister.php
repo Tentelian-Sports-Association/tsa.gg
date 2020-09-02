@@ -92,39 +92,43 @@ use app\widgets\Alert;
                                         <!-- Player Data -->
                                         <div class="col-lg-4 player float-left">
                                             <?php if(array_key_exists('player', $authorizedTeam)) : ?>
-                                                <?php foreach($authorizedTeam['player'] as $player) : ?>
-                                                    <!-- Player Name -->
-                                                    <div class="col-lg-2 playerName float-left">
-                                                        <div class="avatar float-left">
-                                                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>
-                                                        </div>
-                                                        <?= Html::a($player['playerName'], ['/user/details', 'userId' => $player['playerId']], ['class' => '']); ?>
-                                                    </div>
-
-                                                    <!-- Player Game Id's and Platforms -->
-                                                    <div class="col-lg-10 gameData float-left">
-                                                        <?php if(array_key_exists('gameIds', $player)) : ?>
-                                                            <?php foreach($player['gameIds'] as $gameID) : ?>
-                                                                <div class="col-lg-12 platform <?= ($gameID['playerGameIdEligible'])? '':'bg-red' ?> float-left">
-                                                                    <div class="col-5 platformName float-left">
-                                                                        <?= $gameID['platformName'] ?>
-                                                                    </div>
-                                                                    <div class="col-7 gameId float-left">
-                                                                        <?php if($gameID['playerGameIdEligible']) : ?>
-                                                                            <?= 'correct'; ?>
-                                                                        <?php else : ?>
-                                                                            <?= $gameID['platformPlayerIdError']; ?>
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </div>
-                                                            <?php endforeach; ?>
-                                                        <?php else : ?>
-                                                            <div class="col-lg-12 platform float-left">
-                                                                <?= 'no Rocket League Id\'s found' ?>
+                                                <div class="row">
+                                                    <?php foreach($authorizedTeam['player'] as $player) : ?>
+                                                    <div class="col-12 mt-2">
+                                                        <!-- Player Name -->
+                                                        <div class="col-lg-2 playerName float-left">
+                                                            <div class="avatar float-left">
+                                                                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>
                                                             </div>
-                                                        <?php endif; ?>
+                                                            <?= Html::a($player['playerName'], ['/user/details', 'userId' => $player['playerId']], ['class' => '']); ?>
+                                                        </div>
+
+                                                        <!-- Player Game Id's and Platforms -->
+                                                        <div class="col-lg-10 gameData float-left">
+                                                            <?php if(array_key_exists('gameIds', $player)) : ?>
+                                                                <?php foreach($player['gameIds'] as $gameID) : ?>
+                                                                    <div class="col-lg-12 platform <?= ($gameID['playerGameIdEligible'])? '':'bg-red' ?> float-left">
+                                                                        <div class="col-5 platformName float-left">
+                                                                            <?= $gameID['platformName'] ?>
+                                                                        </div>
+                                                                        <div class="col-7 gameId float-left">
+                                                                            <?php if($gameID['playerGameIdEligible']) : ?>
+                                                                                <?= 'correct'; ?>
+                                                                            <?php else : ?>
+                                                                                <?= $gameID['platformPlayerIdError']; ?>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php endforeach; ?>
+                                                            <?php else : ?>
+                                                                <div class="col-lg-12 platform float-left">
+                                                                    <?= 'no Rocket League Id\'s found' ?>
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        </div>
                                                     </div>
-                                                <?php endforeach; ?>
+                                                    <?php endforeach; ?>
+                                                </div>
                                             <?php else : ?>
                                                 <div class="col-lg-12 platform float-left">
                                                     <?= 'no Player found' ?>
@@ -135,39 +139,43 @@ use app\widgets\Alert;
                                         <!-- Substitude Data -->
                                         <div class="col-lg-4 substitudes float-left">
                                             <?php if(array_key_exists('substitude', $authorizedTeam)) : ?>
-                                                <?php foreach($authorizedTeam['substitude'] as $substitude) : ?>
-                                                    <!-- Substitude Name -->
-                                                    <div class="col-lg-2 playerName float-left">
-                                                        <div class="avatar float-left">
-                                                            <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $substitude['playerId']) . '.webp', ['aria-label' => $substitude['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $substitude['playerId']) . '.png\'']); ?>
-                                                        </div>
-                                                        <?= Html::a($substitude['playerName'], ['/user/details', 'userId' => $substitude['playerId']], ['class' => '']); ?>
-                                                    </div>
-
-                                                    <!-- Substitude Game Id's and Platforms -->
-                                                    <div class="col-lg-10 gameData float-left">
-                                                        <?php if(array_key_exists('gameIds', $substitude)) : ?>
-                                                            <?php foreach($substitude['gameIds'] as $gameID) : ?>
-                                                                <div class="col-lg-12 platform <?= ($gameID['playerGameIdEligible'])? '':'bg-red' ?> float-left">
-                                                                    <div class="col-5 platformName float-left">
-                                                                        <?= $gameID['platformName'] ?>
-                                                                    </div>
-                                                                    <div class="col-7 gameId float-left">
-                                                                        <?php if($gameID['playerGameIdEligible']) : ?>
-                                                                            <?= 'correct'; ?>
-                                                                        <?php else : ?>
-                                                                            <?= $gameID['platformPlayerIdError']; ?>
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </div>
-                                                            <?php endforeach; ?>
-                                                        <?php else : ?>
-                                                            <div class="col-lg-12 platform float-left">
-                                                                <?= 'no Rocket League Id\'s found' ?>
+                                                <div class="row">
+                                                    <?php foreach($authorizedTeam['substitude'] as $substitude) : ?>
+                                                    <div class="col-12 mt-2">
+                                                        <!-- Substitude Name -->
+                                                        <div class="col-lg-2 playerName float-left">
+                                                            <div class="avatar float-left">
+                                                                <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $substitude['playerId']) . '.webp', ['aria-label' => $substitude['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $substitude['playerId']) . '.png\'']); ?>
                                                             </div>
-                                                        <?php endif; ?>
+                                                            <?= Html::a($substitude['playerName'], ['/user/details', 'userId' => $substitude['playerId']], ['class' => '']); ?>
+                                                        </div>
+
+                                                        <!-- Substitude Game Id's and Platforms -->
+                                                        <div class="col-lg-10 gameData float-left">
+                                                            <?php if(array_key_exists('gameIds', $substitude)) : ?>
+                                                                <?php foreach($substitude['gameIds'] as $gameID) : ?>
+                                                                    <div class="col-lg-12 platform <?= ($gameID['playerGameIdEligible'])? '':'bg-red' ?> float-left">
+                                                                        <div class="col-5 platformName float-left">
+                                                                            <?= $gameID['platformName'] ?>
+                                                                        </div>
+                                                                        <div class="col-7 gameId float-left">
+                                                                            <?php if($gameID['playerGameIdEligible']) : ?>
+                                                                                <?= 'correct'; ?>
+                                                                            <?php else : ?>
+                                                                                <?= $gameID['platformPlayerIdError']; ?>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php endforeach; ?>
+                                                            <?php else : ?>
+                                                                <div class="col-lg-12 platform float-left">
+                                                                    <?= 'no Rocket League Id\'s found' ?>
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        </div>
                                                     </div>
-                                                <?php endforeach; ?>
+                                                    <?php endforeach; ?>
+                                                </div>
                                             <?php else : ?>
                                                 <div class="col-lg-12 platform float-left">
                                                     <?= 'no Substitudes found' ?>
