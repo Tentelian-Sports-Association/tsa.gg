@@ -217,7 +217,12 @@ use app\widgets\Alert;
                                                 <?php endif; ?>
                                             <?php else : ?>
                                                 <div class="col-lg-12 registration float-left">
-                                                    <?= $authorizedTeam['playerCountEligibleError']; ?>
+                                                    <div>
+                                                        <?= $authorizedTeam['playerCountEligibleError']; ?>
+                                                    </div>
+                                                    <div>
+                                                        <?= $authorizedTeam['substitudeCountEligibleError']; ?>
+                                                    </div>
                                                 </div>
                                             <?php endif; ?>
                                         </div>
