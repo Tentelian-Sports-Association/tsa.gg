@@ -27,3 +27,17 @@
 .avatar img, .teamname img {
     width: 50px;
 }
+
+.paragraph {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.subParagraph {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.subParagraph, .subParagraphDescription {
+    margin-left: 50px;
+}

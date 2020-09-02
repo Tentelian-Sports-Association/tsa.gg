@@ -520,7 +520,6 @@ class PlayerBrackets extends ActiveRecord
 
     public function getGoals($tournament)
     {
-        //$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
         $encounters = PlayerBracketEncounter::find()->where(['id' => $this->encounter_id])->andWhere(['tournament_id' => $this->tournament_id])->all();
 
 		if (count($encounters) == 0) {
@@ -561,5 +560,55 @@ class PlayerBrackets extends ActiveRecord
 		}
 
 		return ['left' => $leftGoals, 'right' => $rightGoals];
+	}
+
+    public function getWins($bracket)
+    {
+        $encounters = PlayerBracketEncounter::find()->where(['id' => $this->encounter_id])->andWhere(['tournament_id' => $this->tournament_id])->all();
+        
+        if (count($encounters) == 0) {
+			return NULL;
+		}
+
+        $players_left = $this->getPlayerParticipant1();
+		$players_right = $this->getPlayerParticipant2();
+
+		$leftGoals = [];
+		$rightGoals = [];
+
+		foreach ($encounters as $key => $encounter)
+        {
+			if ($players_left->getId() == $encounter->player_id)
+            {
+				$leftGoals[$encounter->getGameRound()] = $encounter->getGoals();
+			}
+
+			if ($players_right->getId() == $encounter->player_id) {
+				$rightGoals[$encounter->getGameRound()] = $encounter->getGoals();
+			}
+		}
+
+		$minGames = ceil($this->getBestOf() / 2);
+
+		if (count($leftGoals) != count($rightGoals)) {
+			return false;
+		}
+
+		if (count($leftGoals) < $minGames) {
+			return false;
+		}
+
+		$leftWins = 0;
+		$rightWins = 0;
+
+		foreach ($leftGoals as $round => $value) {
+			if ($leftGoals[$round] > $rightGoals[$round]) {
+				$leftWins++;
+			} else if ($leftGoals[$round] < $rightGoals[$round]) {
+				$rightWins++;
+			}
+		}
+
+        return ['left' => $leftWins, 'right' => $rightWins];
 	}
 }

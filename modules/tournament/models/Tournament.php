@@ -201,7 +201,7 @@ class Tournament extends ActiveRecord
     }
 
     /** Get Active Tournaments */
-    public static function GetTournaments($gameId, $userId)
+    public static function GetTournaments($gameId)
     {
         $tournaments = static::find()->where(['game_id' => $gameId])->andWhere(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_DESC])->all();
         $sortedTournament = [];
@@ -253,7 +253,7 @@ class Tournament extends ActiveRecord
 
     public static function GetUpcomingTournaments()
     {
-        $tournaments = static::find()->where(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_DESC])->limit(5)->all();
+        $tournaments = static::find()->where(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_ASC])->limit(5)->all();
         $sortedTournament = [];
 
         $currentDate = new DateTime();
@@ -275,6 +275,17 @@ class Tournament extends ActiveRecord
 			}
             else {
                 $sortedTournament[$nr]['IsLive'] = 0;
+            }
+
+            /** Check registration time*/
+            $registerBegin = new DateTime($tournament->getRegisterBegin());
+            $registerEnd = new DateTime($tournament->getRegisterEnd());
+
+            if(($currentDate->getTimestamp() >= $registerBegin->getTimestamp()) && ($currentDate->getTimestamp() <= $registerEnd->getTimestamp())) {
+                $sortedTournament[$nr]['RegisterOpen'] = 1;
+			}
+            else {
+                $sortedTournament[$nr]['RegisterOpen'] = 0;
             }
 
             $sortedTournament[$nr]['StartingDate'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->getStartingTime())->format('d.m.Y');

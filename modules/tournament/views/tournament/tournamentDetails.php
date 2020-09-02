@@ -13,8 +13,6 @@ use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use app\widgets\Alert;
 
-$admin = false;
-
 ?>
 
 <div class="site-tournamentDetails">
@@ -34,18 +32,21 @@ $admin = false;
     <div class="inner-wrapper">
 
         <!-- Den Button mittig zentrieren und sch�n machen :D -->
-        <div class="rules">
-            <?php
-                echo Html::a('Rules',
-                    [
-                        "register",
-                        "tournamentId" => $tournament['id']
-                    ],
-                    ['class' => "filled-btn btn btn-primary",
-                        'title' => 'Show Rules'
-                    ]
-                )
-            ?>
+        <?php if (Yii::$app->user->identity != NULL && Yii::$app->user->identity->getId() <= 4 && !$tournament['running']) : ?>
+            <div class="rules">
+                <?php
+                    echo Html::a('Rules',
+                        [
+                            "rules",
+                            "rulesId" => $tournament['rules_id']
+                        ],
+                        ['class' => "filled-btn btn btn-primary",
+                            'title' => 'Show Rules'
+                        ]
+                    )
+                ?>
+            </div>
+        <?php endif; ?>
 
         <div class="participants mt-4 mb-4">
             <ul class="list-unstyled row">
@@ -85,7 +86,6 @@ $admin = false;
                                 <?php endif; ?>
                             </div>
                             <!-- Nur Spieler selbst und Administratoren -->
-                            <?php if($admin) : ?>
                             <div class="col-3 penalties float-left">
                                 <div class="row">
                                 <?php foreach($team['penalties'] as $penaltie) : ?>
@@ -97,7 +97,6 @@ $admin = false;
                                 <?php endforeach; ?>
                                 </div>
                             </div>
-                            <?php endif ?>
                             <div class="clearfix"></div>
                         </div>
                     <?php endforeach; ?>
@@ -141,95 +140,180 @@ $admin = false;
             </ul>
         </div>
 
-        
+        <!-- Test Button -->
+        <?php if (Yii::$app->user->identity != NULL && Yii::$app->user->identity->getId() <= 4 && !$tournament['running']) : ?>
+            <div class="rules">
+                <?php
+                    echo Html::a('Create Brackets',
+                        [
+                            "create-brackets",
+                            "tournamentId" => $tournament['id']
+                        ],
+                        ['class' => "filled-btn btn btn-primary",
+                            'title' => 'Show Rules'
+                        ]
+                    )
+                ?>
+            </div>
+        <?php endif; ?>
 
         <!-- Tournament Brackets -->
-        <div class="brackets mt-4 mb-4" style="width: 100%; overflow-x: auto;">
-            <div class="winnerBracket row">
-                <?php 
-                    $last_round = 1;
-                    foreach ($bracketData['winner'] as $round => $roundBrackets): 
-                ?>
+        <?php if($tournament['running']) : ?>
+            <div class="brackets mt-4 mb-4" style="width: 100%; overflow-x: auto;">
+                <h3>Winner Bracket</h3>
+                <div class="winnerBracket row">
                     <?php 
-                        $firstBracket = reset($roundBrackets['brackets']);
-                        if(((int)$last_round - (int)$round) <= 0 && (int)$last_round != 1 ) {
+                        $last_round = 1;
+                        foreach ($bracketData['winner'] as $round => $roundBrackets): 
                     ?>
-                        <div class="bracketRound">
-                        <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
-                            <div class="round-empty">
-                                <div class="bracket-empty-box">
+                        <?php 
+                            $firstBracket = reset($roundBrackets['brackets']);
+                            if(((int)$last_round - (int)$round) <= 0 && (int)$last_round != 1 ) {
+                        ?>
+                            <div class="bracketRound">
+                            <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
+                                <div class="round-empty">
+                                    <div class="bracket-empty-box">
+                                    </div>
                                 </div>
+                            <?php endforeach; ?>
                             </div>
-                        <?php endforeach; ?>
-                        </div>
-                    <?php
-                        }
-                        $last_round = $round;
-                        if (strpos($round, 'Finale') !== false) { 
-                    ?>
-                        <div class="bracketRound">
-                        <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
-                            <div class="round-empty">
-                                <div class="bracket-empty-box">
+                        <?php
+                            }
+                            $last_round = $round;
+                            if (strpos($round, 'Finale') !== false) { 
+                        ?>
+                            <div class="bracketRound">
+                            <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
+                                <div class="round-empty">
+                                    <div class="bracket-empty-box">
+                                    </div>
                                 </div>
+                            <?php endforeach; ?>
                             </div>
-                        <?php endforeach; ?>
-                        </div>
-                    <?php
-                        }            
-                    ?>
-                    <div class="bracketRound">
-                        <div class="roundTitle">
-                            <?=  'Round ' . $round; ?>
-                        </div>
-                        <div class="roundTitle">
-                            <?= 'Best of ' . $firstBracket->getBestOf(); ?>
-                        </div>
-                        <div class="roundTitle">
-                            <?= 'Start: ' . $roundBrackets['startTime']; ?>
-                        </div>
-                        <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
-                            <?php
-                                $bracketFinished = $bracket->checkisFinished();
-                                $class1 = '';
-                                $class2 = '';
-                                if ($bracketFinished === 1) {
-                                    $class1 = 'winner';
-                                    $class2 = 'looser';
-                                } else if ($bracketFinished === 2) {
-                                    $class1 = 'looser';
-                                    $class2 = 'winner';
-                                }
+                        <?php
+                            }            
+                        ?>
+                        <div class="bracketRound">
+                            <div class="roundTitle">
+                                <?=  'Round ' . $round; ?>
+                            </div>
+                            <div class="roundTitle">
+                                <?= 'Best of ' . $firstBracket->getBestOf(); ?>
+                            </div>
+                            <div class="roundTitle">
+                                <?= 'Start: ' . $roundBrackets['startTime']; ?>
+                            </div>
+                            <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
+                                <?php
+                                    $bracketFinished = $bracket->checkisFinished();
+                                    $class1 = '';
+                                    $class2 = '';
+                                    if ($bracketFinished === 1) {
+                                        $class1 = 'winner';
+                                        $class2 = 'looser';
+                                    } else if ($bracketFinished === 2) {
+                                        $class1 = 'looser';
+                                        $class2 = 'winner';
+                                    }
 
-                                $bracketEncounter = $bracket->getEncounterId();
+                                    $bracketEncounter = $bracket->getEncounterId();
 
-                                $freewin['id'] = NULL;
-                                $freewin['name'] = 'FREILOS';
+                                    $freewin['id'] = NULL;
+                                    $freewin['name'] = 'FREILOS';
 
-                                $bracketParticipants = $bracket->getParticipants();
-                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? $freewin : $bracketParticipants[0];
-                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? $freewin : $bracketParticipants[1];
+                                    $bracketParticipants = $bracket->getParticipants();
+                                    $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? $freewin : $bracketParticipants[0];
+                                    $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? $freewin : $bracketParticipants[1];
 
-                                $participant1 = $bracketParticipants[0];
-                                $participant2 = $bracketParticipants[1];
+                                    $participant1 = $bracketParticipants[0];
+                                    $participant2 = $bracketParticipants[1];
                                 
 
-                                //if ($participant1 === 'FREILOS' || $participant2 === 'FREILOS')  {
-                                    //$noWinnerBrackets[] = $bracket->getEncounterId();
-                                    //continue;
-                                //}
+                                    //if ($participant1 === 'FREILOS' || $participant2 === 'FREILOS')  {
+                                        //$noWinnerBrackets[] = $bracket->getEncounterId();
+                                        //continue;
+                                    //}
 
-                                if (strpos($round, 'Finale') !== false) {
-                                    $rundenInfo = 'Finale';
-                                } else {
-                                    $rundenInfo = 'R' . $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT);
-                                }
+                                    if (strpos($round, 'Finale') !== false) {
+                                        $rundenInfo = 'Finale';
+                                    } else {
+                                        $rundenInfo = 'R' . $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT);
+                                    }
 
-                                $goals= $bracket->getGoals($tournament);
-                            ?>
-                            
-                            <div class="bracket mb-4 round-<?= $round; ?>">
-                                <div class="bracket-box">
+                                    $goals = $bracket->getWins($tournament);
+                                ?>
+                                <div class="bracket mb-4 round-<?= $round; ?>">
+                                    <div class="bracket-box">
+                                        <div class="bracketParticipant <?= $class1; ?>">
+                                            <?= $participant1['name']; ?>
+                                            <div class="takeWinner" style="float:right;">
+                                                <div class="goals" style="float:left;"><?= $goals['left']; ?></div>
+                                            </div>
+                                        </div>
+                                        <div class="bracketParticipant <?= $class2; ?>">
+                                            <?= $participant2['name'] ?>
+                                            <div class="takeWinner" style="float:right;">
+                                                <div class="goals" style="float:left;"><?= $goals['right']; ?></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="looserBracket row">
+                    <div class="bracketRound"></div>
+                    <?php foreach ($bracketData['looser'] as $round => $roundBrackets): ?>
+                        <?php $firstBracket = reset($roundBrackets['brackets']); ?>
+                        <div class="bracketRound">
+                            <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
+                                <?php
+                                    $bracketFinished = $bracket->checkisFinished();
+                                    $class1 = '';
+                                    $class2 = '';
+                                    if ($bracketFinished === 1) {
+                                        $class1 = 'winner';
+                                        $class2 = 'looser';
+                                    } else if ($bracketFinished === 2) {
+                                        $class1 = 'looser';
+                                        $class2 = 'winner';
+                                    }
+
+                                    $freewin['id'] = NULL;
+                                    $freewin['name'] = 'FREILOS';
+
+                                    $bracketEncounter = $bracket->getEncounterId();
+                                    $bracketParticipants = $bracket->getParticipants();
+                                    $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? $freewin : $bracketParticipants[0];
+                                    $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? $freewin : $bracketParticipants[1];
+
+                                    $participant1 = $bracketParticipants[0];
+                                    $participant2 = $bracketParticipants[1];
+
+                                    /*$participant1Bracket = explode(' ', $participant1);
+                                    $search = array_pop($participant1Bracket);
+
+                                    if (in_array($search, $noWinnerBrackets)) {
+                                        $participant1 = 'FREILOS';
+                                    }
+
+                                    $participant2Bracket = explode(' ', $participant2);
+                                    $search = array_pop($participant2Bracket);
+                                    if (in_array($search, $noWinnerBrackets)) {
+                                        $participant2 = 'FREILOS';
+                                    }
+
+                                    if ($participant1 === 'FREILOS' && $participant2 === 'FREILOS') {
+                                        $noWinnerBrackets[] = $bracket->getEncounterId();
+                                        continue;
+                                    }*/
+
+                                    $goals= $bracket->getGoals($tournament);
+                                ?>
+                                <div class="bracket mb-4">
                                     <div class="bracketParticipant <?= $class1; ?>">
                                         <?= $participant1['name']; ?>
                                         <div class="takeWinner" style="float:right;">
@@ -239,7 +323,7 @@ $admin = false;
                                         </div>
                                     </div>
                                     <div class="bracketParticipant <?= $class2; ?>">
-                                        <?= $participant2['name'] ?>
+                                        <?= $participant2['name']; ?>
                                         <div class="takeWinner" style="float:right;">
                                             <?php foreach ($goals['right'] as $key => $goal): ?>
                                                 <div class="goals" style="float:left;"><?= $goal; ?></div>
@@ -247,92 +331,11 @@ $admin = false;
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
-
-            <div class="looserBracket row">
-                <div class="bracketRound"></div>
-                <?php foreach ($bracketData['looser'] as $round => $roundBrackets): ?>
-                    <?php $firstBracket = reset($roundBrackets['brackets']); ?>
-                    <div class="bracketRound">
-                        <div class="roundTitle">
-                            <?= 'Round ' . $round; ?>
-                        </div>
-                        <div class="roundTitle">
-                            <?= 'Best of ' . $firstBracket->getBestOf(); ?>
-                        </div>
-                        <div class="roundTitle">
-                            <?= 'Start: ' . $roundBrackets['startTime']; ?>
-                        </div>
-                        <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
-                            <?php
-                                $bracketFinished = $bracket->checkisFinished();
-                                $class1 = '';
-                                $class2 = '';
-                                if ($bracketFinished === 1) {
-                                    $class1 = 'winner';
-                                    $class2 = 'looser';
-                                } else if ($bracketFinished === 2) {
-                                    $class1 = 'looser';
-                                    $class2 = 'winner';
-                                }
-
-                                $freewin['id'] = NULL;
-                                $freewin['name'] = 'FREILOS';
-
-                                $bracketEncounter = $bracket->getEncounterId();
-                                $bracketParticipants = $bracket->getParticipants();
-                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? $freewin : $bracketParticipants[0];
-                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? $freewin : $bracketParticipants[1];
-
-                                $participant1 = $bracketParticipants[0];
-                                $participant2 = $bracketParticipants[1];
-
-                                /*$participant1Bracket = explode(' ', $participant1);
-                                $search = array_pop($participant1Bracket);
-
-                                if (in_array($search, $noWinnerBrackets)) {
-                                    $participant1 = 'FREILOS';
-                                }
-
-                                $participant2Bracket = explode(' ', $participant2);
-                                $search = array_pop($participant2Bracket);
-                                if (in_array($search, $noWinnerBrackets)) {
-                                    $participant2 = 'FREILOS';
-                                }
-
-                                if ($participant1 === 'FREILOS' && $participant2 === 'FREILOS') {
-                                    $noWinnerBrackets[] = $bracket->getEncounterId();
-                                    continue;
-                                }*/
-
-                                $goals= $bracket->getGoals($tournament);
-                            ?>
-                            <div class="bracket mb-4">
-                                <div class="bracketParticipant <?= $class1; ?>">
-                                    <?= $participant1['name']; ?>
-                                    <div class="takeWinner" style="float:right;">
-                                        <?php foreach ($goals['left'] as $key => $goal): ?>
-                                            <div class="goals" style="float:left;"><?= $goal; ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                                <div class="bracketParticipant <?= $class2; ?>">
-                                    <?= $participant2['name']; ?>
-                                    <div class="takeWinner" style="float:right;">
-                                        <?php foreach ($goals['right'] as $key => $goal): ?>
-                                            <div class="goals" style="float:left;"><?= $goal; ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
+        <?php endif; ?>
     </div>
 </div>
