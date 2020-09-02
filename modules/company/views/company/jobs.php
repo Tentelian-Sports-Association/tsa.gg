@@ -46,7 +46,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, \app\modules\company
     <!-- Der Text dann.... -->
 	<div class="jobs">
         <div class="inner-wrapper">
-            <p>Steve Jobs war leider in letzter zeit nicht hier....</p>
+            <p>Steve Jobs was unfortunately not here lately...</p>
         </div>
 	</div>
 </div>

@@ -235,8 +235,8 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
                             <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
                             <?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "youtube Button"]); ?>
                             <?= Html::a($weAreLive['Twitter']['svg'] . 'Twitter', $weAreLive['Twitter']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "Twitter Button"]); ?>
-                            <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Tournaments', $weAreLive['Discord']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Tournaments Discord Button"]); ?>
-                            <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Community', $weAreLive['Discord']['channellinkCommunity'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Community Discord Button"]); ?>
+                            <?= Html::a($weAreLive['Discord']['svg'] . 'TSA Support', $weAreLive['Discord']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Tournaments Discord Button"]); ?>
+                            <?= Html::a($weAreLive['Discord']['svg'] . 'Tentelian Community', $weAreLive['Discord']['channellinkCommunity'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Community Discord Button"]); ?>
                             <!--?= Html::a($weAreLive['Liquipedia']['svg'] . 'Liquipedia', $weAreLive['Liquipedia']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Liquipedia Button"]); ?-->
                         </div>
                     </nav>
@@ -247,8 +247,8 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
                     <!--?= Html::a($weAreLive['Mixer']['svg'] . 'Mixer', $weAreLive['Mixer']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Mixer Button"]); ?-->
                     <?= Html::a($weAreLive['Youtube']['svg'] . 'Youtube', $weAreLive['Youtube']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "youtube Button"]); ?>
                     <?= Html::a($weAreLive['Twitter']['svg'] . 'Twitter', $weAreLive['Twitter']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank','aria-label' => "Twitter Button"]); ?>
-                    <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Tournaments', $weAreLive['Discord']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Tournaments Discord Button"]); ?>
-                    <?= Html::a($weAreLive['Discord']['svg'] . 'TSA-Community', $weAreLive['Discord']['channellinkCommunity'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Community Discord Button"]); ?>
+                    <?= Html::a($weAreLive['Discord']['svg'] . 'TSA Support', $weAreLive['Discord']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Tournaments Discord Button"]); ?>
+                    <?= Html::a($weAreLive['Discord']['svg'] . 'Tentelian Community', $weAreLive['Discord']['channellinkCommunity'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "TSA-Community Discord Button"]); ?>
                     <!--?= Html::a($weAreLive['Liquipedia']['svg'] . 'Liquipedia', $weAreLive['Liquipedia']['channellink'], ['class' => 'footer-link d-flex align-items-center', 'target'=>'_blank', 'aria-label' => "Liquipedia Button"]); ?-->
                 </div>
             </div>
