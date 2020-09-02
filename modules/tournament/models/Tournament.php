@@ -253,7 +253,7 @@ class Tournament extends ActiveRecord
 
     public static function GetUpcomingTournaments()
     {
-        $tournaments = static::find()->where(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_DESC])->limit(5)->all();
+        $tournaments = static::find()->where(['finished' => '0'])->orderBy(['dt_starting_time' => SORT_ASC])->limit(5)->all();
         $sortedTournament = [];
 
         $currentDate = new DateTime();
