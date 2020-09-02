@@ -32,19 +32,21 @@ use app\widgets\Alert;
     <div class="inner-wrapper">
 
         <!-- Den Button mittig zentrieren und sch�n machen :D -->
-        <div class="createBracket">
-            <?php
-                echo Html::a('Rules',
-                    [
-                        "rules",
-                        "rulesId" => $tournament['rules_id']
-                    ],
-                    ['class' => "filled-btn btn btn-primary",
-                        'title' => 'Show Rules'
-                    ]
-                )
-            ?>
-        </div>
+        <?php if (Yii::$app->user->identity != NULL && Yii::$app->user->identity->getId() <= 4 && !$tournament['running']) : ?>
+            <div class="rules">
+                <?php
+                    echo Html::a('Rules',
+                        [
+                            "rules",
+                            "rulesId" => $tournament['rules_id']
+                        ],
+                        ['class' => "filled-btn btn btn-primary",
+                            'title' => 'Show Rules'
+                        ]
+                    )
+                ?>
+            </div>
+        <?php endif; ?>
 
         <div class="participants mt-4 mb-4">
             <ul class="list-unstyled row">
