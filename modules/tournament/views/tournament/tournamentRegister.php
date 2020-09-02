@@ -43,11 +43,11 @@ use app\widgets\Alert;
     <div class="inner-wrapper">
         <div class="rules mb-4 dark-bg pt-3 pb-3 pl-3 pr-3">
             <?php foreach($rules as $rule) : ?>
-                <div class="paragraph"><div class="paragraphId"><?=  $rule['paragraphId'] ?></div><?=  $rule['paragraphName'] ?></div>
+                <div class="paragraph"><span class="paragraphId"><?=  $rule['paragraphId'] ?></span> <?=  $rule['paragraphName'] ?></div>
                 <div class="paragraphDescription"><?=  $rule['paragraphDescription'] ?></div>
                 <?php foreach ($rule['paragraphSubParagraphs'] as $subParagraph) : ?>
-                    <div class="subParagraph"><div class="paragraphId"><?=  $rule['paragraphId'] . '.' . $subParagraph['subParagraphId'] ?></div><?=  $subParagraph['subParagraphName'] ?></div>
-                    <div class="subParagraphDescription"><?=  $subParagraph['subParagraphDescription'] ?></div>
+                    <div class="subParagraph mt-3"><span class="paragraphId"><?=  $rule['paragraphId'] . '.' . $subParagraph['subParagraphId'] ?> </span><?=  $subParagraph['subParagraphName'] ?></div>
+                    <div class="subParagraphDescription mb-3"><?=  $subParagraph['subParagraphDescription'] ?></div>
                 <?php endforeach; ?>
             <?php endforeach; ?>
         </div>
