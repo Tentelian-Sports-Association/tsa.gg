@@ -107,6 +107,7 @@ class TournamentController extends BaseController
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
 
         $tournament = Tournament::getTournamentById($tournamentId);
+
         $participants = null;
 
         if($tournament->getIsTeamTournament())

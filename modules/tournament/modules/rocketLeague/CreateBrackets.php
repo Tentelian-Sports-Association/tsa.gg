@@ -119,6 +119,9 @@ class CreateBrackets
                 $this->changeLooserBracketsRotation($bracketArr, $tournament_id);
             }
 
+            $tournament->running = true;
+            $tournament->update();
+
             Alert::addSuccess('Brackets erfolgreich angelegt.');
         }
         else
