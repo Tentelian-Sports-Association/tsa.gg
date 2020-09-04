@@ -243,21 +243,22 @@ use app\widgets\Alert;
 
                                     $goals = $bracket->getWins($tournament);
                                 ?>
-                                <div class="bracket mb-4 round-<?= $round; ?>">
-                                    <div class="bracket-box">
-                                        <div class="bracketParticipant <?= $class1; ?>">
-                                            <?= $participant1['name']; ?>
-                                            <div class="takeWinner" style="float:right;">
-                                                <div class="goals" style="float:left;"><?= $goals['left']; ?></div>
-                                            </div>
-                                        </div>
-                                        <div class="bracketParticipant <?= $class2; ?>">
-                                            <?= $participant2['name'] ?>
-                                            <div class="takeWinner" style="float:right;">
-                                                <div class="goals" style="float:left;"><?= $goals['right']; ?></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="bracket mb-4 round-<?= $round ?>">
+                                <?= Html::a('<div class="bracket-box">'
+                                        .'<div class="bracketParticipant' .$class1 . '">'		
+                                            . $participant1['name']
+                                            . '<div class="takeWinner" style="float:right;">'
+                                                . '<div class="goals" style="float:left;">' . $goals['left'] . '</div>'
+                                            . '</div>'
+                                        . '</div>'
+                                        . '<div class="bracketParticipant' .$class2 . '">'
+                                        . $participant2['name']
+                                            . '<div class="takeWinner" style="float:right;">'
+                                                . '<div class="goals" style="float:left;">' . $goals['right'] . '</div>'
+                                            . '</div>'
+                                        . '</div>'
+                                    . '</div>'
+                                , ['bracket-details', 'tournamentId' => $bracket['tournament_id'], 'bracketId' => $bracket['id']]); ?>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -314,6 +315,8 @@ use app\widgets\Alert;
                                     $goals= $bracket->getGoals($tournament);
                                 ?>
                                 <div class="bracket mb-4">
+                                
+
                                     <div class="bracketParticipant <?= $class1; ?>">
                                         <?= $participant1['name']; ?>
                                         <div class="takeWinner" style="float:right;">

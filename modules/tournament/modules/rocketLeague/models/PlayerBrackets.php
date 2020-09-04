@@ -578,12 +578,12 @@ class PlayerBrackets extends ActiveRecord
 
 		foreach ($encounters as $key => $encounter)
         {
-			if ($players_left->getId() == $encounter->player_id)
+			if ($players_left->getId() && $players_left->getId() == $encounter->player_id)
             {
 				$leftGoals[$encounter->getGameRound()] = $encounter->getGoals();
-			}
+			}            
 
-			if ($players_right->getId() == $encounter->player_id) {
+			if ($players_right && $players_right->getId() == $encounter->player_id) {
 				$rightGoals[$encounter->getGameRound()] = $encounter->getGoals();
 			}
 		}
