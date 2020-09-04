@@ -265,7 +265,7 @@ class Tournament extends ActiveRecord
             $sortedTournament[$nr]['Name'] = $tournament->getName();
             $sortedTournament[$nr]['Mode'] = $tournament->getModeName();
             $sortedTournament[$nr]['GameTag'] = Games::find()->where(['id' => $tournament->getGameId()])->one()->getGameTag();
-            $sortedTournament[$nr]['HoverImage'] = $tournament->getId();
+            $sortedTournament[$nr]['HoverImage'] = Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass();
 
             /** Check if Tournament is Live */
             $Begin = new DateTime($tournament->getStartingTime());

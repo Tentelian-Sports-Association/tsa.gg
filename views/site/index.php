@@ -108,6 +108,7 @@ Yii::$app->MetaClass->writeMetaIndex($this);
                                         </div>
                                     </div>
                                     <div class="col-sm-4 tournament-time">
+                                        <div><?= $tournament['HoverImage'] ?></div>
                                         <span class="d-inline d-sm-none tournament-mode"><?= $tournament['Mode'] ?></span>
                                         <!-- Check if Live or in the Future -->
                                         <?php if($tournament['IsLive']) : ?>

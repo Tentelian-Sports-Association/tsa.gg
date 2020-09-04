@@ -244,7 +244,7 @@ use app\widgets\Alert;
                                     $goals = $bracket->getWins($tournament);
                                 ?>
                                 <div class="bracket mb-4 round-<?= $round ?>">
-                                <?= Html::a('<div class="bracket-box">'
+                                    <?= Html::a('<div class="bracket-box">'
                                         .'<div class="bracketParticipant' .$class1 . '">'		
                                             . $participant1['name']
                                             . '<div class="takeWinner" style="float:right;">'
@@ -258,7 +258,7 @@ use app\widgets\Alert;
                                             . '</div>'
                                         . '</div>'
                                     . '</div>'
-                                , ['bracket-details', 'tournamentId' => $bracket['tournament_id'], 'bracketId' => $bracket['id']]); ?>
+                                    , ['bracket-details', 'tournamentId' => $bracket['tournament_id'], 'bracketId' => $bracket['id']]); ?>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -312,27 +312,25 @@ use app\widgets\Alert;
                                         continue;
                                     }*/
 
-                                    $goals= $bracket->getGoals($tournament);
+                                    //$goals= $bracket->getGoals($tournament);
+                                    $goals = $bracket->getWins($tournament);
                                 ?>
                                 <div class="bracket mb-4">
-                                
-
-                                    <div class="bracketParticipant <?= $class1; ?>">
-                                        <?= $participant1['name']; ?>
-                                        <div class="takeWinner" style="float:right;">
-                                            <?php foreach ($goals['left'] as $key => $goal): ?>
-                                                <div class="goals" style="float:left;"><?= $goal; ?></div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-                                    <div class="bracketParticipant <?= $class2; ?>">
-                                        <?= $participant2['name']; ?>
-                                        <div class="takeWinner" style="float:right;">
-                                            <?php foreach ($goals['right'] as $key => $goal): ?>
-                                                <div class="goals" style="float:left;"><?= $goal; ?></div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
+                                    <?= Html::a('<div class="bracket-box">'
+                                        .'<div class="bracketParticipant' .$class1 . '">'		
+                                            . $participant1['name']
+                                            . '<div class="takeWinner" style="float:right;">'
+                                                . '<div class="goals" style="float:left;">' . $goals['left'] . '</div>'
+                                            . '</div>'
+                                        . '</div>'
+                                        . '<div class="bracketParticipant' .$class2 . '">'
+                                        . $participant2['name']
+                                            . '<div class="takeWinner" style="float:right;">'
+                                                . '<div class="goals" style="float:left;">' . $goals['right'] . '</div>'
+                                            . '</div>'
+                                        . '</div>'
+                                    . '</div>'
+                                    , ['bracket-details', 'tournamentId' => $bracket['tournament_id'], 'bracketId' => $bracket['id']]); ?>
                                 </div>
                             <?php endforeach; ?>
                         </div>
