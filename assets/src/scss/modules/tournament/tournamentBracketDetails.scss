@@ -272,3 +272,31 @@
 .avatar img {
     border-radius: 100px;
 }
+
+.encounterInput {
+    height: 25px;
+    display: block;
+}
+
+.blue_bg {
+    background-image: linear-gradient(rgba(31, 54, 128, 0.78), rgba(1, 23, 93, 0.83));
+}
+
+.orange_bg {
+    background-image: linear-gradient(rgba(185, 112, 3, 0.63), rgba(97, 36, 5, 0.77));
+}
+
+.blue_bg .avatar img, .orange_bg .avatar img {
+    width: 40px;
+    margin-left: 25px;
+}
+
+.blue_bg input, .orange_bg input {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.blue_bg .name, .orange_bg .name {
+    margin: 10px 0;
+    margin-left: 25px;
+}
