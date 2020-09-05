@@ -34,7 +34,7 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Create your own Tea
                 <input type="hidden" name="bracketId" value="<?= $bracketData['base']['id']; ?>">
                 <input type="hidden" name="isTeam" value="<?= $tournament->getIsTeamTournament(); ?>">
 
-                <h1 style="text-align:center;"}><?= $tournament->getName() . ' - Round ' . $bracketData['base']['round'] . ' - Best of ' . $bracketData['base']['bo'] ?></h1>
+                <h2 style="text-align:center;"}><?= $tournament->getName() . ' - Round ' . $bracketData['base']['round'] . ' - Best of ' . $bracketData['base']['bo'] ?></h2>
                 <div class="col-lg-12 encounterGameHeader">
                     <div class="col-lg-5 float-left">
                         <div class="col-lg-12 playerDetails">
@@ -71,140 +71,149 @@ Yii::$app->MetaClass->writeDefaultMeta($this, $this->title, 'Create your own Tea
                         <?php endif; ?>
 
                         <!-- Encounter Data by blue Team/Player -->
-                        <div class="col-lg-6 encounterGameBodyBlue">
-                            <table class="tableBlue">
-                                <thead>
-                                    <tr>
-                                        <th class="player">Player</th>
-                                        <th class="points">Points</th>
-                                        <th class="goals">Goals</th>
-                                        <th class="assists">Assists</th>
-                                        <th class="saves">Saves</th>
-                                        <th class="shots">Shots</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($bracketData['blue']['participantData'] as $player): ?>
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6 encounterGameBodyBlue">
+                                <table class="tableBlue">
+                                    <thead>
                                         <tr>
-                                            <td class="playerData">
-                                                <div class="col-lg-2 avatar">
-                                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
-                                                </div>
-                                                <div class="col-lg-10 name">
-                                                    <?= $player['playerName']; ?>
-                                                </div>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][points]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['points']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['points']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][goals]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['goals']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['goals']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][assists]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['assists']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['assists']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][saves]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['saves']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['saves']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][shots]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['shots']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['shots']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
+                                            <th class="player"></th>
+                                            <th class="points">Points</th>
+                                            <th class="goals">Goals</th>
+                                            <th class="assists">Assists</th>
+                                            <th class="saves">Saves</th>
+                                            <th class="shots">Shots</th>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($bracketData['blue']['participantData'] as $player): ?>
+                                            <tr>
+                                                <td class="playerData">
+                                                    <div class="col-lg-2 avatar">
+                                                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
+                                                    </div>
+                                                    <div class="col-lg-10 name">
+                                                        <?= $player['playerName']; ?>
+                                                    </div>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][points]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['points']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['points']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][goals]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['goals']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['goals']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][assists]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['assists']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['assists']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][saves]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['saves']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['saves']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][shots]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['shots']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['shots']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-lg-3"></div>
                         </div>
 
+                        
                         <!-- Encounter Data by orange Team/Player -->
-                        <div class="col-lg-6 encounterGameBodyOrange">
-                            <table class="tableOrange">
-                                <thead>
-                                    <tr>
-                                        <th class="player">Player</th>
-                                        <th class="points">Points</th>
-                                        <th class="goals">Goals</th>
-                                        <th class="assists">Assists</th>
-                                        <th class="saves">Saves</th>
-                                        <th class="shots">Shots</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($bracketData['orange']['participantData'] as $player): ?>
+                        <div class="row">
+                            <div class="col-lg-3"><div class="clearfix"></div></div>
+                            <div class="col-lg-6 encounterGameBodyOrange">
+                                <table class="tableOrange">
+                                    <thead>
                                         <tr>
-                                            <td class="playerData">
-                                                <div class="col-lg-2 avatar">
-                                                    <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
-                                                </div>
-                                                <div class="col-lg-10 name">
-                                                    <?= $player['playerName']; ?>
-                                                </div>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][points]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['points']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['points']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][goals]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['goals']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['goals']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][assists]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['assists']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['assists']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][saves]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['saves']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['saves']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="encounterField">
-                                                <?php if ($editable): ?>
-                                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][shots]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['shots']; ?>">
-                                                <?php else: ?>
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['shots']; ?></span>
-                                                <?php endif; ?>
-                                            </td>
+                                            <th class="player"></th>
+                                            <th class="points">Points</th>
+                                            <th class="goals">Goals</th>
+                                            <th class="assists">Assists</th>
+                                            <th class="saves">Saves</th>
+                                            <th class="shots">Shots</th>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($bracketData['orange']['participantData'] as $player): ?>
+                                            <tr>
+                                                <td class="playerData">
+                                                    <div class="col-lg-2 avatar">
+                                                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.webp', ['aria-label' => $player['playerName']. '.webp', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $player['playerId']) . '.png\'']) ?>		
+                                                    </div>
+                                                    <div class="col-lg-10 name">
+                                                        <?= $player['playerName']; ?>
+                                                    </div>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][points]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['points']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['points']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][goals]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['goals']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['goals']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][assists]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['assists']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['assists']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][saves]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['saves']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['saves']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="encounterField">
+                                                    <?php if ($editable): ?>
+                                                        <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player['playerId']; ?>][shots]" placeholder="empty" value="<?= $player['encounterData'][$b-1]['shots']; ?>">
+                                                    <?php else: ?>
+                                                        <span class="encounterInput"><?= $player['encounterData'][$b-1]['shots']; ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-lg-3"></div>
                         </div>
                     <?php endfor; ?>
                 </div>
 
                 <div class="col-lg-12 encounterFooter clearfix">
                     <div class="col-lg-5">
-                        <?= Html::a('Back to Tournament', ['details','gameId' => $tournament->getGameId(), 'tournamentId' => $tournament->getId()], ['class' => 'btn btn-warning']); ?>
+                        <?= Html::a('Back to Tournament', ['details','gameId' => $tournament->getGameId(), 'tournamentId' => $tournament->getId()], ['class' => 'btn btn-warning outline-btn mt-4']); ?>
                     </div>
                     <?php if ($editable): ?>
                         <div class="col-lg-4">

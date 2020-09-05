@@ -248,13 +248,13 @@ use app\widgets\Alert;
                                         .'<div class="bracketParticipant' .$class1 . '">'		
                                             . $participant1['name']
                                             . '<div class="takeWinner" style="float:right;">'
-                                                . '<div class="goals" style="float:left;">' . $goals['left'] . '</div>'
+                                                . '<div class="goals" style="float:left;">0</div>'
                                             . '</div>'
                                         . '</div>'
                                         . '<div class="bracketParticipant' .$class2 . '">'
                                         . $participant2['name']
                                             . '<div class="takeWinner" style="float:right;">'
-                                                . '<div class="goals" style="float:left;">' . $goals['right'] . '</div>'
+                                                . '<div class="goals" style="float:left;">0</div>'
                                             . '</div>'
                                         . '</div>'
                                     . '</div>'
@@ -320,13 +320,13 @@ use app\widgets\Alert;
                                         .'<div class="bracketParticipant' .$class1 . '">'		
                                             . $participant1['name']
                                             . '<div class="takeWinner" style="float:right;">'
-                                                . '<div class="goals" style="float:left;">' . $goals['left'] . '</div>'
+                                                . '<div class="goals" style="float:left;">0</div>'
                                             . '</div>'
                                         . '</div>'
                                         . '<div class="bracketParticipant' .$class2 . '">'
                                         . $participant2['name']
                                             . '<div class="takeWinner" style="float:right;">'
-                                                . '<div class="goals" style="float:left;">' . $goals['right'] . '</div>'
+                                                . '<div class="goals" style="float:left;">0</div>'
                                             . '</div>'
                                         . '</div>'
                                     . '</div>'
