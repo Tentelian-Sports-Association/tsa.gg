@@ -1,0 +1,21 @@
+# Your project's server will run on proxy
+PROXY: "http://localhost/tsa_redesign/web/"
+
+# Autoprefixer will make sure your CSS works with these browsers
+COMPATIBILITY:
+  - "last 2 versions"
+  - "ie >= 9"
+
+# Gulp will reference these paths when it copies files
+PATHS:
+  # Path to dist folder
+  dist: "assets/dist/css"
+  # Path to source folder
+  src: "assets/src/scss"
+  # Paths to fonts
+  fonts:
+    - "node_modules/fontawesome/bower-asset/font-awesome/fonts/**/*"
+  # Paths to Sass libraries, which can then be loaded with @import
+  sass:
+    - "vendor/bower-asset/bootstrap-sass/assets/stylesheets"
+    - "node_modules/@fortawesome/fontawesome-free/css/all.css"

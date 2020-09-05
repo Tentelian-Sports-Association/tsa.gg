@@ -13,9 +13,21 @@ var touch = require('gulp-touch-fd');
 
 // Load settings from config.yml
 var config = loadConfig();
+var scriptConfig = loadScriptConfig();
+var stylesConfig = loadStylesConfig();
 
 function loadConfig() {
     ymlFile = fs.readFileSync('config.yml', 'utf8');
+    return yaml.load(ymlFile);
+}
+
+function loadScriptConfig() {
+    ymlFile = fs.readFileSync('configScript.yml', 'utf8');
+    return yaml.load(ymlFile);
+}
+
+function loadStylesConfig() {
+    ymlFile = fs.readFileSync('configStyles.yml', 'utf8');
     return yaml.load(ymlFile);
 }
 
@@ -128,6 +140,25 @@ gulp.task('build', gulp.series(
     gulp.parallel(styles, secondary_styles, scripts, scripts_individual, scripts_individuals)
 ));
 
+function cleanScripts(done) {
+    rimraf(scriptConfig.PATHS.dist, done);
+}
+
+// script build task
+gulp.task('scripts', gulp.series(
+    cleanScripts,
+    gulp.parallel(scripts, scripts_individual, scripts_individuals)
+));
+
+function cleanStyles(done) {
+    rimraf(stylesConfig.PATHS.dist, done);
+}
+
+gulp.task('styles', gulp.series(
+    cleanStyles,
+    gulp.parallel(styles, secondary_styles)
+));
+
 // Watch
 function watch() {
 
@@ -152,7 +183,7 @@ gulp.task('default', gulp.series('build', watch));
 
 // Export these functions to the Gulp client
 gulp.task('clean', clean);
-gulp.task('styles', styles);
+//gulp.task('styles', styles);
 
 //gulp.task('scripts', scripts);
 gulp.task('sprites', sprites);
