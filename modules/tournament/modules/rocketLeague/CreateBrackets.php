@@ -4,10 +4,13 @@ namespace app\modules\tournament\modules\rocketLeague;
 
 use app\modules\tournament\modules\rocketLeague\models\PlayerBrackets;
 use app\modules\tournament\modules\rocketLeague\models\TeamBrackets;
+
 use app\modules\tournament\modules\rocketLeague\models\PlayerBracketEncounter;
 use app\modules\tournament\modules\rocketLeague\models\TeamBracketEncounter;
 
 use app\modules\tournament\models\Tournament;
+
+use app\modules\team\models\TeamMember;
 
 use yii;
 use app\widgets\Alert;
@@ -499,15 +502,89 @@ class CreateBrackets
 
     private function moveFirstRoundTickets(&$bracketArr, $tournament) {
         
-        foreach ($bracketArr as $key => $bracket) {
-            
+        foreach ($bracketArr as $key => $bracket)
+        {
             if ($bracket->getRound() > 1) {
                 continue;
             }
 
             if($tournament->getIsTeamTournament())
             {
-                if ($bracket->getTeamParticipant2Id()) {
+                if ($bracket->getTeamParticipant2Id())
+                {
+                    for($i = 0; $i < $bracket->getBestOf(); $i++)
+                    {
+                        $playersTeamLeft = TeamMember::FindPlayer($bracket->getTeamParticipant1Id());
+                        $substitudesTeamLeft = TeamMember::FindSubstitude($bracket->getTeamParticipant1Id());
+
+                        foreach($playersTeamLeft as $pnr => $player)
+                        {
+                            $encounterData = $bracket->getEncounter($player['UserID'], $i+1);
+
+                            if(!$encounterData)
+                            {
+                                $encounterData = new TeamBracketEncounter();
+                                $encounterData->id = $bracket->getEncounterId();
+                                $encounterData->tournament_id = $tournament->getId();
+                                $encounterData->game_round = $i+1;
+                                $encounterData->team_id = $bracket->getTeamParticipant1Id();
+                                $encounterData->player_id = $player['UserID'];
+                                $encounterData->save();
+					        }
+				        }
+
+                        foreach($substitudesTeamLeft as $snr => $substitude)
+                        {
+                            $encounterData = $bracket->getEncounter($substitude['UserID'], $i+1);
+
+                            if(!$encounterData)
+                            {
+                                $encounterData = new TeamBracketEncounter();
+                                $encounterData->id = $bracket->getEncounterId();
+                                $encounterData->tournament_id = $tournament->getId();
+                                $encounterData->game_round = $i+1;
+                                $encounterData->team_id = $bracket->getTeamParticipant2Id();
+                                $encounterData->player_id = $substitude['UserID'];
+                                $encounterData->save();
+					        }
+				        }
+
+                        $playersTeamRight = TeamMember::FindPlayer($bracket->getTeamParticipant2Id());
+                        $substitudesTeamRight = TeamMember::FindSubstitude($bracket->getTeamParticipant2Id());
+
+                        foreach($playersTeamRight as $pnr => $player)
+                        {
+                            $encounterData = $bracket->getEncounter($player['UserID'], $i+1);
+
+                            if(!$encounterData)
+                            {
+                                $encounterData = new TeamBracketEncounter();
+                                $encounterData->id = $bracket->getEncounterId();
+                                $encounterData->tournament_id = $tournament->getId();
+                                $encounterData->game_round = $i+1;
+                                $encounterData->team_id = $bracket->getTeamParticipant2Id();
+                                $encounterData->player_id = $player['UserID'];
+                                $encounterData->save();
+					        }
+				        }
+
+                        foreach($substitudesTeamRight as $snr => $substitude)
+                        {
+                            $encounterData = $bracket->getEncounter($substitude['UserID'], $i+1);
+
+                            if(!$encounterData)
+                            {
+                                $encounterData = new TeamBracketEncounter();
+                                $encounterData->id = $bracket->getEncounterId();
+                                $encounterData->tournament_id = $tournament->getId();
+                                $encounterData->game_round = $i+1;
+                                $encounterData->team_id = $bracket->getTeamParticipant2Id();
+                                $encounterData->player_id = $substitude['UserID'];
+                                $encounterData->save();
+					        }
+				        }
+                    }
+                    
                     continue;
                 }
 			}
@@ -534,9 +611,9 @@ class CreateBrackets
 
                     continue;
                 }
-			}      
+			}
 
-            $bracket->movePlayersNextRound(1);
+            $bracket->moveParticipantsNextRound(1);
         }
     }
 

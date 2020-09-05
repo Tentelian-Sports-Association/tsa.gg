@@ -71,6 +71,11 @@ class TeamBrackets extends ActiveRecord
         return $this->encounter_id;
     }
 
+    public function getEncounter($participant, $round)
+    {
+        return TeamBracketEncounter::find()->where(['id' => $this->encounter_id])->andWhere(['tournament_id' => $this->tournament_id])->andWhere(['game_round' => $round])->andWhere(['player_id' => $participant])->one();
+	}
+
     /**
      * @return int
      */
@@ -156,7 +161,7 @@ class TeamBrackets extends ActiveRecord
      */
     public function getWinnerBracket()
     {
-        return $this->hasOne(TeamBracketEncounter::className(), ['id' => 'winner_bracket'])->one();
+        return $this->hasOne(TeamBrackets::className(), ['id' => 'winner_bracket'])->one();
     }
 
     /**
@@ -206,8 +211,6 @@ class TeamBrackets extends ActiveRecord
     {
         return $this->dt_updated;
     }
-
-    
     
     public function getByTournament($tournament_id)
 	{
@@ -220,6 +223,62 @@ class TeamBrackets extends ActiveRecord
     public static function getById($bracket_id)
     {
         return static::find()->where(['id' => $bracket_id])->one();
+	}
+
+    public static function getBracketData($bracket_id)
+    {
+        /** Umändern, sodass der gewinner immer im oberren bracet steht und sich dadurch die Farbe auch ändert, wie in RL */
+
+        $bracket = static::find()->where(['id' => $bracket_id])->one();
+        $bracketData = [];
+
+        $participant1 = $bracket->getTeamParticipant1();
+        $participant1_players = TeamMember::FindPlayer($bracket->getTeamParticipant1Id());
+        $participant1_substitudes = TeamMember::FindSubstitude($bracket->getTeamParticipant1Id());
+
+        $participant2 = $bracket->getTeamParticipant2();
+        $participant2_players = TeamMember::FindPlayer($bracket->getTeamParticipant2Id());
+        $participant2_substitudes = TeamMember::FindSubstitude($bracket->getTeamParticipant2Id());
+
+        $bracketData['base']['id'] = $bracket->getId();
+        $bracketData['base']['bo'] = $bracket->getBestOf();
+        $bracketData['base']['round'] = $bracket->getRound();
+
+        $bracketData['blue']['participantId'] = $participant1->getId();
+        $bracketData['blue']['participantName'] = $participant1->getName();
+
+        foreach($participant1_players as $pnr => $participant1_player)
+        {
+            $bracketData['blue']['participantData']['player'][$pnr]['playerId'] = $participant1_player['UserID'];
+            $bracketData['blue']['participantData']['player'][$pnr]['playerName'] = $participant1_player['UserName'];
+            $bracketData['blue']['participantData']['player'][$pnr]['encounterData'] = TeamBracketEncounter::find()->where(['id' => $bracket->getEncounterId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['team_id' => $participant1->getId()])->andWhere(['player_id' => $participant1_player['UserID']])->orderBy(['game_round' => SORT_ASC])->all();
+		}
+
+        foreach($participant1_substitudes as $pnr => $participant1_substitude)
+        {
+            $bracketData['blue']['participantData']['substitude'][$pnr]['playerId'] = $participant1_substitude['UserID'];
+            $bracketData['blue']['participantData']['substitude'][$pnr]['playerName'] = $participant1_substitude['UserName'];
+            $bracketData['blue']['participantData']['substitude'][$pnr]['subEncounterData'] = TeamBracketEncounter::find()->where(['id' => $bracket->getEncounterId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['team_id' => $participant1->getId()])->andWhere(['player_id' => $participant1_substitude['UserID']])->orderBy(['game_round' => SORT_ASC])->all();
+		}
+
+        $bracketData['orange']['participantId'] = $participant2->getId();
+        $bracketData['orange']['participantName'] = $participant2->getName();
+
+        foreach($participant2_players as $pnr => $participant2_player)
+        {
+            $bracketData['orange']['participantData']['player'][$pnr]['playerId'] = $participant2_player['UserID'];
+            $bracketData['orange']['participantData']['player'][$pnr]['playerName'] = $participant2_player['UserName'];
+            $bracketData['orange']['participantData']['player'][$pnr]['encounterData'] = TeamBracketEncounter::find()->where(['id' => $bracket->getEncounterId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['team_id' => $participant2->getId()])->andWhere(['player_id' => $participant2_player['UserID']])->orderBy(['game_round' => SORT_ASC])->all();
+		}
+
+        foreach($participant2_substitudes as $pnr => $participant2_substitude)
+        {
+            $bracketData['orange']['participantData']['substitude'][$pnr]['playerId'] = $participant2_substitude['UserID'];
+            $bracketData['orange']['participantData']['substitude'][$pnr]['playerName'] = $participant2_substitude['UserName'];
+            $bracketData['orange']['participantData']['substitude'][$pnr]['encounterData'] = TeamBracketEncounter::find()->where(['id' => $bracket->getEncounterId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['team_id' => $participant2->getId()])->andWhere(['player_id' => $participant2_substitude['UserID']])->orderBy(['game_round' => SORT_ASC])->all();
+		}
+
+        return $bracketData;
 	}
 
     /**
@@ -276,9 +335,6 @@ class TeamBrackets extends ActiveRecord
 
 		foreach ($allKeys as $key => $keyVal)
         {
-
-            
-
 			if ($keyVal == 'Finale') {
 				$keyRound = $maxLooserRound[0] + 1;
 			} else if ($keyVal == 'Finale (optional)') {
@@ -318,6 +374,11 @@ class TeamBrackets extends ActiveRecord
 		foreach ($brackets as $key => $bracket) {
 			$bracket->delete();
 		}
+
+        $encounters = TeamBracketEncounter::getAlllByTournament($tournament_id);
+        foreach ($encounters as $key => $encounter) {
+			$encounter->delete();
+		}
 	}
 
     public function setParticipant($participant)
@@ -327,38 +388,6 @@ class TeamBrackets extends ActiveRecord
 
         if($participant[1])
             $this->participant_2 = $participant[1]['id'];
-	}
-
-    public function getPlayers($bracket_id, $left_right)
-	{
-        if ('left' === $left_right) {
-	        $player  =  $this->getTeamParticipant1Player();
-	        $player_arr = $player;
-	    } else if ('right' === $left_right) {
-    	    $player = $this->getTeamParticipant2Player();
-            $player_arr = $player;
-	    }
-
-        return $player_arr;
-	}
-
-    /**
-	 * @return array
-	 */
-	public function getBracketRefs()
-	{
-		$winner = $this->hasMany(TeamBrackets::className(), ['winner_bracket' => 'id'])->all();
-		$looser = $this->hasMany(TeamBrackets::className(), ['looser_bracket' => 'id'])->all();
-
-		$brackets = [];
-		while ($tmp = array_shift($looser)) {
-			$brackets[] = ['type' => 'looser', 'bracket' => $tmp];
-		}
-		while ($tmp = array_shift($winner)) {
-			$brackets[] = ['type' => 'winner', 'bracket' => $tmp];
-		}
-
-		return $brackets;
 	}
 
     public function getParticipants()
@@ -384,8 +413,163 @@ class TeamBrackets extends ActiveRecord
 		return $participants;
 	}
 
-    //public function movePlayersNextRound($winnerNumber)
-    //public function setSpielerByBackRef($id, $preBracketId)
+    /**
+	 * @return array
+	 */
+	public function getBracketRefs()
+	{
+		$winner = $this->hasMany(TeamBrackets::className(), ['winner_bracket' => 'id'])->all();
+		$looser = $this->hasMany(TeamBrackets::className(), ['looser_bracket' => 'id'])->all();
+
+		$brackets = [];
+		while ($tmp = array_shift($looser)) {
+			$brackets[] = ['type' => 'looser', 'bracket' => $tmp];
+		}
+		while ($tmp = array_shift($winner)) {
+			$brackets[] = ['type' => 'winner', 'bracket' => $tmp];
+		}
+
+		return $brackets;
+	}
+
+    /**
+	 * @param int 
+	 */
+	public function moveParticipantsNextRound($winnerNumber) {
+
+		$this->winner_participant = ($winnerNumber == 1)? $this->getTeamParticipant1Id() : $this->getTeamParticipant2Id();
+		$this->update();
+		
+        if ($this->round === 999)
+			return;
+
+		if ($this->round === 998 && $winnerNumber == 1)
+			return;
+
+		$winnerBracket = $this->getWinnerBracket();
+		$looserBracket = $this->getLooserBracket();
+
+		$winnerBracket->setParticipantByBackRef(($winnerNumber == 1)? $this->getTeamParticipant1Id() : $this->getTeamParticipant2Id(), $this->getId());
+		if ($looserBracket) {
+			$looserBracket->setParticipantByBackRef(($winnerNumber == 1)? $this->getTeamParticipant2Id() : $this->getTeamParticipant1Id(), $this->getId());
+		}
+	}
+
+    /**
+	 * @param int
+	 * @param int
+	 */
+	public function setParticipantByBackRef($id, $preBracketId) {
+		
+		$refs = $this->getBracketRefs();
+
+		$bracket1 = reset($refs);
+		if (false === $bracket1) {
+			return;
+		}
+
+		$bracket2 = next($refs);
+
+		$set1 = true;
+		$set2 = true;
+
+		if ($bracket1['bracket']->getId() === $bracket2['bracket']->getId()) {
+			if ($this->participant_1 !== NULL)
+                $set1 = false;
+
+			if ($this->participant_2 !== NULL)
+				$set2 = false;
+		}
+
+		if ($bracket1['bracket']->getId() === $preBracketId && true === $set1) {
+				$this->participant_1 = $id;
+		}
+
+		if ($bracket2['bracket']->getId() === $preBracketId && true === $set2) {
+				$this->participant_2 = $id;
+		}
+
+        for($i = 0; $i < $this->getBestOf(); $i++)
+        {
+            if($this->getTeamParticipant1Id())
+            {
+                $players = TeamMember::FindPlayer($this->getTeamParticipant1Id());
+                $substitudes = TeamMember::FindSubstitude($this->getTeamParticipant1Id());
+
+                foreach($players as $pnr => $player)
+                {
+                    $encounterData = $this->getEncounter($player['UserID'], $i+1);
+
+                    if(!$encounterData)
+                    {
+                        $encounterData = new TeamBracketEncounter();
+                        $encounterData->id = $this->getEncounterId();
+                        $encounterData->tournament_id = $this->getTournamentId();
+                        $encounterData->game_round = $i+1;
+                        $encounterData->team_id = $id;
+                        $encounterData->player_id = $player['UserID'];
+                        $encounterData->save();
+					}
+				}
+
+                foreach($substitudes as $snr => $substitude)
+                {
+                    $encounterData = $this->getEncounter($substitude['UserID'], $i+1);
+
+                    if(!$encounterData)
+                    {
+                        $encounterData = new TeamBracketEncounter();
+                        $encounterData->id = $this->getEncounterId();
+                        $encounterData->tournament_id = $this->getTournamentId();
+                        $encounterData->game_round = $i+1;
+                        $encounterData->team_id = $id;
+                        $encounterData->player_id = $substitude['UserID'];
+                        $encounterData->save();
+					}
+				}
+			}
+            
+            if ($this->getTeamParticipant2Id())
+            {
+                $players = TeamMember::FindPlayer($this->getTeamParticipant2Id());
+                $substitudes = TeamMember::FindSubstitude($this->getTeamParticipant2Id());
+
+                foreach($players as $pnr => $player)
+                {
+                    $encounterData = $this->getEncounter($player['UserID'], $i+1);
+
+                    if(!$encounterData)
+                    {
+                        $encounterData = new TeamBracketEncounter();
+                        $encounterData->id = $this->getEncounterId();
+                        $encounterData->tournament_id = $this->getTournamentId();
+                        $encounterData->game_round = $i+1;
+                        $encounterData->team_id = $id;
+                        $encounterData->player_id = $player['UserID'];
+                        $encounterData->save();
+					}
+				}
+
+                foreach($substitudes as $snr => $substitude)
+                {
+                    $encounterData = $this->getEncounter($substitude['UserID'], $i+1);
+
+                    if(!$encounterData)
+                    {
+                        $encounterData = new TeamBracketEncounter();
+                        $encounterData->id = $this->getEncounterId();
+                        $encounterData->tournament_id = $this->getTournamentId();
+                        $encounterData->game_round = $i+1;
+                        $encounterData->team_id = $id;
+                        $encounterData->player_id = $substitude['UserID'];
+                        $encounterData->save();
+					}
+				}
+			}
+		}
+		
+		$this->update();
+	}
 
     /**
 	 * @return boolean|int
@@ -397,61 +581,85 @@ class TeamBrackets extends ActiveRecord
 			return $winner;
 		}
 
-		$type = 'user';
 		$winnerBracket = $this->getWinnerBracket();
 		if (false === $winnerBracket || NULL === $winnerBracket) {
 			return false;
 		}
 
-		if ($type === 'user') {
-
-			if ($winnerBracket->participant_1 != NULL && $this->participant_1 == $winnerBracket->participant_1 || $winnerBracket->participant_2 != NULL && $this->participant_1 == $winnerBracket->participant_2) {
-				return 1;
-			} else if ($winnerBracket->participant_1 != NULL && $this->participant_2 == $winnerBracket->participant_1 || $winnerBracket->participant_2 != NULL && $this->participant_2 == $winnerBracket->participant_2) {
-				return 2;
-			} 
-        }
+		if ($winnerBracket->participant_1 != NULL && $this->participant_1 == $winnerBracket->participant_1 || $winnerBracket->participant_2 != NULL && $this->participant_1 == $winnerBracket->participant_2) {
+			return 1;
+		} else if ($winnerBracket->participant_1 != NULL && $this->participant_2 == $winnerBracket->participant_1 || $winnerBracket->participant_2 != NULL && $this->participant_2 == $winnerBracket->participant_2) {
+			return 2;
+		}
 
 		return false;
 	}
 
-    public function getGoals($tournament)
+    public function getWins()
     {
-        //$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
         $encounters = TeamBracketEncounter::find()->where(['id' => $this->encounter_id])->andWhere(['tournament_id' => $this->tournament_id])->all();
 
-		if (count($encounters) == 0) {
-			return ['left' => [], 'right' => []];
+        if (count($encounters) == 0) {
+			return NULL;
 		}
 
-		$players_left = $this->getPlayers($this->id, 'left');
-		$players_right = $this->getPlayers($this->id, 'right');
+        $team_left = $this->getTeamParticipant1();
+        $team_left_players = TeamMember::FindPlayer($this->getTeamParticipant1Id());
+        $team_left_substitudes = TeamMember::FindSubstitude($this->getTeamParticipant1Id()); 
+
+		$team_right = $this->getTeamParticipant2();
+        $team_right_players = TeamMember::FindPlayer($this->getTeamParticipant2Id());
+        $team_right_substitudes = TeamMember::FindSubstitude($this->getTeamParticipant2Id());
 
 		$leftGoals = [];
 		$rightGoals = [];
 
 		foreach ($encounters as $key => $encounter)
         {
-			foreach ($players_left as $key => $player)
+            if($team_left && $team_left->getId() == $encounter->getTeamId())
             {
-				if ($player['UserID'] == $encounter->getPlayerId()) {
-					if (!isset($leftGoals[$encounter->game_round])) {
-						$leftGoals[$encounter->game_round] = 0;
-					}
-					$leftGoals[$encounter->game_round] += $encounter->goals;
+                foreach($team_left_players as $trnr => $team_left_player)
+                {
+                    if(array_key_exists($encounter->getGameRound(), $leftGoals))
+                        $leftGoals[$encounter->getGameRound()] += $encounter->getGoals();
+                    else
+                        $leftGoals[$encounter->getGameRound()] = $encounter->getGoals();
 				}
 			}
 
-			foreach ($players_right as $key => $player) {
-				if ($player['UserID'] == $encounter->getPlayerId()) {
-					if (!isset($rightGoals[$encounter->game_round])) {
-						$rightGoals[$encounter->game_round] = 0;
-					}
-					$rightGoals[$encounter->game_round] += $encounter->goals;
-				}
+            if($team_right && $team_right->getId() == $encounter->getTeamId())
+            {
+                foreach($team_right_players as $trnr => $team_right_player)
+                {
+                    if(array_key_exists($encounter->getGameRound(), $rightGoals))
+                        $rightGoals[$encounter->getGameRound()] += $encounter->getGoals();
+                    else
+                        $rightGoals[$encounter->getGameRound()] = $encounter->getGoals();
+                }
 			}
 		}
 
-		return ['left' => $leftGoals, 'right' => $rightGoals];
+		$minGames = ceil($this->getBestOf() / 2);
+
+		if (count($leftGoals) != count($rightGoals)) {
+			return false;
+		}
+
+		if (count($leftGoals) < $minGames) {
+			return false;
+		}
+
+		$leftWins = 0;
+		$rightWins = 0;
+
+		foreach ($leftGoals as $round => $value) {
+			if ($leftGoals[$round] > $rightGoals[$round]) {
+				$leftWins++;
+			} else if ($leftGoals[$round] < $rightGoals[$round]) {
+				$rightWins++;
+			}
+		}
+
+        return ['left' => $leftWins, 'right' => $rightWins];
 	}
 }

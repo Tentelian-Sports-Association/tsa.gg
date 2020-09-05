@@ -97,7 +97,7 @@ Yii::$app->MetaClass->writeMetaIndex($this);
                     <div class="col-12 col-sm-8">
                         <ul class="tournament-list list-unstyled">
                             <?php foreach($tournaments as $tournament) : ?>
-                                <li class="d-sm-flex align-items-center">
+                                <li class="d-sm-flex align-items-center" data-tournament_image="<?= $tournament['HoverImage'] ?>">
                                     <div class="col-12 col-sm-8 tournament-description">
                                         <div class="row">
                                             <!-- Für Mobile-->
@@ -127,7 +127,7 @@ Yii::$app->MetaClass->writeMetaIndex($this);
                     </div>
                     <div class="d-none col-sm-4 d-sm-block d-lg-flex">
                         <!-- Image für Hover Image funktion zum laden baue ich wenn design da -->
-                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.webp', ['class' => 'img-fluid',  'aria-label' => $tournament['HoverImage'], 'id' => $tournament['HoverImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.png\'']); ?>
+                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/tournaments/index/', 'tsa_games') . '.webp', ['class' => 'img-fluid tournament-hover-image',  'aria-label' => 'tsa_games', 'id' => 'tsa_games', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/tournaments/index/', 'tsa_games') . '.png\'']); ?>
                     </div>
                 </div>
                 <?= Html::a(Yii::t('app', 'tournaments_moreTournaments'), ["/tournament/overview"], ['class' => "filled-btn",'aria-label' => "show all tournaments Button"]); ?>
@@ -136,6 +136,20 @@ Yii::$app->MetaClass->writeMetaIndex($this);
                 <?= Html::img(Yii::$app->HelperClass->checkImage('/images/placeholder/', 'running_tournaments') . '.webp', ['class' => 'img-fluid',  'aria-label' => 'placeholder', 'id' => 'placeholder', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/placeholder/', 'running_tournaments') . '.png\'']); ?>
             <?php endif; ?>
         </div>
+        <script>
+        var elems = document.querySelectorAll('.tournament-list li');
+        console.log(elems)
+        
+        $('.tournament-list li').hover(
+            function(e) {
+                $('.tournament-hover-image').attr('src', 'images/tournaments/index/'+$(this).data('tournament_image')+'.webp');
+            },
+            function(e) {
+                $('.tournament-hover-image').attr('src', 'images/news/categorie/tsa_games.webp');
+            }
+        );
+        
+        </script>
     </section>
 
     <!-- *************** Latest News Bereich images noch einbauen *************** -->
