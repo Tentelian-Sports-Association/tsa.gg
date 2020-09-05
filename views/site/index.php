@@ -127,7 +127,7 @@ Yii::$app->MetaClass->writeMetaIndex($this);
                     </div>
                     <div class="d-none col-sm-4 d-sm-block d-lg-flex">
                         <!-- Image für Hover Image funktion zum laden baue ich wenn design da -->
-                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.webp', ['class' => 'img-fluid tournament-hover-image',  'aria-label' => $tournament['HoverImage'], 'id' => $tournament['HoverImage'], 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/tournaments/index/', $tournament['HoverImage']) . '.png\'']); ?>
+                        <?= Html::img(Yii::$app->HelperClass->checkImage('/images/tournaments/index/', 'tsa_games') . '.webp', ['class' => 'img-fluid tournament-hover-image',  'aria-label' => 'tsa_games', 'id' => 'tsa_games', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/tournaments/index/', 'tsa_games') . '.png\'']); ?>
                     </div>
                 </div>
                 <?= Html::a(Yii::t('app', 'tournaments_moreTournaments'), ["/tournament/overview"], ['class' => "filled-btn",'aria-label' => "show all tournaments Button"]); ?>
