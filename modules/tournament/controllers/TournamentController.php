@@ -18,6 +18,8 @@ use app\modules\tournament\models\Tournament;
 use app\modules\team\models\Team;
 
 use app\modules\tournament\modules\rocketLeague\models\TeamBrackets;
+use app\modules\tournament\modules\rocketLeague\models\TeamBracketEncounter;
+
 use app\modules\tournament\modules\rocketLeague\models\PlayerBrackets;
 use app\modules\tournament\modules\rocketLeague\models\PlayerBracketEncounter;
 
@@ -351,8 +353,6 @@ class TournamentController extends BaseController
 
     public function actionBracketDetails($tournamentId = null, $bracketId = null)
     {
-        
-        
         if(!$tournamentId || !$bracketId)
         {
               Alert::addError('No Tournament and Bracket Selected');
@@ -371,17 +371,23 @@ class TournamentController extends BaseController
         $tournament = Tournament::getTournamentById($tournamentId);
         
         $bracketData = [];
+        $bracketView = '';
 
         if($tournament->getIsTeamTournament())
+        {
             $bracketData = TeamBrackets::getBracketData($bracketId);
-        else 
+            $bracketView = Yii::$app->basePath.'/modules/tournament/modules/' .  Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '/views/team_BracketDetails.php';
+		}
+        else
+        {
             $bracketData = PlayerBrackets::getBracketData($bracketId);
+            $bracketView = Yii::$app->basePath.'/modules/tournament/modules/' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '/views/single_BracketDetails.php';
+		}
 
         $encounterScreen = [];
-        $editable = true;
+        $editable = false;
 
-        //print_r($bracketData);
-        //die();
+        $url = Yii::$app->basePath.'/modules/tournament/modules/rocketLeague/views/single_BracketDetails.php';
 
         return $this->render('tournamentBracketDetails',
         [
@@ -389,6 +395,7 @@ class TournamentController extends BaseController
             'bracketData' => $bracketData,
             'encounterScreen' => $encounterScreen,
             'editable' => $editable,
+            'bracketView' => $bracketView,
             'myId' => $user->getId(),
         ]);
 	}
@@ -402,7 +409,8 @@ class TournamentController extends BaseController
 
         if($bracketData['isTeam'])
         {
-            
+            $gameBracketClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\models\TeamBrackets';
+            $gameEncounterClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\models\TeamBracketEncounter';
 		}
         else
         {
@@ -421,7 +429,10 @@ class TournamentController extends BaseController
             {
                 if($bracketData['isTeam'])
                 {
-                            
+                    $encounterBracket = $bracket->getEncounter($playerId, $gameRound);
+
+                    $encounterBracket->setData($points);
+                    $encounterBracket->save();
 				}
                 else
                 {
@@ -436,7 +447,7 @@ class TournamentController extends BaseController
         $winner = $tournamentEncounterClass->getWinner($bracket);
 
         if($winner)
-            $bracket->movePlayersNextRound($winner);
+            $bracket->moveParticipantsNextRound($winner);
 
 
         Alert::addSuccess('Bracket Data Saved');

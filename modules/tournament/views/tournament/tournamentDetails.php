@@ -4,7 +4,6 @@
 /* @var $participants array */
 /* @var $bracketData array */
 
-
 \app\modules\tournament\assets\TournamentDetailsAsset::register($this);
 
 use app\modules\tournament\modules\rocketLeague\models\PlayerBracketEncounter;
@@ -241,20 +240,20 @@ use app\widgets\Alert;
                                         $rundenInfo = 'R' . $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT);
                                     }
 
-                                    $goals = $bracket->getWins($tournament);
+                                    $goals = $bracket->getWins();
                                 ?>
                                 <div class="bracket mb-4 round-<?= $round ?>">
                                     <?= Html::a('<div class="bracket-box">'
                                         .'<div class="bracketParticipant' .$class1 . '">'		
                                             . $participant1['name']
                                             . '<div class="takeWinner" style="float:right;">'
-                                                . '<div class="goals" style="float:left;">0</div>'
+                                                . '<div class="goals" style="float:left;">' . $goals['left'] . '</div>'
                                             . '</div>'
                                         . '</div>'
                                         . '<div class="bracketParticipant' .$class2 . '">'
                                         . $participant2['name']
                                             . '<div class="takeWinner" style="float:right;">'
-                                                . '<div class="goals" style="float:left;">0</div>'
+                                                . '<div class="goals" style="float:left;">' . $goals['right'] . '</div>'
                                             . '</div>'
                                         . '</div>'
                                     . '</div>'

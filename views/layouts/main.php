@@ -158,6 +158,7 @@ $weAreLive['Discord']['svg'] = '<svg width="23" height="23" viewBox="0 0 23 23" 
     <!-- Hier später wieder die sachen für den Alert einfügen -->
     <?php $this->render('@app/views/layouts/_alerts'); ?>
 
+
     <?= $content ?>
 
 

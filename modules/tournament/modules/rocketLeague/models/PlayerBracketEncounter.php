@@ -193,4 +193,10 @@ class PlayerBracketEncounter extends ActiveRecord
 
 		return false;
 	}
+
+    /** Get Functions */
+    public static function getAlllByTournament($tournament_id)
+    {
+        return static::find()->where(['tournament_id' => $tournament_id])->all();
+	}
 }
