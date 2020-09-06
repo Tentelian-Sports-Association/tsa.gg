@@ -324,7 +324,7 @@ class TournamentController extends BaseController
 
     /** CheckIn */
 
-    public function actionCheckin($gameId, $tournamentId)
+    public function actionCheckin($tournamentId)
     {   
         if (Yii::$app->user->isGuest) {
             Alert::addError('You are not allowed to Register to an Tournament, Please Login');
@@ -337,7 +337,7 @@ class TournamentController extends BaseController
 
         $tournament = Tournament::getTournamentById($tournamentId);
 
-        $gameClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CheckTeamEligible';
+        $gameClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CheckEligible';
         $tournamentGameClass = new $gameClass();
 
         $authorizedTeams = $tournamentGameClass->checkTeamAuthorization($tournament, $user, $languageID);
