@@ -168,10 +168,16 @@ class CheckEligible
 			}
 
             $teams[$nr]['alreadyRegistered'] = false;
+            $teams[$nr]['alreadyCheckedIn'] = false;
 
-            if(TournamentTeamParticipating::getById($tournament->getId(), $user->getId()))
+            if(TournamentTeamParticipating::getById($tournament->getId(), $team->getId()))
             {
                 $teams[$nr]['alreadyRegistered'] = true;
+
+                if(TournamentTeamParticipating::getById($tournament->getId(), $team->getId())->getIsCheckedIn())
+                {
+                    $teams[$nr]['alreadyCheckedIn'] = true;
+		        }
 		    }
 		}
 
@@ -217,10 +223,16 @@ class CheckEligible
 
         $player['playerEligible'] = $playerEligible;
         $player['playerAlreadyRegistered'] = false;
+        $player['alreadyCheckedIn'] = false;
 
         if(TournamentPlayerParticipating::getById($tournamentId, $user->getId()))
         {
             $player['playerAlreadyRegistered'] = true;
+
+            if(TournamentPlayerParticipating::getById($tournament->getId(), $user->getId())->getIsCheckedIn())
+            {
+                $player['alreadyCheckedIn'] = true;
+		    }
 		}
 
         return $player;
