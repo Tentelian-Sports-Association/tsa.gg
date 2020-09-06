@@ -219,7 +219,7 @@ use app\widgets\Alert;
                             <?php else : ?>
                                 <div class="col-12 tournamentRegistrationBodyHead">
                                     <div style="text-align:center;">
-                                    <?= 'You have no Team for registration'; ?>
+                                    <?= 'You have no Team for checkin'; ?>
                                     </div>
                                 </div>
                             <?php endif; ?>
