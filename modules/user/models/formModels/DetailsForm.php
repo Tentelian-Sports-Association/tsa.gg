@@ -142,7 +142,7 @@ class DetailsForm extends FormModel
         /** Changeable Base Informations */
         $user->gender_id = $this->genderId;
         $user->language_id = $this->languageId;
-        $user->nationality_id = $this->nationalityId;
+        //$user->nationality_id = $this->nationalityId;
 
         /** Personal Informations */
         $userDetails = UserDetails::findByID($user->id);
