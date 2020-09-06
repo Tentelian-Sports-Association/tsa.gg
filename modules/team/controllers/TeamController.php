@@ -164,8 +164,7 @@ class TeamController extends BaseController
             return $this->redirect(['details?teamID=' . $teamId]);
         }
 
-
-        $team = Team::find(['id' => $teamId])->one();
+        $team = Team::find()->where(['id' => $teamId])->one();
 
         $model->name = $team->getName();
         $model->shortCode = $team->getShortCode();
