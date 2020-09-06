@@ -87,15 +87,15 @@ class TournamentPlayerParticipating extends ActiveRecord
     public function getPenalties()
     {
         $penaltie = [];
-        $penaltie[0]['id'] = 1;
-        $penaltie[0]['name'] = 'dq';
-        $penaltie[0]['weight'] = '10';
-        $penaltie[0]['date'] = DateTime::createFromFormat('Y-m-d H:i:s', '2020-03-15 22:30:15')->format('d.m.Y');
+        //$penaltie[0]['id'] = 1;
+        //$penaltie[0]['name'] = 'dq';
+        //$penaltie[0]['weight'] = '10';
+        //$penaltie[0]['date'] = DateTime::createFromFormat('Y-m-d H:i:s', '2020-03-15 22:30:15')->format('d.m.Y');
 
-        $penaltie[1]['id'] = 2;
-        $penaltie[1]['name'] = 'unsportsmanlike';
-        $penaltie[1]['weight'] = '7';
-        $penaltie[1]['date'] = DateTime::createFromFormat('Y-m-d H:i:s', '2020-03-15 22:30:15')->format('d.m.Y');;
+        //$penaltie[1]['id'] = 2;
+        //$penaltie[1]['name'] = 'unsportsmanlike';
+        //$penaltie[1]['weight'] = '7';
+        //$penaltie[1]['date'] = DateTime::createFromFormat('Y-m-d H:i:s', '2020-03-15 22:30:15')->format('d.m.Y');;
 
         return $penaltie;
 	}
