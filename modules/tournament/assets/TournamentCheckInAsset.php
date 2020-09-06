@@ -9,6 +9,7 @@ class TournamentCheckInAsset extends AssetBundle
  
     public $css = [
 		'css/tournamentCheckIn.css',
+        'css/tournamentRegistration.css'
     ];
 
     public $cssOptions = [
