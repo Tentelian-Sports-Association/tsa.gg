@@ -4,6 +4,7 @@ namespace app\modules\tournament\models;
 
 use yii\db\ActiveRecord;
 use DateTime;
+use DateTimeZone;
 
 use app\modules\miscellaneouse\models\tournamentMode\TournamentMode;
 
@@ -212,9 +213,9 @@ class Tournament extends ActiveRecord
         {
             $sortedTournament[$nr]['Name'] = $tournament->getName();
             $sortedTournament[$nr]['ID'] = $tournament->getId();
-            $sortedTournament[$nr]['DtStart'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_starting_time'])->format('d.m.Y | H:i');
-            $sortedTournament[$nr]['DtRegEnd'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_register_end'])->format('d.m.Y | H:i');
-            $sortedTournament[$nr]['DtCheckIn'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_checkin_begin'])->format('d.m.Y | H:i') . ' - ' . DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_checkin_end'])->format('H:i');
+            $sortedTournament[$nr]['DtStart'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_starting_time'])->setTimeZone(new DateTimeZone('Europe/Berlin'))->format('d.m.Y | H:i'); //date("Y-m-d H:i:s", $time);
+            $sortedTournament[$nr]['DtRegEnd'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_register_end'])->setTimeZone(new DateTimeZone('Europe/Berlin'))->format('d.m.Y | H:i');
+            $sortedTournament[$nr]['DtCheckIn'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_checkin_begin'])->setTimeZone(new DateTimeZone('Europe/Berlin'))->format('d.m.Y | H:i') . ' - ' . DateTime::createFromFormat('Y-m-d H:i:s', $tournament['dt_checkin_end'])->setTimeZone(new DateTimeZone('Europe/Berlin'))->format('H:i');
             $sortedTournament[$nr]['IsRunning'] = $tournament->getIsRunning();
             $sortedTournament[$nr]['IsTeam'] = $tournament->getIsTeamTournament();
             $sortedTournament[$nr]['CanCheckIn'] = NULL;

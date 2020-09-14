@@ -57,7 +57,7 @@ sortedPaginatedTeam[$nr]['Language']['name']
                     Teams
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <!-- Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien. -->
                 </p>
             </div>
         </div>
