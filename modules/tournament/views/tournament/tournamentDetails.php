@@ -27,7 +27,15 @@ use app\widgets\Alert;
                 <img src="<?php echo Yii::$app->HelperClass->checkImage('/images/banner/', 'community') . '.webp' ?>" aria-label="News Header" class="img-fluid"/>
             </picture>
         </div>
+        <div class="hero-container row">
+            <div class="hero-text col-lg-8">
+                <h1 class="hero-title">
+                    <?= $tournament['name'] ?>
+                </h1>
+            </div>
+        </div>
     </div>
+
     <div class="inner-wrapper">
 
         <!-- Den Button mittig zentrieren und sch�n machen :D -->
