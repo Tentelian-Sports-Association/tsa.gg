@@ -45,7 +45,7 @@ class RulesSubParagraph_i18n extends ActiveRecord
 	/**
 	 * @return string name
 	 */
-	public function getName($languageID)
+	public function getName()
 	{
 		return $this->name;
 	}
@@ -67,7 +67,7 @@ class RulesSubParagraph_i18n extends ActiveRecord
     /**
 	 * @return string name
 	 */
-	public function getDescription($languageID)
+	public function getDescription()
 	{
 		return $this->description;
 	}
