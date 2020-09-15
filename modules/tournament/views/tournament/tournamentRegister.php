@@ -56,8 +56,8 @@ use app\widgets\Alert;
             <div class="col-12 col-lg-12">
                 <div class="row openTournament desktop">
                     <div class="col-12 col-md-12">
-                        <?php if($tournament->getIsTeamTournament()) : ?>
-                            <?php if($authorizedTeams || $authorizedPlayer) : ?>
+                        <?php if($authorizedTeams || $authorizedPlayer) : ?>
+                            <?php if($tournament->getIsTeamTournament()) : ?>
                                 <?php if($authorizedTeams) : ?>
                                     <div class="col-12 tournamentRegistrationBodyHead">
                                         <div class="col-lg-2 teamName float-left">Team Name</div>
