@@ -337,7 +337,7 @@ use app\widgets\Alert;
                         <?php else : ?>
                             <div class="col-12 tournamentRegistrationBodyHead">
                                 <div style="text-align:center;">
-                                <?= 'You cannot register at this moment'; ?>
+                                <?= 'Please check if you are logged in'; ?>
                             </div>
                         <?php endif; ?>
                     <div class="clearfix"></div>

@@ -2,6 +2,8 @@
 
 namespace app\modules\miscellaneouse\models\rules;
 
+use app\modules\miscellaneouse\models\rules\RulesParagraph_i18n;
+
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -58,8 +60,9 @@ class RulesParagraph extends ActiveRecord
 	{
 		if(Yii::$app->language != 'en-EN')
 		{
-            return $this->name;
-			//return Nationality_i18n::getTranslatedName($this->id, $languageID);
+			$translatedName = RulesParagraph_i18n::getTranslatedName($this->id, $languageID);
+
+			return ($translatedName) ? $translatedName : $this->name;
 		}
 
 		return $this->name;
@@ -72,8 +75,9 @@ class RulesParagraph extends ActiveRecord
 	{
 		if(Yii::$app->language != 'en-EN')
 		{
-            return $this->description;
-			//return Nationality_i18n::getTranslatedName($this->id, $languageID);
+			$translatedDescription = RulesParagraph_i18n::getTranslatedDescription($this->id, $languageID);
+
+			return ($translatedDescription) ? $translatedDescription : $this->description;
 		}
 
 		return $this->description;
