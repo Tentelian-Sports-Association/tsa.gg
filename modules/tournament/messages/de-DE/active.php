@@ -2,7 +2,7 @@
 return [
 	/** Header */
 	'activeTournament_header' => ' Turnier Übersicht',
-	'activeTournament_meta_description' => 'Alle derzeit aktiven Turniere für ',
+	'activeTournament_meta_description' => 'Alle derzeit aktiven Turniere in ',
 
 	/** List Header */
 	'firstRow' => 'Turniername',
