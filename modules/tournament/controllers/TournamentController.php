@@ -158,10 +158,10 @@ class TournamentController extends BaseController
 
     public function actionRegister($tournamentId)
     {
-        if (Yii::$app->user->isGuest) {
-            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
-            return $this->redirect(['/user/login']);
-        }
+        //if (Yii::$app->user->isGuest) {
+        //    Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+        //    return $this->redirect(['/user/login']);
+        //}
 
         /** Base Informations **/
         $user = Yii::$app->HelperClass->getUser();
@@ -173,8 +173,14 @@ class TournamentController extends BaseController
         $gameClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CheckEligible';
         $tournamentGameClass = new $gameClass();
 
-        $authorizedTeams = $tournamentGameClass->checkTeamAuthorization($tournament, $user, $languageID);
-        $authorizedPlayer = $tournamentGameClass->checkPlayerAuthorization($tournament->getId(), $tournament->getGameId(), $user, $languageID);
+        $authorizedTeams = [];
+        $authorizedPlayer = [];
+
+        if($user)
+        {
+            $authorizedTeams = $tournamentGameClass->checkTeamAuthorization($tournament, $user, $languageID);
+            $authorizedPlayer = $tournamentGameClass->checkPlayerAuthorization($tournament->getId(), $tournament->getGameId(), $user, $languageID);
+        }
 
         return $this->render('tournamentRegister',
         [
