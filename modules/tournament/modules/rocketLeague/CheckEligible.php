@@ -229,7 +229,7 @@ class CheckEligible
         {
             $player['playerAlreadyRegistered'] = true;
 
-            if(TournamentPlayerParticipating::getById($tournament->getId(), $user->getId())->getIsCheckedIn())
+            if(TournamentPlayerParticipating::getById($tournamentId, $user->getId())->getIsCheckedIn())
             {
                 $player['alreadyCheckedIn'] = true;
 		    }
