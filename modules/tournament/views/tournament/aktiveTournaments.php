@@ -48,7 +48,7 @@ foreach(openTournamentList as $openTournament)
                     Tournaments
                 </h1>
                 <p class="description" >
-                    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien.
+                    <?= \app\modules\tournament\Module::t('active', 'activeTournament_meta_description') . $choosedGame['name']; ?>
                 </p>
             </div>
         </div>
