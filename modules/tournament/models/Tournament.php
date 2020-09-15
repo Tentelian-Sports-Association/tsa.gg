@@ -288,9 +288,8 @@ class Tournament extends ActiveRecord
             else {
                 $sortedTournament[$nr]['RegisterOpen'] = 0;
             }
-
-            $sortedTournament[$nr]['StartingDate'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->getStartingTime())->format('d.m.Y');
-            $sortedTournament[$nr]['StartingTime'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->getStartingTime())->format('H:i');
+            $sortedTournament[$nr]['StartingDate'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->getStartingTime())->setTimeZone(new DateTimeZone('Europe/Berlin'))->format('d.m.Y');
+            $sortedTournament[$nr]['StartingTime'] = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->getStartingTime())->setTimeZone(new DateTimeZone('Europe/Berlin'))->format('H:i');
 		}
         return $sortedTournament;
     }
