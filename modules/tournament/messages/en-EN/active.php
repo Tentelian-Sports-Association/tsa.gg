@@ -7,7 +7,7 @@ return [
 	/** List Header */
 	'firstRow' => 'Tournament name',
 	'secondRow' => 'Tournament start',
-	'thirdRow' => 'RegistrationRegistration until',
+	'thirdRow' => 'Registration until',
 	'fourthRow' => 'Check-In',
 
 ];
