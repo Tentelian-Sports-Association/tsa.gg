@@ -4,11 +4,8 @@
 /* @var $rules array */
 /* @var $authorizedTeams array */
 /* @var $authorizedPlayer array */
+/* @var $user array */
 /* @var $view string */
-
-
-\app\modules\tournament\assets\TournamentRegistrationAsset::register($this);
-
 
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;

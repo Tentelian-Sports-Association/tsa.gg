@@ -55,4 +55,29 @@ class ClashRoyaleController extends BaseController
         print_r("dies ist der Clash Royale Controller");
         die();
 	}
+
+    public function actionFetchData($tournamentId = null, $bracketId = null)
+    {
+        if(!$tournamentId || !$bracketId)
+        {
+              Alert::addError('No Tournament and Bracket Selected');
+              return $this->redirect(['/tournament/overview']);
+		}
+
+        if(Yii::$app->request->post())
+        {
+              $this->saveBracketData(Yii::$app->request->post());
+		}
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+        
+        $bracketData = [];
+        $bracketView = '';
+
+
+	}
 }

@@ -204,5 +204,117 @@ class RocketLeagueController extends BaseController
         return $this->redirect(['/tournament/register?tournamentId=' . $tournament->getId()]);
     }
 
+    /** Checkin/Checkout Player */
+    public function actionCheckinPlayer($tournamentId)
+    {
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
 
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+
+        Alert::addError('This Service is currently not availabel'); 
+        
+        return $this->redirect(['tournament/checkin?tournamentId=' . $tournament->getId()]);
+	}
+
+    public function actionCheckoutPlayer($tournamentId)
+    {
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+        
+        Alert::addError('This Service is currently not availabel');
+
+        return $this->redirect(['tournament/checkin?tournamentId=' . $tournament->getId()]);
+    }
+
+    /** Checkin/Checkout Team */
+    public function actionCheckinTeam($tournamentId, $teamId)
+    {
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+        $team = Team::findTeamById($teamId);
+
+        if(TournamentTeamParticipating::getById($tournament->getId(), $team->getId())->getIsCheckedIn())
+        {
+            Alert::addError('Team ' . $team->getName() . ' already Checkedin for the ' . $tournament->getName() . ' tournament');
+            return $this->redirect(['tournament/checkin?tournamentId=' . $tournament->getId()]);
+		}
+
+        $model = TournamentTeamParticipating::getById($tournament->getId(), $team->getId());
+
+        if($model)
+        {
+            $model->checked_in = true;
+		}
+
+        if($model != null) {
+            $model->save();
+            Alert::addInfo('Team ' . $team->getName() . ' CheckedIn for  the ' . $tournament->getName() . ' tournament'); 
+		}
+        else {
+	        Alert::addError('This Service is currently not availabel'); 
+        }
+
+        return $this->redirect(['tournament/checkin?tournamentId=' . $tournament->getId()]);
+	}
+
+    public function actionCheckoutTeam($tournamentId, $teamId)
+    {
+        if (Yii::$app->user->isGuest) {
+            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
+            return $this->redirect(['/user/login']);
+        }
+
+        /** Base Informations **/
+        $user = Yii::$app->HelperClass->getUser();
+        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
+
+        $tournament = Tournament::getTournamentById($tournamentId);
+        $team = Team::findTeamById($teamId);
+
+        if(!TournamentTeamParticipating::getById($tournament->getId(), $team->getId())->getIsCheckedIn())
+        {
+            Alert::addError('Team ' . $team->getName() . ' already Checkedout for the ' . $tournament->getName() . ' tournament');
+            return $this->redirect(['tournament/checkin?tournamentId=' . $tournament->getId()]);
+		}
+
+        $model = TournamentTeamParticipating::getById($tournament->getId(), $team->getId());
+
+        if($model)
+        {
+            $model->checked_in = false;
+		}
+
+        if($model != null) {
+            $model->save();
+            Alert::addInfo('Team ' . $team->getName() . ' Checkedout for  the ' . $tournament->getName() . ' tournament'); 
+		}
+        else {
+	        Alert::addError('This Service is currently not availabel'); 
+        }
+
+        return $this->redirect(['tournament/checkin?tournamentId=' . $tournament->getId()]);
+    }
 }

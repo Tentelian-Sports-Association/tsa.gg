@@ -79,9 +79,9 @@ $config = [
                 'support/<action>' => 'support/support/<action>',
                 'team/<action>' => 'team/team/<action>',
                 'tournament/<action>' => 'tournament/tournament/<action>',
-                /** Sub Controller for Games */
-                'rocketLeague/<action>' => 'tournament/rocketLeague/<action>',
-                'clashRoyale/<action>' => 'tournament/clashRoyale/<action>',
+                    /** Sub Controller for Games */
+                    'rocketLeague/<action>' => 'tournament/rocketLeague/<action>',
+                    'clashRoyale/<action>' => 'tournament/clashRoyale/<action>',
             ],
         ],
         'i18n' => [
