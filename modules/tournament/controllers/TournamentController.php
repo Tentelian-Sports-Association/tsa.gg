@@ -158,11 +158,6 @@ class TournamentController extends BaseController
 
     public function actionRegister($tournamentId)
     {
-        //if (Yii::$app->user->isGuest) {
-        //    Alert::addError('You are not allowed to Register to an Tournament, Please Login');
-        //    return $this->redirect(['/user/login']);
-        //}
-
         /** Base Informations **/
         $user = Yii::$app->HelperClass->getUser();
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
@@ -170,7 +165,7 @@ class TournamentController extends BaseController
         $tournament = Tournament::getTournamentById($tournamentId);
         $rules = Rules::GetRules($tournament->getRulesId(), $languageID);
 
-        $gameClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CheckEligible';
+        $gameClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\CheckEligible';
         $tournamentGameClass = new $gameClass();
 
         $authorizedTeams = [];
@@ -178,9 +173,13 @@ class TournamentController extends BaseController
 
         if($user)
         {
-            $authorizedTeams = $tournamentGameClass->checkTeamAuthorization($tournament, $user, $languageID);
-            $authorizedPlayer = $tournamentGameClass->checkPlayerAuthorization($tournament->getId(), $tournament->getGameId(), $user, $languageID);
+            if($tournament->getIsTeamTournament())
+                $authorizedTeams = $tournamentGameClass->checkTeamAuthorization($tournament, $user, $languageID);
+            else
+                $authorizedPlayer = $tournamentGameClass->checkPlayerAuthorization($tournament->getId(), $tournament->getGameId(), $user, $languageID);
         }
+
+        $view = Yii::$app->basePath.'/modules/tournament/modules/' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '/views/registration.php';
 
         return $this->render('tournamentRegister',
         [
@@ -188,145 +187,9 @@ class TournamentController extends BaseController
             'rules' => $rules,
             'authorizedTeams' => $authorizedTeams,
             'authorizedPlayer' => $authorizedPlayer,
+            'view' => $view,
         ]);
 	}
-
-    public function actionRegisterTeam($tournamentId, $teamId)
-    {
-        if (Yii::$app->user->isGuest) {
-            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
-            return $this->redirect(['/user/login']);
-        }
-
-        /** Base Informations **/
-        $user = Yii::$app->HelperClass->getUser();
-        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
-
-        $tournament = Tournament::getTournamentById($tournamentId);
-        $team = Team::findTeamById($teamId);
-
-        if(TournamentTeamParticipating::getById($tournament->getId(), $team->getId()))
-        {
-            Alert::addError('Team ' . $team->getName() . ' already registered for the ' . $tournament->getName() . ' tournament');
-            return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
-		}
-
-        $model = new TournamentTeamParticipating();
-        $model->tournament_id = $tournament->getId();
-        $model->team_id = $team->getId();
-        $model->checked_in = false;
-        $model->readRules = true;
-
-        if($model != null) {
-            $model->save();
-            Alert::addInfo('Team ' . $team->getName() . ' registered for  the ' . $tournament->getName() . ' tournament'); 
-		}
-        else {
-	        Alert::addError('This Service is currently not availabel'); 
-        }
-
-        return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
-	}
-
-    public function actionUnsubscribeTeam($tournamentId, $teamId)
-    {
-        if (Yii::$app->user->isGuest) {
-            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
-            return $this->redirect(['/user/login']);
-        }
-
-        /** Base Informations **/
-        $user = Yii::$app->HelperClass->getUser();
-        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
-
-        $tournament = Tournament::getTournamentById($tournamentId);
-        $team = Team::findTeamById($teamId);
-
-        $model = TournamentTeamParticipating::getById($tournament->getId(), $team->getId());
-
-        if(!$model)
-        {
-            Alert::addError('Team ' . $team->getName() . ' not registered for the ' . $tournament->getName() . ' tournament');
-            return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
-		}
-
-        if($model != null) {
-            $model->delete();
-            Alert::addInfo('Team ' . $team->getName() . ' unsubscribed for  the ' . $tournament->getName() . ' tournament'); 
-		}
-        else {
-	        Alert::addError('This Service is currently not availabel'); 
-        }
-
-        return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
-    }
-
-    public function actionRegisterPlayer($tournamentId)
-    {
-        if (Yii::$app->user->isGuest) {
-            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
-            return $this->redirect(['/user/login']);
-        }
-
-        /** Base Informations **/
-        $user = Yii::$app->HelperClass->getUser();
-        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
-
-        $tournament = Tournament::getTournamentById($tournamentId);
-
-        if(TournamentPlayerParticipating::getById($tournament->getId(), $user->getId()))
-        {
-            Alert::addError('You are already registered for the ' . $tournament->getName() . ' tournament');
-            return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
-		}
-
-        $model = new TournamentPlayerParticipating();
-        $model->tournament_id = $tournament->getId();
-        $model->player_id = $user->getId();
-        $model->checked_in = false;
-        $model->readRules = true;
-
-        if($model != null) {
-            $model->save();
-            Alert::addInfo('You are registered for  the ' . $tournament->getName() . ' tournament'); 
-		}
-        else {
-	        Alert::addError('This Service is currently not availabel'); 
-        }
-
-        return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
-    }
-
-    public function actionUnsubscribePlayer($tournamentId)
-    {
-        if (Yii::$app->user->isGuest) {
-            Alert::addError('You are not allowed to Register to an Tournament, Please Login');
-            return $this->redirect(['/user/login']);
-        }
-
-        /** Base Informations **/
-        $user = Yii::$app->HelperClass->getUser();
-        $languageID = Yii::$app->HelperClass->getUserLanguage($user);
-
-        $tournament = Tournament::getTournamentById($tournamentId);
-
-        $model = TournamentPlayerParticipating::getById($tournament->getId(), $user->getId());
-        if(!$model)
-        {
-            Alert::addError('You are not registered for the ' . $tournament->getName() . ' tournament');
-            return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
-		}
-
-        if($model != null) {
-            $model->delete();
-            Alert::addInfo('You are unsubscribed for  the ' . $tournament->getName() . ' tournament'); 
-		}
-        else {
-	        Alert::addError('This Service is currently not availabel'); 
-        }
-
-        return $this->redirect(['register?tournamentId=' . $tournament->getId()]);
-    }
 
     /** CheckIn */
 
@@ -343,7 +206,7 @@ class TournamentController extends BaseController
 
         $tournament = Tournament::getTournamentById($tournamentId);
 
-        $gameClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\CheckEligible';
+        $gameClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\CheckEligible';
         $tournamentGameClass = new $gameClass();
 
         $authorizedTeams = $tournamentGameClass->checkTeamAuthorization($tournament, $user, $languageID);
@@ -440,18 +303,18 @@ class TournamentController extends BaseController
         if($tournament->getIsTeamTournament())
         {
             $bracketData = TeamBrackets::getBracketData($bracketId);
-            $bracketView = Yii::$app->basePath.'/modules/tournament/modules/' .  Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '/views/team_BracketDetails.php';
+            $bracketView = Yii::$app->basePath.'/modules/tournament/modules/' .  Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '/views/team_BracketDetails.php';
 		}
         else
         {
             $bracketData = PlayerBrackets::getBracketData($bracketId);
-            $bracketView = Yii::$app->basePath.'/modules/tournament/modules/' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '/views/single_BracketDetails.php';
+            $bracketView = Yii::$app->basePath.'/modules/tournament/modules/' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '/views/single_BracketDetails.php';
 		}
 
         $encounterScreen = [];
         $editable = false;
 
-        $url = Yii::$app->basePath.'/modules/tournament/modules/rocketLeague/views/single_BracketDetails.php';
+        //$url = Yii::$app->basePath.'/modules/tournament/modules/rocketLeague/views/single_BracketDetails.php';
 
         return $this->render('tournamentBracketDetails',
         [
@@ -473,13 +336,13 @@ class TournamentController extends BaseController
 
         if($bracketData['isTeam'])
         {
-            $gameBracketClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\models\TeamBrackets';
-            $gameEncounterClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\models\TeamBracketEncounter';
+            $gameBracketClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\models\TeamBrackets';
+            $gameEncounterClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\models\TeamBracketEncounter';
 		}
         else
         {
-            $gameBracketClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\models\PlayerBrackets';
-            $gameEncounterClass = 'app\modules\tournament\modules\\' . Games::find('id', $tournament->getGameId())->one()->getStatisticsClass() . '\models\PlayerBracketEncounter';
+            $gameBracketClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\models\PlayerBrackets';
+            $gameEncounterClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\models\PlayerBracketEncounter';
         }
 
         $tournamentBracketClass = new $gameBracketClass();
