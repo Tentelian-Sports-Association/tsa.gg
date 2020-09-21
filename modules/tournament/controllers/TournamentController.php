@@ -133,27 +133,6 @@ class TournamentController extends BaseController
         ]);
 	}
 
-    public function actionCreateBrackets($tournamentId)
-    {
-        $tournament = Tournament::getTournamentById($tournamentId);
-        
-        $game = 'app\modules\tournament\modules\\' . Games::findByID($tournament->getGameId())->getStatisticsClass() . '\CreateBrackets';
-        $gameClass = new $game();
-
-        if($tournament->getIsTeamTournament())
-        {
-            $checkedInParticipants = TournamentTeamParticipating::getCheckedInTeamParticipating($tournamentId);
-		}
-        else
-        {
-            $checkedInParticipants = TournamentPlayerParticipating::getCheckedInPlayerParticipating($tournamentId);
-        }
-
-        $bracketData = $gameClass->CreateBrackets($checkedInParticipants, $tournament->getId());
-
-        return $this->redirect(['details?gameId='. $tournament->getGameId() . '&tournamentId=' . $tournament->getId()]);
-	}
-
     /** Register */
 
     public function actionRegister($tournamentId)
@@ -240,6 +219,26 @@ class TournamentController extends BaseController
 	}
 
     /** Brackets */
+    public function actionCreateBrackets($tournamentId)
+    {
+        $tournament = Tournament::getTournamentById($tournamentId);
+        
+        $game = 'app\modules\tournament\modules\\' . Games::findByID($tournament->getGameId())->getStatisticsClass() . '\CreateBrackets';
+        $gameClass = new $game();
+
+        if($tournament->getIsTeamTournament())
+        {
+            $checkedInParticipants = TournamentTeamParticipating::getCheckedInTeamParticipating($tournamentId);
+		}
+        else
+        {
+            $checkedInParticipants = TournamentPlayerParticipating::getCheckedInPlayerParticipating($tournamentId);
+        }
+
+        $bracketData = $gameClass->CreateBrackets($checkedInParticipants, $tournament->getId());
+
+        return $this->redirect(['details?gameId='. $tournament->getGameId() . '&tournamentId=' . $tournament->getId()]);
+	}
 
     public function actionBracketDetails($tournamentId = null, $bracketId = null)
     {
