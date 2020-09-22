@@ -115,6 +115,19 @@
     .round-4:after, .round-Finale:after {
         width: 0px;
     }
+
+    .round-Finale {
+        .bracket-box:before {
+            position: absolute;
+            content: "";
+            width: 45px;
+            height: 2px;
+            left: 0;
+            top: 50%;
+            background-color: #fff;
+            transform: translateX(-100%);
+        }
+    }
 }
 
 .looserBracket {
@@ -135,6 +148,14 @@
 
     .round-2 {
         margin-top: 108px;
+    }
+
+    .round-2 ~ .round-2 {
+        margin-top: 168px;
+    }
+
+    .round-3 {
+        margin-top: 108px;
         .bracket-box:before {
             position: absolute;
             content: "";
@@ -147,7 +168,7 @@
         }
     }
 
-    .round-2 ~ .round-2 {
+    .round-3 ~ .round-3 {
         margin-top: 168px;
     }
 
@@ -169,11 +190,11 @@
     }
 
     .round-4 {
-        margin-top: 225px;
+        margin-top: 150px;
         .bracket-box:before {
             position: absolute;
             content: "";
-            width: 59px;
+            width: 45px;
             height: 2px;
             left: 0;
             top: 50%;
@@ -183,7 +204,17 @@
     }
 
     .round-5 {
-        margin-top: 225px;
+        margin-top: 150px;
+        .bracket-box:before {
+            position: absolute;
+            content: "";
+            width: 45px;
+            height: 2px;
+            left: 0;
+            top: 50%;
+            background-color: #fff;
+            transform: translateX(-100%);
+        }
     }
 
     .round-Finale {
@@ -231,8 +262,8 @@
         right: -25px !important;
     }
 
-    .round-4:after, .round-Finale:after {
-        width: 0px;
+    .round-4:after .bracket::after {
+        display: none;
     }
 }
 
@@ -243,3 +274,17 @@
 .roundTitle {
     padding-left: 20px;
 }
+
+.looserBracket .round-2 .bracket:after {
+    display: none;
+}
+
+.looserBracket .round-4 .bracket:after {
+    display: none;
+}
+
+.looserBracket .round-5 .bracket::after {
+    transform: translateY(-100%);
+    height: calc(50% + 385px);
+}
+

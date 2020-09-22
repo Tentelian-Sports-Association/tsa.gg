@@ -167,7 +167,7 @@ use app\widgets\Alert;
         <!-- Tournament Brackets -->
         <?php if($tournament['running']) : ?>
             <div class="brackets mt-4 mb-4" style="width: 100%; overflow-x: auto;">
-                <h3>Winner Bracket</h3>
+                <h3>Bracket</h3>
                 <div class="winnerBracket row">
                     <?php 
                         $last_round = 1;
@@ -255,13 +255,13 @@ use app\widgets\Alert;
                                         .'<div class="bracketParticipant' .$class1 . '">'		
                                             . $participant1['name']
                                             . '<div class="takeWinner" style="float:right;">'
-                                                . '<div class="goals" style="float:left;">' . $goals['left'] . '</div>'
+                                                . '<div class="goals" style="float:left;">0</div>'
                                             . '</div>'
                                         . '</div>'
                                         . '<div class="bracketParticipant' .$class2 . '">'
                                         . $participant2['name']
                                             . '<div class="takeWinner" style="float:right;">'
-                                                . '<div class="goals" style="float:left;">' . $goals['right'] . '</div>'
+                                                . '<div class="goals" style="float:left;">0</div>'
                                             . '</div>'
                                         . '</div>'
                                     . '</div>'
@@ -271,12 +271,11 @@ use app\widgets\Alert;
                         </div>
                     <?php endforeach; ?>
                 </div>
-
                 <div class="looserBracket row">
                     <div class="bracketRound"></div>
                     <?php foreach ($bracketData['looser'] as $round => $roundBrackets): ?>
                         <?php $firstBracket = reset($roundBrackets['brackets']); ?>
-                        <div class="bracketRound">
+                        <div class="bracketRound round-<?= $round ?>">
                             <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
                                 <?php
                                     $bracketFinished = $bracket->checkisFinished();
