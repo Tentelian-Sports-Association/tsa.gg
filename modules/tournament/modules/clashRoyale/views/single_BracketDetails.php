@@ -130,14 +130,15 @@ use app\widgets\Alert;
                                                 <span class="encounterInput"><?= $player['encounterData'][$b-1]['princess_tower_2_hitpoints']; ?></span>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="encounterField">
-                                                <span class="encounterInput"><?= $player['encounterData'][$b-1]['battle_time']; ?></span>
-                                            </div>                                        
-                                        </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                            </div>
+                            <!--
+                                Hier der Placeholder mit der Map auf der gespielt wurde
+                            -->
+                            <div>
+                                <?= Html::img(Yii::$app->HelperClass->getMapImage('iceworld') . '.webp', ['aria-label' => 'princessTowerLeft', 'class' => '', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getMapImage('iceworld') . '.png\'']) ?>		
                             </div>
                             <div class="col-6">
                                 <?php foreach ($bracketData['orange']['participantData'] as $player): ?>
@@ -196,11 +197,6 @@ use app\widgets\Alert;
                                                 <div class="encounterField">
                                                     <span class="encounterInput"><?= $player['encounterData'][$b-1]['princess_tower_2_hitpoints']; ?></span>
                                                     <?= Html::img(Yii::$app->HelperClass->getTowerImage('princess') . '.webp', ['aria-label' => 'princessTowerLeft', 'class' => '', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getTowerImage('princess') . '.png\'']) ?>		
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="encounterField">
-                                                    <span class="encounterInput"><?= $player['encounterData'][$b-1]['battle_time']; ?></span>
                                                 </div>
                                             </div>
                                         </div>

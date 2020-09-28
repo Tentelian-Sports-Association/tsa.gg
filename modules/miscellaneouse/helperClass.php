@@ -118,6 +118,18 @@ class HelperClass
         return $imagePath . $cardID;
 	}
 
+    public function getMapImage($mapID)
+    {
+        $imagePath = Yii::getAlias("@web") . '/images/clashRoyale/maps/';
+
+        if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $mapID . '.webp')) {
+            if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $mapID .'.png')) {
+                return $imagePath . 'default';
+            }
+        }
+        return $imagePath . $mapID;
+	}
+
     public function getTowerImage($towerName)
     {
         $imagePath = Yii::getAlias("@web") . '/images/clashRoyale/towers/';
