@@ -291,13 +291,14 @@ class TournamentController extends BaseController
         $encounterScreen = [];
 
         //$url = Yii::$app->basePath.'/modules/tournament/modules/rocketLeague/views/single_BracketDetails.php';
-
+        $editable = false;
         return $this->render('tournamentBracketDetails',
         [
             'tournament' => $tournament,
             'bracketData' => $bracketData,
             'encounterScreen' => $encounterScreen,
             'bracketView' => $bracketView,
+            'editable' => $editable,
             'myId' => $user->getId(),
         ]);
 	}

@@ -93,6 +93,43 @@ class HelperClass
         return $imagePath;
 	}
 
+    /** Clash Royale */
+    public function getCrown($position)
+    {
+        $imagePath = Yii::getAlias("@web") . '/images/clashRoyale/crowns/';
+
+        if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $position . '.webp')) {
+            if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $position .'.png')) {
+                return $imagePath . 'default';
+            }
+        }
+        return $imagePath . $position;
+	}
+
+    public function getCardImage($cardID)
+    {
+        $imagePath = Yii::getAlias("@web") . '/images/clashRoyale/cards/';
+
+        if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $cardID . '.webp')) {
+            if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $cardID .'.png')) {
+                return $imagePath . 'default';
+            }
+        }
+        return $imagePath . $cardID;
+	}
+
+    public function getTowerImage($towerName)
+    {
+        $imagePath = Yii::getAlias("@web") . '/images/clashRoyale/towers/';
+
+        if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $towerName . '.webp')) {
+            if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $towerName . '.png')) {
+                return $imagePath . 'default';
+            }
+        }
+        return $imagePath . $towerName;
+	}
+
     /**
      * @return User Object
      */
