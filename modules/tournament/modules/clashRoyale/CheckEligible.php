@@ -57,22 +57,22 @@ class CheckEligible
             $player['gameIds'][$nr]['platformPlayerId'] = null;
             $player['gameIds'][$nr]['platformPlayerIdError'] = null;
 
-            if(UserGames::find()->where(['user_id' => $user->getId()])->andWhere(['game_id' => GamePlatforms::find()->where(['id' => $rocketId->getGamePlatformId()])->one()->getPlatformAsGameId()])->one())
+            /*if(UserGames::find()->where(['user_id' => $user->getId()])->andWhere(['game_id' => GamePlatforms::find()->where(['id' => $rocketId->getGamePlatformId()])->one()->getPlatformAsGameId()])->one())
             {           
                 $player['gameIds'][$nr]['platformPlayerId'] = UserGames::find()->where(['user_id' => $user->getId()])->andWhere(['game_id' => GamePlatforms::find()->where(['id' => $rocketId->getGamePlatformId()])->one()->getPlatformAsGameId()])->one()->getPlayerId();
-			}
+			}*/
 
             if(!$playerEligible)
             {
-                $playerEligible = ($player['gameIds'][$nr]['gamePlayerId'] && $player['gameIds'][$nr]['platformPlayerId'])? 1 : 0;
+                $playerEligible = ($player['gameIds'][$nr]['gamePlayerId']/* && $player['gameIds'][$nr]['platformPlayerId']*/)? 1 : 0;
 			}
 
-            if(!$player['gameIds'][$nr]['platformPlayerId'])
+            /*if(!$player['gameIds'][$nr]['platformPlayerId'])
             {
                 $player['gameIds'][$nr]['platformPlayerIdError'] = 'No ' . $rocketId->getGamePlatformName($languageID) . ' id found';
-			}
+			}*/
 
-            $player['gameIds'][$nr]['playerGameIdEligible'] = ($player['gameIds'][$nr]['gamePlayerId'] && $player['gameIds'][$nr]['platformPlayerId'])? 1 : 0;
+            $player['gameIds'][$nr]['playerGameIdEligible'] = ($player['gameIds'][$nr]['gamePlayerId'] /*&& $player['gameIds'][$nr]['platformPlayerId']*/)? 1 : 0;
 		}
 
         $player['playerEligible'] = $playerEligible;

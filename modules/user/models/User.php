@@ -394,6 +394,11 @@ class User extends AbstractActiveRecord implements IdentityInterface
         return $userGamesSorted;
     }
 
+    public function getPlayerId($gameId)
+    {
+        return UserGames::find()->where(['user_id' => $this->id])->andWhere(['game_id' => $gameId])->one();
+	}
+
     /** Organisations */
     /**
      * @return ActiveQuery

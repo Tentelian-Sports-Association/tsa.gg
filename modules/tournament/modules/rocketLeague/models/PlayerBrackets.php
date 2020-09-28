@@ -25,6 +25,7 @@ use app\modules\tournament\modules\rocketLeague\models\PlayerBracketEncounter;
  * @property int $winner_bracket
  * @property int $looser_bracket
  * @property int $winner_participant
+ * @property bool $finished
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -177,6 +178,14 @@ class PlayerBrackets extends ActiveRecord
     public function getWinnerParticipant()
     {
         return $this->hasOne(User::className(), ['id' => 'winner_participant'])->one();
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsFinished()
+    {
+        return $this->finished;
     }
 
     /**

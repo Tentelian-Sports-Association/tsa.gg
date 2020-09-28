@@ -10,7 +10,6 @@ class ProfilePicForm extends FormModel
 	const SCENARIO_USER = 'user';
 	const SCENARIO_ORGANISATION = 'organisation';
 	const SCENARIO_TEAM = 'team';
-	//const SCENARIO_TEAM = 'teams/subTeams';
 
 	public $id;
 	public $file;
@@ -21,6 +20,7 @@ class ProfilePicForm extends FormModel
 			ProfilePicForm::SCENARIO_USER => $this->attributes(),
             ProfilePicForm::SCENARIO_ORGANISATION => $this->attributes(),
             ProfilePicForm::SCENARIO_TEAM => $this->attributes(),
+            ProfilePicForm::SCENARIO_CARDS => $this->attributes(),
 		];
 	}
 

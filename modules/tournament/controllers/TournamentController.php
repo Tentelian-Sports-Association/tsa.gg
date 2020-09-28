@@ -17,13 +17,6 @@ use app\modules\tournament\models\Tournament;
 
 use app\modules\team\models\Team;
 
-use app\modules\tournament\modules\rocketLeague\models\TeamBrackets;
-use app\modules\tournament\modules\rocketLeague\models\TeamBracketEncounter;
-
-use app\modules\tournament\modules\rocketLeague\models\PlayerBrackets;
-use app\modules\tournament\modules\rocketLeague\models\PlayerBracketEncounter;
-
-
 use Yii;
 use app\widgets\Alert;
 
@@ -111,20 +104,25 @@ class TournamentController extends BaseController
         $tournament = Tournament::getTournamentById($tournamentId);
 
         $participants = null;
+        $bracketData = null;
+
+        $gamePlayerBracketsClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\models\PlayerBrackets';
+        $tournamentPlayerBracketsClass = new $gamePlayerBracketsClass();
+
+        $gameTeamBracketsClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\models\TeamBrackets';
+        $tournamentTeamBracketsClass = new $gameTeamBracketsClass();
 
         if($tournament->getIsTeamTournament())
         {
             $participants = TournamentTeamParticipating::getTeamParticipating($tournamentId, $languageID);
-            $bracketData = TeamBrackets::getAllByTournamentFormatted($tournamentId);
+            $bracketData = $tournamentTeamBracketsClass::getAllByTournamentFormatted($tournamentId);
 		}
         else
         {
             $participants = TournamentPlayerParticipating::getPlayerParticipating($tournamentId, $languageID);
-            $bracketData = PlayerBrackets::getAllByTournamentFormatted($tournamentId);
+            $bracketData = $tournamentPlayerBracketsClass::getAllByTournamentFormatted($tournamentId);
 		}
 
-        $temp = $tournament->getTournamentTreeData();
-        
         return $this->render('tournamentDetails',
         [
             'tournament' => $tournament,
@@ -137,6 +135,17 @@ class TournamentController extends BaseController
 
     public function actionRegister($tournamentId)
     {
+        $user = Yii::$app->HelperClass->getUser();
+        
+        $tmp = 'app\modules\miscellaneouse\API\ClashRoyale\RoyaleAPICalls';
+        $gameClass = new $tmp();
+
+        //$data = $gameClass->getPlayerData($user);
+        //$gameClass->updateCardDatabase();
+
+        //print_r($data);
+        //die();
+
         /** Base Informations **/
         $user = Yii::$app->HelperClass->getUser();
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
@@ -258,23 +267,28 @@ class TournamentController extends BaseController
         $languageID = Yii::$app->HelperClass->getUserLanguage($user);
 
         $tournament = Tournament::getTournamentById($tournamentId);
+
+        $gamePlayerBracketsClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\models\PlayerBrackets';
+        $tournamentPlayerBracketsClass = new $gamePlayerBracketsClass();
+
+        $gameTeamBracketsClass = 'app\modules\tournament\modules\\' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '\models\TeamBrackets';
+        $tournamentTeamBracketsClass = new $gameTeamBracketsClass();
         
         $bracketData = [];
         $bracketView = '';
 
         if($tournament->getIsTeamTournament())
         {
-            $bracketData = TeamBrackets::getBracketData($bracketId);
+            $bracketData = $tournamentTeamBracketsClass::getBracketData($bracketId);
             $bracketView = Yii::$app->basePath.'/modules/tournament/modules/' .  Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '/views/team_BracketDetails.php';
 		}
         else
         {
-            $bracketData = PlayerBrackets::getBracketData($bracketId);
+            $bracketData = $tournamentPlayerBracketsClass::getBracketData($bracketId);
             $bracketView = Yii::$app->basePath.'/modules/tournament/modules/' . Games::find()->where(['id' => $tournament->getGameId()])->one()->getStatisticsClass() . '/views/single_BracketDetails.php';
 		}
 
         $encounterScreen = [];
-        $editable = false;
 
         //$url = Yii::$app->basePath.'/modules/tournament/modules/rocketLeague/views/single_BracketDetails.php';
 
@@ -283,7 +297,6 @@ class TournamentController extends BaseController
             'tournament' => $tournament,
             'bracketData' => $bracketData,
             'encounterScreen' => $encounterScreen,
-            'editable' => $editable,
             'bracketView' => $bracketView,
             'myId' => $user->getId(),
         ]);

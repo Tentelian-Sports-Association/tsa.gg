@@ -7,4 +7,6 @@ use app\widgets\Alert;
 
 \app\modules\tournament\assets\TournamentRegistrationAsset::register($this);
 
+
+
 ?>
