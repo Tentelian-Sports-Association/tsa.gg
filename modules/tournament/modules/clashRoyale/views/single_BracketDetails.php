@@ -95,22 +95,27 @@ use app\widgets\Alert;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php for($i = 0; $i <= $player['encounterData'][$b-1]['crowns']; $i++) : ?>
-                                                <!--
-                                                    Die Kronen M�ssen in der reihenfolge 1 3 2 angezeigt werden.
-                                                    da die Dritte Krone die ist die in der Mitte steht. Sollten nur zwei sein muss die Mitte leer bleiben.
-                                                    Wenn crowns 0 dan dreimal platzhalter einf�gen.
-                                                -->
-                                                <?php if($i == 1) : ?>
-                                                    <?= Html::img(Yii::$app->HelperClass->getCrown('left') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('left') . '.png\'']) ?>		
-                                                <?php endif; ?>
-                                                <?php if($i == 2) : ?>
-                                                    <?= Html::img(Yii::$app->HelperClass->getCrown('right') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('right') . '.png\'']) ?>		
-                                                <?php endif; ?>
-                                                <?php if($i == 3) : ?>
-                                                    <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>		
-                                                <?php endif; ?>
-                                            <?php endfor; ?>
+                                            <div class="col-12 text-center crowns">
+                                                <div class="row">
+                                                    <div class="col-3"></div>
+                                                    <div class="col-2">
+                                                        <?php if($player['encounterData'][$b-1]['crowns'] > 0) : ?>
+                                                            <?= Html::img(Yii::$app->HelperClass->getCrown('left') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('left') . '.png\'']) ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <?php if($player['encounterData'][$b-1]['crowns'] > 2) : ?>
+                                                            <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <?php if($player['encounterData'][$b-1]['crowns'] > 1) : ?>
+                                                            <?= Html::img(Yii::$app->HelperClass->getCrown('right') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('right') . '.png\'']) ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="col-3"></div>
+                                                </div>
+                                            </div>
                                             <div class="col-12 text-center">
                                                 <!--
                                                     hier kommen die Karten immer 4 in einer reihe, 8 sind es
@@ -173,28 +178,28 @@ use app\widgets\Alert;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 text-center">
-                                                <div class="encounterField">
-                                                    <span class="encounterInput">
-                                                        <?php for($i = 0; $i <= $player['encounterData'][$b-1]['crowns']; $i++) : ?>
-                                                            <!--
-                                                                Die Kronen M�ssen in der reihenfolge 1 3 2 angezeigt werden.
-                                                                da die Dritte Krone die ist die in der Mitte steht. Sollten nur zwei sein muss die Mitte leer bleiben.
-                                                                Wenn crowns 0 dan dreimal platzhalter einf�gen.
-                                                            -->
-                                                            <?php if($i == 1) : ?>
-                                                                <?= Html::img(Yii::$app->HelperClass->getCrown('left') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('left') . '.png\'']) ?>		
-                                                            <?php endif; ?>
-                                                            <?php if($i == 2) : ?>
-                                                                <?= Html::img(Yii::$app->HelperClass->getCrown('right') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('right') . '.png\'']) ?>		
-                                                            <?php endif; ?>
-                                                            <?php if($i == 3) : ?>
-                                                                <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>		
-                                                            <?php endif; ?>
-                                                        <?php endfor; ?>
-                                                    </span>
+                                            <div class="col-12 text-center crowns">
+                                                <div class="row">
+                                                    <div class="col-3"></div>
+                                                    <div class="col-2">
+                                                        <?php if($player['encounterData'][$b-1]['crowns'] > 0) : ?>
+                                                            <?= Html::img(Yii::$app->HelperClass->getCrown('left') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('left') . '.png\'']) ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <?php if($player['encounterData'][$b-1]['crowns'] > 2) : ?>
+                                                            <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <?php if($player['encounterData'][$b-1]['crowns'] > 1) : ?>
+                                                            <?= Html::img(Yii::$app->HelperClass->getCrown('right') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('right') . '.png\'']) ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="col-3"></div>
                                                 </div>
-                                            <div class="col-12 text center">
+                                            </div>
+                                            <div class="col-12 text-center">
                                                 <!--
                                                     hier kommen die Karten immer 4 in einer reihe, 8 sind es
                                                 -->
@@ -240,7 +245,6 @@ use app\widgets\Alert;
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
