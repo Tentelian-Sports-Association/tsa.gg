@@ -140,24 +140,26 @@ use app\widgets\Alert;
                                             </div>
                                             <div class="col-12 text-center">
                                                 <div class="row">
-                                                    <div class="col-4">
+                                                    <div class="col-3"></div>
+                                                    <div class="col-2 mt-4">
                                                         <div class="encounterField">
                                                             <?= Html::img(Yii::$app->HelperClass->getTowerImage('princess') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getTowerImage('princess') . '.png\'']) ?>		
                                                             <span class="encounterInput"><?= $player['encounterData'][$b-1]['princess_tower_1_hitpoints']; ?></span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-2">
                                                         <div class="encounterField">
                                                             <?= Html::img(Yii::$app->HelperClass->getTowerImage('king') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getTowerImage('king') . '.png\'']) ?>		
                                                             <span class="encounterInput"><?= $player['encounterData'][$b-1]['king_tower_hit_points']; ?></span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-2 mt-4">
                                                         <div class="encounterField">
                                                             <?= Html::img(Yii::$app->HelperClass->getTowerImage('princess') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getTowerImage('princess') . '.png\'']) ?>		
                                                             <span class="encounterInput"><?= $player['encounterData'][$b-1]['princess_tower_2_hitpoints']; ?></span>
                                                         </div>
                                                     </div>
+                                                    <div class="col-3"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -223,24 +225,26 @@ use app\widgets\Alert;
                                             </div>
                                             <div class="col-12 text-center">
                                                 <div class="row">
-                                                    <div class="col-4">
+                                                    <div class="col-3"></div>
+                                                    <div class="col-2 mt-4">
                                                         <div class="encounterField">
                                                             <?= Html::img(Yii::$app->HelperClass->getTowerImage('princess') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getTowerImage('princess') . '.png\'']) ?>		
                                                             <span class="encounterInput"><?= $player['encounterData'][$b-1]['princess_tower_1_hitpoints']; ?></span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-2">
                                                         <div class="encounterField">
                                                             <?= Html::img(Yii::$app->HelperClass->getTowerImage('king') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getTowerImage('king') . '.png\'']) ?>		
                                                             <span class="encounterInput"><?= $player['encounterData'][$b-1]['king_tower_hit_points']; ?></span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-2 mt-4">
                                                         <div class="encounterField">
                                                             <?= Html::img(Yii::$app->HelperClass->getTowerImage('princess') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getTowerImage('princess') . '.png\'']) ?>		
                                                             <span class="encounterInput"><?= $player['encounterData'][$b-1]['princess_tower_2_hitpoints']; ?></span>
                                                         </div>
                                                     </div>
+                                                    <div class="col-3"></div>
                                                 </div>
                                             </div>
                                         </div>
