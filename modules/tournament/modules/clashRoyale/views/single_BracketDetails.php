@@ -129,23 +129,20 @@ use app\widgets\Alert;
                                                 <!--
                                                     hier kommen die Karten immer 4 in einer reihe, 8 sind es
                                                 -->
-                                                <?php $i = 1; for($card = 0; $card < 8; $card++) : ?>
-                                                    <?php if ($i == 1) {
-                                                            echo '<div class="col-12">';
-                                                            echo Html::img(Yii::$app->HelperClass->getCardImage('26000000') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage('26000000') . '.png\'']);
-                                                            $i++;
-                                                        }  else {
-                                                            if($i == 4) {
-                                                                echo Html::img(Yii::$app->HelperClass->getCardImage('26000000') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage('26000000') . '.png\'']);
-                                                                echo '</div>';
-                                                                $i = 1;
-                                                            } else {
-                                                                echo Html::img(Yii::$app->HelperClass->getCardImage('26000000') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage('26000000') . '.png\'']);
-                                                                $i++;
-                                                            }
-                                                        }
-                                                    ?>
-                                                <?php endfor; ?>
+                                                <?php if(array_key_exists($b-1, $player['cardsData'])) :?>
+                                                <div class="col-12">
+                                                    <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_1_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_1_id']) . '.png\'']); ?>
+                                                    <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_2_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_2_id']) . '.png\'']); ?>
+                                                    <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_3_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_3_id']) . '.png\'']); ?>
+                                                    <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_4_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_4_id']) . '.png\'']); ?>
+                                                </div>
+                                                <div class="col-12">
+                                                    <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_5_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_5_id']) . '.png\'']); ?>
+                                                    <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_6_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_6_id']) . '.png\'']); ?>
+                                                    <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_7_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_7_id']) . '.png\'']); ?>
+                                                    <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_8_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_8_id']) . '.png\'']); ?>
+                                                </div>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="col-12 text-center">
                                                 <div class="row">
@@ -214,23 +211,20 @@ use app\widgets\Alert;
                                                 <!--
                                                     hier kommen die Karten immer 4 in einer reihe, 8 sind es
                                                 -->
-                                                <?php $i = 1; for($card = 0; $card < 8; $card++) : ?>
-                                                    <?php if ($i == 1) {
-                                                            echo '<div class="col-12">';
-                                                            echo Html::img(Yii::$app->HelperClass->getCardImage('26000000') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage('26000000') . '.png\'']);
-                                                            $i++;
-                                                        }  else {
-                                                            if($i == 4) {
-                                                                echo Html::img(Yii::$app->HelperClass->getCardImage('26000000') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage('26000000') . '.png\'']);
-                                                                echo '</div>';
-                                                                $i = 1;
-                                                            } else {
-                                                                echo Html::img(Yii::$app->HelperClass->getCardImage('26000000') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage('26000000') . '.png\'']);
-                                                                $i++;
-                                                            }
-                                                        }
-                                                    ?>
-                                                <?php endfor; ?>
+                                                <?php if(array_key_exists($b-1, $player['cardsData'])) :?>
+                                                    <div class="col-12">
+                                                        <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_1_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_1_id']) . '.png\'']); ?>
+                                                        <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_2_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_2_id']) . '.png\'']); ?>
+                                                        <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_3_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_3_id']) . '.png\'']); ?>
+                                                        <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_4_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_4_id']) . '.png\'']); ?>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_5_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_5_id']) . '.png\'']); ?>
+                                                        <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_6_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_6_id']) . '.png\'']); ?>
+                                                        <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_7_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_7_id']) . '.png\'']); ?>
+                                                        <?= Html::img(Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_8_id']) . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCardImage($player['cardsData'][$b-1]['card_8_id']) . '.png\'']); ?>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="col-12 text-center">
                                                 <div class="row">

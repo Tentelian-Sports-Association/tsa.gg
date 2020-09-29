@@ -9,6 +9,7 @@ use app\modules\user\models\User;
 
 use app\modules\tournament\models\Tournament;
 use app\modules\tournament\modules\clashRoyale\models\PlayerBracketEncounter;
+use app\modules\tournament\modules\clashRoyale\models\PlayerBracketEncounterCurrentDeck;
 
 /**
  * Class PlayerBrackets
@@ -249,6 +250,7 @@ class PlayerBrackets extends ActiveRecord
         $bracketData['blue']['participantData'][0]['playerName'] = $participant1->getUsername();
         $bracketData['blue']['participantData'][0]['ClashID'] = $participant1->getPlayerId(3);
         $bracketData['blue']['participantData'][0]['encounterData'] = PlayerBracketEncounter::find()->where(['id' => $bracket->getEncounterId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['player_id' => $participant1->getId()])->orderBy(['battle_time' => SORT_ASC])->all();
+        $bracketData['blue']['participantData'][0]['cardsData'] = PlayerBracketEncounterCurrentDeck::find()->where(['player_id' => $participant1->getId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['encounter_id' => $bracket->getEncounterId()])->orderBy(['battle_time' => SORT_ASC])->all();
 
         $bracketData['orange']['participantId'] = $participant2->getId();
         $bracketData['orange']['participantName'] = $participant2->getUsername();
@@ -257,6 +259,7 @@ class PlayerBrackets extends ActiveRecord
         $bracketData['orange']['participantData'][0]['playerName'] = $participant2->getUsername();
         $bracketData['orange']['participantData'][0]['ClashID'] = $participant2->getPlayerId(3);;
         $bracketData['orange']['participantData'][0]['encounterData'] = PlayerBracketEncounter::find()->where(['id' => $bracket->getEncounterId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['player_id' => $participant2->getId()])->orderBy(['battle_time' => SORT_ASC])->all();
+        $bracketData['orange']['participantData'][0]['cardsData'] = PlayerBracketEncounterCurrentDeck::find()->where(['player_id' => $participant2->getId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['encounter_id' => $bracket->getEncounterId()])->orderBy(['battle_time' => SORT_ASC])->all();
 
         return $bracketData;
 	}

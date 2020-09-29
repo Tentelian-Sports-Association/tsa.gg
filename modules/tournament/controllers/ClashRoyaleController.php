@@ -11,6 +11,7 @@ use app\modules\tournament\models\Tournament;
 
 use app\modules\tournament\modules\clashRoyale\models\PlayerBrackets;
 use app\modules\tournament\modules\clashRoyale\models\PlayerBracketEncounter;
+use app\modules\tournament\modules\clashRoyale\models\PlayerBracketEncounterCurrentDeck;
 
 
 /**
@@ -101,7 +102,47 @@ class ClashRoyaleController extends BaseController
             if($ecd != -1)
             {
                 $encounterData1[$ecd]->battle_time = $battleLogData['battleTime'];
+                $encounterData1Cards = PlayerBracketEncounterCurrentDeck::find()->where(['player_id' => $encounterData1[$ecd]['player_id']])->andWhere(['tournament_id' => $encounterData1[$ecd]['tournament_id']])->andWhere(['encounter_id' => $encounterData1[$ecd]['id']])->andWhere(['encounter_round' => $encounterData1[$ecd]['game_round']])->one();
                 $encounterData2[$ecd]->battle_time = $battleLogData['battleTime'];
+                $encounterData2Cards = PlayerBracketEncounterCurrentDeck::find()->where(['player_id' => $encounterData2[$ecd]['player_id']])->andWhere(['tournament_id' => $encounterData2[$ecd]['tournament_id']])->andWhere(['encounter_id' => $encounterData2[$ecd]['id']])->andWhere(['encounter_round' => $encounterData2[$ecd]['game_round']])->one();
+
+
+                if(!$encounterData1Cards)
+                    $encounterData1Cards = new PlayerBracketEncounterCurrentDeck();
+
+                if(!$encounterData2Cards)
+                    $encounterData2Cards = new PlayerBracketEncounterCurrentDeck();
+
+                $encounterData1Cards['player_id'] = $encounterData1[$ecd]['player_id'];
+                $encounterData2Cards['player_id'] = $encounterData2[$ecd]['player_id'];
+
+                $encounterData1Cards['tournament_id'] = $encounterData1[$ecd]['tournament_id'];
+                $encounterData2Cards['tournament_id'] = $encounterData2[$ecd]['tournament_id'];
+
+                $encounterData1Cards['encounter_id'] = $encounterData1[$ecd]['id'];
+                $encounterData2Cards['encounter_id'] = $encounterData2[$ecd]['id'];
+
+                $encounterData1Cards['encounter_round'] = $encounterData1[$ecd]['game_round'];
+                $encounterData2Cards['encounter_round'] = $encounterData2[$ecd]['game_round'];
+
+                $encounterData1Cards['card_1_id'] = $battleLogData['team']['cards'][0]['id'];
+                $encounterData2Cards['card_1_id'] = $battleLogData['opponent']['cards'][0]['id'];
+                $encounterData1Cards['card_2_id'] = $battleLogData['team']['cards'][1]['id'];
+                $encounterData2Cards['card_2_id'] = $battleLogData['opponent']['cards'][1]['id'];
+                $encounterData1Cards['card_3_id'] = $battleLogData['team']['cards'][2]['id'];
+                $encounterData2Cards['card_3_id'] = $battleLogData['opponent']['cards'][2]['id'];
+                $encounterData1Cards['card_4_id'] = $battleLogData['team']['cards'][3]['id'];
+                $encounterData2Cards['card_4_id'] = $battleLogData['opponent']['cards'][3]['id'];
+                $encounterData1Cards['card_5_id'] = $battleLogData['team']['cards'][4]['id'];
+                $encounterData2Cards['card_5_id'] = $battleLogData['opponent']['cards'][4]['id'];
+                $encounterData1Cards['card_6_id'] = $battleLogData['team']['cards'][5]['id'];
+                $encounterData2Cards['card_6_id'] = $battleLogData['opponent']['cards'][5]['id'];
+                $encounterData1Cards['card_7_id'] = $battleLogData['team']['cards'][6]['id'];
+                $encounterData2Cards['card_7_id'] = $battleLogData['opponent']['cards'][6]['id'];
+                $encounterData1Cards['card_8_id'] = $battleLogData['team']['cards'][7]['id'];
+                $encounterData2Cards['card_8_id'] = $battleLogData['opponent']['cards'][7]['id'];
+                $encounterData1Cards['battle_time'] = $battleLogData['battleTime'];
+                $encounterData2Cards['battle_time'] = $battleLogData['battleTime'];
 
                 $encounterData1[$ecd]->crowns = $battleLogData['team']['crowns'];
                 $encounterData2[$ecd]->crowns = $battleLogData['opponent']['crowns'];
@@ -111,6 +152,9 @@ class ClashRoyaleController extends BaseController
                 $encounterData2[$ecd]->princess_tower_1_hitpoints = $battleLogData['opponent']['princess_tower_1_hitpoints'];
                 $encounterData1[$ecd]->princess_tower_2_hitpoints = $battleLogData['team']['princess_tower_2_hitpoints'];
                 $encounterData2[$ecd]->princess_tower_2_hitpoints = $battleLogData['opponent']['princess_tower_2_hitpoints'];
+
+                $encounterData1Cards->save();
+                $encounterData2Cards->save();
 
                 $encounterData1[$ecd]->save();
                 $encounterData2[$ecd]->save();
@@ -199,6 +243,8 @@ class ClashRoyaleController extends BaseController
             }
 		}
 
+        $returnValue[$participant1]['cards'] = $log[$participant1][0]['cards'];
+
         /* Player 2 */
         $returnValue[$participant2]['crowns'] = $log[$participant2][0]['crowns'];
         $returnValue[$participant2]['king_tower_hit_points'] = array_key_exists('kingTowerHitPoints', $log[$participant2][0])? $log[$participant2][0]['kingTowerHitPoints']: 0;
@@ -216,6 +262,8 @@ class ClashRoyaleController extends BaseController
                 $returnValue[$participant2]['princess_tower_1_hitpoints'] = $log[$participant2][0]['princessTowersHitPoints'][0];
             }
 		}
+
+        $returnValue[$participant2]['cards'] = $log[$participant2][0]['cards'];
 
         return $returnValue;
 	}
