@@ -22,18 +22,22 @@ use app\widgets\Alert;
                 <div class="col-lg-12 encounterGameHeader">
                     <div class="col-lg-5 float-left">
                         <div class="col-lg-12 playerDetails">
-                            <div class="col-lg-6 avatar">
+                            <div class="col-lg-4 avatar">
                                 <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['blue']['participantId']) . '.webp', ['aria-label' => $bracketData['blue']['participantName']. '.webp', 'class' => 'encounterGameHeaderImageLeft', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['blue']['participantId']) . '.png\'']) ?>		
                             </div>
-                            <!--
-                                Winner Krone, mittig über dem namen und etwas kleiner. so das der Name immer noch mittig zum Avatar ist.
-                            -->
-                            <?php if($bracketData['blue']['isWinner']) : ?>
-                                <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
-                            <?php endif; ?>
-                            <div class="col-lg-6 playerName float-left">
-                                <?= $bracketData['blue']['participantName']; ?>
+                            <div class="col-lg-8 playerName float-left">
+                                <div class="row">
+                                    <div class="col-12 text-center crown-box">
+                                        <?php if($bracketData['blue']['isWinner']) : ?>
+                                            <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="col-12  text-center">
+                                        <?= $bracketData['blue']['participantName']; ?>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="col-lg-2 float-left encounterVs text-center">
@@ -41,20 +45,25 @@ use app\widgets\Alert;
                     </div>
                     <div class="col-lg-5 float-left">
                         <div class="col-lg-12 playerDetails">
-                            <!--
-                                Winner Krone, mittig über dem namen und etwas kleiner. so das der Name immer noch mittig zum Avatar ist.
-                            -->
-                            <?php if($bracketData['orange']['isWinner']) : ?>
-                                    <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
-                                <?php endif; ?>
                             <div class="col-lg-6 playerName float-left">
-                                <?= $bracketData['orange']['participantName']; ?>
+                                <div class="row">
+                                    <div class="col-12 text-center crown-box">
+                                        <?php if($bracketData['orange']['isWinner']) : ?>
+                                            <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="col-12  text-center">
+                                        <?= $bracketData['orange']['participantName']; ?>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-lg-6 avatar">
                                 <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['orange']['participantId']) . '.webp', ['aria-label' => $bracketData['orange']['participantName']. '.webp', 'class' => 'encounterGameHeaderImageRight', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['orange']['participantId']) . '.png\'']) ?>		
                             </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>
             </div>
