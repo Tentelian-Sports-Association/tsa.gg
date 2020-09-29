@@ -81,7 +81,7 @@ use app\widgets\Alert;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php for($i = 0; $i < $player['encounterData'][$b-1]['crowns']; $i++) : ?>
+                                            <?php for($i = 0; $i <= $player['encounterData'][$b-1]['crowns']; $i++) : ?>
                                                 <!--
                                                     Die Kronen M�ssen in der reihenfolge 1 3 2 angezeigt werden.
                                                     da die Dritte Krone die ist die in der Mitte steht. Sollten nur zwei sein muss die Mitte leer bleiben.
@@ -162,7 +162,7 @@ use app\widgets\Alert;
                                         <div class="col-12 text-center">
                                             <div class="encounterField">
                                                 <span class="encounterInput">
-                                                    <?php for($i = 0; $i < $player['encounterData'][$b-1]['crowns']; $i++) : ?>
+                                                    <?php for($i = 0; $i <= $player['encounterData'][$b-1]['crowns']; $i++) : ?>
                                                         <!--
                                                             Die Kronen M�ssen in der reihenfolge 1 3 2 angezeigt werden.
                                                             da die Dritte Krone die ist die in der Mitte steht. Sollten nur zwei sein muss die Mitte leer bleiben.
