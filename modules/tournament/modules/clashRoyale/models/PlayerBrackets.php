@@ -244,6 +244,7 @@ class PlayerBrackets extends ActiveRecord
 
         $bracketData['blue']['participantId'] = $participant1->getId();
         $bracketData['blue']['participantName'] = $participant1->getUsername();
+        $bracketData['blue']['isWinner'] = ($bracket->getWinnerParticipantId() != NULL && $bracket->getWinnerParticipantId() == $participant1->getId())? true : false;
         $bracketData['blue']['participantData'][0]['playerId'] = $participant1->getId();
         $bracketData['blue']['participantData'][0]['playerName'] = $participant1->getUsername();
         $bracketData['blue']['participantData'][0]['ClashID'] = $participant1->getPlayerId(3);
@@ -251,6 +252,7 @@ class PlayerBrackets extends ActiveRecord
 
         $bracketData['orange']['participantId'] = $participant2->getId();
         $bracketData['orange']['participantName'] = $participant2->getUsername();
+        $bracketData['orange']['isWinner'] = ($bracket->getWinnerParticipantId() != NULL && $bracket->getWinnerParticipantId() == $participant2->getId())? true : false;
         $bracketData['orange']['participantData'][0]['playerId'] = $participant2->getId();
         $bracketData['orange']['participantData'][0]['playerName'] = $participant2->getUsername();
         $bracketData['orange']['participantData'][0]['ClashID'] = $participant2->getPlayerId(3);;

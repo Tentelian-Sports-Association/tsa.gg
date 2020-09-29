@@ -25,6 +25,14 @@ use app\widgets\Alert;
                             <div class="col-lg-6 avatar">
                                 <?= Html::img(Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['blue']['participantId']) . '.webp', ['aria-label' => $bracketData['blue']['participantName']. '.webp', 'class' => 'encounterGameHeaderImageLeft', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->checkImage('/images/avatars/user/', $bracketData['blue']['participantId']) . '.png\'']) ?>		
                             </div>
+                            <!--
+                                Winner Krone, mittig über dem namen und etwas kleiner. so das der Name immer noch mittig zum Avatar ist.
+                            -->
+                            <div>
+                                <?php if($bracketData['blue']['isWinner']) : ?>
+                                    <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
+                                <?php endif; ?>
+                            </div>
                             <div class="col-lg-6 playerName float-left">
                                 <?= $bracketData['blue']['participantName']; ?>
                             </div>
@@ -35,6 +43,12 @@ use app\widgets\Alert;
                     </div>
                     <div class="col-lg-5 float-left">
                         <div class="col-lg-12 playerDetails">
+                            <!--
+                                Winner Krone, mittig über dem namen und etwas kleiner. so das der Name immer noch mittig zum Avatar ist.
+                            -->
+                            <?php if($bracketData['orange']['isWinner']) : ?>
+                                    <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
+                                <?php endif; ?>
                             <div class="col-lg-6 playerName float-left">
                                 <?= $bracketData['orange']['participantName']; ?>
                             </div>
@@ -46,6 +60,7 @@ use app\widgets\Alert;
                 </div>
                 <div class="clearfix"></div>
             </div>
+
             <div class="text-center mb-4">
                 <?php if (!$bracketData['base']['finished']): ?>
                     <?php
@@ -62,6 +77,7 @@ use app\widgets\Alert;
                     ?>
                 <?php endif; ?>
             </div>
+            
             <div class="col-lg-12 encounterBody">
                 <?php for ($b=1; $b <= $bracketData['base']['bo']; $b++): ?>
                     <div class="bg-darkblue-2 mb-4 pb-4">
@@ -229,10 +245,10 @@ use app\widgets\Alert;
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    </div>
-                    </div>
                 <?php endfor; ?>
             </div>
+
+        </div>
         <div class="col-lg-12 encounterFooter text-center">
             <?= Html::a('Back to Tournament', ['details','gameId' => $tournament->getGameId(), 'tournamentId' => $tournament->getId()], ['class' => 'btn btn-warning outline-btn mt-4']); ?>
         </div>
