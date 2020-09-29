@@ -29,7 +29,7 @@ use app\widgets\Alert;
                                 <div class="row">
                                     <div class="col-12 text-center crown-box">
                                         <?php if($bracketData['blue']['isWinner']) : ?>
-                                            <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
+                                            <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower winnerCrown', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
                                         <?php endif; ?>
                                     </div>
                                     <div class="col-12  text-center">
@@ -49,7 +49,7 @@ use app\widgets\Alert;
                                 <div class="row">
                                     <div class="col-12 text-center crown-box">
                                         <?php if($bracketData['orange']['isWinner']) : ?>
-                                            <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
+                                            <?= Html::img(Yii::$app->HelperClass->getCrown('mid') . '.webp', ['aria-label' => '', 'class' => 'princessTower winnerCrown', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getCrown('mid') . '.png\'']) ?>
                                         <?php endif; ?>
                                     </div>
                                     <div class="col-12  text-center">
