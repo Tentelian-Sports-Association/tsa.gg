@@ -120,6 +120,7 @@ class HelperClass
 
     public function getMapImage($mapID)
     {
+
         $imagePath = Yii::getAlias("@web") . '/images/clashRoyale/maps/';
 
         if (!is_file($_SERVER['DOCUMENT_ROOT'] . $imagePath . $mapID . '.webp')) {

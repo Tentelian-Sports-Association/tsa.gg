@@ -22,6 +22,7 @@ use app\modules\tournament\models\Tournament;
  * @property int $king_tower_hit_points
  * @property int $princess_tower_1_hitpoints
  * @property int $princess_tower_2_hitpoints
+ * @property string $currentMap
  * @property string $dt_created
  * @property string $dt_updated
  */
@@ -83,6 +84,14 @@ class PlayerBracketEncounter extends ActiveRecord
     public function getPlayer()
     {
         return $this->hasOne(User::className(), ['id' => 'player_id'])->one();
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrentMap()
+    {
+        return $this->currentMap;
     }
 
     /**

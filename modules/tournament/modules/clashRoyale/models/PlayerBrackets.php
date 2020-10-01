@@ -242,6 +242,9 @@ class PlayerBrackets extends ActiveRecord
         $bracketData['base']['bo'] = $bracket->getBestOf();
         $bracketData['base']['round'] = $bracket->getRound();
         $bracketData['base']['finished'] = $bracket->getIsFinished();
+        $bracketData['base']['map'] = 'iceworld';
+
+        $bracketData['base']['map'] = PlayerBracketEncounter::find()->where(['id' => $bracket->getEncounterId()])->andWhere(['tournament_id' => $bracket->getTournamentId()])->andWhere(['player_id' => $participant1->getId()])->orderBy(['battle_time' => SORT_ASC])->select('currentMap')->all();
 
         $bracketData['blue']['participantId'] = $participant1->getId();
         $bracketData['blue']['participantName'] = $participant1->getUsername();

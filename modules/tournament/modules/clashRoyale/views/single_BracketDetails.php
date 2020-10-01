@@ -173,7 +173,7 @@ use app\widgets\Alert;
                                 <?php endforeach; ?>
                             </div>
                             <div class="col-2">
-                                <?= Html::img(Yii::$app->HelperClass->getMapImage('iceworld') . '.webp', ['aria-label' => '', 'class' => 'princessTower world', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getMapImage('iceworld') . '.png\'']) ?>		
+                                <?= Html::img(Yii::$app->HelperClass->getMapImage($bracketData['base']['map'][$b-1]['currentMap']) . '.webp', ['aria-label' => '', 'class' => 'princessTower world', 'onerror' => 'this.src=\'' . Yii::$app->HelperClass->getMapImage('iceworld') . '.png\'']) ?>		
                             </div>
                             <div class="col-5">
                                 <?php foreach ($bracketData['orange']['participantData'] as $player): ?>
